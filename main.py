@@ -16,9 +16,6 @@
 from flask import Flask, render_template, request
 #from werkzeug import secure_filename
 
-from google.appengine.api import app_identity
-
-
 from docx import Document
 
 import adlamConversion
@@ -34,13 +31,14 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    who = app_identity.get_default_version_hostname()
+    who = request.url
     return 'Hello World! ' + who
 
 @app.route('/test/')
 def test():
     """Return a friendly HTTP greeting."""
-    return 'Testing World!'
+    who = request.url
+    return 'Testing World! ' + who
 
 @app.route('/adlm/')
 def convertAdlam():
@@ -68,10 +66,12 @@ def doc1():
     doc.save('test.docx')
     return 'DOC! ' + font.name
 
-# https://pythonbasics.org/flask-upload-f
+# https://pythonbasics.org/flask-upload-files
 @app.route('/upload')
 def upload():
-   return render_template('upload.html')
+   who = request.host_url
+   print('URL = %s' % who)
+   return render_template('upload.html', base=who)
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
