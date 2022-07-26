@@ -55,8 +55,10 @@ class paragraphData():
       self.textsize += len(textNode.text)
 
 # Version 2. Copy old doc, then modify
-class convertDocx():
-  def __init__(self, input_path, output_dir, converter, debug=False):
+class ConvertDocx():
+  def __init__(self, converter,
+               documentIn=None, input_path=None, output_dir=None,
+               debug=False):
     self.oldFonts = []
     self.input_path = input_path
     self.output_dir = output_dir
@@ -84,16 +86,28 @@ class convertDocx():
     self.superscriptNode = None
 
     # Copy old doc into new path.
-    self.document = Document(input_path)
-    if self.output_dir:
-      # String the directory tree to the file, substituting the output
-      fileIn = os.path.split(self.input_path)[1]
-      baseWOextension = os.path.splitext(fileIn)[0]
+    if not documentIn:
+      if input_path:
+        self.document = Document(input_path)
+      else:
+        print('No input path or document given.')
+        return None
     else:
-      baseWOextension = os.path.splitext(self.input_path)[0]
-    self.outpath = os.path.join(self.output_dir, baseWOextension + '_unicode.docx')
-    # Save the unchanged copy
-    self.document.save(self.outpath)
+      self.document = documentIn
+
+    self.outpath= None
+    
+    if not documentIn:
+      # Save the unchanged copy
+      # Only save a copy if it's a newly created document.
+      self.document.save(self.outpath)
+      if self.output_dir:
+        # String the directory tree to the file, substituting the output
+        fileIn = os.path.split(self.input_path)[1]
+        baseWOextension = os.path.splitext(fileIn)[0]
+      else:
+        baseWOextension = os.path.splitext(self.input_path)[0]
+        self.outpath = os.path.join(self.output_dir, baseWOextension + '_unicode.docx')
 
   def processDocx(self):
     if self.debug:
@@ -123,7 +137,8 @@ class convertDocx():
           for para in paragraphs:
             self.converter.processParagraphRuns(para)
 
-    self.document.save(self.outpath)
+    if self.outpath:
+      self.document.save(self.outpath)
     return
 
   def tryFontUpdate(self, newzip, oldFontList, unicodeFont):
@@ -615,7 +630,7 @@ def main(argv):
   for path in paths_to_doc:
     extension = os.path.splitext(path)[-1]
     if extension == '.docx':
-      docxProcessor = convertDoc.convertDocx(path, args.output_dir, args.font, debug_output)
+      docxProcessor = convertDoc.ConvertDocx(path, args.output_dir, args.font, debug_output)
       docxProcessor.processDocx()
     else:
       print('!!! Not processing file %s !' % path)

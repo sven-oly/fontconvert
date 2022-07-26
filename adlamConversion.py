@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 
 # Convert Adlam encoded text to Unicode.
@@ -19,8 +19,7 @@ FONTS_TO_CONVERT = [
 thisDefaultOutputFont = 'Noto Sans Adlam'
 
 
-class converter(ConverterBase):
-#class converter():
+class AdlamConverter(ConverterBase):
     private_use_map = {
         'arab': {
             u'\u0628': u'\U0001e900',
@@ -380,7 +379,21 @@ class converter(ConverterBase):
 
 
     def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None, defaultOutputFont=thisDefaultOutputFont):
-        super().__init__(oldFontList, newFont=newFont, defaultOutputFont=defaultOutputFont)
+        #super(self, AdlamConverter).__init__(oldFontList, newFont=newFont, defaultOutputFont=defaultOutputFont)
+        self.encodingScripts = []  # If given, tells the Script of incoming characters
+        self.oldFonts = []
+
+        for item in oldFontList:
+            if isinstance(item, list):
+                self.oldFonts.append(item[0])
+                self.encodingScripts.append(item[1])
+            else:
+                self.oldFonts.append(item)
+
+        if newFont:
+            self.unicodeFont = newFont
+        else:
+            self.unicodeFont = defaultOutputFont
         self.setScriptRange(0x1e900, 0x1e95f)
         self.setUpperCaseRange(0x1e900, 0x1e921)
         self.setLowerCaseRange(0x1e922, 0x1e943)
@@ -482,7 +495,8 @@ class converter(ConverterBase):
     # Sentences end with period followed by a space, a question mark, exclamation,
     # or end of text, but not 3 dots (ellipsis).
     def findSentencesInParagraph(self, paratext):
-        sentences = paragraph().split('. ')
+        print('PARATEXT = %s' % paratext)
+        # sentences = paratext().split('. ')
         return None  # To be finished!
 
     def checkContentsForMerge(self, text):
@@ -694,8 +708,7 @@ def testConvert():
     },
   }
 
-  adlamConverter = converter(FONTS_TO_CONVERT, thisDefaultOutputFont)
-  #result = adlamConverter.converter(oldOneText[0][0], fontTextInfo=oldOneText)
+  adlamConverter = AdlamConverter(FONTS_TO_CONVERT, thisDefaultOutputFont)
   for script in testcases:
     fontIndex = testcases[script]['fontIndex']
     toLower = testcases[script]['toLower']
@@ -704,9 +717,7 @@ def testConvert():
       input = test[0]
       expected = test[1]
       result = adlamConverter.convertText(input,
-                                          convertToLower=toLower,
-                                          fontIndex=fontIndex,
-                                          sentenceCase=sentenceCase)
+                                          fontIndex=fontIndex)
       if result != expected:
         print ('** Unexpected results: \n  expected(%d) = %s\n  Result(%d)   = %s' % (
           len(expected), expected, len(result), result))
@@ -723,7 +734,7 @@ def testParagraph():
         '  ?ض جظخبث: لبص ض جظخبث: لبص .ض جظخبث: لبص!'
 
     ]
-    adlamConverter = converter(FONTS_TO_CONVERT, thisDefaultOutputFont)
+    adlamConverter = AdlamConverter(FONTS_TO_CONVERT, thisDefaultOutputFont)
     for test in test_paragraphs:
         result = adlamConverter.findSentencesInParagraph(test)
 

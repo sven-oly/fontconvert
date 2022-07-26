@@ -14,6 +14,7 @@ class ConverterBase():
 
   def __init__(self, oldFontList=None, newFont=None,
                defaultOutputFont=thisDefaultOutputFont):
+    print('CONVERTER BASE %s' % oldFontList)
     self.forceFont = True  # May be used to set all font fields to the Unicode font
 
     self.encodingScripts = []  # If given, tells the Script of incoming characters

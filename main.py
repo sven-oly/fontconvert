@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 # Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +16,23 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-from flask import Flask, render_template, request
-#from werkzeug import secure_filename
+from flask import Flask, render_template, stream_with_context, request, Response
+
+# https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
+from werkzeug.utils import secure_filename
+
+from io import BytesIO
+from io import StringIO
+
+#import cloudstorage as gcs
+
+import os
 
 from docx import Document
 
 import adlamConversion
-import convertOfficeAdlam
-import convertOffice
 
+from convertDoc2 import ConvertDocx
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -56,10 +67,14 @@ def convertAdlam():
 @app.route('/doc/')
 def doc1():
     """Return a friendly HTTP greeting."""
-    doc = Document('a2_short.docx')
+    try:
+        doc = Document('a2_short.docx')
+    except BaseException as err:
+        return "Document fails %s" % (err)
+    
     paragraph = doc.add_paragraph()
     run = doc.add_paragraph().add_run()
-    run.text = ' = "”𞤱𞤭𞤲𞤣𞤫𞤲 𞤶𞤢𞤲𞤺𞤫𞤲 𞤫 𞤸𞤢𞥄𞤤𞤢 𞤨𞤵'
+    run.text = "TEST TEXT"
 
     font = run.font
     font.name = 'Noto Sans Adlam'
@@ -68,20 +83,86 @@ def doc1():
 
 # https://pythonbasics.org/flask-upload-files
 @app.route('/upload')
+@app.route('/upload/')
 def upload():
    who = request.host_url
    print('URL = %s' % who)
    return render_template('upload.html', base=who)
-	
+
+def read_file_chunks(fd):
+  print('FD = %s' % fd)
+  chunks = 0
+  while 1:
+      buf = fd.read(8192)
+      print('%d BYTES %s' % (chunks, bytes))
+      if buf:
+          yield buf
+      else:
+          break
+      chunks += 1
+  print('READ DONE')
+
 @app.route('/uploader', methods = ['GET', 'POST'])
+@app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      # f.save(secure_filename(f.filename))
-      f.save(f.filename)
-      return '%s file uploaded successfully' % f.filename
+    if request.method == 'POST':
+        file = request.files['file']  # FileStorage object
+        print('FILE = %s' % file)
+        fileName = file.filename
+        outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
+        print(outFileName)
+        inputFileName = file.filename
+        text = file.stream.read()
+        data = BytesIO(text)
+        count = len(text)
+        print('FILE LENGTH = %s' % count)
+        print('doc file = %s' % data)
+        doc = Document(data)
+        data.close()
 
+        try:
+            adlamConverter = adlamConversion.AdlamConverter()      
+            paragraphs = doc.paragraphs
+            count = len(paragraphs)
+        except:
+            return 'Bad Adlam converter'
+        print('Created converter')
 
+        try:
+            docConverter = ConvertDocx(adlamConverter, documentIn=doc)
+
+            print('docConverter = %s' % docConverter)
+            print('%d paragraphs in input doc' % len(paragraphs))
+            if docConverter:
+                result = docConverter.processDocx()
+
+                #for p in paragraphs:
+                #    print('p = %s' % p.text)
+                target_stream = BytesIO()
+                result = doc.save(target_stream)          
+                # Download resulting converted document
+                # Reset the pointer to the beginning.
+                target_stream.seek(0)
+                #read_file_chunks(target_stream)
+                headerFileName = "attachment;filename=%s" % outFileName
+                headers = {
+                    "Content-Disposition": headerFileName
+                }
+                try:
+                    return Response(
+                        stream_with_context(read_file_chunks(target_stream)),
+                        mimetype="application/vnd.openxmlformats-officnedocument.wordprocessingml.document",
+                        headers=headers
+                    )
+                except:
+                    error = "ERROR"
+                    print('**** Response failure %s' % error)
+                    
+        except:
+            return 'Conversion failed.'
+                
+    return '%s file uploaded successfully with %d paragraphs' % (file.filename, count)
+           
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
     # Engine, a webserver process such as Gunicorn will serve the app. This
