@@ -9,6 +9,8 @@ import sys
 
 from converterBase import ConverterBase
 
+from convertDoc2 import ConvertDocx
+
 FONTS_TO_CONVERT = [
   ['Fulfulde - Aissata', 'arab'],
   ['Fulfulde - Fuuta', 'arab'],
@@ -18,6 +20,11 @@ FONTS_TO_CONVERT = [
 
 thisDefaultOutputFont = 'Noto Sans Adlam'
 
+# Character constants for conversion
+adlamNasalizationMark = '\U0001E94B'
+adlamInitialExclamationMark = '\U0001E95E'
+adlamInitialQuestionMark = '\U0001E95F'
+reverseQuestionMark = '\ue2e2'
 
 class AdlamConverter(ConverterBase):
     private_use_map = {
@@ -82,24 +89,22 @@ class AdlamConverter(ConverterBase):
             u'\u0669': u'\U0001e959',
 
             # Punctuation & space
-            u'\u0601': u'!',  # \U0001e95e' Initial Question mark
-            u'\u060c': u'\u060c',
-            u'\u060b': u'⁏',
-            u',': u'⹁',
-            u';': u'⁏',
+            u'\u0601': adlamInitialExclamationMark,  # Initial 
+            u'\u060c': '\u2e41',
+            u'\u060b': '\u204f',
+            # u',': u'⹁',
             u' ': u' ',
-            u'،': u'،',
             ':': ':',
             '!': '!',
-            '?': '?',
+            u'،': u'\u2E41',
+            u'؛': u'\u204F',
+            u'؟': u'\u2E2E',
+            # '?': '?',
             ')': ')',
             '(': '(',
             '-': '-',
             '.': '.',
-            '؟': '?',
-            '⹁': '⹁',
             '/': '/',
-            '\u204f': ',',  # Should this be different?
 
             u'\u00c0': u'\u0027', # Simple apostrophe
             u'\u00c3': u'\u2022',
@@ -117,11 +122,11 @@ class AdlamConverter(ConverterBase):
             u'\u200d': u'',  # Not needed in Adlam
             u'\u201c': u'\u201c',
             u'\u201d': u'\u201d',
-            u'\u2126': u'\U0001e990b',
-            u'\u2211': u'\U0001e9909',
-            u'\u2248': u'\U0001e990a',
-            u'\ufefe': u'\U0001e9944',
-            u'\U0001E94B': u'\U0001E94B',
+            u'\u2126': u'\U0001e90b',
+            u'\u2211': u'\U0001e909',
+            u'\u2248': u'\U0001e90a',
+            u'\ufefe': u'\U0001e944',
+            u'\u0027': adlamNasalizationMark,
         },
         'latn': {
             ' ': u' ',
@@ -366,14 +371,14 @@ class AdlamConverter(ConverterBase):
             '9': u'𞥙',
             '.': u'.',
             ',': u'⹁',
-            ';': u'⁏'
-            ,'?': u'\u061f',
-            '?':  u'?',
-            u'\u201c': u'\u201c',
-            u'\u201d': u'\u201d',
+            '\u061f': reverseQuestionMark,
+            # ';': u'⁏'
+            #'?':  u'?',
+            #u'\u201c': u'\u201c',
+            #u'\u201d': u'\u201d',
             ':': ':',
             '!': '!',
-            u'\U0001E94B': u'\U0001E94B',
+            "\u0027": adlamNasalizationMark,
         },
     }
 
@@ -389,6 +394,10 @@ class AdlamConverter(ConverterBase):
                 self.encodingScripts.append(item[1])
             else:
                 self.oldFonts.append(item)
+
+        # Default script = 'arab'
+        self.scriptToConvert = 'arab'
+        self.scriptIndex = 0
 
         if newFont:
             self.unicodeFont = newFont
@@ -416,31 +425,36 @@ class AdlamConverter(ConverterBase):
         self.setLowerMode(True)
         self.setSentenceMode(True)
 
-        self.end_of_sentence_pattern = re.compile(r'([\.\?\!\؟$])')
+        self.end_of_sentence_pattern = re.compile(r'([\.\?\!\⸮\؟$])')
 
         # For inserting question and exclamation before sentences.
         self.pre_punctuation = {
-            '?': '𞥟',
-            '!': '𞥞',
-            '؟': '𞥟',
+            '?': adlamInitialQuestionMark,
+            '؟': adlamInitialQuestionMark,
+            '⸮': adlamInitialQuestionMark,
+            '!': adlamInitialExclamationMark,
+            '\u061f': adlamInitialQuestionMark,
         }
-
-        if self.debug:
-          print('OldFonts = %s' % self.oldFonts)
-          print('encodingScripts = %s' % self.encodingScripts)
-          print('unicodeFont = %s' % self.unicodeFont)
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
+    def setScriptIndex(self, newIndex=0):
+        # 0 = 'arab', 1 = 'latn'
+        self.scriptIndex = newIndex
+        self.scriptToConvert = self.encodingScripts[self.scriptIndex]
+        
+
     # Consider the font information if relevant, e.g., underlining.
-    # fontInfo: a list of font data for this code, including formatting for each piece.
+    # fontTextInfo: a list of font data for this code, including formatting for each piece.
     def convertText(self, textIn, fontTextInfo=None, fontIndex=0):
         if self.debug:
             print('convertText index= %s, text = %s' % (fontIndex, textIn))
+
         self.encoding = self.encodingScripts[fontIndex]
         encoding_map = self.private_use_map[self.encoding]
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
+
             result = self.convertString(textIn, None, encoding_map)
             if self.debug:
                 print('   convertText result= %s' % (result))
@@ -491,28 +505,6 @@ class AdlamConverter(ConverterBase):
 
         return convertResult
 
-    # Locate the sentence boundaries given a paragraph.
-    # Sentences end with period followed by a space, a question mark, exclamation,
-    # or end of text, but not 3 dots (ellipsis).
-    def findSentencesInParagraph(self, paratext):
-        print('PARATEXT = %s' % paratext)
-        # sentences = paratext().split('. ')
-        return None  # To be finished!
-
-    def checkContentsForMerge(self, text):
-        if not text:
-          return True
-        # See if this text could be merged with the output.
-        # If all the contents are in Adlam or punctuation of space, then it can be
-        # merged within a font group
-        ok_chars = ['\u0020', '.', ',', ';', ':', '[', ']', '{', '}', '⹁',
-                    '⁏', '?', '\u061F', '(', ')', '/', '-', '_']
-        for c in text:
-            if not (c >= self.first and c <= self.last) and (
-                c not in ok_chars):
-                return False
-        return True
-
 
     def computeSentenceStartsEnds(self, text):
          # Get all the positions of sentence endings
@@ -548,25 +540,6 @@ class AdlamConverter(ConverterBase):
          sentence_ends.append((len(text)-1, '$'))
          return sentence_ends, sentence_starts
 
-    def processXmlParagraphRuns(self, xml_runs):
-        # Get paragraph text
-        text_list = []
-        for run in xml_runs:
-            if run.text:
-                text_list.append(run.text)
-        para_text = ''.join(text_list)
-        # Get the sentence ends and starts of this text
-        sentence_ends, sentence_starts = \
-            self.computeSentenceStartsEnds(para_text)
-
-        # Get mappings of text in runs to paragraph text
-        run_map = self.mapRunsToParagraphTextPosisions(xml_runs)
-
-        # Process each sentence for capitalization and punctuation,
-        # updating the runs.
-        self.updateSentencesInRuns(xml_runs, run_map, sentence_starts, sentence_ends)
-        return
-
     def mapRunsToParagraphTextPosisions(self, runs):
         # Mapping of run starts & ends to text positions
         run_map = []
@@ -580,88 +553,63 @@ class AdlamConverter(ConverterBase):
             run_index += 1
         return run_map
 
-    def updateSentencesInRuns(self, runs, run_map, sentence_starts, sentence_ends):
-        for start in sentence_starts:
-            # Get the run and relative position
-            (run, run_pos) = self.textPositionInRun(run_map, start)
-
-            if run != None and run.text and run.text != '':
-                # Find next non-white space and capitalize it
-                run_length = len(run.text)
-                runIndex = run_pos
-                text = run.text
-                # TODO: ignore spaces, digits, and some punctuation at start of sentence
-                # self.ignore_start_of_sentence = r'[𞥐𞥑𞥒𞥓𞥔𞥕𞥖𞥗𞥘𞥙𞥐() ]'
-                ignore_match = self.ignore_start_of_sentence.match(text)
-                if ignore_match:
-                    increment = ignore_match.end()
-                    runIndex += increment
-                while runIndex < run_length and text[runIndex] == ' ':
-                    runIndex += 1
-                if runIndex < run_length:
-                    fixThisOne = text[runIndex]
-                    toUpper = fixThisOne.upper()
-                    run.text = text[0:runIndex] + toUpper + text[runIndex + 1:]
-                else:
-                    print('!! Capitalization question %d %s (%d)' % (runIndex, text, len(text)))
-
-
-        # Insert preceding ! or ?, from the back
-        index = len(sentence_ends) - 1
-        while index >= 0:
-            insert_pos = sentence_ends[index][0]
-            punctuation = sentence_ends[index][1]
-            if punctuation != "."  and punctuation != '$':
-                # Get the start of this sentence
-                (run, run_pos) = self.textPositionInRun(
-                    run_map, sentence_starts[index])
-                text = run.text
-                run_length = len(text)
-                # TODO: ignore spaces, digits, and some punctuation at start of sentence
-                while run_pos < run_length and text[run_pos] == ' ':
-                    run_pos += 1
-                if run.text and run_pos < run_length and run.text[run_pos] != self.pre_punctuation[punctuation]:
-                    run.text = text[0:run_pos] + self.pre_punctuation[punctuation] + text[run_pos:]
-            index -= 1
-
-
     def processParagraphRuns(self, p):
-
+        # Handle the text within each paragraph
         if not p.text:
             # Nothing to process
             return
 
         for run in p.runs:
-            convertedText = self.convertText(run.text, None, 0)  # !!! TEMPORARY
+            convertedText = self.convertText(run.text, None, self.scriptIndex)
             run.text = convertedText
+            run.font.name = self.unicodeFont
 
+        self.processSentences(p)
+        return
+    
+    def processSentences(self, p):
+        # Deal with questions and exclamations, inserting
+        # initial marks at the start of sentences.
+        
         # Get all the positions of sentence endings
         sentence_ends, sentence_starts = \
             self.computeSentenceStartsEnds(p.text)
         run_map = self.mapRunsToParagraphTextPosisions(p.runs)
 
-        # Patch for capitals and punctuation at sentence starts.
-        for index in range(0, len(sentence_starts)):
-            startPos = sentence_starts[index]
-            endData = sentence_ends[index]
-            for r in run_map:
-                if r[0] >= startPos and r[1] >= startPos:
-                    # This is the run.
-                    run = r[2]
-                    text = run.text
-                    offset = r[0] - startPos
-                    capped = text[offset:].capitalize()
-                    firstPart = text[0:offset]
-                    text = firstPart + capped
-                    # Check for end character to prepend
-                    charEnd = endData[1]
-                    newStart = None
-                    if charEnd in self.pre_punctuation:
-                       newStart = self.pre_punctuation[charEnd]
-                       text = newStart + text
-                    # Put text back in run
-                    run.text = text
+        startRuns = []
+        rIndex = 0
+        for sIndex in range(0, len(sentence_starts)):
+            startPos = sentence_starts[sIndex]
+            if rIndex >= len(run_map):
+                x = 10
+            while rIndex < len(run_map) and run_map[rIndex][1] < startPos:
+                rIndex += 1
+                if rIndex >= len(run_map):
                     break
+            startRuns.append(rIndex)
+
+        # Patch for capitals and punctuation at sentence starts.
+        for sIndex in range(0, len(startRuns)):
+            runId = startRuns[sIndex]
+            if runId >= len(run_map):
+                break
+            run = run_map[runId][2]
+            # This is the run.
+            text = run.text
+            offset = sentence_starts[sIndex] - run_map[runId][0]  # Where the text actually starts
+            capped = text[offset:].capitalize()  # Capitalized portion
+            firstPart = text[0:offset] # Before the capitalized section
+            # Check for end character to prepend
+            charEnd = sentence_ends[sIndex][1]
+            if charEnd in self.pre_punctuation:
+               newStart = self.pre_punctuation[charEnd]
+            else:
+                newStart = ''
+            # Put text back in run
+            try:
+                run.text = firstPart + newStart + capped
+            except:
+                run.text = '*BROKEN* *Broken*'
         return
 
   # Given a start position in the paragraph text, return run and place there.
@@ -739,10 +687,49 @@ def testParagraph():
         result = adlamConverter.findSentencesInParagraph(test)
 
 
-def main():
-  testConvert()
-  testParagraph()
+def convertDocx(files):
+    adlamConverter = adlamConversion.AdlamConverter()      
+
+    try:
+        adlamConverter.setScriptIndex(scriptIndex)
+        adlamConverter.setLowerMode(True)
+        adlamConverter.setSentenceMode(True)
+        paragraphs = doc.paragraphs
+        count = len(paragraphs)
+        msgToSend = '%d paragraphs in %s\n' % (count, fileName)
+        countSent = 0
+
+    except BaseException as err:
+        return 'Bad Adlam converter. Err = %s' % err
+        
+    if app.debug:
+        print('Created converter')
+
+    try:
+        docConverter = ConvertDocx(adlamConverter, documentIn=doc,
+                                       reportProgressFn=progressFn)
+
+        if docConverter:
+            result = docConverter.processDocx()
+    except BaseException as err:
+        return 'Error in docConverter. Err = %s' % err
+
+
+def testPunctuation():
+    t = ["\u0601", "\0u60c", "\u060b", ]
+
+    converter = AdlamConverter()
+
+    for text in t:
+        r = converter.convertText(text, fontIndex=0)
+        print("%s --> %s" % (text, r))
+    
+def main(argv):
+    #convertDocFiles(argv[2:])
+    testPunctuation()
+    #testConvert()
+    #testParagraph()
 
 
 if __name__ == '__main__':
-  main()
+  main(sys.argv)

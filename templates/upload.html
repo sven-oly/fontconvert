@@ -1,14 +1,60 @@
 <html>
   <head>
     <title>Adlam online Docx font convert</title>
+
+    <script>
+      // Handle messages from the server
+      // const evSource = new EventSource('/stream');
+      
+      // evSource.onmessage = function(event) {
+      // 	  const msg = event.data;
+      // 	  if (msg) {
+      // 	      const outarea = document.getElementById('outArea');
+      // 	      outarea.innerHTML = msg;
+      // 	  }
+      // }
+
+    </script>
     </head>
   <body>
     <h1>Adlam font conversion</h2>
-<p>Please select a .docx file to convert.</p>
+      <p>Instructions:</p>
+      <ul>
+	<li>Please select a .docx file to convert.
+	</li>
+	<li>Then you may get information about the .docx file with "Get Document information.
+	  <ul>
+	    <li>This uploads the file to show you basic information about the size and number of sections and paragraphs in the document.</li>
+	    <li>Information about the fonts found in the document is also provided.</li></ul>
+	</li>
+	<li>Returning to this page will remember the file selected.</li>
+	<li>Select "Convert to Unicode" will upload the file again, performing text conversion in paragraphs, headers, footers, and tables.</li>
+	<li>The resulting file will be downloaded to your computer with "_Unicode" appended to the file name.
+	  <ul>
+	    <li>Note that this conversion may require a minute to perform and download.</li>
+	  </ul>
+	</li>
+      </ul>
       <form action = "{{base}}uploader/" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" id="name"/>
-         <input type = "submit"/>
+            enctype = "multipart/form-data">
+        <input type = "file" name = "file" id="name"/>
+	<br/><br/>
+	<input type="submit" value="Get document information" name="DocInfo" />
+        <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
+	<input type="text" name='scriptIndex' value={{scriptIndex}} hidden>
+	<ul>
+	  <input type='radio' id='NotoSansAdlam' name='UnicodeFont'
+		 value='NotoSansAdlam' checked>
+	  <label for 'NotoSansAdlam'>Noto Sans Adlam</label>
+	  <input type='radio' id='Kigelia' name='UnicodeFont'
+		 value='Kigelia'>
+	  <label for 'Kigelia'>Kigelia</label><br/>
+	  <input type='radio' id='Ebrima' name='UnicodeFont'
+		 value='Ebrima'>
+	  <label for 'Ebrima'>Ebrima</label><br/>
+	  Language: <input type='text' id='lang' value='Fula' readonly></input>
+	</ul>
       </form>   
+<p>Important: This application uses the uploaded files only for temporary processing. It does not store your original file or the converted Unicode file online. It will not be recorded or posted anywhere.
    </body>
 </html>

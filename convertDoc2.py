@@ -58,6 +58,7 @@ class paragraphData():
 class ConvertDocx():
   def __init__(self, converter,
                documentIn=None, input_path=None, output_dir=None,
+               reportProgressFn=None,
                debug=False):
     self.oldFonts = []
     self.input_path = input_path
@@ -66,6 +67,8 @@ class ConvertDocx():
     self.old_fonts = converter.oldFonts  # List of font names
     self.unicode_font = converter.unicodeFont
     self.debug = debug
+
+    self.progressFn = reportProgressFn
 
     # True if paragraph text should be converted as a unit
     self.accumulate_text = False
@@ -109,23 +112,40 @@ class ConvertDocx():
         baseWOextension = os.path.splitext(self.input_path)[0]
         self.outpath = os.path.join(self.output_dir, baseWOextension + '_unicode.docx')
 
+  
   def processDocx(self):
+    # Script index could select Adlam arab or latn.
     if self.debug:
       print('Convert2 processDocx path = %s, output_dir = %s\n' % (
         self.input_path, self.output_dir))
     # Try simple things.
     paragraphs = self.document.paragraphs
+
+    paragraphId = 1
+    paragraphCount = len(paragraphs)
     for para in paragraphs:
+      if self.progressFn:
+        msg = 'para %d of %d' % (paragraphId, paragraphCount)
+        if paragraphId % 100 == 0:
+          self.progressFn(msg)
       self.converter.processParagraphRuns(para)
+      paragraphId += 1
 
     sections = self.document.sections
     print("Document has %s sections" % len(sections))
+    if self.progressFn:
+      msg = 'Document has %d sections' % len(sections)
+      self.progressFn(msg)
+      
+    if self.progressFn:
+      msg = 'Processing headers and footers of %d sections' % len(sections)
+      self.progressFn(msg)
     for section in sections:
       header = section.header
       for para in header.paragraphs:
         self.converter.processParagraphRuns(para)
       footer = section.footer
-      for para in header.paragraphs:
+      for para in footer.paragraphs:
         self.converter.processParagraphRuns(para)
 
     tables = self.document.tables

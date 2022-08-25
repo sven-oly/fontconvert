@@ -8,11 +8,13 @@ import os
 import re
 import sys
 
-import adlamConversion
+from adlamConversion import AdlamConverter
+from convertDoc2 import ConvertDocx
 import convertOffice
 
-# For conversion from Arabic encoding
-# import adlamConversion
+from docx import Document
+
+# For conversion from Arabic encoding or Latin
 
 import convertUtil
 
@@ -23,8 +25,8 @@ def main(argv):
     args = convertUtil.parseArgs()
     if args.font:
       newUnicodeFont = args.font
-#    else:
-#      newUnicodeFont = adlamConversion.defaultOutputFont
+    else:
+      newUnicodeFont = adlamConversion.defaultOutputFont
 
     # Other Latin fonts to convert?
     paths_to_doc = args.filenames
@@ -39,14 +41,26 @@ def main(argv):
 
     # Get the converter To Adlam.
     # TODO: Set up way to convert Latin Fula to Adlam, too!
-    converter = adlamConversion.converter()  # FONTS_TO_CONVERT, newUnicodeFont)
+    converter = AdlamConverter(newFont=newUnicodeFont)  # FONTS_TO_CONVERT, newUnicodeFont)
     # Set up parameters for conversion
     converter.setLowerMode(args.lower)
     converter.setSentenceMode(args.sentence)
 
     for input in paths_to_doc:
-      convertOffice.convertOffice(input, args.output_dir, converter, version=2)
+      
+        doc = Document(input)
+        
+        docConverter = ConvertDocx(converter, doc)
+        docConverter.processDocx()
+        # convertOffice.convertOffice(input, args.output_dir, converter, version=2)
 
+        outFileName = os.path.splitext(input)[0] + '_Unicode.docx'
 
+        try:
+            doc.save(outFileName)
+        except BaseException as err:
+            return 'Cannot save file %d. Err = %s' % (outFileName, err)
+
+            
 if __name__ == "__main__":
   main(sys.argv)
