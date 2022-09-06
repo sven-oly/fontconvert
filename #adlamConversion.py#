@@ -443,6 +443,9 @@ class AdlamConverter(ConverterBase):
         self.collectConvertedWordFrequency = True
         self.convertedWordFrequency = {}
 
+        # For communicating through the progress function.
+        self.threadId = -1
+
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
     

@@ -14,7 +14,6 @@ class ConverterBase():
 
   def __init__(self, oldFontList=None, newFont=None,
                defaultOutputFont=thisDefaultOutputFont):
-    print('CONVERTER BASE %s' % oldFontList)
     self.forceFont = True  # May be used to set all font fields to the Unicode font
 
     self.encodingScripts = []  # If given, tells the Script of incoming characters
@@ -48,6 +47,11 @@ class ConverterBase():
     self.debug = False  # False
     self.lower_mode = True
     self.sentence_mode = True
+
+    # Recording information on the document details
+    # Word frequency of the converted words
+    self.collectConvertedWordFrequency = False
+    self.convertedWordFrequency = {}
 
   def setScriptRange(self, first, last):
     self.first = chr(first)
@@ -91,3 +95,42 @@ class ConverterBase():
   # Implemented by specific class for language and script.
   def processParagraphRuns(self, p):
     return
+
+  # Methods for word frequency information
+  def setFrequencyCollection(self, newState):
+      self.collectConvertedWordFrequency = newState
+    
+  def clearWordFrequencies(self):
+      self.convertedWordFrequency.clear()
+    
+  # Adds a word to the word frequency list
+  def addWordToFrequencyList(self, word):
+    if word in self.convertedWordFrequency:
+      self.convertedWordFrequency[word] += 1
+    else:
+      self.convertedWordFrequency[word] = 1
+
+  def updateWordsFrequencies(self, paragraph):
+    # implemented by specific converter class
+    return
+      
+  def getWordFrequencies(self):
+    return self.convertedWordFrequency
+      
+  def getSortedWordList(self):
+    if self.convertedWordFrequency:
+      return sorted(
+        self.convertedWordFrequency.items(),
+        key= lambda x: x[1], reverse = True
+      )
+    else:
+      return None
+
+  def getWordListByAlpha(self):
+    if self.convertedWordFrequency:
+      return sorted(
+        self.convertedWordFrequency.items(),
+        key= lambda x: x[0], reverse = True
+      )
+    else:
+      return None

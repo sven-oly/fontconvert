@@ -14,6 +14,31 @@
       // 	  }
       // }
 
+      let taskId = 17;  // TODO! Math.floor(Math.random() * 1000);
+      function check_progress(statusArea) {
+	  // Send AJAX to get the status
+	  let output = document.getElementById(statusArea);
+	  if (window.XMLHttpRequest) {
+	      // code for IE7+, Firefox, Chrome, Opera, Safari
+	      xmlhttp=new XMLHttpRequest();
+	  } else {
+	      // code for IE6, IE5
+	      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+
+	  // Deal with the results
+	  xmlhttp.onreadystatechange=function() {
+	      if(xmlhttp.readyState==4) {
+		  // The callback.
+		  const returned_json = xmlhttp.responseText
+		  // TODO: Handle returned values
+		  output.value = output.innerHTML = returned_json.status;
+		  return;
+	      }
+	  }
+	  let target = '/progress/' + taskId;
+	  xmlhttp.open("GET", target, true);
+      }
     </script>
     </head>
   <body>
@@ -42,6 +67,7 @@
 	<input type="submit" value="Get document information" name="DocInfo" />
         <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
 	<input type="text" name='scriptIndex' value={{scriptIndex}} hidden>
+	<input type="text" name='taskId' value={{scriptIndex}} hidden>
 	<ul>
 	  <input type='radio' id='NotoSansAdlam' name='UnicodeFont'
 		 value='NotoSansAdlam' checked>
@@ -55,6 +81,10 @@
 	  Language: <input type='text' id='lang' value='Fula' readonly></input>
 	</ul>
       </form>   
+
+      <input type="button" value="Check progress"
+             onclick="check_progress('statusUpdate')";
+      <textarea id="statusUpdate">Not started </textarea>
 <p>Important: This application uses the uploaded files only for temporary processing. It does not store your original file or the converted Unicode file online. It will not be recorded or posted anywhere.
    </body>
 </html>

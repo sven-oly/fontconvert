@@ -1,0 +1,6 @@
+export PROJECT_ID=fontconvert
+export QUEUE_ID=font-convert-queue
+export LOCATION_ID=us-central1
+gcloud config set project $PROJECT_ID
+
+python3 main.py runserver

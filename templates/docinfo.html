@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Data on uploaded file</title>
+  </head>
+
+  <body>
+    <h1>File {{filename}}</h1>
+    <p>Size of the file: {{size}} bytes
+    <p>Number of sections: {{sections}}
+    <p>Number of paragraphs: {{paragraphs}}
+    <p>Number of tables: {{tables}}
+      <p>Fonts in document: {{fontDict}}
+	<form action = "/convertAdlam" method = "POST"
+         enctype = "multipart/form-data">
+	  <input type='file' name='file' id='file'/>
+	  Unicode Font: <input type='text' value='{{UnicodeFont}}' readonly/>
+	  <input type='submit' value='Convert file to Unicode'>
+	</form>
+  </body>
+</html>

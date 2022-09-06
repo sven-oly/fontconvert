@@ -16,17 +16,23 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-from flask import Flask, render_template, stream_with_context, request, Response
+from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 from werkzeug.utils import secure_filename
 
+import datetime
+
 from io import BytesIO
 from io import StringIO
+from zipfile import ZipFile
 
+import random
 import threading
 import time
 
+import google.auth
+from google.cloud import tasks
 #import cloudstorage as gcs
 
 import os
@@ -42,6 +48,19 @@ from convertDoc2 import ConvertDocx
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
+
+ts_client = tasks.CloudTasksClient()
+
+_, PROJECT_ID = google.auth.default()
+QUEUE_NAME = 'font-convert-queue'
+REGION_ID = LOCATION_ID = 'us-central1'
+QUEUE_PATH = ts_client.queue_path(PROJECT_ID, REGION_ID, QUEUE_NAME)
+
+# Try using exporting threads to give progress report
+exporting_threads = {}
+      
+      
+app.debug = True
 
 
 @app.route('/')
@@ -76,6 +95,22 @@ def read_file_chunks(fd):
       chunks += 1
   if app.debug:
       progressFn('Download complete')
+
+# A way to create progress functions with other information neede
+# for communication
+class ProgressClass():
+    def __init__(self, converter, thread=None):
+        self.converter = converter
+        self.thread = thread  # May be available
+        self.status = "Nothing"
+
+    def send(self, message):
+        # create output
+        self.status = message
+        self.thread = message
+        print(message)  ## Something more interesting
+        
+        # if self.thread
 
 # Simple output function for tracking processing
 def progressFn(msg):
@@ -131,32 +166,45 @@ def getFontsInParagraphs(paragraphs, fonts):
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
     convertDoc = False
-    if request.method == 'POST':
+    who = '/upload/adlam'
+    
+    if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
-        #print('FORMDATA = %s' % formData)
         if 'ConvertToUnicode' in formData:
-            # DO THE CONVERSION
             convertDoc = True
 
+        try:
+            taskId = formData['taskId']
+        except:
+            taskId = 117
+
+        print('*** taskId = %s' % taskId)
         try:
             lang = formData['lang']
         except:
             lang = 'Fula'
 
         file = request.files['file']  # FileStorage object
-        fileName = file.filename
-        if not fileName:
-            who = '/upload/adlam'
+        inputFileName = file.filename
+        if not inputFileName:
             return render_template('nofileselected.html', who=who)
             
-        outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
-        inputFileName = file.filename
+        baseName = os.path.splitext(inputFileName)[0]
+        outFileName = baseName + '_Unicode.docx'
 
         doc, count = createDocFromFile(file)
 
+        if not doc:
+            return render_template(
+                'error.html',
+                who=who,
+                error='%s %s' % ('Problem creating file', inputFileName))
+        
+        # New thread for this id
+
+        fontsFound = findDocFonts(doc)
         if not convertDoc:
             # Just show information.
-            fontsFound = findDocFonts(doc)
 
             return render_template(
                 'docinfo.html',
@@ -168,66 +216,161 @@ def upload_file():
                 fontDict=fontsFound,
                 unicodeFont=formData['UnicodeFont']
             )
-                               
 
-        scriptIndex = int(formData['scriptIndex'])
+        this_thread = exporting_threads[taskId] = ExportingThread()
+        this_thread.start()
+        this_thread.status = 'Starting'
+        this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
+
         # Call conversions on the document.
         adlamConverter = adlamConversion.AdlamConverter()      
+        adlamConverter.taskId = taskId
+
+        newProgressObj = ProgressClass(adlamConverter, this_thread)
+
         try:
+            scriptIndex = int(formData['scriptIndex'])
             adlamConverter.setScriptIndex(scriptIndex)
             adlamConverter.setLowerMode(True)
             adlamConverter.setSentenceMode(True)
             paragraphs = doc.paragraphs
             count = len(paragraphs)
-            msgToSend = '%d paragraphs in %s\n' % (count, fileName)
+            msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
             countSent = 0
-
         except BaseException as err:
-            return 'Bad Adlam converter. Err = %s' % err
+            return render_template('error.html',
+                                   who=who,
+                                   error='Bad adlamConverter: %s' % err)
         
-        if app.debug:
-            print('Created converter')
-
         try:
             docConverter = ConvertDocx(adlamConverter, documentIn=doc,
-                                       reportProgressFn=progressFn)
+                                       reportProgressObj=newProgressObj)
+        except BaseException as error:
+            print('Cannot create doc converter: %s' % error)
+            return render_template('error.html', who=who, error=error)
 
-            if docConverter:
-                result = docConverter.processDocx()
+        result = docConverter.processDocx()
 
-                target_stream = BytesIO()
-                result = doc.save(target_stream)          
+        target_stream = BytesIO()
+        result = doc.save(target_stream)          
 
-                # Download resulting converted document
-                # Reset the pointer to the beginning.
-                target_stream.seek(0)
+        # Download resulting converted document
+        # Reset the pointer to the beginning.
+        target_stream.seek(0)
 
-                # Deal with non-ASCII in the file name
-                outFileName = fixNonAsciiFilename(outFileName)
-                if not outFileName.isascii():
-                    outFileName = outFileName.encode('utf8').decode('unicode_escape')
-                if app.debug:
-                    print(outFileName)
-                headerFileName = "attachment;filename=%s" % outFileName
-
-                headers = {
-                    "Content-Disposition": headerFileName
-                }
-                try:
-                    msgToSend += 'Starting download\n'
-                    countSent = 1
-                    return Response(
-                        stream_with_context(read_file_chunks(target_stream)),
-                        mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        headers=headers
-                    )
-                except BaseException as err:
-                    return '**** Response download failure. Err = %s' % err
-                
-        except BaseException as err:
-            return 'Conversion failed. with err %s' % err
+        # Deal with non-ASCII in the file name
+        # outFileName = fixNonAsciiFilename(outFileName)
+        headerFileName = "attachment;filename=%s" % outFileName
         
-        # TODO: Try to show conversion results...
+        # Check if there is word list info.
+        wordFrequencies = adlamConverter.getSortedWordList()
+
+
+        # Try to make this with a zip archive
+        # Create a .tsv file of the word frequencies
+        text_stream = StringIO()
+        if wordFrequencies:
+            text_stream.write('%s\t%s\n' % ('Word', 'Times in file'))
+            for item in wordFrequencies:
+                outline = '%s\t%s\n' % (item[0], item[1])
+                text_stream.write(outline)
+        text_stream.seek(0)
+        wordsFileName = baseName + "_words.tsv"
+    
+        # Create an info file
+        info_stream = StringIO()
+
+        now = datetime.datetime.now()
+        info_stream.write('Source filename = %s\n' % inputFileName)
+        info_stream.write('Output filename = %s\n' % outFileName)
+        info_stream.write('Converted to Unicode at %s\n' %
+                          now.strftime('%Y-%m-%d %H:%M:%S'))
+        info_stream.write('File size:  {:,} bytes\n'.format(count))
+        info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
+        info_stream.write(' %d sections\n' % len(doc.sections))
+        info_stream.write(' %d tables\n' % len(doc.tables))
+        info_stream.write(' fonts found = %s\n' % fontsFound)
+        info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
+        info_stream.seek(0)
+        
+        # The zipfile contents
+        zipStream = BytesIO()
+        with ZipFile(zipStream, 'w') as zf:
+            zf.writestr(outFileName, target_stream.read())
+            zf.writestr(wordsFileName, text_stream.read())
+            zf.writestr('%s_info.txt' % baseName, info_stream.read())
+
+        print('ZIP DIRECTORY %s' % zf.printdir())
+
+        zipStream.seek(0)
+        zipName = baseName + '_Unicode.zip'
+        return send_file(zipStream, as_attachment=True,
+                         download_name=zipName)
+        
+
+def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
+    # Try zip file...
+    zipStream = BytesIO()
+    zf= ZipFile(zipStream, 'w')
+    try:
+        zf.writestr(headerFileName, target_stream.read())
+    except BaseException as err:
+        print('*** Cannot put doc into zip file %s' % (err))
+        return False
+
+    text_stream = StringIO()
+    for item in wordFrequencies:
+        addLine = '%s\t%s\n' % (item[0], item[1])
+    text_stream.write(addLine)
+    text_stream.seek(0)
+    frequenciesName = baseName + '_words.tsv'
+    zf.writestr(frequenciesName, text_stream.read())
+        
+    #print('CREATE_ZIP_ARCHIVE:\m %s' % zf.printdir())
+    return zipStream
+        
+@app.route('/testzip')
+def testZip():
+    document = Document()
+    document.add_heading('Document Title', 0)
+
+    p = document.add_paragraph('A plain paragraph having some ')
+    p.add_run('bold').bold = True
+    p.add_run(' and some ')
+    p.add_run('italic.').italic = True
+
+    target_stream = BytesIO()
+    result = document.save(target_stream)
+    target_stream.seek(0)
+    headers = {
+        "Content-Disposition":  'test_doc.docx'
+    }
+
+    # Create a text file
+    text_stream = StringIO()
+    text_stream.write("text for testing")
+    text_stream.seek(0)
+    
+    zipStream = BytesIO()
+    
+    with ZipFile(zipStream, 'w') as zf:
+        zf.writestr('testDoc.docx', target_stream.read())
+        zf.writestr('textSample.txt', text_stream.read())
+
+        zipHeaders = {
+            "Content-Disposition":  'test_unicode.zip'
+        }
+    zipStream.seek(0)
+    return send_file(zipStream, as_attachment=True,
+                     download_name='testdoc.zip')
+
+        # return Response(
+        #     zipStream,
+        #     # stream_with_context(read_file_chunks(zf)),
+        #     mimetype="application/zip",
+        #     headers=zipHeaders
+        # )
+    return 
 
 def fixNonAsciiFilename(filename):
     charList = []
@@ -244,9 +387,6 @@ def createDocFromFile(file):
         text = file.stream.read()
         data = BytesIO(text)
         count = len(text)
-        if app.debug:
-            print('FILE LENGTH = %s' % count)
-            print('doc file = %s' % data)
         doc = Document(data)
         data.close()
         return doc, count
@@ -267,7 +407,6 @@ def convertAdlam():
         if app.debug:
             print('FILE = %s' % file)
             print(outFileName)
-        inputFileName = file.filename
 
         doc, count = createDocFromFile(file)
 
@@ -290,7 +429,7 @@ def convertAdlam():
 
         try:
             docConverter = ConvertDocx(adlamConverter, documentIn=doc,
-                                       reportProgressFn=progressFn)
+                                       reportProgressObj=newProgressObj)
 
             if docConverter:
                 result = docConverter.processDocx()
@@ -298,6 +437,17 @@ def convertAdlam():
                 target_stream = BytesIO()
                 result = doc.save(target_stream)          
 
+                try:
+                    wordFrequencies = converter.getSortedWordList()
+                    if wordFrequencies:
+                        # Do something with this information
+                        words = convertwordFrequencies.keys()
+                        for item in words:
+                            print(word)
+                except:
+                    print('FAILED TO GET WORD LIST')
+                    words = None
+                
                 # Download resulting converted document
                 # Reset the pointer to the beginning.
                 target_stream.seek(0)
@@ -344,6 +494,52 @@ def event_stream():
 # @app.route('/stream')
 # def stream():
 #     return Response(event_stream(), mimetype="text/event-stream")
+
+# Set up a thread to allow status updates.
+# https://codehunter.cc/a/flask/flask-app-update-progress-bar-while-function-runs
+class ExportingThread(threading.Thread):
+    def __init__(self):
+        self.progress = 0
+        super().__init__()
+        self.status = "moving on"
+
+    def run(self):
+        # Your exporting stuff goes here ...
+        for _ in range(10):
+            time.sleep(5)
+            self.progress += 10
+            print('Thread %s' % self.status)
+
+
+@app.route('/start')
+def index():
+    global exporting_threads
+
+    thread_id = random.randint(0, 10000)
+    exporting_threads[thread_id] = ExportingThread()
+    exporting_threads[thread_id].start()
+
+    print('THREAD ID = %d' % thread_id)
+    return 'task id: #%s' % thread_id
+
+@app.route('/progress/<int:thread_id>')
+def progress(thread_id):
+    global exporting_threads
+    print('/PROGRESS id = %s' % thread_id)
+
+    if thread_id in exporting_threads:
+        return str(exporting_threads[thread_id].progress)
+    else:
+        return str('Thread %s not found' % thread_id)
+
+
+@app.route('/example_task_handler', methods=['POST'])
+def example_task_handler():
+    """Log the request payload."""
+    payload = request.get_data(as_text=True) or '(empty payload)'
+    print('Received task with payload: {}'.format(payload))
+    return 'Printed task payload: {}'.format(payload)
+# [END cloud_tasks_appengine_quickstart]
 
            
 if __name__ == '__main__':

@@ -60,7 +60,12 @@ def main(argv):
             doc.save(outFileName)
         except BaseException as err:
             return 'Cannot save file %d. Err = %s' % (outFileName, err)
+        sortedWords = converter.getSortedWordList()
+        if sortedWords:
+            print('WordFrequencies')
+            for item in sortedWords:
+                print(item)
 
-            
+
 if __name__ == "__main__":
   main(sys.argv)
