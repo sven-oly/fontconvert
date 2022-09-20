@@ -25,8 +25,11 @@ import datetime
 
 from io import BytesIO
 from io import StringIO
+
+import random
 from zipfile import ZipFile
 
+import queue
 import random
 import threading
 import time
@@ -59,7 +62,9 @@ QUEUE_PATH = ts_client.queue_path(PROJECT_ID, REGION_ID, QUEUE_NAME)
 # Try using exporting threads to give progress report
 exporting_threads = {}
       
-      
+# Global queue for messages
+queue = queue.Queue(maxsize=100)
+
 app.debug = True
 
 
@@ -75,9 +80,12 @@ def hello():
 def upload():
    who = request.host_url
    scriptIndex = request.args.get('scriptIndex', 0)
+   # For indexing a thread
+   taskId = random.randint(0, 7777)
    return render_template('upload.html',
                           base=who,
-                          scriptIndex=scriptIndex
+                          scriptIndex=scriptIndex,
+                          taskId=taskId
    )
 
 # Global
@@ -105,12 +113,13 @@ class ProgressClass():
         self.status = "Nothing"
 
     def send(self, message):
+        global queue
         # create output
         self.status = message
-        self.thread = message
-        print(message)  ## Something more interesting
+        self.thread.setStatus(message)
+        queue.put(message)
+   #     print(message)  ## Something more interesting
         
-        # if self.thread
 
 # Simple output function for tracking processing
 def progressFn(msg):
@@ -174,11 +183,11 @@ def upload_file():
             convertDoc = True
 
         try:
-            taskId = formData['taskId']
+            taskId = int(formData['taskId'])
         except:
             taskId = 117
 
-        print('*** taskId = %s' % taskId)
+        print('*** taskId = %d' % taskId)
         try:
             lang = formData['lang']
         except:
@@ -192,6 +201,11 @@ def upload_file():
         baseName = os.path.splitext(inputFileName)[0]
         outFileName = baseName + '_Unicode.docx'
 
+        # New thread for this id
+        this_thread = exporting_threads[taskId] = ExportingThread()
+        this_thread.start()
+        this_thread.status = 'Creating doc %s from upload' % inputFileName
+
         doc, count = createDocFromFile(file)
 
         if not doc:
@@ -200,7 +214,7 @@ def upload_file():
                 who=who,
                 error='%s %s' % ('Problem creating file', inputFileName))
         
-        # New thread for this id
+        this_thread.status = 'Doc ready to process'
 
         fontsFound = findDocFonts(doc)
         if not convertDoc:
@@ -217,9 +231,6 @@ def upload_file():
                 unicodeFont=formData['UnicodeFont']
             )
 
-        this_thread = exporting_threads[taskId] = ExportingThread()
-        this_thread.start()
-        this_thread.status = 'Starting'
         this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
 
         # Call conversions on the document.
@@ -300,7 +311,7 @@ def upload_file():
             zf.writestr(wordsFileName, text_stream.read())
             zf.writestr('%s_info.txt' % baseName, info_stream.read())
 
-        print('ZIP DIRECTORY %s' % zf.printdir())
+        # print('ZIP DIRECTORY %s' % zf.printdir())
 
         zipStream.seek(0)
         zipName = baseName + '_Unicode.zip'
@@ -505,12 +516,16 @@ class ExportingThread(threading.Thread):
 
     def run(self):
         # Your exporting stuff goes here ...
-        for _ in range(10):
-            time.sleep(5)
+        while True:  # Wait for something in the queue.
+            message = queue.get()
             self.progress += 10
-            print('Thread %s' % self.status)
+            #print('THREAD QUEUE MESSAGE = %s' % message)
+            #print('THREAD STATUS: %s' % (self.status))
 
+    def setStatus(self, newMessage):
+        self.status = newMessage
 
+        
 @app.route('/start')
 def index():
     global exporting_threads
@@ -525,10 +540,9 @@ def index():
 @app.route('/progress/<int:thread_id>')
 def progress(thread_id):
     global exporting_threads
-    print('/PROGRESS id = %s' % thread_id)
-
+    # Gets the latest status of the thread
     if thread_id in exporting_threads:
-        return str(exporting_threads[thread_id].progress)
+        return str(exporting_threads[thread_id].status)
     else:
         return str('Thread %s not found' % thread_id)
 

@@ -121,9 +121,13 @@ class ConvertDocx():
     # Try simple things.
     paragraphs = self.document.paragraphs
 
-    paragraphId = 1
+    paragraphId = 0
     paragraphCount = len(paragraphs)
+    if self.progressObj:
+      self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
+
     for para in paragraphs:
+      paragraphId += 1
       if self.progressObj:
         msg = 'para %d of %d' % (paragraphId, paragraphCount)
         if paragraphId % 100 == 0:
@@ -132,7 +136,6 @@ class ConvertDocx():
       # More computing
       if self.converter.collectConvertedWordFrequency:
         self.converter.updateWordsFrequencies(para)
-      paragraphId += 1
 
     sections = self.document.sections
     print("Document has %s sections" % len(sections))
@@ -142,16 +145,31 @@ class ConvertDocx():
       msg = 'Processing headers and footers of %d sections' % len(sections)
       self.progressObj.send(msg)
 
+    sectionNum = 0
     for section in sections:
+      sectionNum += 1
       header = section.header
+      footer = section.footer
+      if self.progressObj:
+        self.progressObj.send('Section %s: %d header, %d footer' %
+                              (sectionNum,
+                               len(header.paragraphs),
+                               len(footer.paragraphs)))
+
       for para in header.paragraphs:
         self.converter.processParagraphRuns(para)
-      footer = section.footer
+
       for para in footer.paragraphs:
         self.converter.processParagraphRuns(para)
 
+    if self.progressObj:
+      self.progressObj.send('%d TABLES' % (len(self.document.tables)))
     tables = self.document.tables
+    tableId = 0
     for table in tables:
+      tableId += 1
+      if self.progressObj:
+        self.progressObj.send('Table %d, %d rows' % (tableId, len(table.rows)))
       rows = table.rows
       for row in rows:
         for cell in row.cells:
@@ -159,8 +177,13 @@ class ConvertDocx():
           for para in paragraphs:
             self.converter.processParagraphRuns(para)
 
+    if self.progressObj:
+      self.progressObj.send('Saving document')
     if self.outpath:
       self.document.save(self.outpath)
+
+    if self.progressObj:
+      self.progressObj.send('## STOP ##')
     return
 
   def tryFontUpdate(self, newzip, oldFontList, unicodeFont):
