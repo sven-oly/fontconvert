@@ -70,109 +70,50 @@ app.debug = True
 
 @app.route('/')
 def hello():
-    """Top of the conversion application."""
+    """Return a friendly HTTP greeting."""
     who = request.url
-    return render_template('main.html', base=who)
+    return 'Hello World! ' + who
 
+@app.route('/test/')
+def test():
+    """Return a friendly HTTP greeting."""
+    who = request.url
+    return 'Testing World! ' + who
+
+@app.route('/adlm/')
+def convertAdlam():
+    """Convert Adlam fonts to Unicode."""
+    converter = adlamConversion.converter()
+    converter.setLowerMode(True)
+    converter.setSentenceMode(True)
+    inPath = 'a2_online.docx'
+    outPath = 'output'
+    convertOffice.convertOffice(inPath, outPath,
+                                converter, version=2)
+    return 'Converted to %s' % outPath
+    
+    
+@app.route('/doc/')
+def doc1():
+    """Return a friendly HTTP greeting."""
+    doc = Document('a2_short.docx')
+    paragraph = doc.add_paragraph()
+    run = doc.add_paragraph().add_run()
+    run.text = ' = "”𞤱𞤭𞤲𞤣𞤫𞤲 𞤶𞤢𞤲𞤺𞤫𞤲 𞤫 𞤸𞤢𞥄𞤤𞤢 𞤨𞤵'
+
+    font = run.font
+    font.name = 'Noto Sans Adlam'
+    doc.save('test.docx')
+    return 'DOC! ' + font.name
 
 # https://pythonbasics.org/flask-upload-files
-@app.route('/upload/adlam')
+@app.route('/upload')
 def upload():
    who = request.host_url
-   scriptIndex = request.args.get('scriptIndex', 0)
-   # For indexing a thread
-   taskId = random.randint(0, 7777)
-   return render_template('upload.html',
-                          base=who,
-                          scriptIndex=scriptIndex,
-                          taskId=taskId
-   )
-
-# Global
-msgToSend = 'First Message'
-countSent = 0
-
-def read_file_chunks(fd):
-  chunks = 0
-  while 1:
-      buf = fd.read(8192)
-      if buf:
-          yield buf
-      else:
-          break
-      chunks += 1
-  if app.debug:
-      progressFn('Download complete')
-
-# A way to create progress functions with other information neede
-# for communication
-class ProgressClass():
-    def __init__(self, converter, thread=None):
-        self.converter = converter
-        self.thread = thread  # May be available
-        self.status = "Nothing"
-
-    def send(self, message):
-        global queue
-        # create output
-        self.status = message
-        self.thread.setStatus(message)
-        queue.put(message)
-   #     print(message)  ## Something more interesting
-        
-
-# Simple output function for tracking processing
-def progressFn(msg):
-    global msgToSend
-    global countSent
-    if app.debug:
-        print('PROGRESS: %s' % msg)
-    msgToSend = msg
-    countSent = 1
-    
-def findDocFonts(doc):
-    fontsFound = {}
-    if not doc:
-        return fontsFound
-
-    if doc.paragraphs:
-        fontsFound = getFontsInParagraphs(doc.paragraphs, fontsFound)
-
-    for table in doc.tables:
-        rows = table.rows
-        for row in rows:
-            for cell in row.cells:
-                paragraphs = cell.paragraphs
-                fontsFount = getFontsInParagraphs(cell.paragraphs, fontsFound)
-
-    sections = doc.sections
-    for section in sections:
-        try:
-            header = section.header
-            fontsFound = getFontsInParagraphs(header.paragraphs, fontsFound)
-        except:
-            pass
-        try:
-            footer = section.footer
-            fontsFound = getFontsInParagraphs(footer.paragraphs, fontsFound)
-        except:
-            pass
-
-    return fontsFound
-
-
-def getFontsInParagraphs(paragraphs, fonts):
-    for p in paragraphs:
-        for r in p.runs:
-            font = r.font.name
-            if font in fonts:
-                fonts[font] += 1
-            else:
-                fonts[font] = 1
-    return fonts
-            
-#https://tedboy.github.io/flask/generated/flask.stream_with_context.html
-@app.route('/uploader/', methods = ['GET', 'POST'])
+   print('URL = %s' % who)
+   return render_template('upload.html', base=who)
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
     convertDoc = False
     who = '/upload/adlam'
