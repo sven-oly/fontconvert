@@ -24,7 +24,35 @@ from werkzeug.utils import secure_filename
 import datetime
 
 from io import BytesIO
+from io import StringIO#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# Copyright 2018 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# [START gae_python37_app]
+from flask import Flask, render_template, stream_with_context, request, Response, send_file
+
+# https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
+from werkzeug.utils import secure_filename
+
+import datetime
+
+from io import BytesIO
 from io import StringIO
+
+import langid  # For identifying language of text
 
 import random
 from zipfile import ZipFile
@@ -70,50 +98,109 @@ app.debug = True
 
 @app.route('/')
 def hello():
-    """Return a friendly HTTP greeting."""
+    """Top of the conversion application."""
     who = request.url
-    return 'Hello World! ' + who
+    return render_template('main.html', base=who)
 
-@app.route('/test/')
-def test():
-    """Return a friendly HTTP greeting."""
-    who = request.url
-    return 'Testing World! ' + who
-
-@app.route('/adlm/')
-def convertAdlam():
-    """Convert Adlam fonts to Unicode."""
-    converter = adlamConversion.converter()
-    converter.setLowerMode(True)
-    converter.setSentenceMode(True)
-    inPath = 'a2_online.docx'
-    outPath = 'output'
-    convertOffice.convertOffice(inPath, outPath,
-                                converter, version=2)
-    return 'Converted to %s' % outPath
-    
-    
-@app.route('/doc/')
-def doc1():
-    """Return a friendly HTTP greeting."""
-    doc = Document('a2_short.docx')
-    paragraph = doc.add_paragraph()
-    run = doc.add_paragraph().add_run()
-    run.text = ' = "”𞤱𞤭𞤲𞤣𞤫𞤲 𞤶𞤢𞤲𞤺𞤫𞤲 𞤫 𞤸𞤢𞥄𞤤𞤢 𞤨𞤵'
-
-    font = run.font
-    font.name = 'Noto Sans Adlam'
-    doc.save('test.docx')
-    return 'DOC! ' + font.name
 
 # https://pythonbasics.org/flask-upload-files
-@app.route('/upload')
+@app.route('/upload/adlam')
 def upload():
    who = request.host_url
-   print('URL = %s' % who)
-   return render_template('upload.html', base=who)
-	
-@app.route('/uploader', methods = ['GET', 'POST'])
+   scriptIndex = request.args.get('scriptIndex', 0)
+   # For indexing a thread
+   taskId = random.randint(0, 7777)
+   return render_template('upload.html',
+                          base=who,
+                          scriptIndex=scriptIndex,
+                          taskId=taskId
+   )
+
+# Global
+msgToSend = 'First Message'
+countSent = 0
+
+def read_file_chunks(fd):
+  chunks = 0
+  while 1:
+      buf = fd.read(8192)
+      if buf:
+          yield buf
+      else:
+          break
+      chunks += 1
+  if app.debug:
+      progressFn('Download complete')
+
+# A way to create progress functions with other information neede
+# for communication
+class ProgressClass():
+    def __init__(self, converter, thread=None):
+        self.converter = converter
+        self.thread = thread  # May be available
+        self.status = "Nothing"
+
+    def send(self, message):
+        global queue
+        # create output
+        self.status = message
+        self.thread.setStatus(message)
+        queue.put(message)
+   #     print(message)  ## Something more interesting
+        
+
+# Simple output function for tracking processing
+def progressFn(msg):
+    global msgToSend
+    global countSent
+    if app.debug:
+        print('PROGRESS: %s' % msg)
+    msgToSend = msg
+    countSent = 1
+    
+def findDocFonts(doc):
+    fontsFound = {}
+    if not doc:
+        return fontsFound
+
+    if doc.paragraphs:
+        fontsFound = getFontsInParagraphs(doc.paragraphs, fontsFound)
+
+    for table in doc.tables:
+        rows = table.rows
+        for row in rows:
+            for cell in row.cells:
+                paragraphs = cell.paragraphs
+                fontsFount = getFontsInParagraphs(cell.paragraphs, fontsFound)
+
+    sections = doc.sections
+    for section in sections:
+        try:
+            header = section.header
+            fontsFound = getFontsInParagraphs(header.paragraphs, fontsFound)
+        except:
+            pass
+        try:
+            footer = section.footer
+            fontsFound = getFontsInParagraphs(footer.paragraphs, fontsFound)
+        except:
+            pass
+
+    return fontsFound
+
+
+def getFontsInParagraphs(paragraphs, fonts):
+    for p in paragraphs:
+        for r in p.runs:
+            font = r.font.name
+            if font in fonts:
+                fonts[font] += 1
+            else:
+                fonts[font] = 1
+    return fonts
+            
+#https://tedboy.github.io/flask/generated/flask.stream_with_context.html
+@app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
     convertDoc = False
     who = '/upload/adlam'
@@ -147,7 +234,7 @@ def upload_file():
         this_thread.start()
         this_thread.status = 'Creating doc %s from upload' % inputFileName
 
-        doc, count = createDocFromFile(file)
+        doc, fileSize = createDocFromFile(file)
 
         if not doc:
             return render_template(
@@ -163,7 +250,7 @@ def upload_file():
 
             return render_template(
                 'docinfo.html',
-                size="{:,}".format(count),
+                size="{:,}".format(fileSize),
                 filename=inputFileName,
                 paragraphs="{:,}".format(len(doc.paragraphs)),
                 sections=len(doc.sections),
@@ -176,6 +263,9 @@ def upload_file():
 
         # Call conversions on the document.
         adlamConverter = adlamConversion.AdlamConverter()      
+        adlamConverter.detectLang = langid.langid
+        adlamConverter.ignoreLangs = ['en', 'fr', 'ar']
+
         adlamConverter.taskId = taskId
 
         newProgressObj = ProgressClass(adlamConverter, this_thread)
@@ -186,8 +276,7 @@ def upload_file():
             adlamConverter.setLowerMode(True)
             adlamConverter.setSentenceMode(True)
             paragraphs = doc.paragraphs
-            count = len(paragraphs)
-            msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
+            msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
             countSent = 0
         except BaseException as err:
             return render_template('error.html',
@@ -237,7 +326,7 @@ def upload_file():
         info_stream.write('Output filename = %s\n' % outFileName)
         info_stream.write('Converted to Unicode at %s\n' %
                           now.strftime('%Y-%m-%d %H:%M:%S'))
-        info_stream.write('File size:  {:,} bytes\n'.format(count))
+        info_stream.write('File size:  {:,} bytes\n'.format(fileSize))
         info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
         info_stream.write(' %d sections\n' % len(doc.sections))
         info_stream.write(' %d tables\n' % len(doc.tables))
@@ -364,6 +453,7 @@ def convertAdlam():
 
         try:
             adlamConverter = adlamConversion.AdlamConverter()      
+
             #
             adlamConverter.setScriptIndex(0)
             adlamConverter.setLowerMode(True)
@@ -487,6 +577,16 @@ def progress(thread_id):
     else:
         return str('Thread %s not found' % thread_id)
 
+
+@app.route('/lang')
+def testLangId():
+    args = request.args
+    text = args['text']
+    if text:
+        result = langid.classify(text)
+        return str(result)
+    else:
+        return str("No text")
 
 @app.route('/example_task_handler', methods=['POST'])
 def example_task_handler():
