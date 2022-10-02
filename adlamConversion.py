@@ -571,7 +571,7 @@ class AdlamConverter(ConverterBase):
             # Nothing to process
             return
 
-        # Check on the language of the paragraph.
+        # Check on the language of the paragraph. May don't convert.
         if self.detectLang:
             detected = self.detectLang.classify(p.text)
             # print('%s in %s' % (detected, p.text))
@@ -579,8 +579,7 @@ class AdlamConverter(ConverterBase):
                 return
             
         for run in p.runs:
-            convertedText = self.convertText(run.text, None, self.scriptIndex)
-            run.text = convertedText
+            run.text = self.convertText(run.text, None, self.scriptIndex)
             run.font.name = self.unicodeFont
 
         self.processSentences(p)

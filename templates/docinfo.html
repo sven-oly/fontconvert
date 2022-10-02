@@ -1,6 +1,9 @@
 <html>
   <head>
     <title>Data on uploaded file</title>
+    <script>
+      const langPara = "{{para_langs}}";
+    </script>
   </head>
 
   <body>
@@ -9,12 +12,8 @@
     <p>Number of sections: {{sections}}
     <p>Number of paragraphs: {{paragraphs}}
     <p>Number of tables: {{tables}}
-      <p>Fonts in document: {{fontDict}}
-	<form action = "/convertAdlam" method = "POST"
-         enctype = "multipart/form-data">
-	  <input type='file' name='file' id='file'/>
-	  Unicode Font: <input type='text' value='{{UnicodeFont}}' readonly/>
-	  <input type='submit' value='Convert file to Unicode'>
-	</form>
+    <p>Fonts in document: {{fontDict}}
+    <p>Paragraph langs detected in original text: {{para_langs}}
+      <br/>* Language detection via <a href="https://github.com/saffsd/langid.py">langid.py</a>
   </body>
 </html>

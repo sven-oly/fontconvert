@@ -24,34 +24,11 @@ from werkzeug.utils import secure_filename
 import datetime
 
 from io import BytesIO
-from io import StringIO#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-# Copyright 2018 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# [START gae_python37_app]
-from flask import Flask, render_template, stream_with_context, request, Response, send_file
-
-# https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
-from werkzeug.utils import secure_filename
-
-import datetime
-
-from io import BytesIO
 from io import StringIO
 
+import json
+
+# https://github.com/saffsd/langid.py
 import langid  # For identifying language of text
 
 import random
@@ -247,6 +224,17 @@ def upload_file():
         fontsFound = findDocFonts(doc)
         if not convertDoc:
             # Just show information.
+            para_langs = {}
+            for p in doc.paragraphs:
+                if len(p.text) <= 4:
+                    continue
+                lang = langid.langid.classify(p.text)
+                lang_code = lang[0]
+                if lang_code in para_langs:
+                    para_langs[lang_code] += 1
+                else:
+                    para_langs[lang_code] = 1
+            print('PARA LANGS = %s' % para_langs)
 
             return render_template(
                 'docinfo.html',
@@ -256,6 +244,7 @@ def upload_file():
                 sections=len(doc.sections),
                 tables=len(doc.tables),
                 fontDict=fontsFound,
+                para_langs=json.dumps(para_langs),
                 unicodeFont=formData['UnicodeFont']
             )
 
@@ -264,7 +253,7 @@ def upload_file():
         # Call conversions on the document.
         adlamConverter = adlamConversion.AdlamConverter()      
         adlamConverter.detectLang = langid.langid
-        adlamConverter.ignoreLangs = ['en', 'fr', 'ar']
+        adlamConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
         adlamConverter.taskId = taskId
 
