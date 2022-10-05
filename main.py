@@ -135,36 +135,55 @@ def progressFn(msg):
     msgToSend = msg
     countSent = 1
     
+def summarizeDoc(doc):
+    # Find the fonts and languages of the paragraphs
+
+    return
+
 def findDocFonts(doc):
     fontsFound = {}
+    lang_codes = {}
     if not doc:
         return fontsFound
 
     if doc.paragraphs:
         fontsFound = getFontsInParagraphs(doc.paragraphs, fontsFound)
+        getLangsInParagraphs(doc.paragraphs, lang_codes)
 
     for table in doc.tables:
         rows = table.rows
         for row in rows:
             for cell in row.cells:
                 paragraphs = cell.paragraphs
-                fontsFount = getFontsInParagraphs(cell.paragraphs, fontsFound)
+                fontsFount = getFontsInParagraphs(paragraphs, fontsFound)
+                getLangsInParagraphs(paragraphs, lang_codes)
 
     sections = doc.sections
     for section in sections:
         try:
             header = section.header
             fontsFound = getFontsInParagraphs(header.paragraphs, fontsFound)
+            getLangsInParagraphs(header.paragraphs, lang_codes)
         except:
             pass
         try:
             footer = section.footer
             fontsFound = getFontsInParagraphs(footer.paragraphs, fontsFound)
+            getLangsInParagraphs(footer.paragraphs, lang_codes)
         except:
             pass
 
-    return fontsFound
+    return fontsFound, lang_codes
 
+
+def getLangsInParagraphs(paragraphs, para_langs):
+    for p in paragraphs:
+        lang = langid.langid.classify(p.text)
+        lang_code = lang[0]
+        if lang_code in para_langs:
+            para_langs[lang_code] += 1
+        else:
+            para_langs[lang_code] = 1
 
 def getFontsInParagraphs(paragraphs, fonts):
     for p in paragraphs:
@@ -221,19 +240,9 @@ def upload_file():
         
         this_thread.status = 'Doc ready to process'
 
-        fontsFound = findDocFonts(doc)
+        fontsFound, para_langs = findDocFonts(doc)
         if not convertDoc:
             # Just show information.
-            para_langs = {}
-            for p in doc.paragraphs:
-                if len(p.text) <= 4:
-                    continue
-                lang = langid.langid.classify(p.text)
-                lang_code = lang[0]
-                if lang_code in para_langs:
-                    para_langs[lang_code] += 1
-                else:
-                    para_langs[lang_code] = 1
             print('PARA LANGS = %s' % para_langs)
 
             return render_template(
