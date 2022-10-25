@@ -9,7 +9,7 @@ import sys
 
 from converterBase import ConverterBase
 
-from convertDoc2 import ConvertDocx
+# from convertDoc2 import ConvertDocx
 
 FONTS_TO_CONVERT = [
   ['Fulfulde - Aissata', 'arab'],
@@ -129,6 +129,11 @@ class AdlamConverter(ConverterBase):
             u'\u0027': u'\U0001294b',  # adlamNasalizationMark,
         },
         'latn': {
+            '[\u2008\u0020]*»': '“\u201d',
+            '«\u2008': '\u201c',
+            '«\u0020': '\u201c',
+            '»': '\u201d',
+            '«': '\u201c”',
             ' ': u' ',
             'A': u'𞤀',
             'a': u'𞤢',
@@ -372,15 +377,14 @@ class AdlamConverter(ConverterBase):
             '.': u'.',
             ',': u'⹁',
             '\u061f': reverseQuestionMark,
-            # ';': u'⁏'
-            #'?':  u'?',
-            #u'\u201c': u'\u201c',
-            #u'\u201d': u'\u201d',
             ':': ':',
             '!': '!',
             "\u0027": adlamNasalizationMark,
         },
     }
+    # For splitting
+    latn_regex = re.compile(
+        r'(BBH|Bbh|bbh|DDH|Ddh|ddh|GGB|Ggb|ggb|KKH|Kkh|kkh|NNH|Nnh|nnh|NNY|Nny|nny|KKP|Kkp|kkp|GGH|Ggh|ggh|SSH|Ssh|ssh|YYH|Yyh|yyh|nnd|mmb|nnj|nng|AA|Aa|aa|BB|Bb|bb|ƁƁ|Ɓɓ|ɓƁ|ɓɓ|BH|Bh|bh|CC|Cc|cc|DD|Dd|dd|ƊƊ|Ɗɗ|ɗɗ|DH|Dh|dH|dh|EE|Ee|ee|FF|Ff|ff|GG|Gg|gg|GB|gb|HH|Hh|hh|II|Ii|ii|JJ|Jj|jj|KK|Kk|kk|KH|kh|XX|Xx|xx|LL|Ll|ll|MM|Mm|mm|NN|Nn|nn|ŊŊ|Ŋŋ|ŋŋ|NH|Nh|nH|nh|ÑÑ|Ññ|ññ|NY|ny|OO|Oo|oo|PP|Pp|pp|KP|kp|QQ|Qq|qq|GH|gh|RR|Rr|rr|SS|Ss|ss|SH|Sh|sh|sH|TT|Tt|tt|UU|Uu|uu|VV|Vv|vv|WW|Ww|ww|YY|Yy|yy|ƳƳ|Ƴƴ|ƴƴ|YH|yh|ZZ|Zz|zz|ND|Nd|nd|MB|Mb|mb|NJ|Nj|nj|NG|Ng|ng|[a-zñɓ]|[A-ZƁÑ]|[0-9]|«[\u2008\u0020]?|[\u2008\u0020]?»|\.|\u0020)')
 
 
     def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
@@ -421,7 +425,7 @@ class AdlamConverter(ConverterBase):
             r'([\U0001E950-\U0001E959\u0020\(\)\- \.]+)')
 
         self.encoding = None
-        self.debug = False  #False
+        self.debug = False
 
         self.setLowerMode(True)
         self.setSentenceMode(True)
@@ -452,12 +456,23 @@ class AdlamConverter(ConverterBase):
     
     def setScriptIndex(self, newIndex=0):
         # 0 = 'arab', 1 = 'latn'
+        # ?? Adlam to Latin?
         self.scriptIndex = newIndex
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
-        
+
+    # Split input into tokens for script conversion
+    def tokenizeText(self, textIn):
+        if self.scriptIndex == 0:
+            # Split into Arabic characters
+            return [*textIn]
+        elif self.scriptIndex == 3:
+            # Latin - break into tokens using a regular expression
+            # Remove empty strings
+            return [i for i in self.latn_regex.split(textIn) if i]
 
     # Consider the font information if relevant, e.g., underlining.
-    # fontTextInfo: a list of font data for this code, including formatting for each piece.
+    # fontTextInfo: a list of font data for this code, including
+    # formatting for each piece.
     def convertText(self, textIn, fontTextInfo=None, fontIndex=0):
         if self.debug:
             print('convertText index= %s, text = %s' % (fontIndex, textIn))
@@ -468,6 +483,8 @@ class AdlamConverter(ConverterBase):
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
 
+            if self.debug:
+                print('****** TEXT = %s' % textIn)
             result = self.convertString(textIn, None, encoding_map)
             if self.debug:
                 print('   convertText result= %s' % (result))
@@ -495,18 +512,25 @@ class AdlamConverter(ConverterBase):
         convertedList = []
         convertResult = ''
 
+        tokens = self.tokenizeText(textIn)
+        if not tokens:
+            print('????? WHY NO TOKENS in %s' % textIn)
+
+        if self.debug:
+            print('------- Tokens %s' % tokens)
+        
         if self.debug:
           print('$$$$$ text = %s, fontInfo = %s' %
                 (textIn, fontInfo))  #fontInfo))
-        for c in textIn:
+        for c in tokens:
           # Special handling if needed
           out = c
           if c in conversion_map:
             out = conversion_map[c]
           else:
             if self.debug:
-              print('----- character %s (0x%x) not found' %
-                    (c, ord(c)))
+              print('----- input %s not found' %
+                    (c))
 
           # Special case for handling underlined text
           convertedList.append(out)
@@ -573,7 +597,7 @@ class AdlamConverter(ConverterBase):
 
         # Check on the language of the paragraph. May don't convert.
         if self.detectLang:
-            detected = self.detectLang.classify(p.text)
+            detected = self.detectLang.classify(p.text.strip())
             # print('%s in %s' % (detected, p.text))
             if detected[0] in self.ignoreLangs:
                 return
@@ -753,7 +777,18 @@ def testPunctuation():
         r = converter.convertText(text, fontIndex=0)
         print("%s --> %s" % (text, r))
     
+def keyLen(x):
+    return len(x)
+
+def makeLatnRegex():
+    latnMap = conv.private_use_map['latn']
+    keyRegEx = latnMap.keys()
+    keyRegEx.sort(reverse=True, key=keyLen)
+    print(keyRegEx)
+    return '|'.join(keyRegEx)
+
 def main(argv):
+    converter = AdlamConverter()
     #convertDocFiles(argv[2:])
     testPunctuation()
     #testConvert()
