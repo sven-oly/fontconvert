@@ -4,6 +4,8 @@
 # Convert Adlam encoded text to Unicode.
 from __future__ import absolute_import, division, print_function
 
+import adlamToLatin
+
 import re
 import sys
 
@@ -11,11 +13,16 @@ from converterBase import ConverterBase
 
 # from convertDoc2 import ConvertDocx
 
+# Script index
+ADLAM2LATIN = 4
+LATIN2ADLAM = 3
+
 FONTS_TO_CONVERT = [
   ['Fulfulde - Aissata', 'arab'],
   ['Fulfulde - Fuuta', 'arab'],
   ['Fulfulde - Pulaar', 'arab'],
   ['Times New Roman', 'latn'],
+  ['Adlam2Latn', 'adlam2latn']  # Special for Adlam to Latin transliteration
 ]
 
 thisDefaultOutputFont = 'Noto Sans Adlam'
@@ -468,7 +475,10 @@ class AdlamConverter(ConverterBase):
         elif self.scriptIndex == 3:
             # Latin - break into tokens using a regular expression
             # Remove empty strings
-            return [i for i in self.latn_regex.split(textIn) if i]
+            return [i for i in self.token_splitter.split(textIn) if i]
+        elif self.scriptIndex == 4:
+            # Adlam to Latin
+            return [i for i in self.token_splitter.split(textIn) if i]
 
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
@@ -478,7 +488,14 @@ class AdlamConverter(ConverterBase):
             print('convertText index= %s, text = %s' % (fontIndex, textIn))
 
         self.encoding = self.encodingScripts[fontIndex]
-        encoding_map = self.private_use_map[self.encoding]
+        if fontIndex < 4:
+            encoding_map = self.private_use_map[self.encoding]
+            self.token_splitter = self.latn_regex
+        else:
+            # Conversion from Adlam to Latin
+            convertData = adlamToLatin.adlamToLatinConvert()
+            encoding_map = convertData.adlam_to_latin_map
+            self.token_splitter = convertData.adlam_split_regex
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
@@ -541,7 +558,6 @@ class AdlamConverter(ConverterBase):
           convertResult = self.toLower(convertResult)
 
         return convertResult
-
 
     def computeSentenceStartsEnds(self, text):
          # Get all the positions of sentence endings
@@ -786,6 +802,22 @@ def makeLatnRegex():
     keyRegEx.sort(reverse=True, key=keyLen)
     print(keyRegEx)
     return '|'.join(keyRegEx)
+
+def convertAdlamToLatin(converter, text):
+    return
+
+def roundTripALA(converter):
+    # Get Latin text
+    
+    adlam = converter.convertText(latin2, fontIndex=LATIN2ADLAM)
+    # get Adlam text
+    latin2 = converter.convertText(adlam, fontIndex=LATIN2ADLAM)
+    # convert to Latin
+    adlam = converter.convertText(latin2, fontIndex=ADLAT2LATIN)
+    # convert back to Adlam2
+    # convert to Latin2
+    # compare them
+    return
 
 def main(argv):
     converter = AdlamConverter()
