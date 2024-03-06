@@ -50,6 +50,7 @@ from docx.enum.style import WD_STYLE_TYPE
 
 
 import adlamConversion
+import ahomConversion
 
 from convertDoc2 import ConvertDocx
 
@@ -89,9 +90,35 @@ def upload():
    taskId = random.randint(0, 7777)
    return render_template('upload.html',
                           base=who,
+                          lang='ff',
                           scriptIndex=scriptIndex,
                           taskId=taskId
    )
+
+
+# load file with explicit language and encoding
+@app.route('/uploadlang')
+def uploadLang():
+    who = request.host_url
+    lang = request.args.get('lang', 'und')
+    script_index = request.args.get('script_index', 0)
+    taskId = random.randint(0, 7777)
+    if lang == 'aho':
+        unicode_font_list = ['Noto Serif Ahom', 'Ahom Manuscript Unicode']
+        lang_name = 'Tai Ahom'
+    elif lang == 'phk':
+        unicode_font_list = ['Ramayana Unicode', 'Noto Sans Myanmar Light', 'Noto Serif Myanmar Thin', 'Noto Serif Myanmar Regular', 'Noto Serif Myanmar Thin']
+        lang_name = 'Tai Phake'
+
+    return render_template('upload_lang.html',
+                           base=who,
+                           lang=lang,
+                           lang_name=lang_name,
+                           taskId=taskId,
+                           script_index=script_index,
+                           fonts=unicode_font_list
+    )
+
 
 # Global
 msgToSend = 'First Message'
@@ -199,11 +226,16 @@ def getFontsInParagraphs(paragraphs, fonts):
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
     convertDoc = False
-    who = '/upload/adlam'
+
+    lang = request.args.get('lang', 'und')
+
+    who = '/upload/%s' % lang
+    print('WHO = %s' % who)
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
         if 'ConvertToUnicode' in formData:
+            print('ConvertToUnicode')
             convertDoc = True
 
         try:
@@ -214,11 +246,15 @@ def upload_file():
         print('*** taskId = %d' % taskId)
         try:
             lang = formData['lang']
+            print('lang =' + formData['lang'])
         except:
             lang = 'Fula'
 
         file = request.files['file']  # FileStorage object
+        print('FILE = %s' % file)
+        
         inputFileName = file.filename
+        print('inputFileName = %s' % inputFileName)
         if not inputFileName:
             return render_template('nofileselected.html', who=who)
             
@@ -260,29 +296,33 @@ def upload_file():
         this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
 
         # Call conversions on the document.
-        adlamConverter = adlamConversion.AdlamConverter()      
-        adlamConverter.detectLang = langid.langid
-        adlamConverter.ignoreLangs = ['en', 'fr']  # Not converted
+        if lang == 'ff':
+            langConverter = adlamConversion.AdlamConverter()      
+        elif lang =='aho':
+             langConverter = ahomConversion.AhomConverter()      
+           
+        langConverter.detectLang = langid.langid
+        langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
-        adlamConverter.taskId = taskId
+        langConverter.taskId = taskId
 
-        newProgressObj = ProgressClass(adlamConverter, this_thread)
+        newProgressObj = ProgressClass(langConverter, this_thread)
 
         try:
             scriptIndex = int(formData['scriptIndex'])
-            adlamConverter.setScriptIndex(scriptIndex)
-            adlamConverter.setLowerMode(True)
-            adlamConverter.setSentenceMode(True)
+            langConverter.setScriptIndex(scriptIndex)
+            langConverter.setLowerMode(True)
+            langConverter.setSentenceMode(True)
             paragraphs = doc.paragraphs
             msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
             countSent = 0
         except BaseException as err:
             return render_template('error.html',
                                    who=who,
-                                   error='Bad adlamConverter: %s' % err)
+                                   error='Bad langConverter: %s' % err)
         
         try:
-            docConverter = ConvertDocx(adlamConverter, documentIn=doc,
+            docConverter = ConvertDocx(langConverter, documentIn=doc,
                                        reportProgressObj=newProgressObj)
         except BaseException as error:
             print('Cannot create doc converter: %s' % error)
@@ -302,7 +342,7 @@ def upload_file():
         headerFileName = "attachment;filename=%s" % outFileName
         
         # Check if there is word list info.
-        wordFrequencies = adlamConverter.getSortedWordList()
+        wordFrequencies = langConverter.getSortedWordList()
 
 
         # Try to make this with a zip archive
@@ -450,12 +490,12 @@ def convertAdlam():
         doc, count = createDocFromFile(file)
 
         try:
-            adlamConverter = adlamConversion.AdlamConverter()      
+            langConverter = adlamConversion.AdlamConverter()      
 
             #
-            adlamConverter.setScriptIndex(0)
-            adlamConverter.setLowerMode(True)
-            adlamConverter.setSentenceMode(True)
+            langConverter.setScriptIndex(0)
+            langConverter.setLowerMode(True)
+            langConverter.setSentenceMode(True)
             paragraphs = doc.paragraphs
             count = len(paragraphs)
             msgToSend = '%d paragraphs in %s\n' % (count, fileName)
@@ -468,7 +508,7 @@ def convertAdlam():
             print('Created converter')
 
         try:
-            docConverter = ConvertDocx(adlamConverter, documentIn=doc,
+            docConverter = ConvertDocx(langConverter, documentIn=doc,
                                        reportProgressObj=newProgressObj)
 
             if docConverter:

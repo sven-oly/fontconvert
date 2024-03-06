@@ -7,51 +7,51 @@
       // const evSource = new EventSource('/stream');
       
       // evSource.onmessage = function(event) {
-      // 	  const msg = event.data;
-      // 	  if (msg) {
-      // 	      const outarea = document.getElementById('outArea');
-      // 	      outarea.innerHTML = msg;
-      // 	  }
+      //          const msg = event.data;
+      //          if (msg) {
+      //              const outarea = document.getElementById('outArea');
+      //              outarea.innerHTML = msg;
+      //          }
       // }
 
       let intervalId;
       function startPollStatus() {
-	  intervalId = window.setInterval(function() {
-	      check_progress('statusUpdate');
-	  }, 1000);
+          intervalId = window.setInterval(function() {
+              check_progress('statusUpdate');
+          }, 1000);
       }
 
       function killPollStatus() {
-	  window.clearInterval(intervalId);
+          window.clearInterval(intervalId);
       }
 
       function check_progress(statusArea) {
-	  // Send AJAX to get the status
-	  let output = document.getElementById(statusArea);
-	  if (window.XMLHttpRequest) {
-	      // code for IE7+, Firefox, Chrome, Opera, Safari
-	      xmlhttp = new XMLHttpRequest();
-	  } else {
-	      // code for IE6, IE5
-	      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	  }
+          // Send AJAX to get the status
+          let output = document.getElementById(statusArea);
+          if (window.XMLHttpRequest) {
+              // code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp = new XMLHttpRequest();
+          } else {
+              // code for IE6, IE5
+              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
 
-	  // Deal with the results
-	  xmlhttp.onreadystatechange=function() {
-	      if(xmlhttp.readyState==4) {
-		  // The callback.
-		  const returned_json = xmlhttp.responseText;
-		  output.value += returned_json + '\n';
-		  output.focus();  // Scroll to the end
-		  if (returned_json === '## STOP ##') {
-		      killPollStatus();
-		  }
-		  return;
-	      }
-	  }
-	  let target = '{{base}}progress/{{taskId}}';
-	  xmlhttp.open("GET", target, true);
-	  xmlhttp.send();
+          // Deal with the results
+          xmlhttp.onreadystatechange=function() {
+              if(xmlhttp.readyState==4) {
+                  // The callback.
+                  const returned_json = xmlhttp.responseText;
+                  output.value += returned_json + '\n';
+                  output.focus();  // Scroll to the end
+                  if (returned_json === '## STOP ##') {
+                      killPollStatus();
+                  }
+                  return;
+              }
+          }
+          let target = '{{base}}progress/{{taskId}}';
+          xmlhttp.open("GET", target, true);
+          xmlhttp.send();
       }
     </script>
   </head>
@@ -74,7 +74,7 @@
     </ul>
   </li>
 </ul>
-<form action = "{{base}}uploader/" method = "POST"
+<form action = "{{base}}uploader/?lang=ff" method = "POST"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
   <input type = "file" name = "file" id="name"/>
@@ -85,13 +85,13 @@
   <input type="text" name='taskId' value={{taskId}} hidden>
   <ul>
     <input type='radio' id='NotoSansAdlam' name='UnicodeFont'
-	   value='NotoSansAdlam' checked>
+           value='NotoSansAdlam' checked>
     <label for 'NotoSansAdlam'>Noto Sans Adlam</label>
     <input type='radio' id='Kigelia' name='UnicodeFont'
-	   value='Kigelia'>
+           value='Kigelia'>
     <label for 'Kigelia'>Kigelia</label><br/>
     <input type='radio' id='Ebrima' name='UnicodeFont'
-	   value='Ebrima'>
+           value='Ebrima'>
     <label for 'Ebrima'>Ebrima</label><br/>
     Language: <input type='text' id='lang' value='Fula' readonly></input>
   </ul>
