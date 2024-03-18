@@ -150,7 +150,6 @@ class ProgressClass():
         self.status = message
         self.thread.setStatus(message)
         queue.put(message)
-   #     print(message)  ## Something more interesting
         
 
 # Simple output function for tracking processing
@@ -222,14 +221,14 @@ def getFontsInParagraphs(paragraphs, fonts):
                 fonts[font] = 1
     return fonts
             
-#https://tedboy.github.io/flask/generated/flask.stream_with_context.html
+#https://tedboy.github.io/flask/generated/flask.stream_with_context.html@
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
     convertDoc = False
 
     lang = request.args.get('lang', 'und')
 
-    who = '/upload/%s' % lang
+    who = '/uploader/%s' % lang
     print('WHO = %s' % who)
     
     if request.method: # anything should work!  == 'POST':
@@ -319,11 +318,17 @@ def upload_file():
         newProgressObj = ProgressClass(langConverter, this_thread)
 
         try:
-            scriptIndex = int(formData['scriptIndex'])
+            try:
+                scriptIndex = int(formData['scriptIndex'])
+            except:
+                print('NO SCRIPT INDEX')
+                scriptIndex = 0
+
             langConverter.setScriptIndex(scriptIndex)
             langConverter.setLowerMode(True)
             langConverter.setSentenceMode(True)
             paragraphs = doc.paragraphs
+            print(' %s PARAGRAPHS' % len(paragraphs))
             msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
             countSent = 0
         except BaseException as err:
@@ -389,8 +394,6 @@ def upload_file():
             zf.writestr(wordsFileName, text_stream.read())
             zf.writestr('%s_info.txt' % baseName, info_stream.read())
 
-        # print('ZIP DIRECTORY %s' % zf.printdir())
-
         zipStream.seek(0)
         zipName = baseName + '_Unicode.zip'
         return send_file(zipStream, as_attachment=True,
@@ -415,7 +418,6 @@ def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     frequenciesName = baseName + '_words.tsv'
     zf.writestr(frequenciesName, text_stream.read())
         
-    #print('CREATE_ZIP_ARCHIVE:\m %s' % zf.printdir())
     return zipStream
         
 @app.route('/testzip')
@@ -487,15 +489,10 @@ def createDocFromFile(file):
 def convertAdlam():
     if request.method == 'POST':
         formData = request.form.to_dict()
-        if app.debug:
-            print('FORMDATA = %s' % formData)
 
         file = request.files['file']  # FileStorage object
         fileName = file.filename
         outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
-        if app.debug:
-            print('FILE = %s' % file)
-            print(outFileName)
 
         doc, count = createDocFromFile(file)
 
@@ -514,9 +511,6 @@ def convertAdlam():
         except BaseException as err:
             return 'Bad Adlam converter. Err = %s' % err
         
-        if app.debug:
-            print('Created converter')
-
         try:
             docConverter = ConvertDocx(langConverter, documentIn=doc,
                                        reportProgressObj=newProgressObj)
@@ -545,8 +539,6 @@ def convertAdlam():
                 # Deal with non-ASCII in the file name
                 outFileName = outFileName.encode(
                     'ascii', errors='backslashreplace')
-                if app.debug:
-                    print('FILE OUTPUT: %s' % outFileName)
                         
                 headerFileName = "attachment;filename=%s" % outFileName
 

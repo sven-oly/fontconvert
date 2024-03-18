@@ -78,6 +78,7 @@ class AhomConverter(ConverterBase):
             ';': '\U00011720',
             '[': '\U00011702',
             ']': '\U00011727',
+            '/': '\U0001173D',
 
             # Specified by hex values.
             '\u0020': ' ',
@@ -94,8 +95,7 @@ class AhomConverter(ConverterBase):
             '\u002b': '+',
             '\u002c': ',',
             '\u002e': '\U0001173C',
-            '\u002f': '\u104b',
-            
+
             '\u0030': '\U00011720',
             '\u0031': '\U00011721',
             '\u0032': '\U00011722',
@@ -260,7 +260,7 @@ class AhomConverter(ConverterBase):
             ';': '\U00011720',
             '[': '\U00011702',
             ']': '\U00011727',
-
+            '/': '\U0001173D',
 
             # Specified by hex values.
             '\u0020': ' ',
@@ -277,8 +277,7 @@ class AhomConverter(ConverterBase):
             '\u002b': '+',
             '\u002c': ',',
             '\u002e': '\U0001173c',
-            '\u002f': '\U0001173d',
-            
+
             '\u0030': '\U00011730',
             '\u0031': '\U00011731',
             '\u0032': '\U00011732',

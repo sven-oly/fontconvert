@@ -36,6 +36,8 @@ class PhakeConverter(ConverterBase):
     
     private_use_map = {
         'Phake Script': {
+            "\t": '\t',
+            "...": '\u2026',
             "A": "ဢ",
             "B": "ꩰ",
             "C": "\u108a",
@@ -121,6 +123,8 @@ class PhakeConverter(ConverterBase):
             " ": " "
         },
         'Phake Ramayana': {
+            "\t": '\t',
+            "...": '\u2026',
             "A": "ဢ",
             "B": "ꩰ",
             "C": ":",
@@ -373,6 +377,8 @@ class PhakeConverter(ConverterBase):
           if c in conversion_map:
             out = conversion_map[c]
           else:
+              for i in range(len(c)):
+                  print('** Code point %s' % ord(c[i]))
               print('Cannot convert %s' % c)
 
           # Special case for handling underlined text
