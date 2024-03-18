@@ -18,6 +18,7 @@ class ConverterBase():
 
     self.encodingScripts = []  # If given, tells the Script of incoming characters
     self.oldFonts = []
+    self.font_resize_factor = 1.0
 
     if newFont:
       self.unicodeFont = newFont

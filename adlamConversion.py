@@ -531,7 +531,7 @@ class AdlamConverter(ConverterBase):
 
         tokens = self.tokenizeText(textIn)
         if not tokens:
-            print('????? WHY NO TOKENS in %s' % textIn)
+            return convertResult
 
         if self.debug:
             print('------- Tokens %s' % tokens)

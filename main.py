@@ -19,7 +19,6 @@
 from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
-from werkzeug.utils import secure_filename
 
 import datetime
 
@@ -51,6 +50,7 @@ from docx.enum.style import WD_STYLE_TYPE
 
 import adlamConversion
 import ahomConversion
+import phkConversion
 
 from convertDoc2 import ConvertDocx
 
@@ -246,9 +246,11 @@ def upload_file():
         print('*** taskId = %d' % taskId)
         try:
             lang = formData['lang']
+            lang_code = lang
             print('lang =' + formData['lang'])
         except:
-            lang = 'Fula'
+            lang_code = 'ff'
+            lang = 'ff'
 
         file = request.files['file']  # FileStorage object
         print('FILE = %s' % file)
@@ -295,12 +297,20 @@ def upload_file():
 
         this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
 
+        
         # Call conversions on the document.
-        if lang == 'ff':
+        langConverter = None
+        print('LANG = %s' % lang_code)
+        if lang_code == 'ff':
             langConverter = adlamConversion.AdlamConverter()      
-        elif lang =='aho':
-             langConverter = ahomConversion.AhomConverter()      
-           
+            print('ADLAM CONVERTER CREATED')
+        elif lang_code =='aho':
+             langConverter = ahomConversion.AhomConverter()       
+             print('AHOM CONVERTER CREATED')
+        elif lang_code =='phk':
+             langConverter = phkConversion.PhakeConverter()       
+             print('PHK CONVERTER CREATED')
+          
         langConverter.detectLang = langid.langid
         langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
