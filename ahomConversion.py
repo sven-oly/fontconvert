@@ -293,7 +293,7 @@ class AhomConverter(ConverterBase):
             '\u003c': '\U00011701',
             '\u003d': '\u003d',
             '\u003e': '\U00011728',
-            '\u003f': '\U0001171f',
+            '\u003f': '\U00011707\U0001171f',
 
             '\u0040': '\U0001173e',
             '\u0041': '\U00011712',
@@ -468,18 +468,25 @@ class AhomConverter(ConverterBase):
         # Next, move some code points in context to get proper Unicode ordering.
         # Vowel sign to right of consonants:
 
-        # TODO: use up list of patterns and replacements.
+        # TODO: use this list of patterns and replacements in a loop
         pattern_replace_list = [
-            [r'([\U0001171e[\U00011726])(\[U0001171d\U0001171f])([\U000117-\U000117a])',
+            [r'([\U0001171e[\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])',
              sub321],
-            [r'([\U0001171e\U00011726])([\U00011700-\U0001171a])', sub21],
+            [r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])', sub21],
             [r'(\U00011728)([U00011727\U00011729])', sub21],
+            [r'(\U00011726)([\U0001171d-\U0001171f])', sub21],
+            [r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])', sub21],
+            [r'(\U00011728)([\U0001172a])', sub21],
+            # Diacritics after space - invert order
+            [r'(\u0020)(\U0001172b)', sub21],
+            # Double full stop \U0001173c to \U0001173d
+            [r'\U0001173c\U0001173c', sub3dfor2c2c]
         ]
 
-        ePattern = r'([\U0001171e\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a])'
+        ePattern = r'([\U0001171e\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])'
         newText = re.sub(ePattern, sub321, in_text)
 
-        ePattern = r'([\U0001171e\U00011726])([\U00011700-\U0001171a])'
+        ePattern = r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'
         newText = re.sub(ePattern, sub21, newText)
 
         ePattern = r'(\U00011728)([U00011727\U00011729])'

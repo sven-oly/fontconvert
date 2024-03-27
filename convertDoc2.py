@@ -11,6 +11,7 @@ import convertUtil
 import convertWord
 
 from docx import Document
+from docx.enum.style import WD_STYLE_TYPE
 import docx
 
 # The version using docx
@@ -90,27 +91,31 @@ class ConvertDocx():
 
     # Copy old doc into new path.
     if not documentIn:
-      if input_path:
-        self.document = Document(input_path)
-      else:
-        print('No input path or document given.')
-        return None
+        if input_path:
+            self.document = Document(input_path)
+        else:
+            print('No input path or document given.')
+            return None
     else:
-      self.document = documentIn
+        self.document = documentIn
 
     self.outpath= None
     
     if not documentIn:
-      # Save the unchanged copy
-      # Only save a copy if it's a newly created document.
-      self.document.save(self.outpath)
-      if self.output_dir:
-        # String the directory tree to the file, substituting the output
-        fileIn = os.path.split(self.input_path)[1]
-        baseWOextension = os.path.splitext(fileIn)[0]
-      else:
-        baseWOextension = os.path.splitext(self.input_path)[0]
-        self.outpath = os.path.join(self.output_dir, baseWOextension + '_unicode.docx')
+        # Save the unchanged copy
+        # Only save a copy if it's a newly created document.
+        self.document.save(self.outpath)
+        if self.output_dir:
+            # String the directory tree to the file, substituting the output
+            fileIn = os.path.split(self.input_path)[1]
+            baseWOextension = os.path.splitext(fileIn)[0]
+        else:
+            baseWOextension = os.path.splitext(self.input_path)[0]
+            self.outpath = os.path.join(self.output_dir, baseWOextension + '_unicode.docx')
+
+
+    # TRY THIS
+    self.install_new_style(self.unicode_font)
 
   
   def processDocx(self):
@@ -185,6 +190,12 @@ class ConvertDocx():
     if self.progressObj:
       self.progressObj.send('## STOP ##')
     return
+
+  def install_new_style(self, font):
+      styles = self.document.styles
+      new_style = styles.add_style(
+        'phk_font', WD_STYLE_TYPE.PARAGRAPH
+      )
 
   def tryFontUpdate(self, newzip, oldFontList, unicodeFont):
     filename = 'word/fontTable.xml'

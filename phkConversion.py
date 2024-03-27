@@ -12,7 +12,7 @@ from converterBase import ConverterBase
 # Script index
 
 FONTS_TO_CONVERT = [
-  'Phake Script', 'Phake Ramayana'
+    'Phake Script', 'Phake Ramayana', 'Aiton Script'
 ]
 
 thisDefaultOutputFont = 'Noto Serif Myanmar Light'
@@ -21,19 +21,25 @@ thisDefaultOutputFont = 'Noto Serif Myanmar Light'
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
 
+
 def sub21(m):
     return m.group(2) + m.group(1)
+
 
 def sub3dfor2c2c(m):
     return '\U0001173d'
 
+
 VARIANT_SELECTOR = '\uFE00'
+
+
 def vsReplacer(matchobj):
     return matchobj.group(0) + VARIANT_SELECTOR
 
 # Character constants for conversion
+
+
 class PhakeConverter(ConverterBase):
-    
     private_use_map = {
         'Phake Script': {
             "\t": '\t',
@@ -119,7 +125,6 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "\u00a0\u109d",
             "`": "`",
-            "~": "~",
             " ": " "
         },
         'Phake Ramayana': {
@@ -205,20 +210,98 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "&",
             "`": "`",
-            "~": "~",
             " ": " "
-        }        
-    };
+        },
+        'Aiton Script': {
+            "A": "ဢ",
+            "B": "ꩰ",
+            "C": "\u108a",
+            "D": "ꩰ",
+            "E": "\u105e\u103a",
+            "F": "\u103a\u1036",
+            "G": "\u1087",
+            "H": "\u1088",
+            "I": "ီ",
+            "J": "ို",
+            "K": "\u1039\u1000",
+            "L": "\u1038",
+            "M": "ံ",
+            "N": "\u107a",
+            "O": "\u103d",
+            "P": "\u1039\u1015",
+            "Q": "\uaa77",
+            "R": "ြ",
+            "S": "꩷",
+            "T": "\u1039\u1010",
+            'U': "\u1030",
+            "V": "\u1030", #  ???
+            "W": "ွ်",
+            "X": "ႜ",
+            "Y": "ျ",
+            "Z": "ၞ",
+            "a": "ႃ",
+            "b": "ပ",
+            "c": "ꩡ",
+            "d": "ဒ",
+            "e": "ေ",
+            "f": "ၸ",
+            "g": "င",
+            "h": "\uaa6d",
+            "i": "ိ",
+            "j": "\u109d",
+            "k": "က",
+            "l": "လ",
+            "m": "မ",
+            "n": "ꩫ",
+            "o": "ွ",
+            "p": "ပ",
+            "q": "်",
+            "r": "\uAA7A",
+            "s": "\uaa6c",
+            "t": "တ",
+            "u": "ု",
+            "v": "ထ",
+            "w": "ဝ",
+            "x": "ၵ",
+            "y": "ယ",
+            "z": "\uAA78",
+            "@": "\u1092",
+            "(": "(",
+            ")": ")",
+            "/": "\u104b",
+            "\\": "\u103a\u105e",
+            "[": "\u103c",
+            "|": "\u1039\u101c",
+            "]": "\u103c",
+            "{": "\u103c",
+            "}": "\u105c",
+            "~": "\u1039\u101a",
+            "1": "၁",
+            "2": "၂",
+            "3": "၃",
+            "4": "၄",
+            "5": "၅",
+            "6": "၆",
+            "7": "၇",
+            "8": "၈",
+            "9": "၉",
+            "0": "၀",           
+            "%": "\u00a0\u103a",
+            "&": "\u00a0\u109d",
+            "`":  "\u1039ꩡ",
+            "~": "\u1039\u101a"
+        }
+    }
 
     # For splitting by ASCII characters
     # re.ASCII
 
     def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
-              defaultOutputFont=thisDefaultOutputFont):
+                 defaultOutputFont=thisDefaultOutputFont):
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
-            '([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60\uaa61\uaa62\uaa63\uaa64\uaa65\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])')
+            '([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60-\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])')
 
         self.add_variant_selectors = True
         self.handle_sentences = False
@@ -227,6 +310,8 @@ class PhakeConverter(ConverterBase):
         self.encodingScripts = FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
         self.oldFonts = []
         self.font_resize_factor = 0.65
+
+        self.token_splitter = None
 
         for item in oldFontList:
             if isinstance(item, list):
@@ -264,7 +349,7 @@ class PhakeConverter(ConverterBase):
         self.setLowerMode(True)
         self.setSentenceMode(True)
 
-        self.end_of_sentence_pattern = re.compile(r'([\.\?\!\⸮\؟$])')
+        self.end_of_sentence_pattern = re.compile(r'([\.\?!⸮؟$])')
 
         # For inserting question and exclamation before sentences.
         self.pre_punctuation = {
@@ -290,17 +375,25 @@ class PhakeConverter(ConverterBase):
         pattern_replace_list = [
             [r'([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
              sub21],
+            [r'([\u1031]\ufe00?)([\u103D\u103b\u103c\u103A\u105E]+)',
+             sub21],
+            [r'([\u103d])([\u103b])',
+             sub21],
+            [r'([\u1030])([\u103a-\u103d]+)',
+             sub21],
+            [r'([\u103c])([\u1000-\u102a\uaa60-\uaa6f]+)',
+             sub21],
         ]
 
-        newText = in_text
+        new_text = in_text
         for pair in pattern_replace_list:
-            newText = re.sub(pair[0], pair[1], newText)
+            new_text = re.sub(pair[0], pair[1], new_text)
 
-        return newText
+        return new_text
 
     def add_variation_modifiers(self, text):
-        out_text = re.sub(self.variation_sequence_code_points, vsReplacer, text);
-        return out_text;
+        out_text = re.sub(self.variation_sequence_code_points, vsReplacer, text)
+        return out_text
 
     def setScriptIndex(self, newIndex=0):
         # 0 = '', 1 = 'latn'
@@ -311,7 +404,7 @@ class PhakeConverter(ConverterBase):
     def tokenizeText(self, textIn):
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split('([\w\s])', textIn) if i]
+            return [i for i in re.split(r'([\w\s])', textIn) if i]
         elif self.scriptIndex == 4:
             return textIn
 
@@ -330,7 +423,6 @@ class PhakeConverter(ConverterBase):
             self.token_splitter = re.compile('(\w)')
         else:
             # UnknownConversion 
-            convertData = None
             encoding_map = None
             self.token_splitter = None
 
@@ -372,17 +464,17 @@ class PhakeConverter(ConverterBase):
             print('????? WHY NO TOKENS in %s' % textIn)
 
         for c in tokens:
-          # Special handling if needed
-          out = c
-          if c in conversion_map:
-            out = conversion_map[c]
-          else:
-              for i in range(len(c)):
-                  print('** Code point %s' % ord(c[i]))
-              print('Cannot convert %s' % c)
+            # Special handling if needed
+            out = c
+            if c in conversion_map:
+                out = conversion_map[c]
+            else:
+                  for i in range(len(c)):
+                      print('** Code point %s' % ord(c[i]))
+                  print('Cannot convert %s' % c)
 
-          # Special case for handling underlined text
-          convertedList.append(out)
+            # Special case for handling underlined text
+            convertedList.append(out)
 
         convertResult = self.reorderText(''.join(convertedList))
 
@@ -392,37 +484,37 @@ class PhakeConverter(ConverterBase):
         return convertResult
 
     def computeSentenceStartsEnds(self, text):
-         # Get all the positions of sentence endings
-         all_sentence_ends = self.end_of_sentence_pattern.finditer(text)
-         text_len = len(text)
-         if not all_sentence_ends:
-             # No sentence endings. Should first be capitalized?
-             return None
-         sentence_starts = [0]
-         ignore_match = self.ignore_start_of_sentence.match(text)
-         if ignore_match:
-             sentence_starts[0] = ignore_match.end()
-         sentence_ends = []
-         for sentence_end in all_sentence_ends:
-             # Position and character of this sentence ending
-             sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
-             end_pos = sentence_end.end()
-             while end_pos < text_len and (
-                 text[end_pos] == ' ' or text[end_pos] == '\r'
-                 or text[end_pos] == '\t' or text[end_pos] == '\n'):
-                 end_pos += 1
-             # Move the letter content
-             #         self.ignore_start_of_sentence = re.compile(
-             # r'([\U0001E950\U0001E959\u0020()]+)')
-             start_pos = end_pos
-             if start_pos < text_len:
-                 ignore_match = self.ignore_start_of_sentence.match(text[start_pos:])
-                 if ignore_match:
-                     start_pos += ignore_match.end() - 1
-             sentence_starts.append(start_pos)
-         # The paragraph text ends a sentence
-         sentence_ends.append((len(text)-1, '$'))
-         return sentence_ends, sentence_starts
+        # Get all the positions of sentence endings
+        all_sentence_ends = self.end_of_sentence_pattern.finditer(text)
+        text_len = len(text)
+        if not all_sentence_ends:
+         # No sentence endings. Should first be capitalized?
+         return None
+        sentence_starts = [0]
+        ignore_match = self.ignore_start_of_sentence.match(text)
+        if ignore_match:
+         sentence_starts[0] = ignore_match.end()
+        sentence_ends = []
+        for sentence_end in all_sentence_ends:
+         # Position and character of this sentence ending
+         sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
+         end_pos = sentence_end.end()
+         while end_pos < text_len and (
+             text[end_pos] == ' ' or text[end_pos] == '\r'
+             or text[end_pos] == '\t' or text[end_pos] == '\n'):
+             end_pos += 1
+         # Move the letter content
+         #         self.ignore_start_of_sentence = re.compile(
+         # r'([\U0001E950\U0001E959\u0020()]+)')
+         start_pos = end_pos
+         if start_pos < text_len:
+             ignore_match = self.ignore_start_of_sentence.match(text[start_pos:])
+             if ignore_match:
+                 start_pos += ignore_match.end() - 1
+         sentence_starts.append(start_pos)
+        # The paragraph text ends a sentence
+        sentence_ends.append((len(text)-1, '$'))
+        return sentence_ends, sentence_starts
 
     def mapRunsToParagraphTextPosisions(self, runs):
         # Mapping of run starts & ends to text positions
@@ -431,7 +523,6 @@ class PhakeConverter(ConverterBase):
         run_index = 0
         for run in runs:
             if run.text:
-                run_length = len(run.text)
                 run_map.append((pos, pos + len(run.text) - 1, run, run_index))
                 pos += len(run.text)
             run_index += 1
