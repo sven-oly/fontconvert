@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Online Docx font convert</title>
+
+    <script>
+      // Handle messages from the server
+      // const evSource = new EventSource('/stream');
+      
+      // evSource.onmessage = function(event) {
+      //          const msg = event.data;
+      //          if (msg) {
+      //              const outarea = document.getElementById('outArea');
+      //              outarea.innerHTML = msg;
+      //          }
+      // }
+
+      let intervalId;
+      function startPollStatus() {
+          intervalId = window.setInterval(function() {
+              check_progress('statusUpdate');
+          }, 1000);
+      }
+
+      function killPollStatus() {
+          window.clearInterval(intervalId);
+      }
+
+      function check_progress(statusArea) {
+          // Send AJAX to get the status
+          let output = document.getElementById(statusArea);
+          if (window.XMLHttpRequest) {
+              // code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp = new XMLHttpRequest();
+          } else {
+              // code for IE6, IE5
+              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+
+          // Deal with the results
+          xmlhttp.onreadystatechange=function() {
+              if(xmlhttp.readyState==4) {
+                  // The callback.
+                  const returned_json = xmlhttp.responseText;
+                  output.value += returned_json + '\n';
+                  output.focus();  // Scroll to the end
+                  if (returned_json === '## STOP ##') {
+                      killPollStatus();
+                  }
+                  return;
+              }
+          }
+          let target = '{{base}}progress/{{taskId}}';
+          xmlhttp.open("GET", target, true);
+          xmlhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>{{lang_name}} font conversion</h2>
+<p>Instructions:</p>
+<ul>
+  <li>Please select a .docx file to convert.
+  </li>
+  <li>Then you may get information about the .docx file with "Get Document information.
+    <ul>
+      <li>This uploads the file to show you basic information about the size and number of sections and paragraphs in the document.</li>
+      <li>Information about the fonts found in the document is also provided.</li></ul>
+  </li>
+  <li>Returning to this page will remember the file selected.</li>
+  <li>Select "Convert to Unicode" will upload the file again, performing text conversion in paragraphs, headers, footers, and tables.</li>
+  <li>The resulting file will be downloaded to your computer with "_Unicode" appended to the file name.
+    <ul>
+      <li>Note that this conversion may require a minute to perform and download.</li>
+    </ul>
+  </li>
+</ul>
+<form action = "{{base}}uploader/?lang={{lang}}" method = "POST"
+      onSubmit="JavaScript:startPollStatus()"
+      enctype = "multipart/form-data">
+  <input type = "file" name = "file" id="name"/>
+  <br/><br/>
+  <input type="submit" value="Get document information" name="DocInfo" />
+  <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
+  <input type="text" name='langName' value="{{lang_name}}" hidden>
+  <input type="text" name='lang' value="{{lang}}" hidden>
+  <input type="text" name='taskId' value={{taskId}} hidden>
+  <ul>
+    {% for each in fonts %}
+    <!-- Fill in fonts for the conversion -->
+    <input type='radio' id='{{each}}' name='UnicodeFont'
+           value='{{each}}' checked>
+    <label for '{{each}}'>{{each}}</label>
+    {% endfor %}
+  </ul>
+    Language: <input type='text' id='lang' value='{{lang_name}}' readonly></input>
+</form>   
+
+<input type="button" value="Check progress"
+       onclick="startPollStatus('statusUpdate');">
+
+<textarea id="statusUpdate" rows=3 cols=50>Not started </textarea>
+<p>Important: This application uses the uploaded files only for temporary processing. It does not store your original file or the converted Unicode file online. It will not be recorded or posted anywhere.
+
+
+</body>
+</html>

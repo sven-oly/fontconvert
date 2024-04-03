@@ -39,7 +39,10 @@ import threading
 import time
 
 import google.auth
+
+from google.cloud import datastore
 from google.cloud import tasks
+
 #import cloudstorage as gcs
 
 import os
@@ -53,6 +56,9 @@ import ahomConversion
 import phkConversion
 
 from convertDoc2 import ConvertDocx
+
+# Datastore
+datastore_client = datastore.Client()
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -556,7 +562,7 @@ def convertAdlam():
                 except BaseException as err:
                     print('**** Response download failure. Err = %s' % err)
                 
-        except BaseException as err:
+        except BaseeException as err:
             return 'Conversion failed. with err %s' % err
         
 #    return '%s file uploaded successfully with %d paragraphs' % (file.filename, count)
@@ -637,6 +643,69 @@ def example_task_handler():
 # [END cloud_tasks_appengine_quickstart]
 
            
+@app.route('/dbtest')
+def test_datastore():
+    # Simple function to add something to the database
+    # datastore_client = datastore.Client()
+
+    print('DATASTORE CLIENT: %s' % datastore_client)
+    kind = "langtag"
+
+    tags = ['aho', 'ff', 'ff-Latn', 'ff-Adlm', 'phk']
+
+    lang_entry = {}
+    try:
+        lang_key = datastore_client.key(kind, tags[0])
+        print('LANG_KEY: %s' % lang_key)
+
+        lang_entry = datastore.Entity(key=lang_key)
+        print('LANG_entry: %s' % lang_entry)
+    except BaseException as error:
+        print('datastore error: %s' % error)
+
+    try:
+        lang_entry['name'] = 'Tai Ahom'
+        ahomConv = ahomConversion.AhomConverter()
+        lang_entry['script_range'] = [ahomConv.first, ahomConv.last]
+    except BaseException as error:
+        print('Failed on lang_entry setting %s: %s' % (lang_entry, error))
+
+    try:
+        datastore_client.put(lang_entry)
+    except BaseException as error:
+        print('datastore put error: %s' % error)
+        
+    print(f'Saved %s for %s' % (lang_key,lang_entry['name']))
+
+
+@app.route('/dbget/')
+def get_datastore():
+    # Retrieve info from datatstore.
+    args = request.args
+    lang_tag = args['lang']
+    print('Lang tag = %s' % lang_tag)
+    
+    print('DATASTORE CLIENT: %s' % datastore_client)
+    kind = "langtag"
+
+    retrieved = None
+    try:
+        lang_key = datastore_client.key(kind, lang_tag)
+
+        print('LANG_KEY: %s' % lang_key)
+        retrieved = datastore_client.get(lang_key)
+        print('RETRIEVED: %s' % retrieved)
+    except BaseException as error:
+        print('Error retrieving from data store: %s' % error)
+        return None
+    
+    if not retrieved:
+        print('RETRIEVED: %s' % 'NOTHING FOUND')
+    else:
+        print('RETRIEVED: %s' % list(retrieved.fetch()))
+        print('DATA RETRIEVED = %s, %s' % (retrieved['name'], retrieved['script_range']))        
+
+
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
     # Engine, a webserver process such as Gunicorn will serve the app. This
