@@ -10,14 +10,6 @@ import sys
 from converterBase import ConverterBase
 
 # Script index
-
-FONTS_TO_CONVERT = [
-    'Phake Script', 'Phake Ramayana', 'Aiton Script'
-]
-
-thisDefaultOutputFont = 'Noto Serif Myanmar Light'
-
-
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
 
@@ -42,7 +34,6 @@ def vsReplacer(matchobj):
 class PhakeConverter(ConverterBase):
     private_use_map = {
         'Phake Script': {
-            "\t": '\t',
             "...": '\u2026',
             "A": "ဢ",
             "B": "ꩰ",
@@ -94,8 +85,7 @@ class PhakeConverter(ConverterBase):
             "v": "ထ",
             "w": "ဝ",
             "x": "ၵ",
-            "y": "ယ"
-                 "",
+            "y": "ယ",
             "z": "\uAA78",
             "@": "\ua9f2",
             "(": "(",
@@ -125,7 +115,9 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "\u00a0\u109d",
             "`": "`",
-            " ": " "
+            " ": " ",
+            ".": ".",
+            "\t": "\t"
         },
         'Phake Ramayana': {
             "\t": '\t',
@@ -210,8 +202,10 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "&",
             "`": "`",
-            " ": " "
-        },
+            " ": " ",
+            ".": ".",
+            "\t": "\t"
+    },
         'Aiton Script': {
             "A": "ဢ",
             "B": "ꩰ",
@@ -289,15 +283,76 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "\u00a0\u109d",
             "`":  "\u1039ꩡ",
-            "~": "\u1039\u101a"
+            "~": "\u1039\u101a",
+            ".": ".",
+            " ": " ",
+            "\t": "\t"
+        },
+        'Banchob': {
+            'N': 'ŋ',
+            'M': 'ñ',
+            'j': 'ɛ',
+            'v': 'ü',
+            'z': 'ə',
+            'q': 'ɔ',
+            'I': 'ī',
+            'E': 'ē',
+            'J': 'ɛ̄',
+            'V': 'ǖ',
+            'Z': 'ə̄',
+            'A': 'ā',
+            'U': 'ū',
+            'O': 'ō',
+            'Q': 'ɔ̄',
+            '1': '¹',
+            '2': '²',
+            '3': '³',
+            '4': '⁴',
+            '5': '⁵',
+            '6': '⁶',
+            '7': '⁷',
+            '8': '⁸',
+            '9': '⁹',
         }
     }
 
+    dictionary_to_font = {
+        '\\lx': ['Lexeme', 'Tai Phake'],
+        '\\le': ['Lexeme Alternative Spelling', 'Tai Phake'],
+        '\\ph': ['Phonetic form', 'Banchob'],
+        '\\so': ['Source (listing of sound file link)'],
+        '\\hm': ['Homonym number'],
+        '\\ps': ['Part of speech'],
+        '\\sn': ['Sense number'],
+        '\\de': ['Definition (English)'],
+        '\\ge': ['Gloss (English)'],
+        '\\pc1': ['(Picture 1)'],
+        '\\pc2': ['Picture 2'],
+        '\\pl': ['Couplet form', 'Tai Phake'],
+
+        '\\pd': ['Couplet form phonetic', 'Banchob'],
+        '\\pde': ['Couplet form English'],
+        '\\pdn': ['Couple form Assamese', 'Assamese'],
+        '\\dn': ['Definition Assamese', 'Assamese'],
+        '\rf': ['Reference [For example sentences taken from texts]'],
+        '\\xv': ['Example Phake', 'Tai Phake'],
+        '\\xr': ['Example Phonetic', 'Banchob'],
+        '\\xe': ['Example free translation English'],
+        '\\xn': ['Example free translation Assamese', 'Assamese'],
+        '\\notes': ['Notes'],
+        '\\se': ['Subentry', 'Tai Phake'],
+    }
     # For splitting by ASCII characters
     # re.ASCII
 
-    def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
-                 defaultOutputFont=thisDefaultOutputFont):
+    def __init__(self, oldFontList=None, newFont=None,
+                 defaultOutputFont=None):
+
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        if defaultOutputFont:
+                self.thisDefaultOutputFont = defaultOutputFont
+        else:
+            self.thisDefaultOutputFont = 'Noto Serif Myanmar Light'
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
@@ -307,18 +362,15 @@ class PhakeConverter(ConverterBase):
         self.handle_sentences = False
 
         self.encoding = 0  # Default
-        self.encodingScripts = FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
-        self.oldFonts = []
+        self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
+        if oldFontList:
+            self.oldFonts = self.FONTS_TO_CONVERT
+        else:
+            self.oldFonts = oldFontList
+            
         self.font_resize_factor = 0.65
 
         self.token_splitter = None
-
-        for item in oldFontList:
-            if isinstance(item, list):
-                self.oldFonts.append(item[0])
-                self.encodingScripts.append(item[1])
-            else:
-                self.oldFonts.append(item)
 
         # Default script = 'Latn'
         self.scriptToConvert = 'Phake Script'
@@ -404,7 +456,7 @@ class PhakeConverter(ConverterBase):
     def tokenizeText(self, textIn):
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s])', textIn) if i]
+            return [i for i in re.split(r'([\w\s\.])', textIn) if i]
         elif self.scriptIndex == 4:
             return textIn
 
@@ -417,7 +469,7 @@ class PhakeConverter(ConverterBase):
         encoding_index = fontIndex
         encoding_map = {}
 
-        if fontIndex < len(FONTS_TO_CONVERT):
+        if fontIndex < len(self.FONTS_TO_CONVERT):
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[self.encoding]
             self.token_splitter = re.compile('(\w)')
@@ -542,11 +594,21 @@ class PhakeConverter(ConverterBase):
                 return
             
         for run in p.runs:
-            if run.font.name in FONTS_TO_CONVERT:
-                run.text = self.convertText(run.text, None, self.scriptIndex)
+            try:
+                scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
+                run.text = self.convertText(run.text, None, scriptIndex)
                 run.font.name = self.unicodeFont
                 new_font_size = int(run.font.size * self.font_resize_factor)
                 run.font.size = new_font_size
+            except ValueError:
+                continue
+
+        # Check on the font for the full paragraph
+        try:
+            self.FONTS_TO_CONVERT.index(p.style.font.name)
+            p.style.font.name = self.unicodeFont
+        except ValueError:
+            pass
 
         if self.handle_sentences:
             self.processSentences(p)

@@ -11,10 +11,6 @@ from converterBase import ConverterBase
 
 # Script index
 
-FONTS_TO_CONVERT = [
-  'Ahom', 'Ahom Manuscript'
-]
-
 thisDefaultOutputFont = 'Noto Serif Ahom'
 
 
@@ -401,16 +397,27 @@ class AhomConverter(ConverterBase):
     latn_regex = re.compile(
         r'(a|b)')
 
-    def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
+    def __init__(self, oldFontList=None, newFont=None,
               defaultOutputFont=thisDefaultOutputFont):
+
+        self.FONTS_TO_CONVERT = [
+            'Ahom', 'Ahom Manuscript'
+        ]
+
+        self.thisDefaultOutputFont = 'Noto Serif Ahom'
 
         self.handle_sentences = False
         self.encoding = 0  # Default
-        self.encodingScripts = FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
-        self.oldFonts = []
+        if oldFontList:
+            self.encodingScripts = oldFontList
+        else:
+            self.encodingScripts = self.FONTS_TO_CONVERT
+
+        self.oldFonts = self.encodingScripts
+        
         self.font_resize_factors = [1.0, 1.3]
 
-        for item in oldFontList:
+        for item in self.oldFonts:
             if isinstance(item, list):
                 self.oldFonts.append(item[0])
                 self.encodingScripts.append(item[1])
@@ -666,8 +673,8 @@ class AhomConverter(ConverterBase):
                 return
             
         for run in p.runs:
-            if run.font.name in FONTS_TO_CONVERT:
-                font_index = FONTS_TO_CONVERT.index(run.font.name)
+            if run.font.name in self.FONTS_TO_CONVERT:
+                font_index = self.FONTS_TO_CONVERT.index(run.font.name)
                 run.text = self.convertText(run.text, None, font_index)
                 run.font.name = self.unicodeFont
                 new_font_size = int(run.font.size * self.font_resize_factors[font_index])
