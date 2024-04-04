@@ -317,8 +317,8 @@ class PhakeConverter(ConverterBase):
     }
 
     dictionary_to_font = {
-        'lx': ['Lexeme', 'Tai Phake'],
-        'le': ['Lexeme Alternative Spelling', 'Tai Phake'],
+        'lx': ['Lexeme', 'Phake Script'],
+        'le': ['Lexeme Alternative Spelling', 'Phake Script'],
         'ph': ['Phonetic form', 'Banchob'],
         'so': ['Source (listing of sound file link)'],
         'hm': ['Homonym number'],
@@ -328,19 +328,19 @@ class PhakeConverter(ConverterBase):
         'ge': ['Gloss (English)'],
         'pc1': ['(Picture 1)'],
         'pc2': ['Picture 2'],
-        'pl': ['Couplet form', 'Tai Phake'],
+        'pl': ['Couplet form', 'Phake Script'],
 
         'pd': ['Couplet form phonetic', 'Banchob'],
         'pde': ['Couplet form English'],
         'pdn': ['Couple form Assamese', 'Assamese'],
         'dn': ['Definition Assamese', 'Assamese'],
         'rf': ['Reference [For example sentences taken from texts]'],
-        'xv': ['Example Phake', 'Tai Phake'],
+        'xv': ['Example Phake', 'Phake Script'],
         'xr': ['Example Phonetic', 'Banchob'],
         'xe': ['Example free translation English'],
         'xn': ['Example free translation Assamese', 'Assamese'],
         'notes': ['Notes'],
-        'se': ['Subentry', 'Tai Phake'],
+        'se': ['Subentry', 'Phake Script'],
     }
     
     # For splitting by ASCII characters
@@ -472,7 +472,11 @@ class PhakeConverter(ConverterBase):
         encoding_map = {}
 
         if inputFont:
-            fontIndex = self.FONTS_TO_CONVERT.index(inputFont)
+            try:
+                fontIndex = self.FONTS_TO_CONVERT.index(inputFont)
+            except:
+                # Font not found. Return the text
+                return textIn
 
         if fontIndex < len(self.FONTS_TO_CONVERT):
             # Compute the encoding map for the encoding font
