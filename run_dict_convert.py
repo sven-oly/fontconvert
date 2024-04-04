@@ -139,7 +139,7 @@ def convertThisDictionary(lang, inputFileName):
         print('%s OUTLINES' % len(out_lines))
 
         out_file = open(outFileName, 'w')
-        out_file.writelines('\r\n'.join(out_lines))
+        out_file.writelines('\r'.join(out_lines))
         result = True
     else:
         print("CANT CONVERT %s" % inputFileName)
