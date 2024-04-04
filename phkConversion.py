@@ -342,7 +342,7 @@ class PhakeConverter(ConverterBase):
         'notes': ['Notes'],
         'se': ['Subentry', 'Phake Script'],
     }
-    
+
     # For splitting by ASCII characters
     # re.ASCII
 
@@ -418,6 +418,7 @@ class PhakeConverter(ConverterBase):
         self.detectLang = False
         self.ignoreLangs = []  # Language codes for not conversion
 
+        self.not_converted = {}  # Array of unconverted characters / strings and scripts with counts
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
     def reorderText(self, in_text):
@@ -523,7 +524,8 @@ class PhakeConverter(ConverterBase):
 
         tokens = self.tokenizeText(textIn)
         if not tokens:
-            print('????? WHY NO TOKENS in %s' % textIn)
+            # print('????? WHY NO TOKENS in %s' % textIn)
+            pass
 
         for c in tokens:
             # Special handling if needed
@@ -531,9 +533,14 @@ class PhakeConverter(ConverterBase):
             if c in conversion_map:
                 out = conversion_map[c]
             else:
-                  for i in range(len(c)):
-                      print('** Code point %s' % ord(c[i]))
-                  print('Cannot convert %s' % c)
+                key = '%s-%s' % (self.encoding, c)
+                if not key in self.not_converted:
+                    self.not_converted[key] = 1
+                    #for i in range(len(c)):
+                    #    print('** Code point %s' % hex(ord(c[i])))
+                    #print('Cannot convert %s in %s' % (c, self.encoding))
+                else:
+                    self.not_converted[key] += 1
 
             # Special case for handling underlined text
             convertedList.append(out)
@@ -738,7 +745,7 @@ def testPhakeStrings():
     for text in t:
         result = converter.convertText(text, fontIndex=0)
                 
-        print("%s --> %s" % (text, result))
+        # print("%s --> %s" % (text, result))
         if expected[index] != result:
             print('!!! Expected %s but got %s' % (expected[index], result))
         index += 1

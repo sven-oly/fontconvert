@@ -71,11 +71,11 @@ def convertDictionary(file_path, converter):
             space_pos = sline.find(' ')
             current_tag = sline[0:space_pos]
             text = sline[space_pos:].replace('\r\n', '')
-            print('Tag %s for text \"%s\"' % (current_tag, text))
+            # print('Tag %s for text \"%s\"' % (current_tag, text))
 
             out_line = process_line(current_tag, True, text, converter)
 
-            print('%s %s --> %s' % (count, current_tag, out_line))
+            # print('%s %s --> %s' % (count, current_tag, out_line))
 
             count += 1
         else:
@@ -95,7 +95,7 @@ def process_line(current_tag, has_tag, line, converter):
         tag_info = converter.dictionary_to_font[current_tag]
         if len(tag_info) > 1:
             input_font = tag_info[-1]
-            print('tag %s font %s' % (current_tag, input_font))
+            # print('tag %s font %s' % (current_tag, input_font))
             text_out = converter.convertText(line, inputFont=input_font)
         else:
             text_out = line
@@ -126,7 +126,7 @@ def convertThisDictionary(lang, inputFileName):
         langConverter = phkConversion.PhakeConverter()
 
     if not langConverter:
-        print('Nconverter found for lang %s' % (lang))
+        print('No converter found for lang %s' % (lang))
         return
 
     langConverter.setScriptIndex(0)
@@ -139,11 +139,18 @@ def convertThisDictionary(lang, inputFileName):
         print('%s OUTLINES' % len(out_lines))
 
         out_file = open(outFileName, 'w')
-        out_file.writelines('\r'.join(out_lines))
+        # HOW TO OUTPUT CORRECTLY? out_file.writelines(out_lines)
+        out_file.writelines('\n'.join(out_lines))
         result = True
     else:
-        print("CANT CONVERT %s" % inputFileName)
-        
+        print("CANNOT CONVERT %s" % inputFileName)
+
+    # Report list of missed conversion
+    if langConverter.not_converted:
+        print(" Values not converted:")
+        for key in langConverter.not_converted.keys():
+            print('  %s: %d' % (key, langConverter.not_converted[key] ))
+
     return result
 
 def main(argv):
