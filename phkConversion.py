@@ -317,31 +317,32 @@ class PhakeConverter(ConverterBase):
     }
 
     dictionary_to_font = {
-        '\\lx': ['Lexeme', 'Tai Phake'],
-        '\\le': ['Lexeme Alternative Spelling', 'Tai Phake'],
-        '\\ph': ['Phonetic form', 'Banchob'],
-        '\\so': ['Source (listing of sound file link)'],
-        '\\hm': ['Homonym number'],
-        '\\ps': ['Part of speech'],
-        '\\sn': ['Sense number'],
-        '\\de': ['Definition (English)'],
-        '\\ge': ['Gloss (English)'],
-        '\\pc1': ['(Picture 1)'],
-        '\\pc2': ['Picture 2'],
-        '\\pl': ['Couplet form', 'Tai Phake'],
+        'lx': ['Lexeme', 'Tai Phake'],
+        'le': ['Lexeme Alternative Spelling', 'Tai Phake'],
+        'ph': ['Phonetic form', 'Banchob'],
+        'so': ['Source (listing of sound file link)'],
+        'hm': ['Homonym number'],
+        'ps': ['Part of speech'],
+        'sn': ['Sense number'],
+        'de': ['Definition (English)'],
+        'ge': ['Gloss (English)'],
+        'pc1': ['(Picture 1)'],
+        'pc2': ['Picture 2'],
+        'pl': ['Couplet form', 'Tai Phake'],
 
-        '\\pd': ['Couplet form phonetic', 'Banchob'],
-        '\\pde': ['Couplet form English'],
-        '\\pdn': ['Couple form Assamese', 'Assamese'],
-        '\\dn': ['Definition Assamese', 'Assamese'],
-        '\rf': ['Reference [For example sentences taken from texts]'],
-        '\\xv': ['Example Phake', 'Tai Phake'],
-        '\\xr': ['Example Phonetic', 'Banchob'],
-        '\\xe': ['Example free translation English'],
-        '\\xn': ['Example free translation Assamese', 'Assamese'],
-        '\\notes': ['Notes'],
-        '\\se': ['Subentry', 'Tai Phake'],
+        'pd': ['Couplet form phonetic', 'Banchob'],
+        'pde': ['Couplet form English'],
+        'pdn': ['Couple form Assamese', 'Assamese'],
+        'dn': ['Definition Assamese', 'Assamese'],
+        'rf': ['Reference [For example sentences taken from texts]'],
+        'xv': ['Example Phake', 'Tai Phake'],
+        'xr': ['Example Phonetic', 'Banchob'],
+        'xe': ['Example free translation English'],
+        'xn': ['Example free translation Assamese', 'Assamese'],
+        'notes': ['Notes'],
+        'se': ['Subentry', 'Tai Phake'],
     }
+    
     # For splitting by ASCII characters
     # re.ASCII
 
@@ -463,20 +464,25 @@ class PhakeConverter(ConverterBase):
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
-    def convertText(self, textIn, fontTextInfo=None, fontIndex=0):
+    def convertText(self, textIn, fontTextInfo=None,
+                    fontIndex=0, inputFont=None):
         self.encoding = self.encodingScripts[fontIndex]
         # print('fontIndex %s, encoding = %s' % (fontIndex, self.encoding))
         encoding_index = fontIndex
         encoding_map = {}
+
+        if inputFont:
+            fontIndex = self.FONTS_TO_CONVERT.index(inputFont)
 
         if fontIndex < len(self.FONTS_TO_CONVERT):
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[self.encoding]
             self.token_splitter = re.compile('(\w)')
         else:
-            # UnknownConversion 
+            # UnknownConversion - just return unchanged text
             encoding_map = None
             self.token_splitter = None
+            return textIn
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
