@@ -63,14 +63,15 @@ def convertDictionary(file_path, converter):
             try:
                 # Get into Unicode
                 sline = line[1:].decode('8859')  # Maybe not utf-8
-                sline.replace('\r\n', '')
+                sline.replace('\r', '').replace('\n', '')
             except UnicodeDecodeError as error:
                 # Maybe a code outside of ASCII, e.g, 0xb9
                 pass
 
             space_pos = sline.find(' ')
-            current_tag = sline[0:space_pos]
-            text = sline[space_pos:].replace('\r\n', '')
+            current_tag = sline[0:space_pos].replace('\r', '').replace('\n', '')
+
+            text = sline[space_pos:].replace('\r', '').replace('\n', '')
             # print('Tag %s for text \"%s\"' % (current_tag, text))
 
             out_line = process_line(current_tag, True, text, converter)
@@ -81,7 +82,7 @@ def convertDictionary(file_path, converter):
         else:
             # Continuation line. Handle without a tag
             has_tag = False
-            sline = line.decode('8859').replace('\r\n', '')  # Maybe not UTF-8?
+            sline = line.decode('8859').replace('\r', '').replace('\n', '')  # Maybe not UTF-8?
 
             out_line = process_line(current_tag, False, sline, converter)
 
@@ -107,11 +108,11 @@ def process_line(current_tag, has_tag, line, converter):
         out_line = '\\%s %s' % (current_tag, text_out)
     else:
         out_line = text_out
-    return out_line
+    return out_line.replace('\n', '')
 def convertThisDictionary(lang, inputFileName):
     # Takes a dictionary, creating output file
-    baseName = os.path.splitext(inputFileName)[0]
-    outFileName = baseName + '_Unicode.docx'
+    file_name_split = os.path.splitext(inputFileName)
+    outFileName = file_name_split[0] + '_Unicode' + file_name_split[-1]
 
     result = False
 
@@ -139,8 +140,9 @@ def convertThisDictionary(lang, inputFileName):
         print('%s OUTLINES' % len(out_lines))
 
         out_file = open(outFileName, 'w')
-        # HOW TO OUTPUT CORRECTLY? out_file.writelines(out_lines)
-        out_file.writelines('\n'.join(out_lines))
+        # HOW TO OUTPUT CORRECTLY?
+        for outline in out_lines:
+            out_file.write(outline + '\n')
         result = True
     else:
         print("CANNOT CONVERT %s" % inputFileName)
@@ -149,7 +151,10 @@ def convertThisDictionary(lang, inputFileName):
     if langConverter.not_converted:
         print(" Values not converted:")
         for key in langConverter.not_converted.keys():
-            print('  %s: %d' % (key, langConverter.not_converted[key] ))
+            key_parts = key.split('-', 1)
+            print('  %s \"%s\": %d' % (key_parts[0],
+                                       key_parts[1],
+                                       langConverter.not_converted[key]))
 
     return result
 

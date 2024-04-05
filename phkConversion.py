@@ -480,8 +480,9 @@ class PhakeConverter(ConverterBase):
                 return textIn
 
         if fontIndex < len(self.FONTS_TO_CONVERT):
+            self.encoding = inputFont
             # Compute the encoding map for the encoding font
-            encoding_map = self.private_use_map[self.encoding]
+            encoding_map = self.private_use_map[inputFont]
             self.token_splitter = re.compile('(\w)')
         else:
             # UnknownConversion - just return unchanged text
