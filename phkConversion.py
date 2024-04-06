@@ -9,13 +9,21 @@ import sys
 
 from converterBase import ConverterBase
 
-# Script index
+# Reverse characters
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
 
-
+# Swap order of two items
 def sub21(m):
     return m.group(2) + m.group(1)
+
+# Swap order of ra and consonant
+def sub_ra(m):
+    return m.group(2) + m.group(1)
+
+# For moving e-vowel, and dropping unreordered flag
+def fix_e_consonant(m):
+    return m.group(3) + m.group(2)
 
 
 def sub3dfor2c2c(m):
@@ -65,7 +73,7 @@ class PhakeConverter(ConverterBase):
             "b": "ပ",
             "c": "ꩡ",
             "d": "ဒ",
-            "e": "ေ",
+            "e": "\u200c\u1031",  # signal for non-reordered
             "f": "ၸ",
             "g": "င",
             "h": "\uaa6d",
@@ -152,7 +160,7 @@ class PhakeConverter(ConverterBase):
             "b": "ပ",
             "c": "ꩡ",
             "d": "ဒ",
-            "e": "ေ",
+            "e": "\u200c\u1031",  # signal for non-reordered
             "f": "ၸ",
             "g": "င",
             "h": "\uaa6d",
@@ -237,7 +245,7 @@ class PhakeConverter(ConverterBase):
             "b": "ပ",
             "c": "ꩡ",
             "d": "ဒ",
-            "e": "ေ",
+            "e": "\u200c\u1031",  # signal for non-reordered
             "f": "ၸ",
             "g": "င",
             "h": "\uaa6d",
@@ -425,18 +433,26 @@ class PhakeConverter(ConverterBase):
         # Next, move some code points in context to get proper Unicode ordering.
         # e.g, vowel sign to right of consonants,.
 
-        # TODO: Put in more conversions.
+        # TODO: Put in more conversions as needed.
+        # TODO? compile these patterns
         pattern_replace_list = [
-            [r'([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
+            # Migrate e-vowel over consonant
+            [r'(\u200c)(\u1031\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
+             fix_e_consonant],
+
+            # Move e-vowel right over other vowels
+            [r'(\u1031\ufe00?)([\u103D\u103b\u103c\u103A\u105E]+)',
              sub21],
-            [r'([\u1031]\ufe00?)([\u103D\u103b\u103c\u103A\u105E]+)',
-             sub21],
-            [r'([\u103d])([\u103b])',
-             sub21],
-            [r'([\u1030])([\u103a-\u103d]+)',
-             sub21],
-            [r'([\u103c])([\u1000-\u102a\uaa60-\uaa6f]+)',
-             sub21],
+
+            # Flip medial wa and medial ya
+            [r'(\u103d)(\u103b)', sub21],
+
+            # Move UU after asat and medials
+            [r'(\u1030)([\u103a-\u103d]+)', sub21],
+            
+            # Move ra over consonant
+            [r'(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
+             sub_ra],
         ]
 
         new_text = in_text
