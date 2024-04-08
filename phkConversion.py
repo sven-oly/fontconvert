@@ -19,12 +19,15 @@ def sub21(m):
 
 # Swap order of ra and consonant
 def sub_ra(m):
-    return m.group(2) + m.group(1)
+    return m.group(3) + m.group(2)
 
 # For moving e-vowel, and dropping unreordered flag
 def fix_e_consonant(m):
     return m.group(3) + m.group(2)
 
+# For moving e-vowel, and dropping unreordered flag
+def fix_eR_consonant(m):
+    return m.group(5) + m.group(4) + m.group(2)
 
 def sub3dfor2c2c(m):
     return '\U0001173d'
@@ -60,7 +63,7 @@ class PhakeConverter(ConverterBase):
             "O": "\u1089",
             "P": "\u1039\u1015",
             "Q": "\uaa77",
-            "R": "ြ",
+            "R": "\u200c\u103c",
             "S": "꩷",
             "T": "\u1039\u1010",
             "U": "\u1030",
@@ -100,9 +103,9 @@ class PhakeConverter(ConverterBase):
             ")": ")",
             "\u002f": "။",
             "\\": "၊",
-            "[": "\u103c",
-            "|": "\u103c",
-            "]": "\u103c",
+            "[": "\u200c\u103c",
+            "|": "\u1039\u101c",
+            "]": "\u200c\u103c",
             "{": "ၜ",
             "}": "\u103a\u103d",
             "~": "",
@@ -147,7 +150,7 @@ class PhakeConverter(ConverterBase):
             "O": "\u1089",
             "P": "\u1039\u1015",
             "Q": "\uaa77",
-            "R": "ြ",
+            "R": "\u200c\u103c",
             "S": "꩷",
             "T": "\u1039\u1010",
             "U": "\u1030",
@@ -187,9 +190,9 @@ class PhakeConverter(ConverterBase):
             ")": ")",
             "\u002f": "။",
             "\\": "၊",
-            "[": "\u103c",
-            "|": "\u103c",
-            "]": "\u103c",
+            "[": "\u200c\u103c",
+            "|": "\u1039\u101c",
+            "]": "\u200c\u103c",
             "{": "ၜ",
             "}": "\u103a\u103d",
             "~": "",
@@ -232,7 +235,7 @@ class PhakeConverter(ConverterBase):
             "O": "\u103d",
             "P": "\u1039\u1015",
             "Q": "\uaa77",
-            "R": "ြ",
+            "R": "\u200c\u103c",
             "S": "꩷",
             "T": "\u1039\u1010",
             'U': "\u1030",
@@ -272,10 +275,10 @@ class PhakeConverter(ConverterBase):
             ")": ")",
             "/": "\u104b",
             "\\": "\u103a\u105e",
-            "[": "\u103c",
+            "[": "\u200c\u103c",
             "|": "\u1039\u101c",
-            "]": "\u103c",
-            "{": "\u103c",
+            "]": "\u200c\u103c",
+            "{": "\u200c\u103c",
             "}": "\u105c",
             "~": "\u1039\u101a",
             "1": "၁",
@@ -436,6 +439,9 @@ class PhakeConverter(ConverterBase):
         # TODO: Put in more conversions as needed.
         # TODO? compile these patterns
         pattern_replace_list = [
+            # e and R before a consonant
+            [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
+             fix_eR_consonant],
             # Migrate e-vowel over consonant
             [r'(\u200c)(\u1031\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
              fix_e_consonant],
@@ -449,9 +455,12 @@ class PhakeConverter(ConverterBase):
 
             # Move UU after asat and medials
             [r'(\u1030)([\u103a-\u103d]+)', sub21],
+
+            # Move Ra after Asat
+            [r'(\u103c)([\u103a\u103b]+)', sub21],            
             
             # Move ra over consonant
-            [r'(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
+            [r'(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              sub_ra],
         ]
 
