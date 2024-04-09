@@ -92,10 +92,18 @@ def convertThisDoc(lang, inputFileName):
     return result
 
 def main(argv):
+    if len(argv) < 3:
+        print('Convert .docx files from font encodings to Unicode text')
+        print('Usage: python3 command_line lang_code file1 file2 file ...')
+        return
+    
     lang = argv[1]
     doc_path = argv[2]
+    # For each item in the list, [2:...]
 
-    result = convertThisDoc(lang, doc_path)
+    for doc_path in argv[2:]:
+        print('Converting %s in document %s' % (lang, doc_path))
+        result = convertThisDoc(lang, doc_path)
 
 
 if __name__ == '__main__':

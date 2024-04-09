@@ -503,6 +503,8 @@ class PhakeConverter(ConverterBase):
             except:
                 # Font not found. Return the text
                 return textIn
+        else:
+            inputFont = self.FONTS_TO_CONVERT[fontIndex]
 
         if fontIndex < len(self.FONTS_TO_CONVERT):
             self.encoding = inputFont
