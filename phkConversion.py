@@ -439,15 +439,20 @@ class PhakeConverter(ConverterBase):
         # TODO: Put in more conversions as needed.
         # TODO? compile these patterns
         pattern_replace_list = [
+            # Space before o and u
+            [r'(\u0020)([\u102f\u103d])', sub21],
             # e and R before a consonant
-            [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
+            [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_eR_consonant],
             # Migrate e-vowel over consonant
-            [r'(\u200c)(\u1031\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)',
+            [r'(\u200c)(\u1031)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_e_consonant],
 
+            # Swap R and e
+            [r'(\u1031)(\u103c)', sub21],
+
             # Move e-vowel right over other vowels
-            [r'(\u1031\ufe00?)([\u103D\u103b\u103c\u103A\u105E]+)',
+            [r'(\u1031)([\u103D\u103b\u103c\u103A\u105E]+)',
              sub21],
 
             # Flip medial wa and medial ya
@@ -462,6 +467,9 @@ class PhakeConverter(ConverterBase):
             # Move ra over consonant
             [r'(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              sub_ra],
+
+            # Move vowels
+            [r'(\u1036)(\u102F)', sub21],
         ]
 
         new_text = in_text

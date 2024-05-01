@@ -96,7 +96,7 @@ def main(argv):
         print('Convert .docx files from font encodings to Unicode text')
         print('Usage: python3 command_line lang_code file1 file2 file ...')
         return
-    
+
     lang = argv[1]
     doc_path = argv[2]
     # For each item in the list, [2:...]
