@@ -32,6 +32,9 @@ def fix_eR_consonant(m):
 def sub3dfor2c2c(m):
     return '\U0001173d'
 
+# Remove a space between two vowels.
+def remove_space_between(m):
+    return m.group(1) + m.group(2)
 
 VARIANT_SELECTOR = '\uFE00'
 
@@ -439,8 +442,9 @@ class PhakeConverter(ConverterBase):
         # TODO: Put in more conversions as needed.
         # TODO? compile these patterns
         pattern_replace_list = [
-            # Space before o and u
-            [r'(\u0020)([\u102f\u103d])', sub21],
+            # Space between o and u - remove.
+            [r'([\u102f\u103d])\u0020([\u102f\u103d])', remove_space_between],
+
             # e and R before a consonant
             [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_eR_consonant],
@@ -470,6 +474,8 @@ class PhakeConverter(ConverterBase):
 
             # Move vowels
             [r'(\u1036)(\u102F)', sub21],
+
+            # Remove space betwee
         ]
 
         new_text = in_text
