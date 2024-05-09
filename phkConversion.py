@@ -32,6 +32,13 @@ def fix_eR_consonant(m):
 def sub3dfor2c2c(m):
     return '\U0001173d'
 
+def remdup(m):
+    return m.group(1)
+
+def connect_double_vowels(m):
+    c = m.group(1)
+    return m.group(1) + '\u00a0' + m.group(1)
+
 # Remove a space between two vowels.
 def remove_space_between(m):
     return m.group(1) + m.group(2)
@@ -442,8 +449,8 @@ class PhakeConverter(ConverterBase):
         # TODO: Put in more conversions as needed.
         # TODO? compile these patterns
         pattern_replace_list = [
-            # Space between o and u - remove.
-            [r'([\u102f\u103d])\u0020([\u102f\u103d])', remove_space_between],
+            # Space between o, u, Y and u - remove.
+            [r'([\u102f\u103b\u103d])\u0020([\u102f\u103d])', remove_space_between],
 
             # e and R before a consonant
             [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
@@ -472,10 +479,20 @@ class PhakeConverter(ConverterBase):
             [r'(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              sub_ra],
 
-            # Move vowels
+            # Move vowel reordering
             [r'(\u1036)(\u102F)', sub21],
+            [r'([\u102d\u102e])([\u103a\u103b\u103c\u103d\u105e])', sub21],
+            [r'([\u102f\u1030\u1036])([\u103a\u103b\u103c\u103d\u105e\u109d\ua935])', sub21],
+            [r'([\u103b\u103c\u103d])(\u105e)', sub21],
 
-            # Remove space betwee
+            # Handle duplicates
+            [r'(\u102e)(\u102e)', connect_double_vowels],
+            [r'(\u1036)(\u1036)', connect_double_vowels],
+            [r'(\u103a)(\u103a)', connect_double_vowels],
+            [r'(\u103b)(\u103b)', remdup],
+            [r'(\u103c)(\u103c)', remdup],
+            [r'(\u105e)(\u105e)', remdup],
+            [r'(\u109d)(\u109d)', connect_double_vowels],
         ]
 
         new_text = in_text
