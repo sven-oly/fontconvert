@@ -78,7 +78,6 @@ def convertDictionary(file_path, converter):
 
             # print('%s %s --> %s' % (count, current_tag, out_line))
 
-            count += 1
         else:
             # Continuation line. Handle without a tag
             has_tag = False
@@ -86,6 +85,7 @@ def convertDictionary(file_path, converter):
 
             out_line = process_line(current_tag, False, sline, converter)
 
+        count += 1  # line number - 1
         out_lines.append(out_line)
 
     return out_lines

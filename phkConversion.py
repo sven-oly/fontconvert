@@ -9,6 +9,8 @@ import sys
 
 from converterBase import ConverterBase
 
+VARIANT_SELECTOR = '\uFE00'
+
 # Reverse characters
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
@@ -35,6 +37,13 @@ def sub3dfor2c2c(m):
 def remdup(m):
     return m.group(1)
 
+# Very special case to fix typo with duplicated 'uM'
+def remdup_uM(m):
+    return '\u102f\u1036'
+
+def fix_triples(m):
+    return m.group(1) + m.group(2)
+
 def connect_double_vowels(m):
     c = m.group(1)
     return m.group(1) + '\u00a0' + m.group(1)
@@ -43,8 +52,9 @@ def connect_double_vowels(m):
 def remove_space_between(m):
     return m.group(1) + m.group(2)
 
-VARIANT_SELECTOR = '\uFE00'
-
+# Remove a space before some vowel signs.
+def remove_space_before(m):
+    return m.group(1)
 
 def vsReplacer(matchobj):
     return matchobj.group(0) + VARIANT_SELECTOR
@@ -440,17 +450,15 @@ class PhakeConverter(ConverterBase):
         self.ignoreLangs = []  # Language codes for not conversion
 
         self.not_converted = {}  # Array of unconverted characters / strings and scripts with counts
-    # TODO: check input and conversion tables for Unicode NFC normalization.
-
-    def reorderText(self, in_text):
-        # Next, move some code points in context to get proper Unicode ordering.
-        # e.g, vowel sign to right of consonants,.
 
         # TODO: Put in more conversions as needed.
         # TODO? compile these patterns
-        pattern_replace_list = [
+        self.pattern_replace_list = [
             # Space between o, u, Y and u - remove.
             [r'([\u102f\u103b\u103d])\u0020([\u102f\u103d])', remove_space_between],
+
+            # Remove a space before some consonants
+            [r'\u0020([\u109c])', remove_space_before],
 
             # e and R before a consonant
             [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
@@ -473,8 +481,8 @@ class PhakeConverter(ConverterBase):
             [r'(\u1030)([\u103a-\u103d]+)', sub21],
 
             # Move Ra after Asat
-            [r'(\u103c)([\u103a\u103b]+)', sub21],            
-            
+            [r'(\u103c)([\u103a\u103b]+)', sub21],
+
             # Move ra over consonant
             [r'(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              sub_ra],
@@ -484,6 +492,12 @@ class PhakeConverter(ConverterBase):
             [r'([\u102d\u102e])([\u103a\u103b\u103c\u103d\u105e])', sub21],
             [r'([\u102f\u1030\u1036])([\u103a\u103b\u103c\u103d\u105e\u109d\ua935])', sub21],
             [r'([\u103b\u103c\u103d])(\u105e)', sub21],
+
+            # Remove duplicate of uMuM
+            [r'(\u102f\u102f)(\u1036\u1036)', remdup_uM],
+
+            # Special case to handle II$ and III
+            [r'(\u102e)(\u102e)(\u102e)', fix_triples],
 
             # Handle duplicates
             [r'(\u102e)(\u102e)', connect_double_vowels],
@@ -495,10 +509,14 @@ class PhakeConverter(ConverterBase):
             [r'(\u109d)(\u109d)', connect_double_vowels],
         ]
 
-        new_text = in_text
-        for pair in pattern_replace_list:
-            new_text = re.sub(pair[0], pair[1], new_text)
+    # TODO: check input and conversion tables for Unicode NFC normalization.
 
+    def reorderText(self, in_text):
+        # Next, move some code points in context to get proper Unicode ordering.
+        # e.g, vowel sign to right of consonants,.
+        new_text = in_text
+        for pair in self.pattern_replace_list:
+            new_text = re.sub(pair[0], pair[1], new_text)
         return new_text
 
     def add_variation_modifiers(self, text):
