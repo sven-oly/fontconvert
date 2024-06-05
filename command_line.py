@@ -4,6 +4,7 @@
 from io import BytesIO
 from io import StringIO
 
+import glob
 import logging
 import os
 import sys
@@ -41,6 +42,8 @@ def convertThisDoc(lang, inputFileName):
     baseName = os.path.splitext(inputFileName)[0]
     outFileName = baseName + '_Unicode.docx'
 
+    if baseName.find('Unicode') > 0:
+        return None
 
     doc, fileSize = createDocFromFile(inputFileName)
 
@@ -62,7 +65,10 @@ def convertThisDoc(lang, inputFileName):
     langConverter.setScriptIndex(0)
     langConverter.setLowerMode(True)
     langConverter.setSentenceMode(sentence_mode)
-    paragraphs = doc.paragraphs
+    try:
+        paragraphs = doc.paragraphs
+    except AttributeError:
+        pass
     count = len(paragraphs)
     msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
     countSent = 0
@@ -102,8 +108,13 @@ def main(argv):
     # For each item in the list, [2:...]
 
     for doc_path in argv[2:]:
-        print('Converting %s in document %s' % (lang, doc_path))
-        result = convertThisDoc(lang, doc_path)
+        file_path = [doc_path]
+        if os.path.isdir(doc_path):
+            # Expand with glob
+            files = glob.glob(doc_path + "/*.docx")
+        for file_path in files:
+            print('Converting %s in document %s' % (lang, file_path))
+            result = convertThisDoc(lang, file_path)
 
 
 if __name__ == '__main__':

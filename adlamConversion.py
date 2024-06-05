@@ -471,7 +471,7 @@ class AdlamConverter(ConverterBase):
     def tokenizeText(self, textIn):
         if self.scriptIndex == 0:
             # Split into Arabic characters
-            return [*textIn]
+            return [textIn]
         elif self.scriptIndex == 3:
             # Latin - break into tokens using a regular expression
             # Remove empty strings

@@ -720,7 +720,7 @@ def printKeys(argv):
     keys = adlam_to_latin_map.keys()
     k_U = []
     for k in keys:
-        chs = [str('\\U%08x' % ord(c)) for c in [*k]]  # c in k.split()]
+        chs = [str('\\U%08x' % ord(c)) for c in [k]]  # c in k.split()]
         k_U.append(chs)
     print(k_U)
     keys_sorted = sorted(keys, key=lambda x: len(x), reverse=True)

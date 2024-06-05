@@ -393,6 +393,34 @@ class AhomConverter(ConverterBase):
         }
     };
 
+    # TODO: Change this from PHK to AHO rules
+    dictionary_to_font = {
+        'lx': ['Lexeme', 'Ahom'],
+        'le': ['Lexeme Alternative Spelling', 'Ahom'],
+        'ph': ['Phonetic form', 'Banchob'],
+        'so': ['Source (listing of sound file link)'],
+        'hm': ['Homonym number'],
+        'ps': ['Part of speech'],
+        'sn': ['Sense number'],
+        'de': ['Definition (English)'],
+        'ge': ['Gloss (English)'],
+        'pc1': ['(Picture 1)'],
+        'pc2': ['Picture 2'],
+        'pl': ['Couplet form', 'Phake Script'],
+
+        'pd': ['Couplet form phonetic', 'Banchob'],
+        'pde': ['Couplet form English'],
+        'pdn': ['Couple form Assamese', 'Assamese'],
+        'dn': ['Definition Assamese', 'Assamese'],
+        'rf': ['Reference [For example sentences taken from texts]'],
+        'xv': ['Example Phake', 'Phake Script'],
+        'xr': ['Example Phonetic', 'Banchob'],
+        'xe': ['Example free translation English'],
+        'xn': ['Example free translation Assamese', 'Assamese'],
+        'notes': ['Notes'],
+        'se': ['Subentry', 'Phake Script'],
+    }
+
     # For splitting
     latn_regex = re.compile(
         r'(a|b)')

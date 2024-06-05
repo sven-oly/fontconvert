@@ -56,6 +56,7 @@ def convertDictionary(file_path, converter):
     count = 0
     out_lines = []
     current_tag = ''
+    preconverted_lines  = []
     for line in lines:
         if chr(line[0]) == '\u005c':
             has_tag = True
@@ -71,33 +72,47 @@ def convertDictionary(file_path, converter):
             space_pos = sline.find(' ')
             current_tag = sline[0:space_pos].replace('\r', '').replace('\n', '')
 
+            # Output preconverted_lines, if any.
+            if preconverted_lines:
+                out_lines.extend(preconverted_lines)
+                preconverted_lines = []
+
             text = sline[space_pos:].replace('\r', '').replace('\n', '')
             # print('Tag %s for text \"%s\"' % (current_tag, text))
 
-            out_line = process_line(current_tag, True, text, converter)
-
-            # print('%s %s --> %s' % (count, current_tag, out_line))
-
+            changed, out_line = process_line(current_tag, True, text, converter)
+            if changed:
+                preconverted_lines.append('\\%sx %s' % (current_tag, text))
         else:
             # Continuation line. Handle without a tag
             has_tag = False
             sline = line.decode('8859').replace('\r', '').replace('\n', '')  # Maybe not UTF-8?
 
-            out_line = process_line(current_tag, False, sline, converter)
+            changed, out_line = process_line(current_tag, False, sline, converter)
+            if changed:
+                preconverted_lines.append('%s' % (text))
 
         count += 1  # line number - 1
         out_lines.append(out_line)
 
+    if preconverted_lines:
+        out_lines.extend(preconverted_lines)
+        preconverted_lines = []
     return out_lines
 
 def process_line(current_tag, has_tag, line, converter):
     # TODO: handle return line
+    changed = False
     if current_tag in converter.dictionary_to_font:
+        # Save the current line uncoverted with 'x' appended to the tag
         tag_info = converter.dictionary_to_font[current_tag]
         if len(tag_info) > 1:
             input_font = tag_info[-1]
             # print('tag %s font %s' % (current_tag, input_font))
             text_out = converter.convertText(line, inputFont=input_font)
+            if text_out:
+                # Only report a change if there's actually data.
+                changed = True
         else:
             text_out = line
     else:
@@ -108,7 +123,7 @@ def process_line(current_tag, has_tag, line, converter):
         out_line = '\\%s %s' % (current_tag, text_out)
     else:
         out_line = text_out
-    return out_line.replace('\n', '')
+    return changed, out_line.replace('\n', '')
 def convertThisDictionary(lang, inputFileName):
     # Takes a dictionary, creating output file
     file_name_split = os.path.splitext(inputFileName)

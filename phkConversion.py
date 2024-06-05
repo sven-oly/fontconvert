@@ -11,6 +11,9 @@ from converterBase import ConverterBase
 
 VARIANT_SELECTOR = '\uFE00'
 
+# This font as an output does not use 0x00A0 to connect doubled vowels
+FONT_WITHOUT_NBSP = 'Phake Ramayana Unicode'
+
 # Reverse characters
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
@@ -47,6 +50,16 @@ def fix_triples(m):
 def connect_double_vowels(m):
     c = m.group(1)
     return m.group(1) + '\u00a0' + m.group(1)
+
+def convert_double_sat(m):
+    c = m.group(1)
+    # replace with U+103a + myanmar modifier letter khamti reduplication
+    return c + '\uaa70'
+    # Or replace with myanmar modifier letter khamti reduplication
+    # return '\uaa70'
+    # Or add a non-breaking space between the two characters
+    # return m.group(1) + '\u00a0' + m.group(1)
+    # Or something else ???
 
 # Remove a space between two vowels.
 def remove_space_between(m):
@@ -378,13 +391,11 @@ class PhakeConverter(ConverterBase):
     # re.ASCII
 
     def __init__(self, oldFontList=None, newFont=None,
-                 defaultOutputFont=None):
+                 defaultOutputFont='Phake Ramayana Unicode'):
 
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
-        if defaultOutputFont:
-                self.thisDefaultOutputFont = defaultOutputFont
-        else:
-            self.thisDefaultOutputFont = 'Noto Serif Myanmar Light'
+
+        self.thisDefaultOutputFont = defaultOutputFont
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
@@ -393,6 +404,7 @@ class PhakeConverter(ConverterBase):
         self.add_variant_selectors = True
         self.handle_sentences = False
 
+        # Special flag for including ZW
         self.encoding = 0  # Default
         self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
         if oldFontList:
@@ -416,8 +428,6 @@ class PhakeConverter(ConverterBase):
         self.setScriptRange(0x1000, 0x106f)
         self.setUpperCaseRange(0x1000, 0x106f)
         self.description = 'Converts Phake font encoding to Unicode'
-
-        self.defaultOutputFont = "Noto Serif Myanmar"
 
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
@@ -500,14 +510,23 @@ class PhakeConverter(ConverterBase):
             [r'(\u102e)(\u102e)(\u102e)', fix_triples],
 
             # Handle duplicates
-            [r'(\u102e)(\u102e)', connect_double_vowels],
-            [r'(\u1036)(\u1036)', connect_double_vowels],
-            [r'(\u103a)(\u103a)', connect_double_vowels],
             [r'(\u103b)(\u103b)', remdup],
             [r'(\u103c)(\u103c)', remdup],
             [r'(\u105e)(\u105e)', remdup],
-            [r'(\u109d)(\u109d)', connect_double_vowels],
         ]
+
+        # How to replace this doubled form. It appear to be font-specific.
+        self.pattern_replace_list.append([r'(\u103a)(\u103a)', convert_double_sat])
+
+        if self.thisDefaultOutputFont != FONT_WITHOUT_NBSP:
+            # These are used with Noto and Padauk fonts, but
+            # Not Ramayana
+            self.pattern_replace_list.extend(
+                [
+                    [r'(\u102e)(\u102e)', connect_double_vowels],
+                    [r'(\u1036)(\u1036)', connect_double_vowels],
+                    [r'(\u109d)(\u109d)', connect_double_vowels]
+                ])
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
@@ -680,7 +699,7 @@ class PhakeConverter(ConverterBase):
             # Nothing to process
             return
 
-        # Check on the language of the paragraph. May don't convert.
+        # Check on the language of the paragraph. May not convert.
         if self.detectLang:
             detected = self.detectLang.classify(p.text.strip())
             # print('%s in %s' % (detected, p.text))
@@ -692,8 +711,11 @@ class PhakeConverter(ConverterBase):
                 scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
                 run.text = self.convertText(run.text, None, scriptIndex)
                 run.font.name = self.unicodeFont
-                new_font_size = int(run.font.size * self.font_resize_factor)
-                run.font.size = new_font_size
+                try:
+                    new_font_size = int(run.font.size * self.font_resize_factor)
+                    run.font.size = new_font_size
+                except TypeError:
+                    pass
             except ValueError:
                 continue
 
