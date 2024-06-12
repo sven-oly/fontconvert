@@ -54,6 +54,7 @@ from docx.enum.style import WD_STYLE_TYPE
 import adlamConversion
 import ahomConversion
 import phkConversion
+import mendeConverter
 
 from convertDoc2 import ConvertDocx
 
@@ -315,7 +316,10 @@ def upload_file():
         elif lang_code =='phk':
              langConverter = phkConversion.PhakeConverter()       
              print('PHK CONVERTER CREATED')
-          
+        elif lang_code =='men':
+             langConverter = medeConverter.MendeConverter()
+             print('MEN CONVERTER CREATED')
+
         langConverter.detectLang = langid.langid
         langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
@@ -651,7 +655,7 @@ def test_datastore():
     print('DATASTORE CLIENT: %s' % datastore_client)
     kind = "langtag"
 
-    tags = ['aho', 'ff', 'ff-Latn', 'ff-Adlm', 'phk']
+    tags = ['aho', 'ff', 'ff-Latn', 'ff-Adlm', 'phk', 'men']
 
     lang_entry = {}
     try:

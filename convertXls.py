@@ -12,9 +12,14 @@ import sys
 # Read and process MS Excel documents from on script into another
 # Unicode characters.
 
+# TODO: define data ranges (worksheet and cell ranges) on command line,
+# then apply changes to only those cells.
+# TODO: Create and add named style for the newly included font.
+
 # https://openpyxl.readthedocs.io/en/default/tutorial.html
 from openpyxl import Workbook
 from openpyxl import load_workbook
+from openpyxl.styles import NamedStyle, PatternFill, Border, Side, Alignment, Protection, Font
 
 import convertUtil
 
@@ -51,6 +56,13 @@ class convertWorkbook():
         sheets = self.workbook.sheetnames
         ws = self.workbook[sheets[0]]
 
+        # Get the output font and create a new named style for it
+        new_style = NamedStyle('ConvertedFont')
+        new_font = Font()
+        new_font.name = self.converter.defaultOutputFont
+        new_style.font = new_font
+        self.workbook.add_named_style(new_style)
+
         self.converter.setScriptIndex(adlamConversion.LATIN2ADLAM)
         # Get the range to convert.
         # for cell in self.cells_to_convert:
@@ -71,6 +83,7 @@ class convertWorkbook():
             old_font = the_cell.font
             new_font = copy(old_font)
             new_font.name = self.converter.defaultOutputFont
+            the_cell.style = new_style
             the_cell.font = new_font
 
     def processText(self):
