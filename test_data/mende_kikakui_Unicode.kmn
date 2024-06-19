@@ -1,0 +1,484 @@
+﻿c KeyMan keyboard generated from Google Input Tools format
+c Sun Sep 24 2023 21:30:41 GMT-0700 (Pacific Daylight Time)
+c Source Keyboard File: menphone3.js
+c Includes digits 1-9
+ 
+store(&VERSION) '10.0'
+store(&NAME) 'Mende Kikakui Phonetic 3'
+store(&KEYBOARDVERSION) '1.31'
+store(&TARGETS) 'any'
+store(&VISUALKEYBOARD) 'mende_kikakui.kvks'
+store(&LAYOUTFILE) 'mende_kikakui.keyman-touch-layout'
+
+group(main) using keys
+store(&MESSAGE) 'Mende Kikakui phonetic input'
+store(&KMW_RTL) '1'
+store(&BITMAP) 'mende_kikakui.ico'
+
+begin Unicode > use(main)
+
+store(ascii) " " "b" .. "d" "f" "g" "h" "j" .. "n" "p" .. "t" "v" "w" "x" "y" "z" [SHIFT K_U0001E8D6]
+store(ascii_out) " " "b" .. "d" "f" "g" "h" "j" .. "n" "p" .. "t" "v" "w" U+014b "y" "z" "Ŋ"
+
+store(vowel) "a" "e" "i" "o" "u" [K_Q] [K_Z] [SHIFT K_Q]
+store(vowel_ff)  U+1e823 U+1e825 U+1e822 U+1e827 U+1e824 U+1e826 U+1e828 U+1e82a
+
+store(rtl) U+202e
+
+c We need a way to end the input with '/'. These may be followed with either / or . to end that input but adding U_FFEF (ZWNBSP)
+store(take_slash) U+1e88c U+1e88d U+E003 U+1e88e U+E007 U+1e890 U+E00B U+1e891 U+1e808 U+1e809 U+1e812 U+1e80a U+1e80b U+1e80c U+E023 U+1e80e U+1e80d U+1e893 U+1e894 U+1e895 U+1e89b U+1e89b U+1e897 U+1e898 U+1e89c U+1e89e U+E038 U+1e89d U+1e81b U+1e81c U+1e81d U+1e81e U+1e81f U+1e821 U+1e820 U+E047 U+1e8a0 U+E04B U+1e8a1 U+1e8a2 U+1e8a3 U+E051 U+1e8a5 U+E057 U+1e8aa U+E05D U+1e8ab U+E064 U+1e85e U+1e8ba U+1e8bb U+1e8bc U+1e8bd U+1e8bf U+1e8be U+1e844 U+1e845 U+1e846 U+1e847 U+1e848 U+1e849 U+1e836 U+E087 U+1e837 U+E08A U+1e838 U+1e839 U+E090 U+1e83a U+E092 U+1e83c U+E096 U+1e8ae U+E09C U+1e8b0 U+1e8b1 U+1e8b2 U+E0A3 U+1e843 U+1e83e U+E0AB U+E0AD U+1e841 U+1e8b4 U+1e82e U+1e82f U+1e830 U+1e831 U+1e832 U+E0BE U+1e833 U+1e84b U+1e84c U+1e84d U+1e84e U+1e84f U+E0CC U+1e8b5 U+1e8b6 U+1e8b7 U+E0D4 U+E0D6 U+1e8b8 U+1e853 U+1e854 U+1e855 U+1e856 U+E0DE U+E0E0 U+E0E2 U+1e858 U+1e883 U+1e87e U+1e879 U+1e87a U+E0ED U+1e880 U+1e882 U+1e87c U+1e877 U+1e884 U+E0F9 U+1e885 U+1e886 U+1e87b U+1e87d U+1e881 U+1e800 U+1e801 U+1e802 U+1e803 U+1e804 U+1e806 U+1e805 U+1e86a U+E11A U+1e86c U+1e86e U+E120 U+1e86d U+1e823 U+1e824 U+1e825 U+1e826 U+1e828 U+1e871 U+1e872 U+1e873 U+1e874 U+1e88a U+1e876 U+1e816 U+1e817 U+1e818 U+E14D U+1e8c2 U+1e8c3 U+1e8c4 U+1e878 U+1e889 U+1e82b U+E15E U+1e82a U+1e810 U+1e887 U+1e87f U+1e87f U+1e888 U+1e876 U+1e819 U+1e862 U+1e83d U+1e86f U+1e870 U+1e81a
+
+c Non-ASCII keys
++ [K_Z] > U+1e828
++ [SHIFT K_Z] > "Ɔ"
+
++ [K_Q] > U+1e826
++ [SHIFT K_Q] > U+1e82a 
++ [K_U0001E8D6] > "ŋ"
++ [SHIFT K_U0001E8D6] > "Ŋ"
+
++ [K_A] > U+1e823
++ [K_E] > U+1e825
++ [K_I] > U+1e822
++ [K_O] > U+1e827
++ [K_U] > U+1e824
+
++ [K_1] > U+01E8C7
++ [K_2] > U+01E8C8
++ [K_3] > U+01E8C9
++ [K_4] > U+01E8Ca
++ [K_5] > U+01E8Cb
++ [K_6] > U+01E8Cc
++ [K_7] > U+01E8Cd
++ [K_8] > U+01E8Ce
++ [K_9] > U+01E8Cf
+
+c Set RTL marker U+202e at start of file and after each newline.
+nul + any(ascii) > $rtl index(ascii_out, 2)
+nul + any(vowel) > $rtl index(vowel_ff, 2)
+
+c General ways to terminate input
+any(take_slash) + "/" > index(take_slash, 1) U+FEFF
+any(take_slash) + [K_PERIOD] > index(take_slash, 1) U+FEFF
+
+c And get rid of the preceeding ZWNBSP when a new character is entered 
+U+FEFF + any(vowel) > index(vowel_ff, 2)
+
+U+202e + any(vowel) > index(vowel_ff, 2)
+
+c Try forcing RTL on each newline
+U+000a + any(ascii) > U+000a $rtl index(ascii_out, 2)
+
+c P rules
+c The following are from LangaugeTools rules
+U+1e88c + "i" > U+E001
+"p" + "i" > U+1e88c
+
+U+E003 + "a" > U+E004
+U+1e88d + "a" > U+E003
+"p" + "a" > U+1e88d
+
+U+1e88e + "u" > U+E006
+"p" + "u" > U+1e88e
+
+U+E007 + "e" > U+1e88f
+"p" + "e" > U+E007
+
+U+1e890 + [K_Q] > U+E00A
+"p" + [K_Q] > U+1e890
+
+U+E00B + [K_Z] > U+1e892
+"p" + [K_Z] > U+E00B
+
+U+1e891 + "o" > U+E00E
+"p" + "o" > U+1e891
+
+U+1e808 + "i" > U+E010
+"w" + "i" > U+1e808
+
+"w" + "I" > U+1e811
+U+1e809 + "a" > U+E012
+"w" + "a" > U+1e809
+
+U+1e812 + "A" > U+E021
+"w" + "A" > U+1e812
+
+U+1e80a + "u" > U+E014
+"w" + "u" > U+1e80a
+
+U+1e80b + "e" > U+E016
+"w" + "e" > U+1e80b
+"w" + "E" > U+1e80f
+
+"w" + [K_Q] > U+1e80c
+U+1e80c + [K_Q] > U+E018
+"w" + [SHIFT K_Q] > U+E023
+U+E023 + [SHIFT K_Q] > U+E024
+"w" + [K_Z] > U+1e80e
+U+1e80e + [K_Z] > U+E01A
+"w" + "o" > U+1e80d
+U+1e80d + "o" > U+E01C
+"mb" + "i" > U+1e893
+U+1e893 + "i" > U+E026
+"mb" + "a" > U+1e894
+U+1e894 + "a" > U+E028
+"mb" + "u" > U+1e895
+U+1e895 + "u" > U+E02A
+"mb" + "U" > U+1e89b
+U+1e89b + "U" > U+E034
+"Mb" + "u" > U+1e89b
+U+1e89b + "u" > U+E034
+"mb" + "e" > U+1e897
+U+1e897 + "e" > U+E02C
+"Mb" + "e" > U+1e896
+"mb" + "E" > U+1e896
+U+1e898 + [K_Q] > U+E02E
+"mb" + [K_Q] > U+1e898
+
+"mb" + [SHIFT K_Q] > U+1e89c
+U+1e89c + [SHIFT K_Q] > U+E037
+"mb" + [K_Z] > U+1e89e
+U+1e89e + [K_Z] > U+E030
+"mb" + [SHIFT K_Z] > U+E038
+U+E038 + [SHIFT K_Z] > U+1e899
+"Mb" + [SHIFT K_Z] > U+1e899
+"mb" + "o" > U+1e89d
+U+1e89d + "o" > U+E032
+"mb" + "O" > U+1e89a
+"b" + "i" > U+1e81b
+U+1e81b + "i" > U+E03C
+"b" + "a" > U+1e81c
+U+1e81c + "a" > U+E03E
+"b" + "u" > U+1e81d
+U+1e81d + "u" > U+E040
+"b" + "e" > U+1e81e
+U+1e81e + "e" > U+E042
+"b" + [K_Q] > U+1e81f
+"b" + [K_Z] > U+1e821
+U+1e821 + [K_Z] > U+E045
+"b" + "o" > U+1e820
+U+1e820 + "o" > U+E047
+U+E047 + "o" > U+E048
+"kp" + "i" > U+1e89f
+"kp" + "a" > U+1e8a0
+U+1e8a0 + "a" > U+E04B
+U+E04B + "a" > U+E04C
+"kp" + "u" > U+1e8a1
+U+1e8a1 + "u" > U+E04E
+"kp" + "e" > U+1e8a2
+"kp" + [K_Q] > U+1e8a3
+U+1e8a3 + [K_Q] > U+E051
+U+E051 + [K_Q] > U+E052
+"kp" + [K_Z] > U+1e8a5
+U+1e8a5 + [K_Z] > U+E054
+"kp" + "o" > U+1e8a4
+"gb" + "i" > U+1e8a6
+"gb" + "a" > U+E057
+U+E057 + "a" > U+1e8a7
+"gb" + "u" > U+1e8a8
+"gb" + "e" > U+1e8a9
+"gb" + [K_Q] > U+1e8aa
+U+1e8aa + [K_Q] > U+E05C
+"gb" + [K_Z] > U+E05D
+U+E05D + [K_Z] > U+1e8ac
+"gb" + "o" > U+1e8ab
+U+1e8ab + "o" > U+E060
+"f" + "i" > U+1e85a
+"f" + "a" > U+1e85b
+"f" + "u" > U+1e85c
+
+U+E064 + "e" > U+1e85d
+"f" + "e" > U+E064
+
+U+1e85e + [K_Q] > U+E067
+"f" + [K_Q] > U+1e85e
+
+"f" + [K_Z] > U+1e860
+"f" + "o" > U+1e85f
+"v" + "i" > U+1e8b9
+
+U+1e8ba + "a" > U+E06E
+"v" + "a" > U+1e8ba
+U+1e8bb + "u" > U+E070
+"v" + "u" > U+1e8bb
+
+U+1e8bc + "e" > U+E072
+"v" + "e" > U+1e8bc
+
+"v" + [K_Q] > U+1e8bd
+U+1e8bd + [K_Q] > U+E074
+"v" + [K_Z] > U+1e8bf
+U+1e8bf + [K_Z] > U+E076
+"v" + "o" > U+1e8be
+U+1e8be + "o" > U+E078
+"t" + "i" > U+1e844
+U+1e844 + "i" > U+E07A
+"t" + "a" > U+1e845
+U+1e845 + "a" > U+E07C
+"t" + "u" > U+1e846
+U+1e846 + "u" > U+E07E
+"t" + "e" > U+1e847
+U+1e847 + "e" > U+E080
+"t" + [K_Q] > U+1e848
+U+1e848 + [K_Q] > U+E082
+"t" + [K_Z] > U+1e84a
+"t" + "o" > U+1e849
+U+1e849 + "o" > U+E085
+"l" + "i" > U+1e836
+U+1e836 + "i" > U+E087
+U+E087 + "i" > U+E088
+"l" + "a" > U+1e837
+U+1e837 + "a" > U+E08A
+U+E08A + "a" > U+1e8ad
+"l" + "A" > U+E08C
+"l" + "u" > U+1e838
+U+1e838 + "u" > U+E08E
+"l" + "e" > U+1e839
+U+1e839 + "e" > U+E090
+"l" + [K_Q] > U+1e83a
+U+1e83a + [K_Q] > U+E092
+U+E092 + [K_Q] > U+E093
+"l" + [K_Z] > U+1e83c
+U+1e83c + [K_Z] > U+E095
+"l" + "o" > U+E096
+U+E096 + "o" > U+E097
+"nd" + "i" > U+1e8ae
+U+1e8ae + "i" > U+E09B
+"nd" + "a" > U+E09C
+U+E09C + "a" > U+1e8af
+"nd" + "u" > U+1e8b0
+U+1e8b0 + "u" > U+E09F
+"nd" + "e" > U+1e8b1
+U+1e8b1 + "e" > U+E0A1
+"nd" + [K_Q] > U+1e8b2
+U+1e8b2 + [K_Q] > U+E0A3
+"nd" + [SHIFT K_Q] > U+E0A4
+"nd" + [K_Z] > U+1e843
+U+1e843 + [K_Z] > U+E0A6
+"nd" + "o" > U+1e8b3
+"nd" + "O" > U+E0A8
+"d" + "i" > U+1e83e
+U+1e83e + "i" > U+E0A9
+"d" + "a" > U+E0AB
+U+E0AB + "a" > U+1e83f
+"d" + "u" > U+E0AD
+U+E0AD + "u" > U+1e840
+"d" + "e" > U+1e841
+U+1e841 + "e" > U+E0B0
+"d" + [K_Z] > U+1e8b4
+U+1e8b4 + [K_Z] > U+E0B2
+"d" + "o" > U+1e842
+"s" + "i" > U+1e82e
+U+1e82e + "i" > U+E0B5
+"s" + "a" > U+1e82f
+U+1e82f + "a" > U+E0B7
+"s" + "u" > U+1e830
+U+1e830 + "u" > U+E0B9
+"s" + "e" > U+1e831
+U+1e831 + "e" > U+E0BB
+"s" + [K_Q] > U+1e832
+U+1e832 + [K_Q] > U+E0BD
+"s" + [K_Z] > U+E0BE
+U+E0BE + [K_Z] > U+1e834
+"s" + "o" > U+1e833
+U+1e833 + "o" > U+E0C1
+"j" + "i" > U+1e84b
+U+1e84b + "i" > U+E0C3
+"j" + "a" > U+1e84c
+U+1e84c + "a" > U+E0C5
+"j" + "u" > U+1e84d
+U+1e84d + "u" > U+E0C7
+"j" + "e" > U+1e84e
+U+1e84e + "e" > U+E0C9
+"j" + [K_Q] > U+1e84f
+U+1e84f + [K_Q] > U+E0CB
+"j" + [K_Z] > U+E0CC
+U+E0CC + [K_Z] > U+E0CD
+"j" + "o" > U+1e852
+"nj" + "a" > U+1e8b5
+U+1e8b5 + "a" > U+E0D0
+"nj" + "u" > U+1e8b6
+U+1e8b6 + "u" > U+E0D2
+"nj" + "e" > U+1e8b7
+U+1e8b7 + "e" > U+E0D4
+U+E0D4 + "e" > U+E0D5
+"Nj" + "e" > U+E0D5
+"nj" + [K_Z] > U+E0D6
+U+E0D6 + [K_Z] > U+E0D7
+"nj" + "o" > U+1e8b8
+"Nj" + "o" > U+E0D9
+U+1e8b8 + "o" > U+E0D9
+"y" + "i" > U+1e853
+"y" + "a" > U+1e854
+"y" + "u" > U+1e855
+"y" + "e" > U+1e856
+U+1e856 + "e" > U+E0DE
+U+E0DE + "e" > U+E0DF
+"y" + [K_Q] > U+E0E0
+U+E0E0 + [K_Q] > U+1e857
+"y" + [K_Z] > U+E0E2
+U+E0E2 + [K_Z] > U+E0E3
+"y" + "o" > U+1e858
+
+c nn and ŋ combos
+"ŋ" + "g" > U+1e87f
+"nn" + "g" > U+1e87f
+U+1e87f + [K_U] > U+1e87f
+U+1e87f + "a" > U+E0F5
+
+U+1e858 + "o" > U+E0E5
+"ng" + "i" > U+1e883
+U+1e883 + "i" > U+E0E7
+"ng" + "a" > U+1e87e
+U+1e87e + "a" > U+E0E9
+"ng" + "u" > U+1e879
+U+1e879 + "u" > U+E0EB
+"ng" + "e" > U+1e87a
+U+1e87a + "e" > U+E0ED
+U+E0ED + "e" > U+E0EE
+"ng" + "E" > U+E0EE
+"ng" + [K_Q] > U+1e880
+"ng" + [K_Z] > U+1e882
+U+1e882 + [K_Z] > U+E0F1
+"ng" + "o" > U+1e87c
+U+1e87c + "o" > U+E0F3
+"g" + "i" > U+1e877
+U+1e877 + "i" > U+E0F7
+
+U+E0F9 + "a" > U+E0FA
+U+1e884 + "a" > U+E0F9
+"g" + "a" > U+1e884
+
+U+1e885 + "u" > U+E0FC
+"g" + "u" > U+1e885
+"g" + "e" > U+1e886
+U+1e886 + "e" > U+E0FE
+"g" + [K_Q] > U+1e87b
+U+1e87b + [K_Q] > U+E100
+"g" + [K_Z] > U+1e87d
+U+1e87d + [K_Z] > U+E102
+"g" + "o" > U+1e881
+U+1e881 + "o" > U+E104
+"k" + "i" > U+1e800
+U+1e800 + "i" > U+E10A
+"k" + "a" > U+1e801
+U+1e801 + "a" > U+E10C
+"k" + "u" > U+1e802
+U+1e802 + "u" > U+E10E
+"k" + "e" > U+1e803
+U+1e803 + "e" > U+E110
+"k" + [K_Q] > U+1e804
+"k" + [K_Z] > U+1e806
+U+1e806 + [K_Z] > U+E113
+"k" + "o" > U+1e805
+U+1e805 + "o" > U+E115
+"h" + "i" > U+1e868
+"h" + "a" > U+1e869
+"h" + "u" > U+1e86a
+U+1e86a + "u" > U+E11A
+U+E11A + "u" > U+E11B
+"h" + "e" > U+1e86b
+"h" + [K_Q] > U+1e86c
+U+1e86c + [K_Q] > U+E11E
+"h" + [K_Z] > U+1e86e
+U+1e86e + [K_Z] > U+E120
+U+E120 + [K_Z] > U+E121
+"h" + "o" > U+1e86d
+
+U+1e823 + "a" > U+E129
+U+1e824 + "u" > U+E12B
+
+U+1e825 + "e" > U+E12D
+U+1e826 + [K_Q] > U+E12F
+U+1e828 + [K_Z] > U+E131
+
+"H" + "i" > U+1e871
+U+1e871 + "i" > U+E135
+"H" + "a" > U+1e872
+U+1e872 + "a" > U+E137
+"H" + "u" > U+1e873
+U+1e873 + "u" > U+E139
+"H" + [K_Q] > U+1e874
+U+1e874 + [K_Q] > U+E13B
+"H" + [K_Z] > U+1e88a
+"nH" + [K_Z] > U+E13D
+U+1e88a + [K_Z] > U+E13D
+"H" + [SHIFT K_Z] > U+1e876
+U+1e876 + [SHIFT K_Z] > U+E13F
+"M" + "i" > U+1e814
+"M" + "a" > U+1e815
+"m" + "a" > U+1e815
+"M" + "u" > U+1e816
+"m" + "u" > U+1e816
+"M" + [K_Q] > U+1e817
+"m" + [K_Q] > U+1e817
+U+1e817 + [K_Q] > U+1e817
+"M" + [K_Z] > U+1e818
+"m" + [K_Z] > U+1e818
+
+U+1e818 + [K_Z] > U+1e818
+"N" + "i" > U+1e863
+"N" + "a" > U+1e864
+"N" + "u" > U+1e865
+"N" + [K_Q] > U+E14D
+U+E14D + [K_Q] > U+1e867
+"N" + [K_Z] > U+E14F
+"Ny" + "i" > U+1e8c0
+"Ny" + "a" > U+1e8c1
+"Ny" + "u" > U+1e8c2
+U+1e8c2 + "u" > U+E153
+"Ny" + [K_Q] > U+1e8c3
+U+1e8c3 + [K_Q] > U+E155
+"Ny" + [K_Z] > U+1e8c4
+U+1e8c4 + [K_Z] > U+E157
+U+014A + "a" > U+1e878
+U+014B + "a" > U+1e878
+U+1e878 + "a" > U+E159
+U+14A + [K_Q] > U+1e889  c Upper N with hook
+U+14b + [K_Q] > U+1e889  c Lower N with hook
+
+U+14A + [K_U] > U+1e88b  c Upper N with hook
+U+14b + [K_U] > U+1e88b  c Lower N with hook
+
+U+1e889 + [K_Q] > U+E15B
+
++ "I" > U+1e82b
+U+1e82b + "I" > U+E15E
+U+E15E + "I" > U+E15F
++ "E" > U+1e82d
+
+c Ɛ rules
+U+1e82a + [SHIFT K_Q] > U+E162
+
+"nh" + [K_Z] > U+E13D
+"nn" + [K_Q] > U+1e866
+U+1e80c + "i" > U+1e810
+U+1e810 + "i" > U+E01E
+U+1e87b + "i" > U+1e887
+U+1e887 + "i" > U+E108
+U+1e826 + "i" > U+1e829
+
+U+1e885 + "a" > U+1e888
+U+1e888 + "a" > U+E106
+U+1e802 + "a" > U+1e807
+U+1e86a + "a" > U+1e876
+U+1e876 + "a" > U+E13F
+U+1e816 + "a" > U+1e819
+U+1e819 + "a" > U+E146
+
+"ŋ" + "u" > U+1e88b
+"Ŋ" + "u" > U+1e88b
+U+1e88b + "a" > U+1e88b
+
+"f" + "A" > U+1e862
+U+1e862 + "A" > U+E06B
+
+U+1e83d + [SHIFT K_Q] > U+E099
+"l" + [SHIFT K_Q] > U+1e83d
+
+U+1e86b + "i" > U+1e86f
+U+1e86f + "i" > U+E124
+U+1e86d + "u" > U+1e870
+U+1e870 + "u" > U+E126
+"M" + "c" > U+1e81a
+U+1e81a + "c" > U+E148

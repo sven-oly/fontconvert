@@ -14,6 +14,7 @@ from docx.enum.style import WD_STYLE_TYPE
 
 import adlamConversion
 import ahomConversion
+from mendeConverter import MendeConverter
 import phkConversion
 
 from convertDoc2 import ConvertDocx
@@ -61,6 +62,8 @@ def convertThisDoc(lang, inputFileName):
         langConverter = ahomConversion.AhomConverter()
     elif lang == 'phk':
         langConverter = phkConversion.PhakeConverter()
+    elif lang == 'men':
+        langConverter = MendeConverter()
 
     langConverter.setScriptIndex(0)
     langConverter.setLowerMode(True)
@@ -105,16 +108,20 @@ def main(argv):
 
     lang = argv[1]
     doc_path = argv[2]
-    # For each item in the list, [2:...]
 
+    # For each item in the list, [2:...]
+    files = []
     for doc_path in argv[2:]:
         file_path = [doc_path]
         if os.path.isdir(doc_path):
             # Expand with glob
-            files = glob.glob(doc_path + "/*.docx")
-        for file_path in files:
-            print('Converting %s in document %s' % (lang, file_path))
-            result = convertThisDoc(lang, file_path)
+            files.extend(glob.glob(doc_path + "/*.docx"))
+        else:
+            files.append(doc_path)
+
+    for file_path in files:
+        print('Converting %s in document %s' % (lang, file_path))
+        result = convertThisDoc(lang, file_path)
 
 
 if __name__ == '__main__':

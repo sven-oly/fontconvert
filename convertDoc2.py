@@ -138,9 +138,13 @@ class ConvertDocx():
         if paragraphId % 100 == 0:
           self.progressObj.send(msg)
       self.converter.processParagraphRuns(para)
-      # More computing
-      if self.converter.collectConvertedWordFrequency:
-        self.converter.updateWordsFrequencies(para)
+
+    try:
+        # More computing
+        if self.converter.collectConvertedWordFrequency:
+            self.converter.updateWordsFrequencies(para)
+    except:
+        pass  # Not a problem
 
     sections = self.document.sections
     print("Document has %s sections" % len(sections))

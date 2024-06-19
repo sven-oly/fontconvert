@@ -4,6 +4,8 @@
 # Convert font encoded Mende Kikakui text to Unicode.
 from __future__ import absolute_import, division, print_function
 
+import logging
+import os
 import re
 import sys
 
@@ -11,7 +13,7 @@ from converterBase import ConverterBase
 
 class MendeConverter(ConverterBase):
     private_use_map = {
-        'jgmende':  {
+        'JG Mende':  {
             # From Private Use Area to Unicode
             '\ue000': '\U0001E88C',
             '\ue002': '\U0001E88D',
@@ -233,14 +235,25 @@ class MendeConverter(ConverterBase):
 
     def __init__(self, oldFontList=None, newFont=None,
                  defaultOutputFont=None):
-
+        self.scriptIndex = 0   # Default value
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.unicodeFont = 'Noto Sans Mende Kikakui'
         if defaultOutputFont:
                 self.thisDefaultOutputFont = defaultOutputFont
         else:
-            self.thisDefaultOutputFont = 'Noto Serif Myanmar Light'
+            self.thisDefaultOutputFont = 'Noto Serif Mende Kikakui'
+
+        # If true, the converter will also look for strings representing
+        # code points, without "\"
+        self.convert_hex_codes = True
+        self.re_unicode = re.compile('[uU]\+([0-9a-fA-F]+)')
 
         self.handle_sentences = False
+        self.detectLang = False
+
+        self.font_resize_factor = 1.0
+
+        self.not_converted = {}
 
         self.encoding = 0  # Default
         self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
@@ -249,48 +262,11 @@ class MendeConverter(ConverterBase):
         else:
             self.oldFonts = oldFontList
             
-        self.font_resize_factor = 0.65
+        self.font_resize_factor = 1.0
 
         self.token_splitter = None
 
         # Default script = 'Latn'
-
-    # Handles details of converting the text, including case conversion.
-    def convertString(self, textIn, fontInfo,
-                      conversion_map):
-        # type: (object, object, object) -> object
-        convertedList = []
-        convertResult = ''
-
-        tokens = self.tokenizeText(textIn)
-        if not tokens:
-            # print('????? WHY NO TOKENS in %s' % textIn)
-            pass
-
-        for c in tokens:
-            # Special handling if needed
-            out = c
-            if c in conversion_map:
-                out = conversion_map[c]
-            else:
-                key = '%s-%s' % (self.encoding, c)
-                if not key in self.not_converted:
-                    self.not_converted[key] = 1
-                    #for i in range(len(c)):
-                    #    print('** Code point %s' % hex(ord(c[i])))
-                    #print('Cannot convert %s in %s' % (c, self.encoding))
-                else:
-                    self.not_converted[key] += 1
-
-            # Special case for handling underlined text
-            convertedList.append(out)
-
-        convertResult = self.reorderText(''.join(convertedList))
-
-        if self.lower_mode:
-          convertResult = self.toLower(convertResult)
-
-        return convertResult
 
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
@@ -348,23 +324,6 @@ class MendeConverter(ConverterBase):
 
         return result
 
-    def reorderText(self, in_text):
-
-        return in_text
-
-    def setScriptIndex(self, newIndex=0):
-        # 0 = '', 1 = 'latn'
-        self.scriptIndex = newIndex
-        self.scriptToConvert = self.encodingScripts[self.scriptIndex]
-
-    # Split input into tokens for script conversion
-    def tokenizeText(self, textIn):
-        # ASCII and whitespace characters
-        if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s\.])', textIn) if i]
-        elif self.scriptIndex == 4:
-            return textIn
-
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
@@ -388,6 +347,7 @@ class MendeConverter(ConverterBase):
             self.encoding = inputFont
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[inputFont]
+            self.current_encoding_map = encoding_map
             self.token_splitter = re.compile('(\w)')
         else:
             # UnknownConversion - just return unchanged text
@@ -397,6 +357,11 @@ class MendeConverter(ConverterBase):
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
+
+            if self.convert_hex_codes:
+                textIn = self.convertStringHexCodes(textIn, None, encoding_map)
+
+            # Then process other characters
             result = self.convertString(textIn, None, encoding_map)
 
             result = self.reorderText(result)
@@ -420,9 +385,30 @@ class MendeConverter(ConverterBase):
 
         return result
 
+    def subHexCode(self, m):
+        # Look up the match in the encoding map
+        hex_val = m.group(1)
+        old_char = chr(int(hex_val,16))
+
+        if old_char in self.current_encoding_map:
+            new_char = self.current_encoding_map[old_char]
+            new_hex = hex(ord(new_char))
+            return new_hex.replace('0x', 'U+')
+        # if present, replace with the text form
+        # Otherwise, leave it
+        return m.group(0)
+
+    def convertStringHexCodes(self, textIn, font, encoding_map):
+        # Look for "U+" codes in the line
+        re_unicode = 'U+[0-9a-fA-F]+'
+
+        textOut = self.re_unicode.sub(self.subHexCode, textIn)
+
+        return textOut
+
 def testStrings(converter):
     t = ["\ue0db",
-         'vukqvWmgqmigqAaepaetecawoaeya',
+         '\ue0e1\ue0e4',
          'ttqtikqmj',
          'hJwqcJgqhJgq',
          'xigqsigqRfa',
@@ -455,11 +441,47 @@ def testStrings(converter):
     return
 
 
+# Reads a file, converting from JGMende font to Unicode
+# Optionally checking for code points without \U
+def convert_text_file(converter, infile_name):
+    outfile_name = converter.get_outfile_name(infile_name)
+
+    try:
+        infile = open(infile_name, mode='r', encoding='UTF-8')
+        outfile = open(outfile_name, mode='w', encoding='UTF-8')
+    except BaseException as err:
+        logging.error('%s. File open error: %s, %s', err, infile_name, outfile_name)
+        return None
+
+    # For each line in the input, convert text and output
+
+    lines = infile.readlines()
+
+    outlines = []
+    input_font = 'JG Mende'
+    for line in lines:
+        text_out = converter.convertText(line, inputFont=input_font)
+        outlines.append(text_out)
+
+    try:
+        outfile.writelines(outlines)
+        outfile.close()
+    except BaseException as err:
+        logging.error('%s. Problem saving output file %s', err, outfile)
+
+    return
+
 def main(argv):
+    infile_name = None
+    if len(argv) > 1:
+        infile_name = argv[1]
+
     converter = MendeConverter()
-    testStrings(converter)
 
-
+    if infile_name:
+        convert_text_file(converter, infile_name)
+    else:
+        testStrings(converter)
 
 if __name__ == '__main__':
   main(sys.argv)

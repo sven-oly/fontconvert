@@ -4,6 +4,7 @@
 # Base class for Docx converters
 from __future__ import absolute_import, division, print_function
 
+import os
 import re
 import sys
 
@@ -19,6 +20,7 @@ class ConverterBase:
         self.encodingScripts = []  # If given, tells the Script of incoming characters
         self.oldFonts = []
         self.font_resize_factor = 1.0
+        self.not_converted = {}
 
         if new_font:
             self.unicodeFont = new_font
@@ -56,6 +58,12 @@ class ConverterBase:
         self.collectConvertedWordFrequency = False
         self.convertedWordFrequency = {}
 
+
+    def get_outfile_name(self, infile_name):
+        name_split = os.path.splitext(infile_name)
+        outFileName = name_split[0] + '_Unicode' + name_split[-1]
+        return outFileName
+
     def setScriptRange(self, first, last):
         self.first = chr(first)
         self.last = chr(last)
@@ -80,8 +88,60 @@ class ConverterBase:
         # Does this work for all scripts?
         return in_text.lower()
 
-    def convertString(self, in_text, font_info, conversion_map):
+    def reorderText(self, in_text):
         return in_text
+
+    def tokenizeText(self, textIn):
+        # ASCII and whitespace characters
+        if self.scriptIndex == 0:
+            return [i for i in re.split(r'([\w\s\.])', textIn) if i]
+        else:
+            return textIn
+
+    def setScriptIndex(self, newIndex=0):
+        # 0 = '', 1 = 'latn'
+        self.scriptIndex = newIndex
+        self.scriptToConvert = self.encodingScripts[self.scriptIndex]
+
+    # Handles details of converting the text, including case conversion.
+    def convertString(self, textIn, fontInfo,
+                      conversion_map):
+        # type: (object, object, object) -> object
+        convertedList = []
+        convertResult = ''
+
+        tokens = self.tokenizeText(textIn)
+        if not tokens:
+            # print('????? WHY NO TOKENS in %s' % textIn)
+            pass
+
+        for c in tokens:
+            # Special handling if needed
+            out = c
+            if c in conversion_map:
+                out = conversion_map[c]
+            else:
+                key = '%s-%s' % (self.encoding, c)
+                if not key in self.not_converted:
+                    self.not_converted[key] = 1
+                    #for i in range(len(c)):
+                    #    print('** Code point %s' % hex(ord(c[i])))
+                    #print('Cannot convert %s in %s' % (c, self.encoding))
+                else:
+                    self.not_converted[key] += 1
+
+            # Special case for handling underlined text
+            convertedList.append(out)
+
+        convertResult = self.reorderText(''.join(convertedList))
+
+        try:
+            if self.lower_mode:
+                convertResult = self.toLower(convertResult)
+        except:
+            pass
+
+        return convertResult
 
     def setLowerMode(self, lower_expected):
         self.lower_mode = lower_expected
@@ -97,6 +157,57 @@ class ConverterBase:
 
     # Implemented by specific class for language and script.
     def processParagraphRuns(self, p):
+        # Handle the text within each paragraph
+        if not p.text:
+            # Nothing to process
+            return
+
+        # Check on the language of the paragraph. May not convert.
+        if self.detectLang:
+            detected = self.detectLang.classify(p.text.strip())
+            # print('%s in %s' % (detected, p.text))
+            if detected[0] in self.ignoreLangs:
+                return
+
+        for run in p.runs:
+            try:
+                try:
+                    font_name = run.font.name
+                except:
+                    font_name = None
+                if font_name:
+                    scriptIndex = self.FONTS_TO_CONVERT.index(font_name)
+                else:
+                    scriptIndex = 0
+                new_text = self.convertText(run.text, None, scriptIndex)
+                if new_text != run.text:
+                    run.text = new_text
+                    run.font.name = self.unicodeFont
+                try:
+                    new_font_size = int(run.font.size * self.font_resize_factor)
+                    run.font.size = new_font_size
+                except TypeError:
+                    # There may be no associated font
+                    pass
+            except ValueError:
+                continue
+
+        # Check on the font for the full paragraph
+        try:
+            self.FONTS_TO_CONVERT.index(p.style.font.name)
+            p.style.font.name = self.unicodeFont
+        except ValueError:
+            pass
+
+        if self.handle_sentences:
+            self.processSentences(p)
+
+        try:
+            if self.collectConvertedWordFrequency:
+                self.updateWordsFrequencies(p)
+        except:
+            pass  # Not a fatal error
+
         return
 
     # Methods for word frequency information
