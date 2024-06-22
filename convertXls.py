@@ -122,9 +122,10 @@ def main(argv):
 
         converter = adlamConversion.AdlamConverter()
         if extension == '.xlsx':
-            processor = convertWorkbook(path, args.output_dir, converter, debug_output)
-            processor.process()
-            out_file_name = 'OUTPUT.xlsx'  # Temporary
+            out_file_name = converter.get_outfile_name(path)  # Temporary
+            processor = convertWorkbook(path, out_file_name, converter, debug_output)
+            processor.process()  # Do the requested conversion
+
             processor.workbook.save(out_file_name)
         else:
             print('!!! Not processing file %s !' % path)

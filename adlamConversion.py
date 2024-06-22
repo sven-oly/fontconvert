@@ -186,6 +186,10 @@ class AdlamConverter(ConverterBase):
             'DDH': u'𞤍𞥆',
             'Ddh': u'𞤍𞥆',
             'ddh': u'𞤯𞥆',
+            'DY': u'𞤔',
+            'Dy': u'𞤔',
+            'dY': u'𞤶',
+            'dy': u'𞤶',
             'E': u'𞤉',
             'e': u'𞤫',
             'EE': u'𞤉𞥅',
@@ -320,6 +324,10 @@ class AdlamConverter(ConverterBase):
             'TT': u'𞤚𞥆',
             'Tt': u'𞤚𞥆',
             'tt': u'𞤼𞥆',
+            'TY': u'𞤕',
+            'Ty': u'𞤕',
+            'tY': u'𞤷',
+            'tY': u'𞤷',
             'U': u'𞤓',
             'u': u'𞤵',
             'UU': u'𞤓𞥅',
@@ -391,7 +399,7 @@ class AdlamConverter(ConverterBase):
     }
     # For splitting
     latn_regex = re.compile(
-        r'(BBH|Bbh|bbh|DDH|Ddh|ddh|GGB|Ggb|ggb|KKH|Kkh|kkh|NNH|Nnh|nnh|NNY|Nny|nny|KKP|Kkp|kkp|GGH|Ggh|ggh|SSH|Ssh|ssh|YYH|Yyh|yyh|nnd|mmb|nnj|nng|AA|Aa|aa|BB|Bb|bb|ƁƁ|Ɓɓ|ɓƁ|ɓɓ|BH|Bh|bh|CC|Cc|cc|DD|Dd|dd|ƊƊ|Ɗɗ|ɗɗ|DH|Dh|dH|dh|EE|Ee|ee|FF|Ff|ff|GG|Gg|gg|GB|gb|HH|Hh|hh|II|Ii|ii|JJ|Jj|jj|KK|Kk|kk|KH|kh|XX|Xx|xx|LL|Ll|ll|MM|Mm|mm|NN|Nn|nn|ŊŊ|Ŋŋ|ŋŋ|NH|Nh|nH|nh|ÑÑ|Ññ|ññ|NY|ny|OO|Oo|oo|PP|Pp|pp|KP|kp|QQ|Qq|qq|GH|gh|RR|Rr|rr|SS|Ss|ss|SH|Sh|sh|sH|TT|Tt|tt|UU|Uu|uu|VV|Vv|vv|WW|Ww|ww|YY|Yy|yy|ƳƳ|Ƴƴ|ƴƴ|YH|yh|ZZ|Zz|zz|ND|Nd|nd|MB|Mb|mb|NJ|Nj|nj|NG|Ng|ng|[a-zñɓ]|[A-ZƁÑ]|[0-9]|«[\u2008\u0020]?|[\u2008\u0020]?»|\.|\u0020)')
+        r'(BBH|Bbh|bbh|DDH|Ddh|ddh|GGB|Ggb|ggb|KKH|Kkh|kkh|NNH|Nnh|nnh|NNY|Nny|nny|KKP|Kkp|kkp|GGH|Ggh|ggh|SSH|Ssh|ssh|YYH|Yyh|yyh|nnd|mmb|nnj|nng|AA|Aa|aa|BB|Bb|bb|ƁƁ|Ɓɓ|ɓƁ|ɓɓ|BH|Bh|bh|CC|Cc|cc|DD|Dd|dd|ƊƊ|Ɗɗ|ɗɗ|DH|Dh|dH|dh|DY|Dy|dY|dy|EE|Ee|ee|FF|Ff|ff|GG|Gg|gg|GB|gb|HH|Hh|hh|II|Ii|ii|JJ|Jj|jj|KK|Kk|kk|KH|kh|XX|Xx|xx|LL|Ll|ll|MM|Mm|mm|NN|Nn|nn|ŊŊ|Ŋŋ|ŋŋ|NH|Nh|nH|nh|ÑÑ|Ññ|ññ|NY|ny|OO|Oo|oo|PP|Pp|pp|KP|kp|QQ|Qq|qq|GH|gh|RR|Rr|rr|SS|Ss|ss|SH|Sh|sh|sH|TT|Tt|tt|TY|Ty|tY|ty|UU|Uu|uu|VV|Vv|vv|WW|Ww|ww|YY|Yy|yy|ƳƳ|Ƴƴ|ƴƴ|YH|yh|ZZ|Zz|zz|ND|Nd|nd|MB|Mb|mb|NJ|Nj|nj|NG|Ng|ng|[a-zñɓ]|[A-ZƁÑ]|[0-9]|«[\u2008\u0020]?|[\u2008\u0020]?»|\.|\u0020)')
 
 
     def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
@@ -434,8 +442,8 @@ class AdlamConverter(ConverterBase):
         self.encoding = None
         self.debug = False
 
-        self.setLowerMode(True)
-        self.setSentenceMode(True)
+        self.setLowerMode(False)
+        self.setSentenceMode(False)
 
         self.end_of_sentence_pattern = re.compile(r'([\.\?\!\⸮\؟$])')
 
@@ -497,6 +505,7 @@ class AdlamConverter(ConverterBase):
             encoding_map = convertData.adlam_to_latin_map
             self.token_splitter = convertData.adlam_split_regex
 
+        self.scriptIndex = fontIndex
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
 
@@ -698,11 +707,13 @@ def testConvert():
     'latn': {
         'fontIndex': 3,  # For latin
         'toLower': False,
-        'sentenceCase': True,
+        'sentenceCase': False,
         'tests': [
-          ['KAALDEN GOONGA : “Maa laaɓ, ñamlel ko joɓel!',
-           "𞥞 𞤑𞤀𞥄𞤂𞤁𞤉𞤐 𞤘𞤌𞥅𞤐'𞤘𞤀 : “𞤃𞤢𞥄 𞤤𞤢𞥄𞤩⹁ 𞤻𞤢𞤥𞤤𞤫𞤤 𞤳𞤮 𞤶𞤮𞤩𞤫𞤤!"
-           ],
+          # ['KAALDEN GOONGA : “Maa laaɓ, ñamlel ko joɓel!',
+          #  "𞥞 𞤑𞤀𞥄𞤂𞤁𞤉𞤐 𞤘𞤌𞥅𞤐'𞤘𞤀 : “𞤃𞤢𞥄 𞤤𞤢𞥄𞤩⹁ 𞤻𞤢𞤥𞤤𞤫𞤤 𞤳𞤮 𞤶𞤮𞤩𞤫𞤤!"
+          #  ],
+            ['Tyaldhi welen', '𞤕𞤢𞤤𞤯𞤭 𞤱𞤫𞤤𞤫𞤲' ],  # line 220
+            ['Dyowi', '𞤔𞤮𞤱𞤭'],  # line 331
         ],
     },
     'arab': {
@@ -730,9 +741,13 @@ def testConvert():
     fontIndex = testcases[script]['fontIndex']
     toLower = testcases[script]['toLower']
     sentenceCase = testcases[script]['sentenceCase']
+    # Set lower and sentence modes
+    adlamConverter.setLowerMode(toLower)
+    adlamConverter.setSentenceMode(sentenceCase)
     for test in testcases[script]['tests']:
       input = test[0]
       expected = test[1]
+
       result = adlamConverter.convertText(input,
                                           fontIndex=fontIndex)
       if result != expected:
@@ -819,11 +834,12 @@ def roundTripALA(converter):
     # compare them
     return
 
+
 def main(argv):
     converter = AdlamConverter()
     #convertDocFiles(argv[2:])
-    testPunctuation()
-    #testConvert()
+    # testPunctuation()
+    testConvert()
     #testParagraph()
 
 

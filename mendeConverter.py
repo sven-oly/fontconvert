@@ -264,7 +264,7 @@ class MendeConverter(ConverterBase):
             
         self.font_resize_factor = 1.0
 
-        self.token_splitter = None
+        self.token_splitter = re.compile('[ a-zA-Z0-9\ue000-\ue162]')
 
         # Default script = 'Latn'
 
@@ -291,7 +291,7 @@ class MendeConverter(ConverterBase):
             self.encoding = inputFont
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[inputFont]
-            self.token_splitter = re.compile('(\w)')
+            self.token_splitter = re.compile('[ a-zA-Z0-9\ue000-\ue162]')
         else:
             # UnknownConversion - just return unchanged text
             encoding_map = None
@@ -348,7 +348,7 @@ class MendeConverter(ConverterBase):
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[inputFont]
             self.current_encoding_map = encoding_map
-            self.token_splitter = re.compile('(\w)')
+            self.token_splitter = re.compile('[ a-zA-Z0-9\ue000-\ue162]')
         else:
             # UnknownConversion - just return unchanged text
             encoding_map = None
@@ -385,6 +385,9 @@ class MendeConverter(ConverterBase):
 
         return result
 
+    def tokenizeText(self, textIn):
+        return [x for x in textIn]
+        #return self.token_splitter.split(textIn)
     def subHexCode(self, m):
         # Look up the match in the encoding map
         hex_val = m.group(1)

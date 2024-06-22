@@ -95,7 +95,7 @@ def convertThisDoc(lang, inputFileName):
             for item in wordFrequencies:
                 print(item)
     except BaseException as err:
-        print('FAILED TO GET WORD LIST: %s' % err)
+        logging.warning('FAILED TO GET WORD LIST: %s' % err)
         words = None
         
     return result

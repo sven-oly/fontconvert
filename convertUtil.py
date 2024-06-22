@@ -38,6 +38,8 @@ def parseArgs():
                       help='The expected encoding of the input data.')
   parser.add_argument('-lower', metavar='lower', nargs='?', default=True, help='Convert to lower')
   parser.add_argument('-sentence', metavar='sentence', nargs='?', default=True, help='Convert sentence casing')
+  parser.add_argument('-cells', metavar='cell_ranges',
+                      nargs='?', default=True, help='What parts of the spreadsheet should be converted')
   args = parser.parse_args()
 
   # Get the filenames from the input file list, if available.
