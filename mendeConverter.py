@@ -230,13 +230,18 @@ class MendeConverter(ConverterBase):
             'X': 'U0001E8D5',
             'X': 'U0001E8D6',
         # Possible convert other JGMende PUA points to Arabic range?
+            #// For missing values converted to Arabic Presentation Forms A,
+            #// Add +1B50 to get the value in that modified Kikakui Sans Pro font.
         }
     }
 
     def __init__(self, oldFontList=None, newFont=None,
                  defaultOutputFont=None):
         self.scriptIndex = 0   # Default value
+        self.private_use_map['Kikakui Sans Pro'] = self.private_use_map['JG Mende']
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.check_all_fonts = True
+
         self.unicodeFont = 'Noto Sans Mende Kikakui'
         if defaultOutputFont:
                 self.thisDefaultOutputFont = defaultOutputFont
@@ -254,6 +259,8 @@ class MendeConverter(ConverterBase):
         self.font_resize_factor = 1.0
 
         self.not_converted = {}
+        self.collectConvertedWordFrequency = True
+        self.convertedWordFrequency = {}
 
         self.encoding = 0  # Default
         self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
@@ -409,22 +416,16 @@ class MendeConverter(ConverterBase):
 
         return textOut
 
+    def special_run_handling(self, new_text):
+        # Insert RTL marker in from
+        new_text = '\u202E' + new_text
+        return new_text
+
 def testStrings(converter):
     t = ["\ue0db",
          '\ue0e1\ue0e4',
-         'ttqtikqmj',
-         'hJwqcJgqhJgq',
-         'xigqsigqRfa',
-         'muthjwganEcugq',
-         'cgqhnqetayW',
          ]
-    expected = ['\U0001E854',
-                'ထ︀ုက︀်ထ︀ွ်မ︀င︀်မ︀ိင︀်ဢ︀ႃပ︀ေ︀ႃတ︀ေ︀ꩡ︀ေ︀ႃဝ︀ွႃယ︀ေ︀ႃ',
-                'တ︀တ︀်တ︀ိက︀်မ︀ႝ',
-                'ꩭိုဝ︀်ꩡ︀ိုင︀်ꩭိုင︀်',
-                'ၵ︀ိင︀်ꩬ︀ိင︀်ၸ︀ြႃ',
-                'မ︀ုတ︀ꩭႝဝ︀င︀ႃꩫ︀ၞ်ꩡ︀ုင︀်',
-                'ꩡ︀င︀်ꩭꩫ︀်တ︀ေ︀ႃယ︀ွ်'
+    expected = ['\u202e\U0001E854',
                 ]
 
     index = 0

@@ -15,41 +15,56 @@ VARIANT_SELECTOR = '\uFE00'
 FONT_WITHOUT_NBSP = 'Phake Ramayana Unicode'
 
 # Reverse characters
+
+
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
+
 
 # Swap order of two items
 def sub21(m):
     return m.group(2) + m.group(1)
 
 # Swap order of ra and consonant
+
+
 def sub_ra(m):
     return m.group(3) + m.group(2)
 
 # For moving e-vowel, and dropping unreordered flag
+
+
 def fix_e_consonant(m):
     return m.group(3) + m.group(2)
 
 # For moving e-vowel, and dropping unreordered flag
-def fix_eR_consonant(m):
+
+
+def fix_e_r_consonant(m):
     return m.group(5) + m.group(4) + m.group(2)
+
 
 def sub3dfor2c2c(m):
     return '\U0001173d'
+
 
 def remdup(m):
     return m.group(1)
 
 # Very special case to fix typo with duplicated 'uM'
-def remdup_uM(m):
+
+
+def remdup_u_m(m):
     return '\u102f\u1036'
+
 
 def fix_triples(m):
     return m.group(1) + m.group(2)
 
+
 def connect_double_vowels(m):
-    c = m.group(1)
     return m.group(1) + '\u00a0' + m.group(1)
+
 
 def convert_double_sat(m):
     c = m.group(1)
@@ -61,15 +76,18 @@ def convert_double_sat(m):
     # return m.group(1) + '\u00a0' + m.group(1)
     # Or something else ???
 
+
 # Remove a space between two vowels.
 def remove_space_between(m):
     return m.group(1) + m.group(2)
+
 
 # Remove a space before some vowel signs.
 def remove_space_before(m):
     return m.group(1)
 
-def vsReplacer(matchobj):
+
+def vs_replacer(matchobj):
     return matchobj.group(0) + VARIANT_SELECTOR
 
 # Character constants for conversion
@@ -249,7 +267,7 @@ class PhakeConverter(ConverterBase):
             " ": " ",
             ".": ".",
             "\t": "\t"
-    },
+        },
         'Aiton Script': {
             "A": "ဢ",
             "B": "ꩰ",
@@ -272,7 +290,7 @@ class PhakeConverter(ConverterBase):
             "S": "꩷",
             "T": "\u1039\u1010",
             'U': "\u1030",
-            "V": "\u1030", #  ???
+            "V": "\u1030",  # ???
             "W": "ွ်",
             "X": "ႜ",
             "Y": "ျ",
@@ -425,6 +443,8 @@ class PhakeConverter(ConverterBase):
         else:
             self.unicodeFont = defaultOutputFont
 
+        self.set_complex_font = True
+
         self.setScriptRange(0x1000, 0x106f)
         self.setUpperCaseRange(0x1000, 0x106f)
         self.description = 'Converts Phake font encoding to Unicode'
@@ -472,7 +492,7 @@ class PhakeConverter(ConverterBase):
 
             # e and R before a consonant
             [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
-             fix_eR_consonant],
+             fix_e_r_consonant],
             # Migrate e-vowel over consonant
             [r'(\u200c)(\u1031)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_e_consonant],
@@ -504,7 +524,7 @@ class PhakeConverter(ConverterBase):
             [r'([\u103b\u103c\u103d])(\u105e)', sub21],
 
             # Remove duplicate of uMuM
-            [r'(\u102f\u102f)(\u1036\u1036)', remdup_uM],
+            [r'(\u102f\u102f)(\u1036\u1036)', remdup_u_m],
 
             # Special case to handle II$ and III
             [r'(\u102e)(\u102e)(\u102e)', fix_triples],
@@ -539,7 +559,7 @@ class PhakeConverter(ConverterBase):
         return new_text
 
     def add_variation_modifiers(self, text):
-        out_text = re.sub(self.variation_sequence_code_points, vsReplacer, text)
+        out_text = re.sub(self.variation_sequence_code_points, vs_replacer, text)
         return out_text
 
     def setScriptIndex(self, newIndex=0):
@@ -548,33 +568,33 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
     # Split input into tokens for script conversion
-    def tokenizeText(self, textIn):
+    def tokenizeText(self, text_in):
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s\.])', textIn) if i]
+            return [i for i in re.split(r'([\w\s\.])', text_in) if i]
         elif self.scriptIndex == 4:
-            return textIn
+            return text_in
 
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
-    def convertText(self, textIn, fontTextInfo=None,
-                    fontIndex=0, inputFont=None):
-        self.encoding = self.encodingScripts[fontIndex]
-        # print('fontIndex %s, encoding = %s' % (fontIndex, self.encoding))
-        encoding_index = fontIndex
+    def convertText(self, text_in, fontTextInfo=None,
+                    font_index=0, inputFont=None):
+        self.encoding = self.encodingScripts[font_index]
+        # print('fontIndex %s, encoding = %s' % (font_index, self.encoding))
+        encoding_index = font_index
         encoding_map = {}
 
         if inputFont:
             try:
-                fontIndex = self.FONTS_TO_CONVERT.index(inputFont)
-            except:
+                font_index = self.FONTS_TO_CONVERT.index(inputFont)
+            except BaseException:
                 # Font not found. Return the text
-                return textIn
+                return text_in
         else:
-            inputFont = self.FONTS_TO_CONVERT[fontIndex]
+            inputFont = self.FONTS_TO_CONVERT[font_index]
 
-        if fontIndex < len(self.FONTS_TO_CONVERT):
+        if font_index < len(self.FONTS_TO_CONVERT):
             self.encoding = inputFont
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[inputFont]
@@ -583,11 +603,11 @@ class PhakeConverter(ConverterBase):
             # UnknownConversion - just return unchanged text
             encoding_map = None
             self.token_splitter = None
-            return textIn
+            return text_in
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
-            result = self.convertString(textIn, None, encoding_map)
+            result = self.convertString(text_in, None, encoding_map)
 
             result = self.reorderText(result)
             if self.add_variant_selectors:
@@ -595,32 +615,32 @@ class PhakeConverter(ConverterBase):
             return result
 
         # Take the data from the fontTextInfo field.
-        convertList = []
+        convert_list = []
         for item in fontTextInfo:
             tags = []
             for fmt in item[1]:
                 loc = fmt.tag.find('}')
                 tags.append(fmt.tag[loc + 1:])
 
-            convertList.append(
+            convert_list.append(
                 self.convertString(item[0], tags, encoding_map))
 
-        result = self.reorderText(''.join(convertList))
+        result = self.reorderText(''.join(convert_list))
         if self.add_variant_selectors:
             result = self.add_variation_modifiers(result)
 
         return result
 
     # Handles details of converting the text, including case conversion.
-    def convertString(self, textIn, fontInfo,
-                      conversion_map):
+    def convert_string(self, text_in, font_info,
+                       conversion_map):
         # type: (object, object, object) -> object
-        convertedList = []
-        convertResult = ''
+        converted_list = []
+        convert_result = ''
 
-        tokens = self.tokenizeText(textIn)
+        tokens = self.tokenizeText(text_in)
         if not tokens:
-            # print('????? WHY NO TOKENS in %s' % textIn)
+            # print('????? WHY NO TOKENS in %s' % text_in)
             pass
 
         for c in tokens:
@@ -630,7 +650,7 @@ class PhakeConverter(ConverterBase):
                 out = conversion_map[c]
             else:
                 key = '%s-%s' % (self.encoding, c)
-                if not key in self.not_converted:
+                if key not in self.not_converted:
                     self.not_converted[key] = 1
                     #for i in range(len(c)):
                     #    print('** Code point %s' % hex(ord(c[i])))
@@ -639,16 +659,16 @@ class PhakeConverter(ConverterBase):
                     self.not_converted[key] += 1
 
             # Special case for handling underlined text
-            convertedList.append(out)
+            converted_list.append(out)
 
-        convertResult = self.reorderText(''.join(convertedList))
+        convert_result = self.reorderText(''.join(converted_list))
 
         if self.lower_mode:
-          convertResult = self.toLower(convertResult)
+          convert_result = self.toLower(convert_result)
 
-        return convertResult
+        return convert_result
 
-    def computeSentenceStartsEnds(self, text):
+    def compute_sentence_starts_ends(self, text):
         # Get all the positions of sentence endings
         all_sentence_ends = self.end_of_sentence_pattern.finditer(text)
         text_len = len(text)
@@ -681,7 +701,7 @@ class PhakeConverter(ConverterBase):
         sentence_ends.append((len(text)-1, '$'))
         return sentence_ends, sentence_starts
 
-    def mapRunsToParagraphTextPosisions(self, runs):
+    def map_runs_to_paragraph_text_posisions(self, runs):
         # Mapping of run starts & ends to text positions
         run_map = []
         pos = 0
@@ -709,8 +729,14 @@ class PhakeConverter(ConverterBase):
         for run in p.runs:
             try:
                 scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
+                try:
+                    if self.set_complex_font:
+                        run.font.complex_script = True
+                except:
+                    pass
                 run.text = self.convertText(run.text, None, scriptIndex)
                 run.font.name = self.unicodeFont
+
                 try:
                     new_font_size = int(run.font.size * self.font_resize_factor)
                     run.font.size = new_font_size
@@ -722,6 +748,7 @@ class PhakeConverter(ConverterBase):
         # Check on the font for the full paragraph
         try:
             self.FONTS_TO_CONVERT.index(p.style.font.name)
+            p.style.font.complex_script = self.set_complex_font
             p.style.font.name = self.unicodeFont
         except ValueError:
             pass
@@ -842,7 +869,7 @@ def testPhakeStrings():
     converter = PhakeConverter()
     index = 0
     for text in t:
-        result = converter.convertText(text, fontIndex=0)
+        result = converter.convertText(text, font_index=0)
                 
         # print("%s --> %s" % (text, result))
         if expected[index] != result:

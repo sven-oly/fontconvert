@@ -22,6 +22,9 @@ class ConverterBase:
         self.font_resize_factor = 1.0
         self.not_converted = {}
 
+        # Only convert fonts from the provided list. This can be overridden if needed.
+        self.check_all_fonts = False
+
         if new_font:
             self.unicodeFont = new_font
         else:
@@ -34,6 +37,10 @@ class ConverterBase:
                 self.encodingScripts.append(item[1])
             else:
                 self.oldFonts.append(item)
+
+        # If set, sets output font to be a complex script
+        # This is needed for a number of Unicode scripts
+        self.set_complex_font = False
 
         # Dictionary of script or other identifiers for conversions
         # of individual characters.
@@ -58,11 +65,10 @@ class ConverterBase:
         self.collectConvertedWordFrequency = False
         self.convertedWordFrequency = {}
 
-
     def get_outfile_name(self, infile_name):
         name_split = os.path.splitext(infile_name)
-        outFileName = name_split[0] + '_Unicode' + name_split[-1]
-        return outFileName
+        out_file_name = name_split[0] + '_Unicode' + name_split[-1]
+        return out_file_name
 
     def setScriptRange(self, first, last):
         self.first = chr(first)
@@ -94,7 +100,7 @@ class ConverterBase:
     def tokenizeText(self, textIn):
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s\.])', textIn) if i]
+            return [i for i in re.split(r'([\w\s;.])', textIn) if i]
         else:
             return textIn
 
@@ -138,7 +144,7 @@ class ConverterBase:
         try:
             if self.lower_mode:
                 convertResult = self.toLower(convertResult)
-        except:
+        except BaseException:
             pass
 
         return convertResult
@@ -171,25 +177,43 @@ class ConverterBase:
 
         for run in p.runs:
             try:
+                text_to_convert = run.text
+                font_name = None
+                scriptIndex = 0
+                font_name = run.font.name
+                # TODO: Check if unknown font regions should be converted.
                 try:
-                    font_name = run.font.name
-                except:
-                    font_name = None
-                if font_name:
                     scriptIndex = self.FONTS_TO_CONVERT.index(font_name)
-                else:
-                    scriptIndex = 0
-                new_text = self.convertText(run.text, None, scriptIndex)
+                except BaseException as error:
+                    print('Unknown font error %s: %s for text %s' % (error, font_name, text_to_convert))
+                    if not self.check_all_fonts:
+                        # Unknown fonts should not be examined
+                        continue
+                new_text = text_to_convert
+                try:
+                    new_text = self.convertText(text_to_convert, None, scriptIndex)
+                except BaseException as error:
+                    print('p.text failure in convertText: %s for text %s' % (error, p.text))
                 if new_text != run.text:
+                    try:
+                        # Special processing for some types of runs
+                        new_text = self.special_run_handling(new_text)
+                        print('TRY SPECIAL %s' % new_text)
+                    except:
+                        pass
+                    if self.set_complex_font:
+                        run.font.complex_script = True
+
                     run.text = new_text
                     run.font.name = self.unicodeFont
-                try:
-                    new_font_size = int(run.font.size * self.font_resize_factor)
-                    run.font.size = new_font_size
-                except TypeError:
-                    # There may be no associated font
-                    pass
-            except ValueError:
+                    try:
+                        new_font_size = int(run.font.size * self.font_resize_factor)
+                        run.font.size = new_font_size
+                    except TypeError:
+                        # There may be no associated font
+                        pass
+            except ValueError as error:
+                print('ValueError %s with p.text: %s' % (error, p.text))
                 continue
 
         # Check on the font for the full paragraph
@@ -205,7 +229,7 @@ class ConverterBase:
         try:
             if self.collectConvertedWordFrequency:
                 self.updateWordsFrequencies(p)
-        except:
+        except BaseException:
             pass  # Not a fatal error
 
         return

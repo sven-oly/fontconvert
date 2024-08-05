@@ -10,7 +10,8 @@ import os
 import sys
 
 import docx
-from docx.enum.style import WD_STYLE_TYPE
+#from docx.enum.style import WD_STYLE_TYPE
+from docx import Document
 
 import adlamConversion
 import ahomConversion
@@ -18,9 +19,6 @@ from mendeConverter import MendeConverter
 import phkConversion
 
 from convertDoc2 import ConvertDocx
-
-from docx import Document
-from docx.enum.style import WD_STYLE_TYPE
 
 
 # get uploaded file into document form
@@ -49,7 +47,8 @@ def convertThisDoc(lang, inputFileName):
     doc, fileSize = createDocFromFile(inputFileName)
 
     if not doc:
-        logging.warning('No document opened: %s', docx)
+        logging.warning('No document %s opened: %s', inputFileName, docx)
+        return None
     else:
         logging.info('Doc created from %s', inputFileName)
 
@@ -70,9 +69,11 @@ def convertThisDoc(lang, inputFileName):
     langConverter.setSentenceMode(sentence_mode)
     try:
         paragraphs = doc.paragraphs
+        count = len(paragraphs)
     except AttributeError:
+        paragraphs = None
+        count = 0
         pass
-    count = len(paragraphs)
     msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
     countSent = 0
 
