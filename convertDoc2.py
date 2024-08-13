@@ -192,7 +192,7 @@ class ConvertDocx():
       self.document.save(self.outpath)
 
     if self.progressObj:
-      self.progressObj.send('## STOP ##')
+      self.progressObj.send('## Conversion complete ##')
     return
 
   def install_new_style(self, font):

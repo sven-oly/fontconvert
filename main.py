@@ -55,6 +55,15 @@ import mendeConverter
 
 from convertDoc2 import ConvertDocx
 
+import convertXls
+
+# Dictionary of the converters by language code
+converters = {}
+converters['ff'] = adlamConversion.AdlamConverter()
+# converters['aho'] = ahomConversion.AhomConverter()
+converters['phk'] = phkConversion.PhakeConverter()
+converters['men'] = mendeConverter.MendeConverter()
+
 # Datastore
 #datastore_client = datastore.Client()
 
@@ -99,6 +108,19 @@ def upload():
                           taskId=taskId
    )
 
+
+@app.route('/upload_xlsx/adlam')
+def upload_xslx():
+   who = request.host_url
+   scriptIndex = request.args.get('scriptIndex', 0)
+   # For indexing a thread
+   taskId = random.randint(0, 7777)
+   return render_template('upload_xlsx.html',
+                          base=who,
+                          lang='ff',
+                          scriptIndex=scriptIndex,
+                          taskId=taskId
+   )
 
 # load file with explicit language and encoding
 @app.route('/uploadlang')
@@ -175,10 +197,10 @@ def findDocFonts(doc):
     lang_codes = {}
     if not doc:
         return fontsFound
-
+    lang_paragraphs = {}
     if doc.paragraphs:
         fontsFound = getFontsInParagraphs(doc.paragraphs, fontsFound)
-        getLangsInParagraphs(doc.paragraphs, lang_codes)
+        lang_paragraphs = getLangsInParagraphs(doc.paragraphs, lang_codes, lang_paragraphs)
 
     for table in doc.tables:
         rows = table.rows
@@ -186,34 +208,42 @@ def findDocFonts(doc):
             for cell in row.cells:
                 paragraphs = cell.paragraphs
                 fontsFount = getFontsInParagraphs(paragraphs, fontsFound)
-                getLangsInParagraphs(paragraphs, lang_codes)
+                getLangsInParagraphs(paragraphs, lang_codes, lang_paragraphs)
 
     sections = doc.sections
     for section in sections:
         try:
             header = section.header
             fontsFound = getFontsInParagraphs(header.paragraphs, fontsFound)
-            getLangsInParagraphs(header.paragraphs, lang_codes)
+            getLangsInParagraphs(header.paragraphs, lang_codes, lang_paragraphs)
         except:
             pass
         try:
             footer = section.footer
             fontsFound = getFontsInParagraphs(footer.paragraphs, fontsFound)
-            getLangsInParagraphs(footer.paragraphs, lang_codes)
+            getLangsInParagraphs(footer.paragraphs, lang_codes, lang_paragraphs)
         except:
             pass
 
-    return fontsFound, lang_codes
+    return fontsFound, lang_codes, lang_paragraphs
 
 
-def getLangsInParagraphs(paragraphs, para_langs):
+def getLangsInParagraphs(paragraphs, para_langs, lang_paragraphs):
+    # Returns languages plus the text found for each with the log-probability
+    langid.set_languages(['en', 'de','fr','it'])
     for p in paragraphs:
+        if p.text == '':
+            continue
+
         lang = langid.langid.classify(p.text)
         lang_code = lang[0]
         if lang_code in para_langs:
             para_langs[lang_code] += 1
+            lang_paragraphs[lang_code].append([p.text, lang[1]])
         else:
             para_langs[lang_code] = 1
+            lang_paragraphs[lang_code] = [p.text, lang[1]]
+    return lang_paragraphs
 
 def getFontsInParagraphs(paragraphs, fonts):
     for p in paragraphs:
@@ -263,149 +293,164 @@ def upload_file():
         if not inputFileName:
             return render_template('nofileselected.html', who=who)
             
-        baseName = os.path.splitext(inputFileName)[0]
-        outFileName = baseName + '_Unicode.docx'
+        split_name = os.path.splitext(inputFileName)
+        baseName = split_name[0]
+        extension = split_name[1]
+        outFileName = baseName + '_Unicode' + extension
 
-        # New thread for this id
-        this_thread = exporting_threads[taskId] = ExportingThread()
-        this_thread.start()
-        this_thread.status = 'Creating doc %s from upload' % inputFileName
+        if extension == '.xlsx':
+            cell_ranges = request.args.get('spreadsheet_region', None)
+            converter = converters[lang]
+            out_file_name = converter.get_outfile_name(inputFileName)  # Temporary
+            debug_output = True
+            processor = convertXls.convertWorkbook(inputFileName, out_file_name, converter, debug_output, cell_ranges=cell_ranges)
 
-        doc, fileSize = createDocFromFile(file)
+            processor.process()  # Do the requested conversion
 
-        if not doc:
-            return render_template(
-                'error.html',
-                who=who,
-                error='%s %s' % ('Problem creating file', inputFileName))
-        
-        this_thread.status = 'Doc ready to process'
+            processor.workbook.save(out_file_name)
+        elif extension == 'docx':
+            # New thread for this id
+            this_thread = exporting_threads[taskId] = ExportingThread()
+            this_thread.start()
+            this_thread.status = 'Creating doc %s from upload' % inputFileName
 
-        fontsFound, para_langs = findDocFonts(doc)
-        if not convertDoc:
-            # Just show information.
-            print('PARA LANGS = %s' % para_langs)
+            doc, fileSize = createDocFromFile(file)
 
-            return render_template(
-                'docinfo.html',
-                size="{:,}".format(fileSize),
-                filename=inputFileName,
-                paragraphs="{:,}".format(len(doc.paragraphs)),
-                sections=len(doc.sections),
-                tables=len(doc.tables),
-                fontDict=fontsFound,
-                para_langs=json.dumps(para_langs),
-                unicodeFont=formData['UnicodeFont']
-            )
+            if not doc:
+                return render_template(
+                    'error.html',
+                    who=who,
+                    error='%s %s' % ('Problem creating file', inputFileName))
 
-        this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
+            this_thread.status = 'Doc ready to process'
 
-        
-        # Call conversions on the document.
-        langConverter = None
-        print('LANG = %s' % lang_code)
-        if lang_code == 'ff':
-            langConverter = adlamConversion.AdlamConverter()      
-            print('ADLAM CONVERTER CREATED')
-        elif lang_code =='aho':
-             langConverter = ahomConversion.AhomConverter()       
-             print('AHOM CONVERTER CREATED')
-        elif lang_code =='phk':
-             langConverter = phkConversion.PhakeConverter()       
-             print('PHK CONVERTER CREATED')
-        elif lang_code =='men':
-             langConverter = medeConverter.MendeConverter()
-             print('MEN CONVERTER CREATED')
+            fontsFound, para_langs, lang_paragraphs = findDocFonts(doc)
+            if not convertDoc:
+                # Just show information.
+                print('PARA LANGS = %s' % para_langs)
 
-        langConverter.detectLang = langid.langid
-        langConverter.ignoreLangs = ['en', 'fr']  # Not converted
+                return render_template(
+                    'docinfo.html',
+                    size="{:,}".format(fileSize),
+                    filename=inputFileName,
+                    paragraphs="{:,}".format(len(doc.paragraphs)),
+                    sections=len(doc.sections),
+                    tables=len(doc.tables),
+                    fontDict=fontsFound,
+                    para_langs=json.dumps(para_langs),
+                    unicodeFont=formData['UnicodeFont']
+                )
 
-        langConverter.taskId = taskId
+            this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
 
-        newProgressObj = ProgressClass(langConverter, this_thread)
 
-        try:
+            # Call conversions on the document.
+            langConverter = None
+            print('LANG = %s' % lang_code)
+            if lang_code == 'ff':
+                langConverter = adlamConversion.AdlamConverter()
+                print('ADLAM CONVERTER CREATED')
+            elif lang_code =='aho':
+                 langConverter = ahomConversion.AhomConverter()
+                 print('AHOM CONVERTER CREATED')
+            elif lang_code =='phk':
+                 langConverter = phkConversion.PhakeConverter()
+                 print('PHK CONVERTER CREATED')
+            elif lang_code =='men':
+                 langConverter = medeConverter.MendeConverter()
+                 print('MEN CONVERTER CREATED')
+
+            langConverter.detectLang = langid.langid
+            langConverter.ignoreLangs = ['en', 'fr']  # Not converted
+
+            langConverter.taskId = taskId
+
+            newProgressObj = ProgressClass(langConverter, this_thread)
+
             try:
-                scriptIndex = int(formData['scriptIndex'])
-            except:
-                print('NO SCRIPT INDEX')
-                scriptIndex = 0
+                try:
+                    scriptIndex = int(formData['scriptIndex'])
+                except:
+                    print('NO SCRIPT INDEX')
+                    scriptIndex = 0
 
-            langConverter.setScriptIndex(scriptIndex)
-            langConverter.setLowerMode(True)
-            langConverter.setSentenceMode(True)
-            paragraphs = doc.paragraphs
-            print(' %s PARAGRAPHS' % len(paragraphs))
-            msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
-            countSent = 0
-        except BaseException as err:
-            return render_template('error.html',
-                                   who=who,
-                                   error='Bad langConverter: %s' % err)
-        
-        try:
-            docConverter = ConvertDocx(langConverter, documentIn=doc,
-                                       reportProgressObj=newProgressObj)
-        except BaseException as error:
-            print('Cannot create doc converter: %s' % error)
-            return render_template('error.html', who=who, error=error)
+                langConverter.setScriptIndex(scriptIndex)
+                langConverter.setLowerMode(True)
+                langConverter.setSentenceMode(True)
+                paragraphs = doc.paragraphs
+                print(' %s PARAGRAPHS' % len(paragraphs))
+                msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
+                countSent = 0
+            except BaseException as err:
+                return render_template('error.html',
+                                       who=who,
+                                       error='Bad langConverter: %s' % err)
 
-        result = docConverter.processDocx()
+            try:
+                docConverter = ConvertDocx(langConverter, documentIn=doc,
+                                           reportProgressObj=newProgressObj)
+            except BaseException as error:
+                print('Cannot create doc converter: %s' % error)
+                return render_template('error.html', who=who, error=error)
 
-        target_stream = BytesIO()
-        result = doc.save(target_stream)          
+            result = docConverter.processDocx()
 
-        # Download resulting converted document
-        # Reset the pointer to the beginning.
-        target_stream.seek(0)
+            target_stream = BytesIO()
+            result = doc.save(target_stream)
 
-        # Deal with non-ASCII in the file name
-        # outFileName = fixNonAsciiFilename(outFileName)
-        headerFileName = "attachment;filename=%s" % outFileName
-        
-        # Check if there is word list info.
-        wordFrequencies = langConverter.getSortedWordList()
+            # Download resulting converted document
+            # Reset the pointer to the beginning.
+            target_stream.seek(0)
+
+            # Deal with non-ASCII in the file name
+            # outFileName = fixNonAsciiFilename(outFileName)
+            headerFileName = "attachment;filename=%s" % outFileName
+
+            # Check if there is word list info.
+            wordFrequencies = langConverter.getSortedWordList()
 
 
-        # Try to make this with a zip archive
-        # Create a .tsv file of the word frequencies
-        text_stream = StringIO()
-        if wordFrequencies:
-            text_stream.write('%s\t%s\n' % ('Word', 'Times in file'))
-            for item in wordFrequencies:
-                outline = '%s\t%s\n' % (item[0], item[1])
-                text_stream.write(outline)
-        text_stream.seek(0)
-        wordsFileName = baseName + "_words.tsv"
-    
-        # Create an info file
-        info_stream = StringIO()
+            # Try to make this with a zip archive
+            # Create a .tsv file of the word frequencies
+            text_stream = StringIO()
+            if wordFrequencies:
+                text_stream.write('%s\t%s\n' % ('Word', 'Times in file'))
+                for item in wordFrequencies:
+                    outline = '%s\t%s\n' % (item[0], item[1])
+                    text_stream.write(outline)
+            text_stream.seek(0)
+            wordsFileName = baseName + "_words.tsv"
 
-        now = datetime.datetime.now()
-        info_stream.write('Source filename = %s\n' % inputFileName)
-        info_stream.write('Output filename = %s\n' % outFileName)
-        info_stream.write('Converted to Unicode at %s\n' %
-                          now.strftime('%Y-%m-%d %H:%M:%S'))
-        info_stream.write('File size:  {:,} bytes\n'.format(fileSize))
-        info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
-        info_stream.write(' %d sections\n' % len(doc.sections))
-        info_stream.write(' %d tables\n' % len(doc.tables))
-        info_stream.write(' fonts found = %s\n' % fontsFound)
-        info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
-        info_stream.seek(0)
-        
-        # The zipfile contents
-        zipStream = BytesIO()
-        with ZipFile(zipStream, 'w') as zf:
-            zf.writestr(outFileName, target_stream.read())
-            zf.writestr(wordsFileName, text_stream.read())
-            zf.writestr('%s_info.txt' % baseName, info_stream.read())
+            # Create an info file
+            info_stream = StringIO()
 
-        zipStream.seek(0)
-        zipName = baseName + '_Unicode.zip'
-        return send_file(zipStream, as_attachment=True,
-                         download_name=zipName)
-        
+            now = datetime.datetime.now()
+            info_stream.write('Source filename = %s\n' % inputFileName)
+            info_stream.write('Output filename = %s\n' % outFileName)
+            info_stream.write('Converted to Unicode at %s\n' %
+                              now.strftime('%Y-%m-%d %H:%M:%S'))
+            info_stream.write('File size:  {:,} bytes\n'.format(fileSize))
+            info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
+            info_stream.write(' %d sections\n' % len(doc.sections))
+            info_stream.write(' %d tables\n' % len(doc.tables))
+            info_stream.write(' fonts found = %s\n' % fontsFound)
+            info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
+            info_stream.seek(0)
+
+            # The zipfile contents
+            zipStream = BytesIO()
+            with ZipFile(zipStream, 'w') as zf:
+                zf.writestr(outFileName, target_stream.read())
+                zf.writestr(wordsFileName, text_stream.read())
+                zf.writestr('%s_info.txt' % baseName, info_stream.read())
+
+            zipStream.seek(0)
+            zipName = baseName + '_Unicode.zip'
+            return send_file(zipStream, as_attachment=True,
+                             download_name=zipName)
+        else:
+            print('!!! Not processing file %s !' % path)
+            return None
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     # Try zip file...

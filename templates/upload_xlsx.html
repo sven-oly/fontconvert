@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Adlam online Docx font convert</title>
+    <title>Online XLXS font convert</title>
 
     <script>
       // Handle messages from the server
@@ -56,10 +56,11 @@
     </script>
   </head>
   <body>
-    <h1>Adlam font conversion</h2>
+    <h1>Excel font conversion</h2>
+<p>Convert portions of an Excel spreadsheet from Latin Fulfulde to Adlam text. Only the first sheet can be converted.
 <p>Instructions:</p>
 <ul>
-  <li>Please select a .docx file to convert.
+  <li>Please select a .xlsx file to convert.
   </li>
   <li>Then you may get information about the .docx file with "Get Document information.
     <ul>
@@ -77,24 +78,28 @@
 <form action = "{{base}}uploader/?lang=ff" method = "POST"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
-  <input type = "file" name = "file" id="name" accept=".docx"/>
+  <input type="file" name="file" id="name" accept=".xlsx">
   <br/><br/>
   <input type="submit" value="Get document information" name="DocInfo" />
-  <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
+  <input type="submit" name="SpreadsheetToUnicode" value="Convert to Unicode"/>
   <input type="text" name='scriptIndex' value={{scriptIndex}} hidden>
   <input type="text" name='taskId' value={{taskId}} hidden>
+  <p>Choose the Unicode output font for Adlam</p>
   <ul>
     <input type='radio' id='NotoSansAdlam' name='UnicodeFont'
            value='NotoSansAdlam' checked>
-    <label for 'NotoSansAdlam'>Noto Sans Adlam</label>
+    <label fmaor 'NotoSansAdlam'>Noto Sans Adlam</label>
     <input type='radio' id='Kigelia' name='UnicodeFont'
            value='Kigelia'>
     <label for 'Kigelia'>Kigelia</label><br/>
     <input type='radio' id='Ebrima' name='UnicodeFont'
            value='Ebrima'>
     <label for 'Ebrima'>Ebrima</label><br/>
-    Language: <input type='text' id='lang' value='Fula' readonly></input>
   </ul>
+  <p>Language: <input type='text' id='lang' value='Fula' readonly></input>
+
+  <p>Regions of spreadsheet to convert: <input type='text' id='spreadsheet_region' value=''></input>
+  <p>Example: 'B1:c10'
 </form>   
 
 <input type="button" value="Check progress"

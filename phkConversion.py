@@ -7,6 +7,13 @@ from __future__ import absolute_import, division, print_function
 import re
 import sys
 
+from docx import Document
+from docx.text.paragraph import Paragraph
+from docx.text.run import Run
+from docx.text.hyperlink import Hyperlink
+from docx.table import Table
+from docx.oxml.ns import qn
+
 from converterBase import ConverterBase
 
 VARIANT_SELECTOR = '\uFE00'
@@ -429,8 +436,9 @@ class PhakeConverter(ConverterBase):
             self.oldFonts = self.FONTS_TO_CONVERT
         else:
             self.oldFonts = oldFontList
-            
-        self.font_resize_factor = 0.65
+
+        # For Phake Script to Phake Ramayana
+        self.font_resize_factor = 0.8
 
         self.token_splitter = None
 
@@ -729,14 +737,13 @@ class PhakeConverter(ConverterBase):
         for run in p.runs:
             try:
                 scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
-                try:
-                    if self.set_complex_font:
-                        run.font.complex_script = True
-                except:
-                    pass
+
                 run.text = self.convertText(run.text, None, scriptIndex)
                 run.font.name = self.unicodeFont
 
+                # Suggested by https://stackoverflow.com/questions/78829461/python-docx-change-name-of-font-in-wcs-converting-font-encoding-to-unicode
+                run.element.rPr.rFonts.set(qn('w:cs'), self.unicodeFont)
+                run.element.rPr.rFonts.set(qn('w:eastAsia'), self.unicodeFont)
                 try:
                     new_font_size = int(run.font.size * self.font_resize_factor)
                     run.font.size = new_font_size
@@ -751,7 +758,7 @@ class PhakeConverter(ConverterBase):
             p.style.font.complex_script = self.set_complex_font
             p.style.font.name = self.unicodeFont
         except ValueError:
-            pass
+            return
 
         if self.handle_sentences:
             self.processSentences(p)
