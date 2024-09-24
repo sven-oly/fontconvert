@@ -7,11 +7,6 @@ from __future__ import absolute_import, division, print_function
 import re
 import sys
 
-from docx import Document
-from docx.text.paragraph import Paragraph
-from docx.text.run import Run
-from docx.text.hyperlink import Hyperlink
-from docx.table import Table
 from docx.oxml.ns import qn
 
 from converterBase import ConverterBase
@@ -273,7 +268,6 @@ class PhakeConverter(ConverterBase):
             "`": "`",
             " ": " ",
             ".": ".",
-            "\t": "\t"
         },
         'Aiton Script': {
             "A": "ဢ",
@@ -415,12 +409,12 @@ class PhakeConverter(ConverterBase):
     # For splitting by ASCII characters
     # re.ASCII
 
-    def __init__(self, oldFontList=None, newFont=None,
-                 defaultOutputFont='Phake Ramayana Unicode'):
+    def __init__(self, old_font_list=None, new_font=None,
+                 default_output_font='Phake Ramayana Unicode'):
 
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
-        self.thisDefaultOutputFont = defaultOutputFont
+        self.thisDefaultOutputFont = default_output_font
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
@@ -432,10 +426,10 @@ class PhakeConverter(ConverterBase):
         # Special flag for including ZW
         self.encoding = 0  # Default
         self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
-        if oldFontList:
+        if old_font_list:
             self.oldFonts = self.FONTS_TO_CONVERT
         else:
-            self.oldFonts = oldFontList
+            self.oldFonts = old_font_list
 
         # For Phake Script to Phake Ramayana
         self.font_resize_factor = 0.8
@@ -446,10 +440,10 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
-        if newFont:
-            self.unicodeFont = newFont
+        if new_font:
+            self.unicodeFont = new_font
         else:
-            self.unicodeFont = defaultOutputFont
+            self.unicodeFont = default_output_font
 
         self.set_complex_font = True
 
@@ -609,7 +603,6 @@ class PhakeConverter(ConverterBase):
             self.token_splitter = re.compile('(\w)')
         else:
             # UnknownConversion - just return unchanged text
-            encoding_map = None
             self.token_splitter = None
             return text_in
 
@@ -723,9 +716,9 @@ class PhakeConverter(ConverterBase):
 
     def processParagraphRuns(self, p):
         # Handle the text within each paragraph
-        if not p.text:
-            # Nothing to process
-            return
+        # if not p.text:
+        #     # Nothing to process
+        #     return
 
         # Check on the language of the paragraph. May not convert.
         if self.detectLang:
@@ -733,8 +726,8 @@ class PhakeConverter(ConverterBase):
             # print('%s in %s' % (detected, p.text))
             if detected[0] in self.ignoreLangs:
                 return
-            
         for run in p.runs:
+            old_font_size = run.font.size
             try:
                 scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
 
@@ -747,18 +740,20 @@ class PhakeConverter(ConverterBase):
                 try:
                     new_font_size = int(run.font.size * self.font_resize_factor)
                     run.font.size = new_font_size
-                except TypeError:
+                except TypeError as error:
                     pass
-            except ValueError:
+            except ValueError as error:
                 continue
 
         # Check on the font for the full paragraph
-        try:
-            self.FONTS_TO_CONVERT.index(p.style.font.name)
-            p.style.font.complex_script = self.set_complex_font
-            p.style.font.name = self.unicodeFont
-        except ValueError:
-            return
+        # try:
+        #     font_name = p.style.font.name
+        #     if font_name:
+        #         self.FONTS_TO_CONVERT.index(font_name)
+        #         p.style.font.complex_script = self.set_complex_font
+        #         p.style.font.name = self.unicodeFont
+        # except ValueError:
+        #     pass
 
         if self.handle_sentences:
             self.processSentences(p)

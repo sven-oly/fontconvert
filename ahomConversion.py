@@ -92,22 +92,22 @@ class AhomConverter(ConverterBase):
             '\u002c': ',',
             '\u002e': '\U0001173C',
 
-            '\u0030': '\U00011720',
-            '\u0031': '\U00011721',
-            '\u0032': '\U00011722',
-            '\u0033': '\U00011723',
-            '\u0034': '\U00011724',
-            '\u0035': '\U00011725',
-            '\u0036': '\U00011726',
-            '\u0037': '\U00011727',
-            '\u0038': '\U00011728',
-            '\u0039': '\U00011729',
+            '\u0030': '\U00011730',
+            '\u0031': '\U00011731',
+            '\u0032': '\U00011732',
+            '\u0033': '\U00011733',
+            '\u0034': '\U00011734',
+            '\u0035': '\U00011735',
+            '\u0036': '\U00011736',
+            '\u0037': '\U00011737',
+            '\u0038': '\U00011738',
+            '\u0039': '\U00011739',
             '\u003a': ':',
             '\u003b': '\U00011720',
-            '\u003c': '\u003c',
+            '\u003c': 'U00011701\U0001171F',
             '\u003d': '\u003d',
             '\u003e': '\u003e',
-            '\u003f': '?',
+            '\u003f': '\U00011707\U0001171F',
 
             '\u0040': '\U0001173e',
             '\u0041': '\U00011712',
@@ -119,7 +119,7 @@ class AhomConverter(ConverterBase):
             '\u0048': 'H',
             '\u0049': '\U00011723',
             '\u004a': '\U00011719',
-            '\u004b': '\U00011729',
+            '\u004b': '\U00011715',
             '\u004d': '\U0001172A',
             '\u004e': '\U00011710',
             '\u004f': '\U0001172a',
@@ -286,7 +286,7 @@ class AhomConverter(ConverterBase):
             '\u0039': '\U00011739',
             '\u003a': '\U00011734',
             '\u003b': '\U00011720',
-            '\u003c': '\U00011701',
+            '\u003c': '\U00011701\U0001171F',
             '\u003d': '\u003d',
             '\u003e': '\U00011728',
             '\u003f': '\U00011707\U0001171f',
@@ -411,11 +411,14 @@ class AhomConverter(ConverterBase):
         'pd': ['Couplet form phonetic', 'Banchob'],
         'pde': ['Couplet form English'],
         'pdn': ['Couple form Assamese', 'Assamese'],
-        'dn': ['Definition Assamese', 'Assamese'],
+        # TEMPORARY? 'dn': ['Definition Assamese', 'Assamese'],
+        'dn': ['Definition Ahom', 'Ahom'],  # ???
+        'dr': ['Romanization'],  # ???
         'rf': ['Reference [For example sentences taken from texts]'],
+        'se': ['Example free translation English', 'Ahom'],
         'xv': ['Example Phake', 'Phake Script'],
         'xr': ['Example Phonetic', 'Banchob'],
-        'xe': ['Example free translation English'],
+        'xe': ['Example free translation English', 'Ahom'],
         'xn': ['Example free translation Assamese', 'Assamese'],
         'notes': ['Notes'],
         'se': ['Subentry', 'Phake Script'],
@@ -425,32 +428,26 @@ class AhomConverter(ConverterBase):
     latn_regex = re.compile(
         r'(a|b)')
 
-    def __init__(self, oldFontList=None, newFont=None,
+    def __init__(self, old_font_list=None, newFont=None,
               defaultOutputFont=thisDefaultOutputFont):
 
-        self.FONTS_TO_CONVERT = [
-            'Ahom', 'Ahom Manuscript'
-        ]
+        # self.FONTS_TO_CONVERT = [
+        #     'Ahom', 'Ahom Manuscript'
+        # ]
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
         self.thisDefaultOutputFont = 'Noto Serif Ahom'
 
         self.handle_sentences = False
         self.encoding = 0  # Default
-        if oldFontList:
-            self.encodingScripts = oldFontList
+        if old_font_list:
+            self.encodingScripts = old_font_list
         else:
             self.encodingScripts = self.FONTS_TO_CONVERT
 
         self.oldFonts = self.encodingScripts
         
         self.font_resize_factors = [1.0, 1.3]
-
-        for item in self.oldFonts:
-            if isinstance(item, list):
-                self.oldFonts.append(item[0])
-                self.encodingScripts.append(item[1])
-            else:
-                self.oldFonts.append(item)
 
         # Default script = 'arab'
         self.scriptToConvert = 'Ahom'
@@ -464,7 +461,7 @@ class AhomConverter(ConverterBase):
         self.setUpperCaseRange(0x11700, 0x1174f)
         self.description = 'Converts Ahom font encoding to Unicode'
 
-        self.defaultOutputFont = "Noto Serif Ahom"
+        self.defaultOutputFont = defaultOutputFont
 
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
@@ -492,6 +489,23 @@ class AhomConverter(ConverterBase):
         self.collectConvertedWordFrequency = True
         self.convertedWordFrequency = {}
 
+        self.not_converted = []
+
+        self.pattern_replace_list = [
+            [r'([\U0001171e[\U00011726])(\[U0001171d-\U0001171f])([\U00011700-\U0001171a\U00011731])',
+             sub321],
+            [r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])', sub21],
+            [r'(\U00011728)([U00011727\U00011729])', sub21],
+            [r'(\U00011726)([\U0001171d-\U0001171f])', sub21],
+            [r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])', sub21],
+            [r'(\U00011728)([\U0001172a])', sub21],
+            [r'(\U00011721)([\U00011722])', sub21],
+            # Diacritics after space - invert order
+            [r'(\u0020)(\U0001172b)', sub21],
+            # Double full stop \U0001173c to \U0001173d
+            [r'\U0001173c\U0001173c', sub3dfor2c2c]
+        ]
+
         # Information on language detection
         self.detectLang = False
         self.ignoreLangs = []  # Language codes for not conversion
@@ -501,49 +515,43 @@ class AhomConverter(ConverterBase):
 
     def reorderText(self, in_text):
         # Next, move some code points in context to get proper Unicode ordering.
-        # Vowel sign to right of consonants:
+        # Vowel sign to right of consonants, etc.
 
-        # TODO: use this list of patterns and replacements in a loop
-        pattern_replace_list = [
-            [r'([\U0001171e[\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])',
-             sub321],
-            [r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])', sub21],
-            [r'(\U00011728)([U00011727\U00011729])', sub21],
-            [r'(\U00011726)([\U0001171d-\U0001171f])', sub21],
-            [r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])', sub21],
-            [r'(\U00011728)([\U0001172a])', sub21],
-            # Diacritics after space - invert order
-            [r'(\u0020)(\U0001172b)', sub21],
-            # Double full stop \U0001173c to \U0001173d
-            [r'\U0001173c\U0001173c', sub3dfor2c2c]
-        ]
+        # ePattern = r'([\U0001171e\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])'
+        # newText = re.sub(ePattern, sub321, in_text)
+        #
+        # ePattern = r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # ePattern = r'(\U00011728)([U00011727\U00011729])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # # Move e-Vowel to right of medials
+        # ePattern = r'(\U00011726)([\U0001171d-\U0001171f])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # ePattern = r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # ePattern = r'(\U00011728)([\U0001172a])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # # AA + I --> I + AA
+        # ePattern = r'(\U00011721)([\U00011722|\U0001172A])'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # # Diacritics after space - invert order
+        # ePattern = r'(\u0020)(\U0001172b)'
+        # newText = re.sub(ePattern, sub21, newText)
+        #
+        # # Double full stop \U0001173c to \U0001173d
+        # ePattern = r'\U0001173c\U0001173c'
+        # newText = re.sub(ePattern, sub3dfor2c2c, newText)
 
-        ePattern = r'([\U0001171e\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])'
-        newText = re.sub(ePattern, sub321, in_text)
-
-        ePattern = r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'
-        newText = re.sub(ePattern, sub21, newText)
-
-        ePattern = r'(\U00011728)([U00011727\U00011729])'
-        newText = re.sub(ePattern, sub21, newText)
-
-        # Move e-Vowel to right of medials
-        ePattern = r'(\U00011726)([\U0001171d-\U0001171f])'
-        newText = re.sub(ePattern, sub21, newText)
-
-        ePattern = r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])'
-        newText = re.sub(ePattern, sub21, newText)
-
-        ePattern = r'(\U00011728)([\U0001172a])'
-        newText = re.sub(ePattern, sub21, newText)
-
-        # Diacritics after space - invert order
-        ePattern = r'(\u0020)(\U0001172b)'
-        newText = re.sub(ePattern, sub21, newText)
-
-        # Double full stop \U0001173c to \U0001173d
-        ePattern = r'\U0001173c\U0001173c'
-        newText = re.sub(ePattern, sub3dfor2c2c, newText)
+        new_text = in_text
+        for pair in self.pattern_replace_list:
+            new_text = re.sub(pair[0], pair[1], new_text)
+        return new_text
 
         return newText
         
@@ -564,10 +572,18 @@ class AhomConverter(ConverterBase):
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
-    def convertText(self, textIn, fontTextInfo=None, fontIndex=0):
+    def convertText(self, textIn, fontTextInfo=None, fontIndex=-1, inputFont=None):
         self.encoding = self.encodingScripts[fontIndex]
         # print('fontIndex %s, encoding = %s' % (fontIndex, self.encoding))
-        encoding_index = fontIndex
+        if inputFont and fontIndex == -1:
+            try:
+                encoding_index = self.FONTS_TO_CONVERT.index(inputFont)
+                fontIndex = encoding_index
+            except ValueError:
+                # We don't handle that font
+                return None
+        else:
+            encoding_index = fontIndex
         encoding_map = {}
         if fontIndex < 2:
             # Compute the encoding map for the encoding fong

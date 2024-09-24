@@ -87,7 +87,7 @@ class ConverterBase:
         # Override for RTL language
         return False
 
-    def convertText(self, in_text, font_text_info=None, font_index=0):
+    def convertText(self, in_text, font_text_info=None, font_index=0, inputFont=None):
         return in_text
 
     def toLower(self, in_text):
@@ -194,7 +194,9 @@ class ConverterBase:
                     new_text = self.convertText(text_to_convert, None, scriptIndex)
                 except BaseException as error:
                     print('p.text failure in convertText: %s for text %s' % (error, p.text))
-                if new_text != run.text:
+
+                # Replace font in empty regions, too!
+                if run.text == '' or new_text != run.text:
                     try:
                         # Special processing for some types of runs
                         new_text = self.special_run_handling(new_text)

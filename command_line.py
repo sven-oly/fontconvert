@@ -10,7 +10,6 @@ import os
 import sys
 
 import docx
-#from docx.enum.style import WD_STYLE_TYPE
 from docx import Document
 
 import adlamConversion
@@ -35,16 +34,15 @@ def createDocFromFile(file_path):
         print('Cannot create Docx for %s. Err = %s' % (file_path, err))
         return None, -1
 
-def convertThisDoc(lang, inputFileName):
-    new_doc = None
-    
-    baseName = os.path.splitext(inputFileName)[0]
-    outFileName = baseName + '_Unicode.docx'
 
-    if baseName.find('Unicode') > 0:
+def convertThisDoc(lang, inputFileName):
+    base_name = os.path.splitext(inputFileName)[0]
+    out_file_name = base_name + '_Unicode.docx'
+
+    if base_name.find('Unicode') > 0:
         return None
 
-    doc, fileSize = createDocFromFile(inputFileName)
+    doc, file_size = createDocFromFile(inputFileName)
 
     if not doc:
         logging.warning('No document %s opened: %s', inputFileName, docx)
@@ -52,54 +50,52 @@ def convertThisDoc(lang, inputFileName):
     else:
         logging.info('Doc created from %s', inputFileName)
 
-    langConvert = None
     sentence_mode = False
-    if lang =='ff':
-        langConverter = adlamConversion.AdlamConverter()
+    lang_converter = None
+    if lang == 'ff':
+        lang_converter = adlamConversion.AdlamConverter()
         sentence_mode = True
     elif lang == 'aho':
-        langConverter = ahomConversion.AhomConverter()
+        lang_converter = ahomConversion.AhomConverter()
     elif lang == 'phk':
-        langConverter = phkConversion.PhakeConverter()
+        lang_converter = phkConversion.PhakeConverter()
     elif lang == 'men':
-        langConverter = MendeConverter()
+        lang_converter = MendeConverter()
+    if not lang_converter:
+        return None
 
-    langConverter.setScriptIndex(0)
-    langConverter.setLowerMode(True)
-    langConverter.setSentenceMode(sentence_mode)
+    lang_converter.setScriptIndex(0)
+    lang_converter.setLowerMode(True)
+    lang_converter.setSentenceMode(sentence_mode)
     try:
         paragraphs = doc.paragraphs
-        count = len(paragraphs)
     except AttributeError:
-        paragraphs = None
-        count = 0
         pass
-    msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
-    countSent = 0
 
-    newProgressObj = None
-    docConverter = ConvertDocx(langConverter, documentIn=doc,
-                               reportProgressObj=newProgressObj)
+    # msgToSend = '%d paragraphs in %s\n' % (count, inputFileName)
+
+    new_progress_obj = None
+    doc_converter = ConvertDocx(lang_converter, documentIn=doc,
+                                reportProgressObj=new_progress_obj)
     
-    if docConverter:
-        result = docConverter.processDocx()
-        doc.save(outFileName)
+    if doc_converter:
+        result = doc_converter.processDocx()
+        doc.save(out_file_name)
     else:
         result = None
 
-    wordFrequencies = None
+    word_frequencies = None
     try:
-        wordFrequencies = langConverter.getSortedWordList()
-        if wordFrequencies:
+        word_frequencies = lang_converter.getSortedWordList()
+        if word_frequencies:
             # Do something with this information
-            words = [x[0] for x in wordFrequencies]
-            for item in wordFrequencies:
+            for item in word_frequencies:
                 print(item)
     except BaseException as err:
         logging.warning('FAILED TO GET WORD LIST: %s' % err)
-        words = None
-        
+
     return result
+
 
 def main(argv):
     if len(argv) < 3:
@@ -108,12 +104,10 @@ def main(argv):
         return
 
     lang = argv[1]
-    doc_path = argv[2]
 
     # For each item in the list, [2:...]
     files = []
     for doc_path in argv[2:]:
-        file_path = [doc_path]
         if os.path.isdir(doc_path):
             # Expand with glob
             files.extend(glob.glob(doc_path + "/*.docx"))

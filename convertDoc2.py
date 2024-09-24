@@ -43,7 +43,7 @@ class paragraphData():
     self.textsize = 0
     self.startPoint = []
 
-    self.paragraphText = ""
+    self.paragraphText = ''
     self.paragraphTextStarts = []
     self.paragraphTextElements = []
     self.paragraphFonts = []
@@ -179,8 +179,10 @@ class ConvertDocx():
       tableId += 1
       if self.progressObj:
         self.progressObj.send('Table %d, %d rows' % (tableId, len(table.rows)))
+      row_id = 0
       rows = table.rows
       for row in rows:
+        row_id += 1
         for cell in row.cells:
           paragraphs = cell.paragraphs
           for para in paragraphs:
@@ -297,7 +299,7 @@ class ConvertDocx():
     if para in self.paragraphs_converted:
       print('Paragraph already done: %s' % para)
       return 0, allEmptiedTextElements, ''
-    paragraphText = ""
+    paragraphText = ''
     paragraphTextStarts = []
     paragraphTextElements = []
     paragraphFonts = []
