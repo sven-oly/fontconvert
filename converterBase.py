@@ -65,6 +65,9 @@ class ConverterBase:
         self.collectConvertedWordFrequency = False
         self.convertedWordFrequency = {}
 
+        # For reordering rules
+        self.pattern_replace_list = []
+
     def get_outfile_name(self, infile_name):
         name_split = os.path.splitext(infile_name)
         out_file_name = name_split[0] + '_Unicode' + name_split[-1]
@@ -95,7 +98,11 @@ class ConverterBase:
         return in_text.lower()
 
     def reorderText(self, in_text):
-        return in_text
+        # Next, move some code points in context to get proper Unicode ordering.
+        new_text = in_text
+        for pair in self.pattern_replace_list:
+            new_text = re.sub(pair[0], pair[1], new_text)
+        return new_text
 
     def tokenizeText(self, textIn):
         # ASCII and whitespace characters

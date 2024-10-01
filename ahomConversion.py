@@ -20,6 +20,11 @@ def sub321(m):
 def sub21(m):
     return m.group(2) + m.group(1)
 
+def sub21_test(m):
+    t1 = hex(ord(m.group(1)))
+    t2 = hex(ord(m.group(2)))
+    return m.group(2) + m.group(1)
+
 def sub3dfor2c2c(m):
     return '\U0001173d'
 
@@ -104,7 +109,7 @@ class AhomConverter(ConverterBase):
             '\u0039': '\U00011739',
             '\u003a': ':',
             '\u003b': '\U00011720',
-            '\u003c': 'U00011701\U0001171F',
+            '\u003c': '\U00011701\U0001171F',
             '\u003d': '\u003d',
             '\u003e': '\u003e',
             '\u003f': '\U00011707\U0001171F',
@@ -492,18 +497,18 @@ class AhomConverter(ConverterBase):
         self.not_converted = []
 
         self.pattern_replace_list = [
-            [r'([\U0001171e[\U00011726])(\[U0001171d-\U0001171f])([\U00011700-\U0001171a\U00011731])',
-             sub321],
-            [r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])', sub21],
-            [r'(\U00011728)([U00011727\U00011729])', sub21],
-            [r'(\U00011726)([\U0001171d-\U0001171f])', sub21],
-            [r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])', sub21],
-            [r'(\U00011728)([\U0001172a])', sub21],
-            [r'(\U00011721)([\U00011722])', sub21],
             # Diacritics after space - invert order
-            [r'(\u0020)(\U0001172b)', sub21],
+            [re.compile(r'(\u0020)([\U0001171d-\U0001172b])'), sub21],
+            [re.compile(r'([\U0001171e[\U00011726])(\[U0001171d-\U0001171f])([\U00011700-\U0001171a\U00011731])'),
+             sub321],
+            [re.compile(r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'), sub21],
+            [re.compile(r'(\U00011728)([\U00011727\U00011729\U0001172a])'), sub21],
+            [re.compile(r'([U00011722\U00011723\U00011729])([\U0001171d-\U0001171fU00011726])'), sub21],
+            [re.compile(r'(\U00011726)([\U0001171d-\U0001171f])'), sub21],
+            [re.compile(r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])'), sub21],
+            [re.compile(r'(\U00011721)([\U0001171d-\U0001171f\U00011722-\U0001172b])'), sub21],
             # Double full stop \U0001173c to \U0001173d
-            [r'\U0001173c\U0001173c', sub3dfor2c2c]
+            [re.compile(r'\U0001173c\U0001173c'), sub3dfor2c2c]
         ]
 
         # Information on language detection
@@ -515,39 +520,6 @@ class AhomConverter(ConverterBase):
 
     def reorderText(self, in_text):
         # Next, move some code points in context to get proper Unicode ordering.
-        # Vowel sign to right of consonants, etc.
-
-        # ePattern = r'([\U0001171e\U00011726])(\[U0001171d\U0001171f])([\U00011700-\U0001171a\U00011731])'
-        # newText = re.sub(ePattern, sub321, in_text)
-        #
-        # ePattern = r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # ePattern = r'(\U00011728)([U00011727\U00011729])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # # Move e-Vowel to right of medials
-        # ePattern = r'(\U00011726)([\U0001171d-\U0001171f])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # ePattern = r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # ePattern = r'(\U00011728)([\U0001172a])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # # AA + I --> I + AA
-        # ePattern = r'(\U00011721)([\U00011722|\U0001172A])'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # # Diacritics after space - invert order
-        # ePattern = r'(\u0020)(\U0001172b)'
-        # newText = re.sub(ePattern, sub21, newText)
-        #
-        # # Double full stop \U0001173c to \U0001173d
-        # ePattern = r'\U0001173c\U0001173c'
-        # newText = re.sub(ePattern, sub3dfor2c2c, newText)
-
         new_text = in_text
         for pair in self.pattern_replace_list:
             new_text = re.sub(pair[0], pair[1], new_text)
