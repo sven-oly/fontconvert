@@ -5248,7 +5248,7 @@ collected them.'
 \gr 
 \gv  ၵၢၼ်ႉ
 \rf  Nemi Mang; ; 15r3
-\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩 𑜩 𑜽
+\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩𑜩  𑜽
 \xex  xupq mEw bokq mj knq rj j /
 \xn  khup mv bok mai kan rai rai
 \xr  'In the cycle of time, the flowers of the trees will break down and
@@ -11531,7 +11531,7 @@ words wrinkled with hidden meaning.'
 \dv 
 \gr 
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜾 𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 𑜁𑜨𑜫
+\xe  𑜾 𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 𑜁𑜨𑜫
 𑜀𑜦𑜡 𑜍𑜂𑜫 𑜀𑜃𑜫 𑜆𑜨𑜂𑜫 𑜀𑜃𑜫 𑜌𑜤𑜀𑜫 𑜀𑜥 𑜁𑜦𑜡𑜡 
 \xex  @ yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa xoq
 eka r[q knq po[q knq vukq kU exa a
@@ -12607,7 +12607,7 @@ form of words used to refer to the king. In this context it refers to
 the father of the hero of Ma Likha Lit.
 \dt  07/Aug/2011
 
-\lx  𑜁𑜪 𑜪
+\lx  𑜁𑜪𑜪 
 \lxx  xM M
 \ph  kham kham
 \ps  express.
@@ -12620,7 +12620,7 @@ the father of the hero of Ma Likha Lit.
 \gr 
 \gv  ၶမ်းၶမ်း ၶမ်ႉၶမ်ႉ
 \rf  Nemi Mang; ; 7r2
-\xe  𑜇𑜄𑜞𑜫 𑜄𑜦𑜡 𑜁𑜪 𑜪 𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
+\xe  𑜇𑜄𑜞𑜫 𑜄𑜦𑜡 𑜁𑜪𑜪  𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
 \xex  fRtq eta xM M rEw xunq yoj /
 \xn  phrat to kham kham rv khun joi
 \xr  'Moreover the sweat of the prince flowed down profusely.'
@@ -12795,7 +12795,7 @@ oh you my Lord king, and at the same time it is (become) bitter.'
 \notes 
 \dt  29/Jul/2011
 
-\lx  𑜁𑜪𑜤 𑜪
+\lx  𑜁𑜪𑜪𑜤 
 \lxx  xuM M
 \ph  khum khum
 \ps  express.
@@ -12808,7 +12808,7 @@ oh you my Lord king, and at the same time it is (become) bitter.'
 \gr 
 \gv  ၶုမ်းၶုမ်း
 \rf  Nemi Mang; ; 10v6
-\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜤 𑜪 𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
+\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜪𑜤  𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
 \xex  nj [inq xuM M ko[q rj sM Aonq na /
 \xn  nai ngin khum khum kong rai sam on na 
 \xr  'Hearing the banging of drum, striking repeatedly in front of them.'
@@ -13393,7 +13393,7 @@ mill, resting on a branch.'
 \ge  middle.portion.of.nose
 \de  middle portion of the nose
 \so  Loti Amra; (Prem Phukon); 2v-11
-\dn  𑜃𑜡 𑜀𑜨𑜍𑜫 𑜉𑜠 𑜨𑜊𑜨𑜀𑜫
+\dn  𑜃𑜡 𑜀𑜨𑜍𑜫 𑜉𑜠𑜨 𑜊𑜨𑜀𑜫
 \dnx  na korq m; oyokq
 \dr  nakor majo-k 
 \dv  নাকৰ মাজক
@@ -16233,7 +16233,7 @@ the pattern (of government), to be the royal egg seated by his side.'
 \gr 
 \gv  ၶူပ်ႇ
 \rf  Nemi Mang; ; 15r3
-\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩 𑜩 𑜽
+\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩𑜩  𑜽
 \xex  xupq mEw bokq mj knq rj j /
 \xn  khup mv bok mai kan rai rai
 \xr  'In the cycle of time, the flowers of the trees will break down and
@@ -17742,7 +17742,7 @@ eggs and sugar cane'
 \ge  middle.teeth
 \de  middle teeth
 \so  Loti Amra; (Prem Phukon); 3r-9
-\dn  𑜉𑜠 𑜨𑜊𑜨𑜍𑜫 𑜓𑜡 𑜄𑜨𑜀𑜫 
+\dn  𑜉𑜠𑜨 𑜊𑜨𑜍𑜫 𑜓𑜡 𑜄𑜨𑜀𑜫 
 \dnx  m; oyorq da tokq 
 \dr  major dato-k
 \dv  মাজৰ দাঁতক
@@ -18289,7 +18289,7 @@ eggs and sugar cane'
 \notes  Also spelled <khav san> at Tai Ahoms and the Stars; ; B131
 \dt  27/Jul/2011
 
-\lx  𑜁𑜧𑜨 𑜧𑜰𑜫
+\lx  𑜁𑜧𑜧𑜨 𑜰𑜫
 \lxx  xo] ]wq
 \ph  khau khau
 \ps  onom.
@@ -18302,7 +18302,7 @@ eggs and sugar cane'
 \gr 
 \gv  ၶဝ်းၶဝ်း
 \rf  Nemi Mang; ; 13r4
-\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜨 𑜧𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
+\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜧𑜨 𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
 𑜉𑜢𑜄𑜫 𑜍𑜠 𑜃𑜨𑜃𑜫 𑜽
 \xex  xunq mE[q nj [inq AU si[q ro[q xo] ]wq si[q xo] eka munq m; to[q t[q rnq po[q
 mitq r; nonq /
@@ -18835,7 +18835,7 @@ the name of the river Mekhong, so the whole names means the
 \notes 
 \dt  07/Aug/2011
 
-\lx  𑜁𑜩𑜨 𑜩
+\lx  𑜁𑜩𑜩𑜨 
 \lxx  xoj j
 \ph  khoi khoi
 \ps  express.
@@ -18848,7 +18848,7 @@ the name of the river Mekhong, so the whole names means the
 \gr 
 \gv  ၶွႆႈၶွႆႈ
 \rf  Nemi Mang; ; 5r1
-\xe  𑜁𑜩𑜨 𑜩 𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
+\xe  𑜁𑜩𑜩𑜨  𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
 \xex  xoj j xjfa pnq co] pi[uq /
 \xn  khoi khoi khai pha pan chau peng
 \xr  'Steadily, the king restrained his feelings of love.'
@@ -19663,7 +19663,7 @@ words wrinkled with hidden meaning.'
 \gr 
 \gv  ငဝ်ႈ
 \rf  Pvn Ko Mvng; ; 1v6
-\xe  𑜂𑜧 𑜉𑜢𑜂𑜫 𑜒𑜨𑜀𑜫 𑜀𑜩 𑜩 𑜽
+\xe  𑜂𑜧 𑜉𑜢𑜂𑜫 𑜒𑜨𑜀𑜫 𑜀𑜩𑜩  𑜽
 \xex  [] mE[q Aokq kj j /
 \xn  ngav mvng ok kai kai
 \xr  'The roots of the country went out far away.'
@@ -22185,7 +22185,7 @@ offspring.'
 \gr 
 \gv 
 \rf  Nemi Mang; ; 4v2
-\xe  𑜋𑜧𑜨 𑜆𑜢𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜁𑜩𑜨 𑜩 𑜀𑜂𑜫 𑜋𑜧𑜨 𑜏𑜢𑜂𑜫 𑜃𑜧 𑜎𑜢𑜉𑜫 𑜽
+\xe  𑜋𑜧𑜨 𑜆𑜢𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜁𑜩𑜩𑜨  𑜀𑜂𑜫 𑜋𑜧𑜨 𑜏𑜢𑜂𑜫 𑜃𑜧 𑜎𑜢𑜉𑜫 𑜽
 \xex  co] pi[q hunq fa xoj j k[q co] si[q n] limq /
 \xn  chau ping hun pha khoi khoi kang chau sing nau lim 
 \xr  '(The Lady said), (My Lord’s) mind is slow and steady like the
@@ -22603,7 +22603,7 @@ Khen Star(s), the Elephant Stars, the Falling Star(s), the Horse Stars'
 \gr  পানীক
 \gv  ၼမ်ႉ
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -27635,7 +27635,7 @@ distant.'
 \notes 
 \dt  17/Jul/2011
 
-\lx  𑜋𑜩 𑜩
+\lx  𑜋𑜩𑜩 
 \lxx  cj j
 \ph  chai chai
 \ps  express
@@ -27648,7 +27648,7 @@ distant.'
 \gr 
 \gv  ၸၢႆးၸၢႆး
 \rf  Nemi Mang; ; 10r4
-\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩 𑜩 𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
+\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩𑜩  𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
 \xex  x] poj cj j ynq ri[q viw /
 \xn  khav poi chai chai jan ring thiu
 \xr  'They were lined up, one after the other, let out in force and in
@@ -33573,7 +33573,7 @@ laws and truth.'
 \notes 
 \dt  26/Aug/2011
 
-\lx  𑜄𑜠 𑜃 𑜪 𑜎𑜩
+\lx  𑜄𑜠 𑜃𑜪  𑜎𑜩
 \lxx  t; n M lj
 \ph  ta nam lai
 \ps  n.
@@ -37873,7 +37873,7 @@ we are richer.'
 \gr 
 \gv  တႅင်ႇ
 \rf  Nemi Mang; ; 4v6
-\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩 𑜩 𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
+\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩𑜩  𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
 \xex  hnq t[q n[q mE[q s] lukq sa vI] eka hitq Anq mj j AuM hj xM ti[q y[uq /
 \xn  han tang nang mvng sau luk sa thi ko hit an mai mai um hai kham
 ting jaang 
@@ -41557,7 +41557,7 @@ forth.'
 \ge  fish_Barbus.sarana
 \de  Barbus sarana
 \so  Loti Amra; (Prem Phukon); 11r-8
-\dn  𑜉𑜦𑜨𑜡 𑜍𑜦𑜡 𑜌𑜣 𑜉 𑜠 𑜏𑜨 𑜀𑜫 
+\dn  𑜉𑜦𑜨𑜡 𑜍𑜦𑜡 𑜌𑜣 𑜉𑜠  𑜏𑜨 𑜀𑜫 
 \dnx  emoa era vI m ; so kq 
 \dr  morothi maso-k
 \dv 
@@ -45916,7 +45916,7 @@ soldiers will die'
 \gr 
 \gv  ပၢင်း
 \rf  Nemi Mang; ; 16v7
-\xe  𑜁𑜩𑜈𑜡 𑜆𑜂𑜫 𑜎𑜂𑜫 𑜌𑜤𑜐𑜫 𑜈𑜂𑜫  𑜢𑜰 𑜁𑜢𑜂𑜫 𑜀𑜦𑜡 𑜆𑜢𑜰 𑜉𑜧 𑜊𑜧 𑜃𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜀𑜰 𑜑𑜤𑜠 𑜽
+\xe  𑜁𑜩𑜈𑜡 𑜆𑜂𑜫 𑜎𑜂𑜫 𑜌𑜤𑜐𑜫 𑜈𑜂𑜫𑜢  𑜰 𑜁𑜢𑜂𑜫 𑜀𑜦𑜡 𑜆𑜢𑜰 𑜉𑜧 𑜊𑜧 𑜃𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜀𑜰 𑜑𑜤𑜠 𑜽
 \xex  xjba p[q l[q vuNq b[q  Ew xi[q eka pEw m] y] n[q hunq fa kw hu; /
 \xn  khai pha pang lang thui bang iu khing ko pv mav jav nang hun pha
 kau vi 
@@ -46732,7 +46732,7 @@ things in the country and remove the bad.'
 \gr 
 \gv  ပွင်
 \rf  Nemi Mang; ; 13r4
-\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜨 𑜧𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
+\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜧𑜨 𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
 𑜉𑜢𑜄𑜫 𑜍𑜠 𑜃𑜨𑜃𑜫 𑜽
 \xex  xunq mE[q nj [inq AU si[q ro[q xo] ]wq si[q xo] eka munq m; to[q t[q rnq po[q
 mitq r; nonq /
@@ -46828,7 +46828,7 @@ the sky and stoops and leans back on the great mountain.'
 \gr 
 \gv  ပွင်
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -47476,7 +47476,7 @@ to the earth underneath.'
 \gr 
 \gv  ပၼ်ႈ
 \rf  Nemi Mang; ; 5r2
-\xe  𑜁𑜩𑜨 𑜩 𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
+\xe  𑜁𑜩𑜩𑜨  𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
 \xex  xoj j xjfa pnq co] pi[uq /
 \xn  khoi khoi khai pha pan chau peng
 \xr  'Steadily, the king restrained his feelings of love.'
@@ -50079,7 +50079,7 @@ the sky and stoops and leans back on the great mountain.'
 \gr 
 \gv  ပိဝ်
 \rf  Nemi Mang; ; 12v1
-\xe  𑜉𑜩 𑜩𑜤 𑜋𑜨𑜂𑜫 𑜇𑜦𑜧 𑜇𑜢𑜀𑜫 𑜆𑜢𑜰 𑜎𑜪𑜤 𑜽
+\xe  𑜉𑜩𑜩𑜤  𑜋𑜨𑜂𑜫 𑜇𑜦𑜧 𑜇𑜢𑜀𑜫 𑜆𑜢𑜰 𑜎𑜪𑜤 𑜽
 \xex  mj ju co[q ef] fEkq piw luM /
 \xn  maai maai chong phe phvk piu lum
 \xr  'Fluttering, the white satin umbrella blew away in the wind.'
@@ -50321,7 +50321,7 @@ guard your great house from the cold.'
 \dv 
 \gr 
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -51196,7 +51196,7 @@ ngin>
 \ge  back.bone
 \de  back bone
 \so  Loti Amra; (Prem Phukon); 3v-12
-\dn  𑜍𑜠 𑜨𑜊𑜨𑜠 𑜑𑜠 𑜍𑜨𑜀𑜫
+\dn  𑜍𑜠𑜨 𑜊𑜨𑜠 𑜑𑜠 𑜍𑜨𑜀𑜫
 \dnx  r; oyo; h; rokq
 \dr  raj haro-k
 \dv 
@@ -53126,7 +53126,7 @@ example at Pvn Ko Mvng; ; 1v5 shows its use to refer to bamboo.
 \notes 
 \dt  03/Aug/2011
 
-\lx  𑜉𑜩 𑜩
+\lx  𑜉𑜩𑜩 
 \lxx  mj j
 \ph  mai mai
 \hm  1
@@ -53140,7 +53140,7 @@ example at Pvn Ko Mvng; ; 1v5 shows its use to refer to bamboo.
 \gr 
 \gv  မၢႆးမၢႆး
 \rf  Nemi Mang; ; 10r2
-\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜀𑜦𑜡 𑜉𑜦𑜧 𑜁𑜥 𑜇𑜃𑜫 𑜉𑜩 𑜩 𑜃𑜨𑜀𑜫 𑜁𑜤𑜂𑜫 𑜽
+\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜀𑜦𑜡 𑜉𑜦𑜧 𑜁𑜥 𑜇𑜃𑜫 𑜉𑜩𑜩  𑜃𑜨𑜀𑜫 𑜁𑜤𑜂𑜫 𑜽
 \xex  xunq mE[q eka em] xU fnq mj j nokq xu[q /
 \xn  khun mvng ko me khu phan mai mai nok khung 
 \xr  'The prince of the country then prepared his minions and let them
@@ -53150,7 +53150,7 @@ out continuously outside in the courtyard.'
 \notes 
 \dt  03/Aug/2011
 
-\lx  𑜉𑜩 𑜩
+\lx  𑜉𑜩𑜩 
 \lxx  mj j
 \ph  mai mai
 \hm  2
@@ -53164,7 +53164,7 @@ out continuously outside in the courtyard.'
 \gr 
 \gv  မၢႆးမၢႆး
 \rf  Nemi Mang; ; 4v6
-\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩 𑜩 𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
+\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩𑜩  𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
 \xex  hnq t[q n[q mE[q s] lukq sa vI] eka hitq Anq mj j AuM hj xM ti[q y[uq /
 \xn  han tang nang mvng sau luk sa the ko hit an mai mai um hai kham
 ting jaang 
@@ -53176,7 +53176,7 @@ a golden pot striving to step forward.'
 \notes 
 \dt  03/Aug/2011
 
-\lx  𑜉𑜩 𑜩𑜤
+\lx  𑜉𑜩𑜩𑜤 
 \lxx  mj ju
 \ph  mai mai, maai maai
 \hm  3
@@ -53190,7 +53190,7 @@ a golden pot striving to step forward.'
 \gr 
 \gv  မၢႆးမၢႆး
 \rf  Nemi Mang; ; 12v1
-\xe  𑜉𑜩 𑜩𑜤 𑜋𑜨𑜂𑜫 𑜇𑜦𑜧 𑜇𑜢𑜀𑜫 𑜆𑜢𑜰 𑜎𑜪𑜤 𑜽
+\xe  𑜉𑜩𑜩𑜤  𑜋𑜨𑜂𑜫 𑜇𑜦𑜧 𑜇𑜢𑜀𑜫 𑜆𑜢𑜰 𑜎𑜪𑜤 𑜽
 \xex  mj ju co[q ef] fEkq piw luM /
 \xn  maai maai chong phe phvk piu lum
 \xr  'Fluttering, the white satin umbrella blew away in the wind.'
@@ -53788,7 +53788,7 @@ grey-haired, living side by side with the prince.'
 \notes 
 \dt  04/Aug/2011
 
-\lx  𑜉𑜪𑜨𑜫  𑜪𑜫 
+\lx  𑜉𑜪𑜨𑜫𑜪 𑜫  
 \lxx  moM q M q
 \ph  mom mom
 \ps  v.
@@ -53800,7 +53800,7 @@ grey-haired, living side by side with the prince.'
 \dv 
 \gr 
 \rf  Ma Likha Lit; (Medini Mohan); 1v3
-\xe  𑜉𑜦𑜡 𑜏𑜂𑜫 𑜀𑜦𑜡 𑜉𑜪𑜨𑜫  𑜪𑜫  𑜄𑜣 𑜄𑜂𑜫 𑜇𑜡 𑜈𑜨𑜀𑜫 𑜑𑜧 𑜽
+\xe  𑜉𑜦𑜡 𑜏𑜂𑜫 𑜀𑜦𑜡 𑜉𑜪𑜨𑜫𑜪 𑜫   𑜄𑜣 𑜄𑜂𑜫 𑜇𑜡 𑜈𑜨𑜀𑜫 𑜑𑜧 𑜽
 \xex  ema s[q eka moM q M q tI t[q fa bokq h] /
 \xn  mo sang pha ko mom mom ti tang pha bok hav
 \xr  'The mo sangpha discussed with the king and told him.'
@@ -55427,7 +55427,7 @@ your property.'
 \gr 
 \gv  မိင်း
 \rf  Nemi Mang; ; 7r5
-\xe  𑜁𑜪 𑜪 𑜄𑜪 𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
+\xe  𑜁𑜪𑜪  𑜄𑜪 𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
 \xex  xM M tM nM t; mi[q /
 \xn  kham kham tam nam ta ming
 \xr  'Profusely he shed tears so that his eyes were blind.'
@@ -55443,7 +55443,7 @@ your property.'
 \gr 
 \gv  မိင်း
 \rf  Nemi Mang; ; 16v3
-\xe  𑜁𑜟𑜪 𑜪 𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
+\xe  𑜁𑜟𑜪𑜪  𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
 \xex  <M M nM t; mi[q /
 \xn  khram khram nam ta ming
 \xr  'Profusely the tears flow dimming his eyes.'
@@ -56918,7 +56918,7 @@ Kham Star(s), the Tung Kham Star(s), the Four Corners,'
 \gr 
 \gv  မွၼ်း
 \rf  Nemi Mang; ; 7r2
-\xe  𑜁𑜩𑜨 𑜩 𑜁𑜩𑜇𑜡 𑜄𑜃𑜫 𑜏𑜢𑜂𑜫 𑜈𑜃𑜫 𑜉𑜨𑜃𑜫 𑜏𑜢𑜂𑜫𑜤 𑜋𑜪 𑜊𑜧 𑜽
+\xe  𑜁𑜩𑜩𑜨  𑜁𑜩𑜇𑜡 𑜄𑜃𑜫 𑜏𑜢𑜂𑜫 𑜈𑜃𑜫 𑜉𑜨𑜃𑜫 𑜏𑜢𑜂𑜫𑜤 𑜋𑜪 𑜊𑜧 𑜽
 \xex  xoj j xjfa tnq si[q bnq monq si[qu cM y] /
 \xn  khoi khoi khai pha tan sing ban mon seng cham jav 
 \xr  'Slowly the king spoke to the excellent diamond one (the lady).'
@@ -57599,7 +57599,7 @@ calendrical system
 \gr 
 \gv  မႅတ်ႈ (မြၢတ်ႈ)
 \rf  Nemi Mang; ; 13r4
-\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜨 𑜧𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
+\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜧𑜨 𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
 𑜉𑜢𑜄𑜫 𑜍𑜠 𑜃𑜨𑜃𑜫 𑜽
 \xex  xunq mE[q nj [inq AU si[q ro[q xo] ]wq si[q xo] eka munq m; to[q t[q rnq po[q
 mitq r; nonq /
@@ -62280,7 +62280,7 @@ the evening time after sunset.'
 \ge  edible.leaf
 \de  kind of edible leaf, a
 \so  Loti Amra; (Prem Phukon); 15v-12
-\dn  𑜀𑜦𑜡 𑜈𑜨 𑜪 𑜍𑜤 𑜆𑜥 𑜍𑜩𑜨 𑜀𑜫
+\dn  𑜀𑜦𑜡 𑜈𑜪𑜨  𑜍𑜤 𑜆𑜥 𑜍𑜩𑜨 𑜀𑜫
 \dnx  eka bo M ru pU roj kq
 \dr  ko bom ru pu rok
 \dv 
@@ -62293,7 +62293,7 @@ the evening time after sunset.'
 \notes  /pu roi ha kok/ is probably the correct Assamese pronunciation.
 \dt  13/Aug/2011
 
-\lx  𑜇𑜀𑜫 𑜆𑜂𑜫 𑜓 𑜪
+\lx  𑜇𑜀𑜫 𑜆𑜂𑜫 𑜓𑜪 
 \lxx  fkq p[q d M
 \ph  phak pang dam
 \ps  n.
@@ -62360,7 +62360,7 @@ the evening time after sunset.'
 \ge  plant.type
 \de  kind of plant
 \so  Loti Amra; (Prem Phukon); 15r-6
-\dn  𑜕𑜦 𑜨𑜏𑜫 𑜉𑜨𑜰 𑜔𑜥 𑜍𑜣𑜀𑜫
+\dn  𑜕𑜦𑜨 𑜏𑜫 𑜉𑜨𑜰 𑜔𑜥 𑜍𑜣𑜀𑜫
 \dnx  eK osq mow DU rIkq
 \dr  geos modhuri-k
 \dv 
@@ -62696,7 +62696,7 @@ of vegetable'
 \notes 
 \dt  13/Aug/2011
 
-\lx  𑜇𑜀𑜫 𑜏𑜢𑜂𑜫 𑜃 𑜪
+\lx  𑜇𑜀𑜫 𑜏𑜢𑜂𑜫 𑜃𑜪 
 \lxx  fkq si[q n M
 \ph  phak sing nam
 \ps  n.
@@ -63022,7 +63022,7 @@ of vegetable'
 \notes 
 \dt  13/Aug/2011
 
-\lx  𑜇𑜀𑜫 𑜃 𑜪
+\lx  𑜇𑜀𑜫 𑜃𑜪 
 \lxx  fkq n M
 \ph  phak nam
 \ps  n.
@@ -65937,7 +65937,7 @@ texts'
 \ge  ?
 \de  ?
 \so  Bar Amra; (Junaram Sangbun Phukan); 50r-27
-\dn  𑜍𑜡 𑜈𑜨𑜰 𑜍𑜣 𑜨𑜍𑜫
+\dn  𑜍𑜡 𑜈𑜨𑜰 𑜍𑜣𑜨 𑜍𑜫
 \dnx  ra bow rI orq
 \dr  ra bau ri bor
 \dv 
@@ -67899,7 +67899,7 @@ as 'chong nvng', a section heading and not the translation
 \notes 
 \dt  29/Aug/2011
 
-\lx  𑜌𑜧 𑜈𑜩 𑜃 𑜪
+\lx  𑜌𑜧 𑜈𑜩 𑜃𑜪 
 \lxx  v] bj n M
 \ph  thav bai nam
 \ps  n.
@@ -68327,7 +68327,7 @@ we wish to reach out and present.'
 \gr 
 \gv  ထုၵ်ႇ
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -69626,7 +69626,7 @@ attestations of this word in other Tai languages (1992:151)
 \dv 
 \gr 
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -69649,7 +69649,7 @@ the earth, water and fire in the world ...'
 \dv 
 \gr 
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -69898,7 +69898,7 @@ the earth, water and fire in the world ...'
 \gr 
 \gv  ထႅဝ်
 \rf  Nemi Mang; ; 10r4
-\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩 𑜩 𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
+\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩𑜩  𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
 \xex  x] poj cj j ynq ri[q viw /
 \xn  khav poi chai chai jan ring thiu
 \xr  'They were lined up, one after the other, let out in force and in
@@ -70076,7 +70076,7 @@ continuously, going up to level where the golden things are.'
 \notes 
 \dt  29/Aug/2011
 
-\lx  𑜌𑜧𑜨 𑜃𑜰 𑜃 𑜪
+\lx  𑜌𑜧𑜨 𑜃𑜰 𑜃𑜪 
 \lxx  vo] nw n M
 \ph  thau naw nam
 \ps  n.
@@ -72991,7 +72991,7 @@ bor'
 \gr 
 \gv  သမ်ႉ
 \rf  Nemi Mang; ; 10v6
-\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜤 𑜪 𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
+\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜪𑜤  𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
 \xex  nj [inq xuM M ko[q rj sM Aonq na /
 \xn  nai ngin khum khum kong rai sam on na
 \xr  'Hearing the banging of drum, striking repeatedly in front of them.'
@@ -76779,7 +76779,7 @@ speak mouth to mouth, and (the king's prestige) would be lost.'
 \dv 
 \gr 
 \rf  Ma Likha Lit; (Medini Mohan); 1r5
-\xe  𑜄𑜦𑜡 𑜎𑜀𑜫 𑜈𑜰 𑜉𑜣 𑜇𑜠 𑜏𑜢 𑜪𑜪 𑜆𑜦𑜡 𑜽
+\xe  𑜄𑜦𑜡 𑜎𑜀𑜫 𑜈𑜰 𑜉𑜣 𑜇𑜠 𑜏𑜢𑜪𑜪  𑜆𑜦𑜡 𑜽
 \xex  eta lkq bw mI f; sE MM epa /
 \xn  to lak bau mi pha svp po
 \xr  'But there was no successor to the king.'
@@ -78444,7 +78444,7 @@ written 'dar rok'
 \ge  rain.heavily
 \de  rain heavily, to
 \so  Bar Amra; (Junaram Sangbun Phukan); 9v-7
-\dn  𑜈𑜦𑜡 𑜍𑜥 𑜁𑜨𑜃𑜫 𑜊𑜪𑜨 𑜪 𑜓𑜣 𑜈𑜨𑜍𑜫
+\dn  𑜈𑜦𑜡 𑜍𑜥 𑜁𑜨𑜃𑜫 𑜊𑜪𑜪𑜨  𑜓𑜣 𑜈𑜨𑜍𑜫
 \dnx  eba rU xonq yoM M dI borq
 \dr  bo ru khon jomjom di bor
 \dv 
@@ -79277,7 +79277,7 @@ Sangbun Phukan); 9v-27
 \gr 
 \gv  ႁႆႇ
 \rf  Nemi Mang; ; 10v6
-\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜤 𑜪 𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
+\xe  𑜃𑜩 𑜂𑜢𑜃𑜫 𑜁𑜪𑜪𑜤  𑜀𑜨𑜂𑜫 𑜍𑜩 𑜏𑜪 𑜒𑜨𑜃𑜫 𑜃𑜡 𑜽
 \xex  nj [inq xuM M ko[q rj sM Aonq na /
 \xn  nai ngin khum khum kong rai sam on na 
 \xr  'Hearing the banging of drum, striking repeatedly in front of them.'
@@ -79724,7 +79724,7 @@ his lineage will disappear'
 \notes 
 \dt  19/Aug/2011
 
-\lx  𑜍𑜩 𑜩
+\lx  𑜍𑜩𑜩 
 \lxx  rj j
 \ph  rai rai
 \ps  express.
@@ -79737,7 +79737,7 @@ his lineage will disappear'
 \gr 
 \gv  ႁၢႆးႁၢႆး
 \rf  Nemi Mang; ; 15r3
-\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩 𑜩 𑜽
+\xe  𑜁𑜤𑜆𑜫 𑜉𑜢𑜰 𑜈𑜨𑜀𑜫 𑜉𑜩 𑜀𑜃𑜫 𑜍𑜩𑜩  𑜽
 \xex  xupq mEw bokq mj knq rj j /
 \xn  khup mv bok mai kan rai rai
 \xr  'In the cycle of time, the flowers of the trees will break down and
@@ -80581,7 +80581,7 @@ shined covering the sky until all was yellow.'
 \notes  Junaram Phukan suggested /rum/ might mean 'a cover'
 \dt  21/Aug/2011
 
-\lx  𑜍𑜪𑜤 𑜪
+\lx  𑜍𑜪𑜪𑜤 
 \lxx  ruM M
 \ph  rum rum
 \ps  express.
@@ -80594,7 +80594,7 @@ shined covering the sky until all was yellow.'
 \gr 
 \gv  ႁုမ်ႈႁုမ်ႈ
 \rf  Pvn Ko Mvng; ; 3r7
-\xe  𑜉𑜃𑜫 𑜋𑜂𑜫 𑜇𑜩𑜤𑜡 𑜍𑜪𑜤 𑜪 𑜁𑜠 𑜉𑜢𑜂𑜫 𑜀𑜩𑜨 𑜊𑜧 𑜽
+\xe  𑜉𑜃𑜫 𑜋𑜂𑜫 𑜇𑜩𑜤𑜡 𑜍𑜪𑜪𑜤  𑜁𑜠 𑜉𑜢𑜂𑜫 𑜀𑜩𑜨 𑜊𑜧 𑜽
 \xex  mnq c[q fjua ruM M x; mE[q koj y] /
 \xn  man chang phaai pha rum rum kha mvng koi jav 
 \xr  'He then came walking slowly through the sky searching for a
@@ -80808,7 +80808,7 @@ garden.'
 \ge  herb.type
 \de  kind of herb
 \so  Loti Amra; (Prem Phukon); 23r-10
-\dn  𑜪𑜘𑜢 𑜍𑜠 𑜊𑜨𑜀𑜫
+\dn 𑜪 𑜘𑜢 𑜍𑜠 𑜊𑜨𑜀𑜫
 \dnx  MBi r; yokq
 \dr  bhim rajo-k
 \dv 
@@ -81947,7 +81947,7 @@ Boat Tail star'
 \gr 
 \gv  ႁႅင်း
 \rf  Nemi Mang; ; 10r4
-\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩 𑜩 𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
+\xe  𑜁𑜧 𑜆𑜩𑜨 𑜋𑜩𑜩  𑜊𑜃𑜫 𑜍𑜢𑜂𑜫 𑜌𑜢𑜰 𑜽
 \xex  x] poj cj j ynq ri[q viw /
 \xn  khav poi chai chai jan ring thiu
 \xr  'They were lined up, one after the other, let out in force and in
@@ -84732,7 +84732,7 @@ not used in Shan.
 \gv  ႁိူဝ်ႇ
 \rf 
 \rf  Nemi Mang; ; 5v6
-\xe  𑜁𑜪 𑜪 𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
+\xe  𑜁𑜪𑜪  𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
 \xex  xM M rEw xunq yoj /
 \xn  kham kham rv khun joi
 \xr  'The sweat of the prince flowed down profusely.'
@@ -85180,7 +85180,7 @@ word is well known in the meaning 'grandmother'
 \ge  dub.grass
 \de  dub grass
 \so  Loti Amra; (Prem Phukon); 19r-9
-\dn  𑜓𑜥 𑜈𑜨𑜰 𑜍 𑜣 𑜈𑜨𑜃𑜫 𑜒𑜨𑜀𑜫
+\dn  𑜓𑜥 𑜈𑜨𑜰 𑜍𑜣  𑜈𑜨𑜃𑜫 𑜒𑜨𑜀𑜫
 \dnx  dU bow r I bonq Aokq
 \dr  dubori bono-k
 \dv  দুবৰি বনক
@@ -85809,7 +85809,7 @@ different sections of the Bar Amra, however.
 \notes  Also at Bar Amra (Junaram Sangbun Phukan); 44v8
 \dt  24/Jul/2011
 
-\lx  𑜊𑜪 𑜣
+\lx  𑜊𑜪𑜣 
 \lxx  yM I
 \ph  jem
 \hm  1
@@ -86223,7 +86223,7 @@ forest, conveying destitution.'
 \gr 
 \gv  ယၢင်ႈ
 \rf  Nemi Mang; ; 4v6
-\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩 𑜩 𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
+\xe  𑜑𑜃𑜫 𑜄𑜂𑜫 𑜃𑜂𑜫 𑜉𑜢𑜂𑜫 𑜏𑜧 𑜎𑜤𑜀𑜫 𑜏𑜡 𑜌𑜣𑜧 𑜀𑜦𑜡 𑜑𑜢𑜄𑜫 𑜒𑜃𑜫 𑜉𑜩𑜩  𑜒𑜪𑜤 𑜑𑜩 𑜁𑜪 𑜄𑜢𑜂𑜫 𑜊𑜂𑜫𑜤 𑜽
 \xex  hnq t[q n[q mE[q s] lukq sa vI] eka hitq Anq mj j AuM hj xM ti[q y[uq /
 \xn  han tang nang mvng sau luk sa the ko hit an mai mai um hai kham
 ting jaang 
@@ -88517,7 +88517,7 @@ grass.'
 \gr 
 \gv  ယွႆႉ
 \rf  Nemi Mang; ; 5v6
-\xe  𑜁𑜪 𑜪 𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
+\xe  𑜁𑜪𑜪  𑜍𑜢𑜰 𑜁𑜤𑜃𑜫 𑜊𑜩𑜨 𑜽
 \xex  xM M rEw xunq yoj /
 \xn  kham kham rv khun joi
 \xr  'The sweat of the prince flowed down profusely.'
@@ -89175,14 +89175,14 @@ come down and meet the gold on every side.'
 \notes 
 \dt  10/Aug/2011
 
-\lx  𑜐𑜠 𑜍𑜨 𑜪 𑜌𑜣𑜃𑜫
+\lx  𑜐𑜠 𑜍𑜪𑜨  𑜌𑜣𑜃𑜫
 \lxx  N; ro M vInq
 \ph  nya rom thin
 \ps  n.
 \ge  grass.type
 \de  kind of grass
 \so  Loti Amra; (Prem Phukon); 18r-12
-\dn  𑜈𑜨𑜃𑜫 𑜍𑜨 𑜪 𑜈𑜨𑜀𑜫
+\dn  𑜈𑜨𑜃𑜫 𑜍𑜪𑜨  𑜈𑜨𑜀𑜫
 \dnx  bonq ro M bokq
 \dr  bon rom bono-k
 \dv 
@@ -93328,7 +93328,7 @@ is translated as 'slowly come together'
 \notes 
 \dt  30/Jul/2011
 
-\lx  𑜎𑜪 𑜪
+\lx  𑜎𑜪𑜪 
 \lxx  lM M
 \ph  lam lam
 \ps  v.
@@ -93348,7 +93348,7 @@ is translated as 'slowly come together'
 \notes 
 \dt  30/Jul/2011
 
-\lx  𑜎𑜪 𑜢
+\lx  𑜎𑜪𑜢 
 \lxx  lM E
 \ph  lvm
 \hm  7
@@ -93361,7 +93361,7 @@ is translated as 'slowly come together'
 \dv 
 \gr 
 \rf  Ming Mvng; (Tileswar Mohan); 1r8
-\xe  𑜏𑜂𑜫 𑜈𑜂𑜫 𑜎𑜪 𑜢 𑜄𑜦𑜡 𑜃𑜢𑜄𑜫 𑜽
+\xe  𑜏𑜂𑜫 𑜈𑜂𑜫 𑜎𑜪𑜢  𑜄𑜦𑜡 𑜃𑜢𑜄𑜫 𑜽
 \xex  s[q b[q lM E eta nitq /
 \xn  sang bang lvm to nit
 \xr  'Bright against the sunshine.'
@@ -95314,7 +95314,7 @@ sacred chickens referred to in the earlier part of the line.
 \gr 
 \gv  လႅင်လွၼ်
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ..
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ..
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -97562,7 +97562,7 @@ Tileswar Mohan suggested that it might be  /be to nok/ 'salary'.
 \gr 
 \gv  လႅမ်း
 \rf  Nemi Mang; ; 4v2
-\xe  𑜋𑜧𑜨 𑜆𑜢𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜁𑜩𑜨 𑜩 𑜀𑜂𑜫 𑜋𑜧𑜨 𑜏𑜢𑜂𑜫 𑜃𑜧 𑜎𑜢𑜉𑜫 𑜽
+\xe  𑜋𑜧𑜨 𑜆𑜢𑜂𑜫 𑜑𑜤𑜃𑜫 𑜇𑜡 𑜁𑜩𑜩𑜨  𑜀𑜂𑜫 𑜋𑜧𑜨 𑜏𑜢𑜂𑜫 𑜃𑜧 𑜎𑜢𑜉𑜫 𑜽
 \xex  co] pi[q hunq fa xoj j k[q co] si[q n] limq /
 \xn  chau ping hun pha khoi khoi kang chau sing nau lim 
 \xr  '(The Lady said), (My Lord's) mind is slow and steady like the form
@@ -97742,7 +97742,7 @@ not separated.'
 \gr 
 \gv  လိုမ်း
 \rf  Pvn Ko Mvng; ; 19r2
-\xe  𑜏𑜥 𑜆𑜩𑜨 𑜀𑜢𑜃𑜫 𑜉𑜢𑜂𑜫 𑜈𑜰 𑜎𑜢 𑜪 𑜇𑜡 𑜋𑜪 𑜍𑜥 𑜆𑜣 𑜈𑜰 𑜎𑜢 𑜪 𑜇𑜣 𑜽
+\xe  𑜏𑜥 𑜆𑜩𑜨 𑜀𑜢𑜃𑜫 𑜉𑜢𑜂𑜫 𑜈𑜰 𑜎𑜢𑜪  𑜇𑜡 𑜋𑜪 𑜍𑜥 𑜆𑜣 𑜈𑜰 𑜎𑜢𑜪  𑜇𑜣 𑜽
 \xex  sU poj kinq mE[q bw lE M fa cM rU pI bw lE M fI /
 \xn  su poi kin mvng bau lvm pha cham ru pi bau lvm phi 
 \xr  'You then rule the country, do not forget the sky, the head of the
@@ -101492,7 +101492,7 @@ falling down and scattering to form a mat on the grass.'
 \gr 
 \gv  မွၵ်ႇ
 \rf  Pvn Ko Mvng; ; 1v5
-\xe  P𑜌𑜃 𑜕𑜨 𑜪𑜌𑜃𑜕𑜠 𑜠 𑜱𑜌𑜵
+\xe  P𑜌𑜃 𑜕𑜪𑜨 𑜌𑜃𑜕𑜠𑜠  𑜱𑜌𑜵
 \xex  Pvn Ko Mvng; ; 1v5
 \xe  𑜆𑜦𑜡 𑜃𑜂𑜫 𑜉𑜩 𑜒𑜦𑜡 𑜈𑜨𑜀𑜫 𑜎𑜢𑜰 𑜎𑜪 𑜽
 \xex  epa n[q mj eAa bokq liw lM /
@@ -101555,7 +101555,7 @@ falling down and scattering to form a mat on the grass.'
 \gr 
 \gv  မွၵ်ႇ
 \rf  Ma Likha Lit; (Medini Mohan); 1v4
-\xe  𑜉𑜦𑜡 𑜏𑜂𑜫 𑜀𑜦𑜡 𑜉𑜪𑜨𑜫  𑜪𑜫  𑜄𑜣 𑜄𑜂𑜫 𑜇𑜡 𑜈𑜨𑜀𑜫 𑜑𑜧 𑜽
+\xe  𑜉𑜦𑜡 𑜏𑜂𑜫 𑜀𑜦𑜡 𑜉𑜪𑜨𑜫𑜪 𑜫   𑜄𑜣 𑜄𑜂𑜫 𑜇𑜡 𑜈𑜨𑜀𑜫 𑜑𑜧 𑜽
 \xex  ema s[q eka moM q M q tI t[q fa bokq h] /
 \xn  mo sang pha ko mom mom ti tang pha bok hav
 \xr  'The mo sangpha discussed with the king and told him.'
@@ -102627,7 +102627,7 @@ golden flowers.'
 \ge  flower.type
 \de  kind of flower
 \so  Loti Amra; (Prem Phukon); 24v-10
-\dn  𑜑𑜣 𑜒𑜎𑜫 𑜃𑜦𑜧 𑜊𑜣𑜒 𑜠 𑜇𑜤𑜎𑜫 𑜎𑜨𑜀𑜫
+\dn  𑜑𑜣 𑜒𑜎𑜫 𑜃𑜦𑜧 𑜊𑜣𑜒𑜠  𑜇𑜤𑜎𑜫 𑜎𑜨𑜀𑜫
 \dnx  hI Alq en] yIA ; fulq lokq
 \dr  hial nejia phul lo-k
 \dv 
@@ -105189,7 +105189,7 @@ country.'
 \ge  black.edible.arum.root
 \de  black variety of an edible arum root
 \so  Loti Amra; (Prem Phukon); 17v-10
-\dn  𑜀𑜨 𑜰 𑜎𑜣 𑜒 𑜠 𑜀𑜨 𑜰 𑜏𑜤 𑜀𑜫
+\dn  𑜀𑜨 𑜰 𑜎𑜣 𑜒𑜠  𑜀𑜨 𑜰 𑜏𑜤 𑜀𑜫
 \dnx  ko w lI A ; ko w su kq
 \dr  kowlia kowsuk-k
 \dv 
@@ -106692,7 +106692,7 @@ buffaloes, four cows, ten pigs'
 \gr 
 \gv  မဝ်ႇ
 \rf  Ma Likha Lit; (Medini Mohan); 1r5
-\xe  𑜄𑜦𑜡 𑜎𑜀𑜫 𑜈𑜰 𑜉𑜣 𑜇𑜠 𑜏𑜢 𑜪𑜪 𑜆𑜦𑜡 𑜽
+\xe  𑜄𑜦𑜡 𑜎𑜀𑜫 𑜈𑜰 𑜉𑜣 𑜇𑜠 𑜏𑜢𑜪𑜪  𑜆𑜦𑜡 𑜽
 \xex  eta lkq bw mI f; sE MM epa /
 \xn  to lak bau mi pha svp po
 \xr  'But there was no successor to the king.'
@@ -110648,7 +110648,7 @@ mighty diamond cluster.'
 \gr 
 \gv  ဢူ
 \rf  Nemi Mang; ; 13r4
-\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜨 𑜧𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
+\xe  𑜁𑜤𑜃𑜫 𑜉𑜢𑜂𑜫 𑜃𑜩 𑜂𑜢𑜃𑜫 𑜒𑜥 𑜏𑜢𑜂𑜫 𑜍𑜨𑜂𑜫 𑜁𑜧𑜧𑜨 𑜰𑜫 𑜏𑜢𑜂𑜫 𑜁𑜧𑜨 𑜀𑜦𑜡 𑜉𑜤𑜃𑜫 𑜉𑜠 𑜄𑜨𑜂𑜫 𑜄𑜂𑜫 𑜍𑜃𑜫 𑜆𑜨𑜂𑜫
 𑜉𑜢𑜄𑜫 𑜍𑜠 𑜃𑜨𑜃𑜫 𑜽
 \xex  xunq mE[q nj [inq AU si[q ro[q xo] ]wq si[q xo] eka munq m; to[q t[q rnq po[q
 mitq r; nonq /
@@ -111856,7 +111856,7 @@ morning
 \gr 
 \gv  ဢွၵ်ႇ
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ...
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ...
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ...
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -114418,7 +114418,7 @@ month'
 \notes 
 \dt  05/Oct/2013
 
-\lx  𑜪𑜍𑜢𑜪 𑜆𑜢𑜀𑜫
+\lx 𑜪 𑜍𑜢𑜪 𑜆𑜢𑜀𑜫
 \lxx  MriM pikq
 \ph  rim pik
 \ps  n.
@@ -114438,7 +114438,7 @@ month'
 \notes 
 \dt  19/Aug/2011
 
-\lx  𑜩𑜊𑜢𑜰
+\lx 𑜩 𑜊𑜢𑜰
 \lxx  jyiw
 \ph  jiu
 \ps  v.
@@ -114548,7 +114548,7 @@ rubies.'
 \notes 
 \dt  15/Jul/2011
 
-\lx  𑜪𑜒𑜢𑜪𑜍𑜤
+\lx 𑜪 𑜒𑜢𑜪𑜍𑜤
 \lxx  MAiMru
 \ph  im ru
 \ps  n.
@@ -114568,7 +114568,7 @@ rubies.'
 \notes 
 \dt  07/Aug/2011
 
-\lx  𑜩𑜒𑜢𑜉𑜫
+\lx 𑜩 𑜒𑜢𑜉𑜫
 \lxx  jAimq
 \ph  im
 \hm  2
@@ -114809,7 +114809,7 @@ not separated.'
 \notes 
 \dt  22/Sep/2013
 
-\lx   𑜢𑜰
+\lx 𑜢  𑜰
 \lxx   Ew
 \ph  v
 \hm  1
@@ -114831,7 +114831,7 @@ not separated.'
 \notes 
 \dt  29/Sep/2013
 
-\lx 𑜡 𑜠
+\lx 𑜡𑜠 
 \lxx  a;
 \ph  a
 \hm  1
@@ -115294,7 +115294,7 @@ more.'
 \notes 
 \dt  29/Jul/2011
 
-\lx  𑜁𑜟𑜪 𑜪
+\lx  𑜁𑜟𑜪𑜪 
 \lxx  <M M
 \ph  khram khram
 \ps  express.
@@ -115307,7 +115307,7 @@ more.'
 \gr 
 \gv 
 \rf  Nemi Mang; ; 16v2
-\xe  𑜁𑜟𑜪 𑜪 𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
+\xe  𑜁𑜟𑜪𑜪  𑜃𑜪 𑜄𑜠 𑜉𑜢𑜂𑜫 𑜽
 \xex  <M M nM t; mi[q /
 \xn  khram khram nam ta ming
 \xr  'Profusely the tears flow dimming his eyes.'
@@ -116887,7 +116887,7 @@ at the lady, losing their balance (as they do so).'
 \dv 
 \gr 
 \rf  Tai Ahoms and the Stars; ; A1
-\xe  𑜊𑜪 𑜣 𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ...
+\xe  𑜊𑜪𑜣  𑜉𑜢𑜰 𑜎𑜢𑜂𑜫𑜃𑜨𑜃𑜫 𑜌𑜢𑜐𑜫𑜁𑜪 𑜋𑜪 𑜏𑜂𑜫 𑜃𑜢𑜃𑜫 𑜏𑜂𑜫 𑜃𑜪 𑜏𑜂𑜫 𑜎𑜩 𑜏𑜂𑜫 𑜆𑜫𑜰 𑜒𑜨𑜀𑜫 𑜇𑜡 ...
 \xex  yM I mEw li[qnonq viNqxM cM s[q ninq s[q nM s[q lj s[q pqw Aokq fa ...
 \xn  yim mu'w ling non then kham cham sang nin sang nam sang lai sang
 pau ok pha ...
@@ -117365,7 +117365,7 @@ ruled.'
 \gr 
 \gv  ပႅင်း
 \rf  Nemi Mang; ; 5r2
-\xe  𑜁𑜩𑜨 𑜩 𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
+\xe  𑜁𑜩𑜩𑜨  𑜁𑜩𑜇𑜡 𑜆𑜃𑜫 𑜋𑜧𑜨 𑜆𑜢𑜂𑜫𑜤 𑜽
 \xex  xoj j xjfa pnq co] pi[uq /
 \xn  khoi khoi khai pha pan chau peng
 \xr  'Steadily, the king restrained his feelings of love.'

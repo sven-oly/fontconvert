@@ -497,9 +497,8 @@ class AhomConverter(ConverterBase):
         self.not_converted = []
 
         self.pattern_replace_list = [
-            # Diacritics after space - invert order
-            [re.compile(r'(\u0020)([\U0001171d-\U0001172b])'), sub21],
-            [re.compile(r'([\U0001171e[\U00011726])(\[U0001171d-\U0001171f])([\U00011700-\U0001171a\U00011731])'),
+
+            [re.compile(r'([\U0001171e\U00011726])(\[U0001171d-\U0001171f])([\U00011700-\U0001171a\U00011731])'),
              sub321],
             [re.compile(r'([\U0001171e\U00011726])([\U00011700-\U0001171a\U00011731])'), sub21],
             [re.compile(r'(\U00011728)([\U00011727\U00011729\U0001172a])'), sub21],
@@ -507,6 +506,8 @@ class AhomConverter(ConverterBase):
             [re.compile(r'(\U00011726)([\U0001171d-\U0001171f])'), sub21],
             [re.compile(r'(\U00011724)([\U00011722\U00011729\U0001172b\U0001172a])'), sub21],
             [re.compile(r'(\U00011721)([\U0001171d-\U0001171f\U00011722-\U0001172b])'), sub21],
+            # Diacritics after space - invert order
+            [re.compile(r'(\u0020)([\U0001171d-\U0001172b])'), sub21],
             # Double full stop \U0001173c to \U0001173d
             [re.compile(r'\U0001173c\U0001173c'), sub3dfor2c2c]
         ]
