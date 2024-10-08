@@ -346,7 +346,6 @@ class PhakeConverter(ConverterBase):
             "%": "\u00a0\u103a",
             "&": "\u00a0\u109d",
             "`":  "\u1039ꩡ",
-            "~": "\u1039\u101a",
             ".": ".",
             " ": " ",
             "\t": "\t"

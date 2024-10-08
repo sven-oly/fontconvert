@@ -56,35 +56,43 @@ def convert_dictionary(file_path, converter):
 
     new_lines = reconnect_lines(lines)
 
+    # Process the reconnected lines
     count = 0
     out_lines = []
     current_tag = ''
     preconverted_lines = []
     text = ''
-    for line in lines:
-        if chr(line[0]) == '\u005c':
+    for line in new_lines:
+        if line and line[0] == '\u005c':
             has_tag = True
             sline = ''
             try:
                 # Get into Unicode
-                sline = line[1:].decode('utf-8')  # Maybe not utf-8
+                sline = line[1:]
+
+                # sline = line[1:].decode('utf-8')  # Maybe not utf-8
                 sline.replace('\r', '').replace('\n', '')
             except UnicodeDecodeError as error:
                 # Maybe a code outside of ASCII, e.g, 0xb9
                 pass
 
             space_pos = sline.find(' ')
-            current_tag = sline[0:space_pos].replace('\r', '').replace('\n', '')
+            text = ''
+            if space_pos >= 0:
+                current_tag = sline[0:space_pos].replace('\r', '').replace('\n', '')
+                text = sline[space_pos:].replace('\r', '').replace('\n', '')
+            else:
+                current_tag = sline
 
             # Output preconverted_lines, if any.
             if preconverted_lines:
                 out_lines.extend(preconverted_lines)
                 preconverted_lines = []
 
-            text = sline[space_pos:].replace('\r', '').replace('\n', '')
+            # text = sline[space_pos:].replace('\r', '').replace('\n', '')
             # print('Tag %s for text \"%s\"' % (current_tag, text))
 
-            changed, out_line = process_line(current_tag, True, text, converter)
+            changed, out_line = process_line(current_tag, True, text, converter, count)
             if not changed:
                 out_line = '\\%s %s' % (current_tag, text)
             else:
@@ -93,7 +101,8 @@ def convert_dictionary(file_path, converter):
             # Continuation line. Handle without a tag
             has_tag = False
             try:
-                sline = line.decode('utf-8').replace('\r', '').replace('\n', '')  # Maybe not UTF-8?
+                # sline = line.decode('utf-8').replace('\r', '').replace('\n', '')  # Maybe not UTF-8?
+                sline = line.replace('\r', '').replace('\n', '')  # Maybe not UTF-8?
             except UnicodeDecodeError as err:
                 sline = re.sub(r'[\x80-\xff]', '???', line.decode('latin-1')).replace('\r\n', '')
 
@@ -113,7 +122,7 @@ def convert_dictionary(file_path, converter):
     return out_lines
 
 
-def process_line(current_tag, has_tag, line, converter):
+def process_line(current_tag, has_tag, line, converter, line_count=-1):
     # TODO: handle return line
     changed = False
     text_out = line  # default
@@ -125,7 +134,7 @@ def process_line(current_tag, has_tag, line, converter):
             input_font = tag_info[-1]
             try:
                 font_index = converter.FONTS_TO_CONVERT.index(input_font)
-                text_out = converter.convertText(line, fontIndex=font_index, inputFont=input_font)
+                text_out = converter.convertText(line, fontIndex=font_index, inputFont=input_font, line_count=line_count)
                 if text_out:
                     changed = True
                 else:
@@ -233,6 +242,7 @@ def reconnect_lines(lines):
 
     if prev_line:
         lines_out.append(prev_line)
+    print('%d lines in, %d lines out. Recombined %s lines' % (len(lines), len(lines_out), len(lines) - len(lines_out)))
     return lines_out
 
 
