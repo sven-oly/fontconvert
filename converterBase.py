@@ -68,6 +68,14 @@ class ConverterBase:
         # For reordering rules
         self.pattern_replace_list = []
 
+        # For communicating to specific instances
+        self.current_tag = ''
+
+    def preprocess(self, textIn, current_tag):
+        # Possibly do some preprocessing on each line, maybe dependent on a tab
+        # or a regular expression
+        return textIn
+
     def get_outfile_name(self, infile_name):
         name_split = os.path.splitext(infile_name)
         out_file_name = name_split[0] + '_Unicode' + name_split[-1]

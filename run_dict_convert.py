@@ -84,6 +84,9 @@ def convert_dictionary(file_path, converter):
             else:
                 current_tag = sline
 
+            # Preprocess lines for some types of conversion.
+            text = converter.preprocess(text, current_tag)
+
             # Output preconverted_lines, if any.
             if preconverted_lines:
                 out_lines.extend(preconverted_lines)
@@ -134,6 +137,7 @@ def process_line(current_tag, has_tag, line, converter, line_count=-1):
             input_font = tag_info[-1]
             try:
                 font_index = converter.FONTS_TO_CONVERT.index(input_font)
+                converter.current_tag = current_tag
                 text_out = converter.convertText(line, fontIndex=font_index, inputFont=input_font, line_count=line_count)
                 if text_out:
                     changed = True

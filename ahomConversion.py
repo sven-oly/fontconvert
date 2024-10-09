@@ -22,6 +22,8 @@ def sub321(m):
 def sub21(m):
     return m.group(2) + m.group(1)
 
+def sub21_with_space(m):
+    return ' ' + m.group(2) + m.group(1)
 
 def sub21_test(m):
     t1 = hex(ord(m.group(1)))
@@ -123,7 +125,7 @@ class AhomConverter(ConverterBase):
             ':': ':',
             '<': '\U00011701\U0001171F',
             '=': '\u003d',
-            '>': '\u003e',
+            '>': '\U00011724\U00011728',
             '?': '\U00011707\U0001171F',
 
             '\\': '\\',
@@ -258,7 +260,7 @@ class AhomConverter(ConverterBase):
             ':': '\U00011734',
             '<': '\U00011701\U0001171F',
             '=': '\u003d',
-            '>': '\U00011728',
+            '>': '\U00011724\U00011728',
             '?': '\U00011707\U0001171f',
 
             '\u0040': '\U0001173e',
@@ -480,6 +482,9 @@ class AhomConverter(ConverterBase):
             re.compile(r'[\U00011727\U00011729-\U0001172b][\U0001171d-\U0001171f\U00011726]'),
             re.compile(r'\U00011728[\U0001171d-\U0001171f\U00011722-\U00011723\U00011726-\U00011727\U00011729-\U0001172b]'),
         ]
+        # Special case processing
+        self.match_last_a = re.compile(r' a$')
+        self.fix_assamese = re.compile(r'\u0020([\u09bf\u09c7\u09c8])([\u0980-\u09fe])')
 
         # Information on language detection
         self.detectLang = False
@@ -487,6 +492,11 @@ class AhomConverter(ConverterBase):
         print('AHOM CONVERTER CREATED')
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
+
+    def preprocess(self, textIn, current_tag=''):
+        # Preprocesing text for special cases
+        textIn =  re.sub(self.fix_assamese, sub21_with_space, textIn)
+        return self.match_last_a.sub('\u0020\U0001173c', textIn)
 
     def reorderText(self, in_text):
         # Next, move some code points in context to get proper Unicode ordering.
@@ -505,7 +515,7 @@ class AhomConverter(ConverterBase):
         # Split input into tokens for script conversion
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split('([\w\s\[\]])', textIn) if i]
+            return [i for i in re.split('([\<\;\>\w\s\[\]])', textIn) if i]
         elif self.scriptIndex == 4:
             return textIn
 
@@ -540,6 +550,9 @@ class AhomConverter(ConverterBase):
 
             if self.debug:
                 print('****** TEXT = %s' % textIn)
+            # Special preprocessing
+            textIn = self.preprocess(textIn)
+
             result = self.convertString(textIn, None, encoding_map)
             if self.debug:
                 print('   convertText result= %s' % (result))
@@ -547,7 +560,7 @@ class AhomConverter(ConverterBase):
             final_result = self.reorderText(result)
             was_bad = self.check_for_incorrect_diacritic_oder(final_result)
             if was_bad:
-                logging.error('  Problem line is # %d: >%s<', line_count, textIn)
+                logging.error('  Problem line is # %d: >\\%s%s<', line_count, self.current_tag, textIn)
                 logging.error('    Converted = >%s<', final_result)
             return final_result
 
