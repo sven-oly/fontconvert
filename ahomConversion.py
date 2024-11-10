@@ -493,10 +493,15 @@ class AhomConverter(ConverterBase):
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
-    def preprocess(self, textIn, current_tag=''):
+    def preprocess(self, textIn, current_tag=None):
         # Preprocesing text for special cases
-        textIn =  re.sub(self.fix_assamese, sub21_with_space, textIn)
-        return self.match_last_a.sub('\u0020\U0001173c', textIn)
+        if current_tag:
+            # Fixing special Assamese text
+            textIn =  re.sub(self.fix_assamese, sub21_with_space, textIn)
+        else:
+            # Text for Ahom - special case
+            textIn = self.match_last_a.sub('\u0020\U0001173c', textIn)
+        return textIn
 
     def reorderText(self, in_text):
         # Next, move some code points in context to get proper Unicode ordering.
@@ -515,7 +520,8 @@ class AhomConverter(ConverterBase):
         # Split input into tokens for script conversion
         # ASCII and whitespace characters
         if self.scriptIndex == 0:
-            return [i for i in re.split('([\<\;\>\w\s\[\]])', textIn) if i]
+           return [i for i in textIn]
+          #  return [i for i in re.split('([\<\;\>\w\s\[\]])', textIn) if i]
         elif self.scriptIndex == 4:
             return textIn
 
@@ -551,7 +557,7 @@ class AhomConverter(ConverterBase):
             if self.debug:
                 print('****** TEXT = %s' % textIn)
             # Special preprocessing
-            textIn = self.preprocess(textIn)
+            textIn = self.preprocess(textIn, None)
 
             result = self.convertString(textIn, None, encoding_map)
             if self.debug:

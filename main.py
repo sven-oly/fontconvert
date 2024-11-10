@@ -26,6 +26,7 @@ from io import BytesIO
 from io import StringIO
 
 import json
+import logging
 
 # https://github.com/saffsd/langid.py
 import langid  # For identifying language of text
@@ -258,38 +259,42 @@ def getFontsInParagraphs(paragraphs, fonts):
 #https://tedboy.github.io/flask/generated/flask.stream_with_context.html@
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
+    logger = logging.getLogger('uploader')
+
+    logger.setLevel(logging.DEBUG)
+
     convertDoc = False
 
     lang = request.args.get('lang', 'und')
 
     who = '/uploader/%s' % lang
-    print('WHO = %s' % who)
+    logger.debug('WHO = %s', who)
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
         if 'ConvertToUnicode' in formData:
-            print('ConvertToUnicode')
+            logger.debug('ConvertToUnicode')
             convertDoc = True
-
+        logger.debug('DEBUG: %s', request.method)
         try:
             taskId = int(formData['taskId'])
         except:
             taskId = 117
 
-        print('*** taskId = %d' % taskId)
+        logger.debug('*** taskId = %d', taskId)
         try:
             lang = formData['lang']
             lang_code = lang
-            print('lang =' + formData['lang'])
+            logger.debug('lang = %s', formData['lang'])
         except:
             lang_code = 'ff'
             lang = 'ff'
 
         file = request.files['file']  # FileStorage object
-        print('FILE = %s' % file)
+        logger.debug('FILE = %s', file)
         
         inputFileName = file.filename
-        print('inputFileName = %s' % inputFileName)
+        logger.debug('inputFileName = %s' % inputFileName)
         if not inputFileName:
             return render_template('nofileselected.html', who=who)
             
@@ -297,7 +302,7 @@ def upload_file():
         baseName = split_name[0]
         extension = split_name[1]
         outFileName = baseName + '_Unicode' + extension
-
+        print('XXXX %s, %s, %s', baseName, extension, split_name)
         if extension == '.xlsx':
             cell_ranges = request.args.get('spreadsheet_region', None)
             converter = converters[lang]
@@ -308,8 +313,10 @@ def upload_file():
             processor.process()  # Do the requested conversion
 
             processor.workbook.save(out_file_name)
-        elif extension == 'docx':
+        elif extension == '.docx':
             # New thread for this id
+            print('YYY: ', baseName, extension, )
+
             this_thread = exporting_threads[taskId] = ExportingThread()
             this_thread.start()
             this_thread.status = 'Creating doc %s from upload' % inputFileName
@@ -346,7 +353,7 @@ def upload_file():
 
             # Call conversions on the document.
             langConverter = None
-            print('LANG = %s' % lang_code)
+            logger.debug('LANG = %s', lang_code)
             if lang_code == 'ff':
                 langConverter = adlamConversion.AdlamConverter()
                 print('ADLAM CONVERTER CREATED')
@@ -371,7 +378,7 @@ def upload_file():
                 try:
                     scriptIndex = int(formData['scriptIndex'])
                 except:
-                    print('NO SCRIPT INDEX')
+                    logger.debug('NO SCRIPT INDEX')
                     scriptIndex = 0
 
                 langConverter.setScriptIndex(scriptIndex)
@@ -449,7 +456,7 @@ def upload_file():
             return send_file(zipStream, as_attachment=True,
                              download_name=zipName)
         else:
-            print('!!! Not processing file %s !' % path)
+            logger.error('!!! Not processing file %s !', inputFileName)
             return None
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
