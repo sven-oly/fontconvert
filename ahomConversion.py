@@ -682,12 +682,14 @@ class AhomConverter(ConverterBase):
         for run in p.runs:
             if run.font.name in self.FONTS_TO_CONVERT:
                 font_index = self.FONTS_TO_CONVERT.index(run.font.name)
-                run.text = self.convertText(run.text, None, font_index)
+                try:
+                    run.text = self.convertText(run.text, None, font_index)
 
-                run.font.name = self.unicodeFont
-                new_font_size = int(run.font.size * self.font_resize_factors[font_index])
-                run.font.size = new_font_size
-
+                    run.font.name = self.unicodeFont
+                    new_font_size = int(run.font.size * self.font_resize_factors[font_index])
+                    run.font.size = new_font_size
+                except ValueError as error:
+                    pass
         if self.handle_sentences:
             self.processSentences(p)
 

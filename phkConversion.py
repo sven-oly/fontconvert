@@ -35,6 +35,9 @@ def sub_ra(m):
 
 # For moving e-vowel, and dropping unreordered flag
 
+def sub9cc(m):
+    # When 9c7 is just before 9cc, change the second to 9d7
+    return  '\u09c7' + m.group(2)
 
 def fix_e_consonant(m):
     return m.group(3) + m.group(2)
@@ -53,9 +56,16 @@ def sub3dfor2c2c(m):
 def remdup(m):
     return m.group(1)
 
+
+def insert200d(m):
+    return m.group(1) + '\u200d' + m.group(2)
+
+
+def insert200b(m):
+    return m.group(1) + '\u200d' + m.group(2)
+
+
 # Very special case to fix typo with duplicated 'uM'
-
-
 def remdup_u_m(m):
     return '\u102f\u1036'
 
@@ -375,6 +385,74 @@ class PhakeConverter(ConverterBase):
             '7': '⁷',
             '8': '⁸',
             '9': '⁹',
+        },
+        'Assam New': {
+            "¡": 'ক',
+            "¢": 'খ',
+            "¤": 'গ',
+            "¦": 'ঘ',
+            "§": 'ঙ',
+            "¨": 'চ',
+            "©": 'ছ',
+            "ª": 'জ',
+            "¬": 'ঝ',
+            "\u00AD": 'ঞ',  # Soft hyphen
+            '¯': 'ট',
+            '°': 'ঠ',
+            '±': 'ড',
+            '²': 'ঢ',
+            '³': 'ণ',
+            '´': 'ৎ',
+            'µ': 'ত',
+            '¶': 'থ',
+            '·': 'দ',
+            '¸': 'ধ',
+            '¹': 'ন',
+            '»': 'প',
+            '¼': 'ফ',
+            '¾': 'ব',
+            'À': 'ভ',
+            'Á': 'ম',
+            'Â': 'য',
+            'Ã': 'ৰ',
+            'Å': 'ল',
+            'Ç': 'ৱ',
+            'Æ': 'র',
+            'È': 'শ',
+            'É': 'ষ',
+            'Ê': 'স',
+            'Ë': 'হ',
+            'V': '',
+            '×': 'ং',
+            'Ð': 'ঃ',
+            'í': 'ঁ',
+            'Ä': 'ড়',
+            'Ì': 'ঢ়',
+            '¿': 'য়',
+            'Í': 'অ',
+            'ÍÒ': 'আ',
+            'b': 'ই',
+            'u': 'ঈ',
+            '6': 'উ',
+            '^': 'ঊ',
+            '7': 'ঋ',
+            'g': 'এ',
+            'c': 'ঐ',
+            'F': 'ও',
+            'w': 'ঔ',
+
+            'Ò': 'া',
+            'Ô': 'ি',
+            'å': 'ি',
+            'Õ': 'ী',
+            'Ø': 'ু',
+            'Ù': 'ূ',
+            'Ö': 'ৃ',
+            'à': 'ে',
+            'á': 'ৈ',
+            'ä': 'ৗ',
+            'ì': '\u09cd',
+            'p': '\u09cd\u09af'
         }
     }
 
@@ -413,6 +491,14 @@ class PhakeConverter(ConverterBase):
 
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
+        # Initialize splitting by regex based on each script's keys
+        self.split_by_script = {}
+        for font in self.FONTS_TO_CONVERT:
+            font_keys = sorted(
+                self.private_use_map[font].keys(), key=len, reverse=True)
+            re_string = r'(' + '|'.join(font_keys) + ')'
+            self.split_by_script[font] = re.compile(re_string)
+
         self.thisDefaultOutputFont = default_output_font
 
         # These characters take variation sequence modifiers
@@ -439,6 +525,12 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
+        self.font_substitution = {
+            'Phake Script': 'Ramayana Unicode',
+            'Phake Ramayana': 'Ramayana Unicode',
+            'Aiton Script': 'Ramayana Unicode',
+            'Assam New': 'Noto Serif Bengali'
+        }
         if new_font:
             self.unicodeFont = new_font
         else:
@@ -534,6 +626,17 @@ class PhakeConverter(ConverterBase):
             [r'(\u103b)(\u103b)', remdup],
             [r'(\u103c)(\u103c)', remdup],
             [r'(\u105e)(\u105e)', remdup],
+
+            # Assamese reordering
+            [r'([\u09bf\u09c7-\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub21],
+
+            # Change second one to a difference character
+            [r'([\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub9cc],
+            [r'([\u09cc])([\u09cc])', remdup],
+
+            # Insert between
+            [r'([\u09cd])([\u09be])', insert200d],
+            [r'([\u09cd])([[\u09a1-\u09a5\u0997\u09b2])', insert200b],
         ]
 
         # How to replace this doubled form. It appear to be font-specific.
@@ -569,19 +672,21 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
     # Split input into tokens for script conversion
-    def tokenizeText(self, text_in):
-        # ASCII and whitespace characters
-        if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s\.])', text_in) if i]
-        elif self.scriptIndex == 4:
-            return text_in
+    # def tokenizeText(self, text_in):
+    #     # ASCII and whitespace characters
+    #     if self.scriptIndex == 0:
+    #         return [i for i in re.split(r'([\w\s\.])', text_in) if i]
+    #     elif self.scriptIndex == 4:
+    #         return text_in
 
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
     def convertText(self, text_in, fontTextInfo=None,
                     font_index=0, inputFont=None):
-        self.encoding = self.encodingScripts[font_index]
+        # For passing these values along as needed
+        # self.encoding = self.encodingScripts[font_index]
+        self.font_index = font_index
         # print('fontIndex %s, encoding = %s' % (font_index, self.encoding))
         encoding_index = font_index
         encoding_map = {}
@@ -609,7 +714,7 @@ class PhakeConverter(ConverterBase):
             # Only raw text, without formatting or structure information.
             result = self.convertString(text_in, None, encoding_map)
 
-            result = self.reorderText(result)
+            # result = self.reorderText(result)
             if self.add_variant_selectors:
                 result = self.add_variation_modifiers(result)
             return result
@@ -727,11 +832,26 @@ class PhakeConverter(ConverterBase):
                 return
         for run in p.runs:
             old_font_size = run.font.size
+            if isinstance(old_font_size, list):
+                pass  # This is a list!
             try:
-                scriptIndex = self.FONTS_TO_CONVERT.index(run.font.name)
+                old_font_name = run.font.name
+                if not old_font_name:
+                    continue
+                scriptIndex = self.FONTS_TO_CONVERT.index(old_font_name)
+                # Save for deeper calls
+                self.old_font_name = old_font_name
+                self.font_index = scriptIndex
 
-                run.text = self.convertText(run.text, None, scriptIndex)
-                run.font.name = self.unicodeFont
+                old_text = run.text
+
+                new_font_name = self.unicodeFont
+                try:
+                    new_font_name = self.font_substitution[old_font_name]
+                except:
+                    pass  # Use a default
+                run.text = self.convertText(old_text, None, scriptIndex)
+                run.font.name = new_font_name
 
                 # Suggested by https://stackoverflow.com/questions/78829461/python-docx-change-name-of-font-in-wcs-converting-font-encoding-to-unicode
                 run.element.rPr.rFonts.set(qn('w:cs'), self.unicodeFont)

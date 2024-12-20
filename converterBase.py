@@ -22,6 +22,12 @@ class ConverterBase:
         self.font_resize_factor = 1.0
         self.not_converted = {}
 
+        self.old_font_name = None
+        self.font_index = -1
+
+        # This may be set up by the individual converter
+        self.split_by_script = {}
+
         # Only convert fonts from the provided list. This can be overridden if needed.
         self.check_all_fonts = False
 
@@ -71,6 +77,9 @@ class ConverterBase:
         # For communicating to specific instances
         self.current_tag = ''
 
+        # If set, can convert output characters to U+ representations
+        self.output_u_mode = False
+
     def preprocess(self, textIn, current_tag):
         # Possibly do some preprocessing on each line, maybe dependent on a tab
         # or a regular expression
@@ -98,6 +107,10 @@ class ConverterBase:
         # Override for RTL language
         return False
 
+    def unicode_to_u_plus(char):
+        # Gives the string version of a Unicode code point
+        return "U+" + hex(ord(char))[2:].upper().zfill(4)
+
     def convertText(self, in_text, font_text_info=None, font_index=0, inputFont=None):
         return in_text
 
@@ -114,6 +127,10 @@ class ConverterBase:
 
     def tokenizeText(self, textIn):
         # ASCII and whitespace characters
+        if self.old_font_name and self.split_by_script and self.old_font_name in self.split_by_script:
+            token_regex = self.split_by_script[self.old_font_name]
+            return token_regex.split(textIn)
+
         if self.scriptIndex == 0:
             return [i for i in re.split(r'([\w\s;.])', textIn) if i]
         else:
@@ -138,6 +155,8 @@ class ConverterBase:
 
         for c in tokens:
             # Special handling if needed
+            if not c:
+                continue
             out = c
             if c in conversion_map:
                 out = conversion_map[c]
