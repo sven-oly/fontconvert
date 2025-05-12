@@ -422,7 +422,6 @@ class PhakeConverter(ConverterBase):
             'É': 'ষ',
             'Ê': 'স',
             'Ë': 'হ',
-            'V': '',
             '×': 'ং',
             'Ð': 'ঃ',
             'í': 'ঁ',
@@ -452,7 +451,9 @@ class PhakeConverter(ConverterBase):
             'á': 'ৈ',
             'ä': 'ৗ',
             'ì': '\u09cd',
-            'p': '\u09cd\u09af'
+            'p': '\u09cd\u09af',
+            'x': '\u09aa',
+            'V': '\u0995\u09cd\u09b7'
         }
     }
 
@@ -489,7 +490,9 @@ class PhakeConverter(ConverterBase):
     def __init__(self, old_font_list=None, new_font=None,
                  default_output_font='Phake Ramayana Unicode'):
 
-        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.FONFONTS_TO_CONVERTTS_TO_CONVERT = list(self.private_use_map.keys())
+
+        self.old_font_name = self.FONTS_TO_CONVERT[0]
 
         # Initialize splitting by regex based on each script's keys
         self.split_by_script = {}
@@ -630,12 +633,17 @@ class PhakeConverter(ConverterBase):
             # Assamese reordering
             [r'([\u09bf\u09c7-\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub21],
 
-            # Change second one to a difference character
+            # Change second one to a different character
             [r'([\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub9cc],
             [r'([\u09cc])([\u09cc])', remdup],
 
+            # Reprder
+            [r'([\u0981])([\u09be])', sub21],
+
             # Insert between
             [r'([\u09cd])([\u09be])', insert200d],
+            [r'([\u0985])([\u09be])', insert200d],
+            [r'([\u0997])([\u09c1])', insert200d],
             [r'([\u09cd])([[\u09a1-\u09a5\u0997\u09b2])', insert200b],
         ]
 
@@ -704,7 +712,7 @@ class PhakeConverter(ConverterBase):
             self.encoding = inputFont
             # Compute the encoding map for the encoding font
             encoding_map = self.private_use_map[inputFont]
-            self.token_splitter = re.compile('(\w)')
+            self.token_splitter = re.compile('(\s)')
         else:
             # UnknownConversion - just return unchanged text
             self.token_splitter = None
@@ -806,17 +814,20 @@ class PhakeConverter(ConverterBase):
         sentence_ends.append((len(text)-1, '$'))
         return sentence_ends, sentence_starts
 
-    def map_runs_to_paragraph_text_posisions(self, runs):
-        # Mapping of run starts & ends to text positions
-        run_map = []
-        pos = 0
-        run_index = 0
-        for run in runs:
-            if run.text:
-                run_map.append((pos, pos + len(run.text) - 1, run, run_index))
-                pos += len(run.text)
-            run_index += 1
-        return run_map
+    def findDefinitionEnds(self, p):
+        # Get the run indices of runs that have a new line \n
+        # of a paragraph
+        end_indices = []
+        index = 0
+        for r in p.runs:
+            pos =  r.text.find('\n')
+            if  r.text.find('\n') >= 0:
+                end_indices.append(index)
+            index += 1
+        # one after the last item
+        end_indices.append(len(p.runs))
+
+        return end_indices
 
     def processParagraphRuns(self, p):
         # Handle the text within each paragraph
@@ -830,6 +841,7 @@ class PhakeConverter(ConverterBase):
             # print('%s in %s' % (detected, p.text))
             if detected[0] in self.ignoreLangs:
                 return
+
         for run in p.runs:
             old_font_size = run.font.size
             if isinstance(old_font_size, list):
@@ -888,7 +900,6 @@ class PhakeConverter(ConverterBase):
         # Get all the positions of sentence endings
         sentence_ends, sentence_starts = \
             self.computeSentenceStartsEnds(p.text)
-        run_map = self.mapRunsToParagraphTextPosisions(p.runs)
 
         startRuns = []
         rIndex = 0

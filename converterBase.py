@@ -4,6 +4,8 @@
 # Base class for Docx converters
 from __future__ import absolute_import, division, print_function
 
+from collections import defaultdict
+
 import os
 import re
 import sys
@@ -11,6 +13,9 @@ import sys
 
 thisDefaultOutputFont = 'NotoSansRegular'
 
+# Swap order of two items
+def sub21(m):
+    return m.group(2) + m.group(1)
 
 class ConverterBase:
     def __init__(self, old_font_list=None, new_font=None,
@@ -79,6 +84,8 @@ class ConverterBase:
 
         # If set, can convert output characters to U+ representations
         self.output_u_mode = False
+        self.not_converted_context = defaultdict(list)
+
 
     def preprocess(self, textIn, current_tag):
         # Possibly do some preprocessing on each line, maybe dependent on a tab
@@ -122,7 +129,10 @@ class ConverterBase:
         # Next, move some code points in context to get proper Unicode ordering.
         new_text = in_text
         for pair in self.pattern_replace_list:
-            new_text = re.sub(pair[0], pair[1], new_text)
+            try:
+                new_text = re.sub(pair[0], pair[1], new_text)
+            except BaseException as err:
+                pass
         return new_text
 
     def tokenizeText(self, textIn):
@@ -161,7 +171,8 @@ class ConverterBase:
             if c in conversion_map:
                 out = conversion_map[c]
             else:
-                key = '%s-%s' % (self.encoding, c)
+                out = ''
+                key = '%s %s %s' % (self.encoding, c, hex(ord(c)))
                 if not key in self.not_converted:
                     self.not_converted[key] = 1
                     #for i in range(len(c)):
@@ -169,11 +180,15 @@ class ConverterBase:
                     #print('Cannot convert %s in %s' % (c, self.encoding))
                 else:
                     self.not_converted[key] += 1
+                self.not_converted_context[key].append(textIn)
 
             # Special case for handling underlined text
             convertedList.append(out)
 
-        convertResult = self.reorderText(''.join(convertedList))
+        try:
+            convertResult = self.reorderText(''.join(convertedList))
+        except TypeError as e:
+            pass
 
         try:
             if self.lower_mode:
@@ -310,3 +325,30 @@ class ConverterBase:
             )
         else:
             return None
+
+    def map_runs_to_paragraph_text_positions(self, paragraph):
+        # Mapping of run starts & ends to text positions
+        run_map = []
+        pos = 0
+        run_index = 0
+        for run in paragraph.runs:
+            if run.text:
+                run_map.append((pos, pos + len(run.text) - 1, run, run_index))
+                pos += len(run.text)
+            run_index += 1
+        return run_map
+
+    def find_returns_in_paragraph(self, p):
+        # Gives the ending indices of the runs that have \n
+        # in this paragraph.
+        # Used to find ends of some types of structures in a document
+        end_indices = []
+        index = 0
+        for r in p.runs:
+            pos =  r.text.find('\n')
+            if  r.text.find('\n') >= 0:
+                end_indices.append(index)
+            index += 1
+        # one after the last item
+        end_indices.append(len(p.runs))
+        return end_indices

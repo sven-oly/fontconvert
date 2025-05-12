@@ -232,7 +232,15 @@ class MendeConverter(ConverterBase):
         # Possible convert other JGMende PUA points to Arabic range?
             #// For missing values converted to Arabic Presentation Forms A,
             #// Add +1B50 to get the value in that modified Kikakui Sans Pro font.
-        }
+        },
+        'PUA_to_FPA':
+            {
+                
+            },
+        'FPA_to_Unicode':
+            {
+                
+            },
     }
 
     def __init__(self, oldFontList=None, newFont=None,
