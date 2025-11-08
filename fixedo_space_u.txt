@@ -1,0 +1,5119 @@
+diff --git a/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt b/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
+index 6009b4c..bef0b96 100644
+--- a/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
++++ b/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
+@@ -1060,7 +1060,7 @@ a wide area
+ \xr  kāŋ² khün² yāu²
+ \so  phk_kaaN2 khvn2 yaau2.wav
+ \xe  longer night, the night is longer than the day 
+-\xv  က︀င︀်ၵ︀ိုꩫ︀်လ︀ွု င︀်မ︀ေ︀ၸ︀ႃ
++\xv  က︀င︀်ၵ︀ိုꩫ︀်လ︀ွုင︀်မ︀ေ︀ၸ︀ႃ
+ \xr  kāŋ¹ khün² loŋ⁶ mɛ⁵ phā⁴
+ \so  phk_kaaN1 khvn2 loN6mj5 phaa4.wav
+ \xe  in the deep midnight 
+@@ -1396,7 +1396,7 @@ according to the Hindu legends
+ \ps  v.
+ \de  to be dislocated, sprain slightly
+ \ge  sprain
+-\pl ု 
++\pl  ု
+ \pd 
+ \pde 
+ \pdn 
+@@ -2113,7 +2113,7 @@ pulled the plough by animal
+ \so 
+ \pde 
+ \rf 
+-\xv  က︀ꩫ︀်က︀ိုꩫ︀်က︀ွု က︀်က︀ိုꩫ︀်
++\xv  က︀ꩫ︀်က︀ိုꩫ︀်က︀ွုက︀်က︀ိုꩫ︀်
+ \xr  kan⁴ kün² kok⁴ kün²
+ \so  phk_kan4 kvn2 kok4 kvn2
+ \xe  to grapple or wrestle each other 
+@@ -2478,7 +2478,7 @@ to control or suppress oneself the impulse to laugh
+ \notes  ailot
+ \dt  27/Mar/2023
+ 
+-\lx  က︀ꩫ︀်ၵ︀ျု က︀်ꩫ︀ီ
++\lx  က︀ꩫ︀်ၵ︀ျ ုက︀်ꩫ︀ီ
+ \le 
+ \ph  kān² khyuk³ nī¹
+ \so  phk_kaan2khyuk3nI1.wav
+@@ -2501,7 +2501,7 @@ to control or suppress oneself the impulse to laugh
+ \notes  ailot
+ \dt  16/Jan/2022
+ 
+-\lx  က︀ꩫ︀်ၵ︀ျု က︀်ၸ︀ိဝ︀်
++\lx  က︀ꩫ︀်ၵ︀ျ ုက︀်ၸ︀ိဝ︀်
+ \le 
+ \ph  kān² khyuk³ phiu¹
+ \so  phk_kaan2khyuk3phiu1.wav
+@@ -2564,7 +2564,7 @@ to control or suppress oneself the impulse to laugh
+ \dt  03/Mar/2022
+ 
+ \lx  က︀ꩫ︀်ꩡ︀ိဝ︀်လ︀ုꩫ︀်
+-\le  က︀ꩫ︀်ꩡ︀ိဝ︀်လ︀ွု ꩫ︀်
++\le  က︀ꩫ︀်ꩡ︀ိဝ︀်လ︀ွုꩫ︀်
+ \ph  kān³ ceu² lon¹ 
+ \so  phk_kaan3ceu2lon1.wav
+ \ps  n.
+@@ -2882,7 +2882,7 @@ to control or suppress oneself the impulse to laugh
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ပ︀်က︀ွု ၺ်က︀ပ︀်ꩫ︀ိုင︀်
++\xv  က︀ပ︀်က︀ွုၺ်က︀ပ︀်ꩫ︀ိုင︀်
+ \xr  kāp¹ koi³ kāp¹ nüŋ⁵
+ \so  phk_kaap1koi3kaap1nvN5.wav
+ \xe  one sheath of plantain tree
+@@ -3320,7 +3320,7 @@ as found on a bamboo or it shoot, betel nut flower, over banana spadix. etc.
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ပ︀်က︀ွု ၺ်
++\xv  က︀ပ︀်က︀ွုၺ်
+ \xr  kāp¹ koi³
+ \so  phk_kaap1koi3.wav
+ \xe  banana sheath  
+@@ -8355,7 +8355,7 @@ what is the time now ?
+ \dt  19/Jan/2023
+ 
+ \lx  က︀ုက︀်
+-\le  က︀ွု က︀်
++\le  က︀ွုက︀်
+ \ph  kok⁴
+ \so  phk_kok4.wav
+ \ps  v.
+@@ -8476,7 +8476,7 @@ typically in order to obtain something  or wresle
+ \dt  28/Mar/2023
+ 
+ \lx  က︀ုက︀်က︀ူလ︀ုဝ︀်ဢ︀ုက︀်
+-\le  က︀ွု က︀်က︀ုဝ︀်လ︀ုဝ︀်ဢ︀ွု က︀်
++\le  က︀ွုက︀်က︀ုဝ︀်လ︀ုဝ︀်ဢ︀ွုက︀်
+ \ph  kok⁴ klo² ok⁴
+ \so  phk_kok4klo2ok4.wav
+ \ps  onom.
+@@ -8633,7 +8633,7 @@ the noble disciple of the  Buddha,
+ \dt  31/Mar/2023
+ 
+ \lx  က︀ုင︀်
+-\le  က︀ွု င︀်
++\le  က︀ွုင︀်
+ \ph  koŋ²
+ \so  phk_koN2.wav
+ \ps  n.
+@@ -8694,7 +8694,7 @@ the noble disciple of the  Buddha,
+ \dt  07/Apr/2023
+ 
+ \lx  က︀ုင︀်
+-\le  က︀ွု င︀်
++\le  က︀ွုင︀်
+ \ph  koŋ²
+ \so  phk_koN2
+ \ps  n
+@@ -8890,7 +8890,7 @@ to sell their goods in the festival
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုင︀်
+-\le  က︀ွု င︀်
++\le  က︀ွုင︀်
+ \ph  koŋ²
+ \so  phk_koN2.wav
+ \ps  n
+@@ -8935,7 +8935,7 @@ to sell their goods in the festival
+ \dt  07/Apr/2023
+ 
+ \lx  က︀ုင︀်
+-\le  က︀ွု င︀်
++\le  က︀ွုင︀်
+ \ph  koŋ⁵
+ \so  phk_koN5
+ \ps  v
+@@ -8982,7 +8982,7 @@ to sell their goods in the festival
+ \dt  19/May/2021
+ 
+ \lx  က︀ုင︀် 
+-\le  က︀ွု င︀်
++\le  က︀ွုင︀်
+ \ph  koŋ⁵
+ \so  phk_koN5.wav
+ \ps  n.
+@@ -9060,7 +9060,7 @@ to sell their goods in the festival
+ \dt  03/Dec/2020
+ 
+ \lx  က︀ုင︀်ꩡ︀ံ
+-\le  က︀ွု င︀်ꩡ︀ံ
++\le  က︀ွုင︀်ꩡ︀ံ
+ \ph  koŋ² cam⁴
+ \so  phk_koN2cam4.wav
+ \ps  n.
+@@ -9122,7 +9122,7 @@ to sell their goods in the festival
+ \dt  28/Mar/2023
+ 
+ \lx  က︀ုင︀်ၸ︀ုꩫ︀်ꩫ︀ိꩫ︀်
+-\le  က︀ွု င︀်ၸ︀ုꩫ︀်ꩫ︀ိꩫ︀်
++\le  က︀ွုင︀်ၸ︀ုꩫ︀်ꩫ︀ိꩫ︀်
+ \ph  koŋ² phun² nin²
+ \so  phk_koN2phun2nin2.wav
+ \ps  n.
+@@ -9182,7 +9182,7 @@ to sell their goods in the festival
+ \dt  31/Mar/2023
+ 
+ \lx  က︀ုင︀်ယ︀ုင︀်
+-\le  က︀ွု င︀်ယ︀ွု င︀်
++\le  က︀ွုင︀်ယ︀ွုင︀်
+ \ph  koŋ¹ yoŋ¹
+ \so  phk_koN1yoN1.wav
+ \ps  n.
+@@ -9215,7 +9215,7 @@ to sell their goods in the festival
+ \dt  05/May/2023
+ 
+ \lx  က︀ုင︀်ၵ︀ေ︀ႃ
+-\le  က︀ွု င︀်ၵ︀ေ︀ႃ
++\le  က︀ွုင︀်ၵ︀ေ︀ႃ
+ \ph  koŋ² khɔ²
+ \so  phk_koN2khq2.wav
+ \ps  n.
+@@ -9411,7 +9411,7 @@ to sell their goods in the festival
+ \dt  25/Mar/2023
+ 
+ \lx  က︀ုတ︀်
+-\le  က︀ွု တ︀်
++\le  က︀ွုတ︀်
+ \ph  kot¹
+ \so  phk_kot1.wav
+ \ps  adj.
+@@ -9463,7 +9463,7 @@ to sell their goods in the festival
+ \dt  19/Jan/2022
+ 
+ \lx  က︀ုတ︀်
+-\le  က︀ွု တ︀်
++\le  က︀ွုတ︀်
+ \ph  kot¹
+ \so  phk_kot1.wav
+ \ps  n
+@@ -9598,7 +9598,7 @@ esculentum (Polypdiaseae)
+ \dt  03/Dec/2020
+ 
+ \lx  က︀ုꩫ︀်
+-\le  က︀ွု ꩫ︀်
++\le  က︀ွုꩫ︀်
+ \ph  kon²
+ \so  phk_
+ \ps  clf.
+@@ -9620,7 +9620,7 @@ esculentum (Polypdiaseae)
+ \dt  17/Aug/2021
+ 
+ \lx  က︀ုꩫ︀်
+-\le  က︀ွု ꩫ︀်
++\le  က︀ွုꩫ︀်
+ \ph  kon¹
+ \so  phk_kon1.wav
+ \ps  v
+@@ -9650,7 +9650,7 @@ esculentum (Polypdiaseae)
+ \dt  06/Oct/2023
+ 
+ \lx  က︀ုꩫ︀်
+-\le  က︀ွု ꩫ︀်
++\le  က︀ွုꩫ︀်
+ \ph  kon³
+ \so  phk_kon3.wav
+ \ps  n.
+@@ -9700,7 +9700,7 @@ esculentum (Polypdiaseae)
+ \dt  31/Mar/2023
+ 
+ \lx  က︀ုꩫ︀်
+-\le  က︀ွု ꩫ︀်
++\le  က︀ွုꩫ︀်
+ \ph  kon⁴
+ \so  phk_kon4.wav
+ \ps  v
+@@ -9738,7 +9738,7 @@ esculentum (Polypdiaseae)
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုꩫ︀်
+-\le  က︀ွု ꩫ︀်
++\le  က︀ွုꩫ︀်
+ \ph  kon²
+ \so  phk_kon2.wav
+ \ps  n
+@@ -10443,7 +10443,7 @@ character
+ \dt  28/Mar/2022
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop⁴
+ \so  phk_kop4.wav
+ \ps  n.
+@@ -10470,7 +10470,7 @@ character
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop¹
+ \so  phk_kop1
+ \ps  n.
+@@ -10491,7 +10491,7 @@ character
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop¹
+ \so  phk_kop1.wav
+ \ps  n
+@@ -10512,7 +10512,7 @@ character
+ \dt  19/May/2021
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kup¹
+ \so  phk_kup1.wav
+ \ps  n
+@@ -10611,7 +10611,7 @@ the head and the neck from the sun and rain.
+ \dt  11/Jun/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop⁴
+ \so  phk_kop4.wav
+ \ps  n.
+@@ -10649,7 +10649,7 @@ the head and the neck from the sun and rain.
+ \dt  20/Jan/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop¹
+ \so  phk_kop1.wav
+ \ps  v.
+@@ -10692,7 +10692,7 @@ the head and the neck from the sun and rain.
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop⁴
+ \so  phk_kop4.wav
+ \ps  v.
+@@ -10718,7 +10718,7 @@ the head and the neck from the sun and rain.
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုပ︀်
+-\le  က︀ွု ပ︀်
++\le  က︀ွုပ︀်
+ \ph  kop⁴
+ \so  phk_kop4.wav
+ \ps  adj.
+@@ -10749,7 +10749,7 @@ the head and the neck from the sun and rain.
+ \dt  06/Apr/2023
+ 
+ \lx  က︀ုပ︀်က︀ိꩫ︀်ꩫ︀ိုꩫ︀်
+-\le  က︀ွု ပ︀်က︀ိꩫ︀်ꩫ︀ိုꩫ︀်
++\le  က︀ွုပ︀်က︀ိꩫ︀်ꩫ︀ိုꩫ︀်
+ \ph  kop¹ kin² nən²
+ \so  phk_kop1kin2nzn2.wav
+ \ps  n.
+@@ -10769,7 +10769,7 @@ the head and the neck from the sun and rain.
+ \dt  03/Dec/2020
+ 
+ \lx  က︀ုပ︀်က︀ိꩫ︀်ဝ︀ꩫ︀်
+-\le  က︀ု ပ︀်က︀ိꩫ︀်ဝ︀ꩫ︀်
++\le  က︀ ုပ︀်က︀ိꩫ︀်ဝ︀ꩫ︀်
+ \ph  kop¹ kin² wan²
+ \so  phk_kop1kin2wan2.wav
+ \ps  n.
+@@ -11166,8 +11166,8 @@ made for resting the spirit of a dead person
+ 
+ \lx  က︀ုံ
+ \le  က︀ုမ︀်
+-\le  က︀ွု ံ 
+-\le  က︀ွု မ︀််    
++\le  က︀ွုံ 
++\le  က︀ွုမ︀််    
+ \ph  kom³
+ \so  phk_kom3.wav
+ \ps  v
+@@ -13291,7 +13291,7 @@ it is like that of a dog that suffered from mange ( Tai phake  saying )
+ \xr  suŋ⁶ kɔn¹
+ \so  phk_suN6kqn1.wav
+ \xe  very  high or tall 
+-\xv  တ︀ꩫ︀ၵ︀ိုဝ︀ ꩭုင︀ ꩬ︀င︀ဝ︀င︀ ꩬ︀ွု င︀ က︀ွꩫ︀
++\xv  တ︀ꩫ︀ၵ︀ိုဝ︀ ꩭုင︀ ꩬ︀င︀ဝ︀င︀ ꩬ︀ွုင︀ က︀ွꩫ︀
+ \xr  tan² khü⁴ huŋ⁴ sāŋ² wāŋ² suŋ⁶ kɔn¹
+ \so  phk_tan2khv4huN4saaN2waaN2suN6kqn1.wav
+ \xe  Its power was intensely bright and tall
+@@ -13551,7 +13551,7 @@ two palms of hands together
+ \xr  kɔp¹ tau¹
+ \so  phk_kqp1tau1
+ \xe  a tortoise shell
+-\xv ွ ်တ︀ွ်တ︀ႝက︀ိုတ︀်က︀ွပ︀်ႜဢ︀ွ်က︀ွပ︀်တ︀ွ်ꩡ︀ွꩫ︀်ၵ︀ွ်
++\xv  ွ်တ︀ွ်တ︀ႝက︀ိုတ︀်က︀ွပ︀်ႜဢ︀ွ်က︀ွပ︀်တ︀ွ်ꩡ︀ွꩫ︀်ၵ︀ွ်
+ \xr  tau¹ tāi² kət¹ kɔp¹ au² kɔp¹ tau¹ cɔn⁴ khau³
+ \so  phk_tau1taai2kzt1kqp1au2kqp1tau1cqn4khau3.wav
+ \xe  it's shell remain after a tortoise died, the shell is used to shove paddy 
+@@ -13955,7 +13955,7 @@ two palms of hands together
+ \xr  kɔi² suŋ⁶ hə⁵ kāŋ² məŋ² sauŋ¹ huŋ⁵
+ \so  phk_kqi2suN6hz5kaaN2 mzN2sauN1huN5.wav
+ \xe  The flame in the middle of the country was very bright
+-\xv  ꩡ︀ွင︀ ဢ︀ꩫ︀ ပ︀ိၺႃ်ႜ ဝ︀ွေ︀ႃင︀ ၵ︀ွ် ꩡ︀ိုဝ︀ လ︀ႝ ထ︀ွု ၺ က︀ွႝ ꩫ︀ံ
++\xv  ꩡ︀ွင︀ ဢ︀ꩫ︀ ပ︀ိၺႃ်ႜ ဝ︀ွေ︀ႃင︀ ၵ︀ွ် ꩡ︀ိုဝ︀ လ︀ႝ ထ︀ွုၺ က︀ွႝ ꩫ︀ံ
+ \xr  cauŋ⁵ an² piŋ¹ ŋyā¹ wɔŋ⁴ khau³ cǖ⁵ lāi⁶ thoi¹ kɔi² nam⁶
+ \so  phk_cauN5an2piN1Nyaa1wqN4khau3cV5laai6thoi1kqi2nam6.wav
+ \xe  The manner of Buddha's knowledge entered the name of many subjects
+@@ -14365,7 +14365,7 @@ two palms of hands together
+ \xr  kɔi² suŋ⁶ hə⁵ kāŋ² məŋ² sauŋ¹ huŋ⁵
+ \so  phk_kqi2suN6hz5kaaN2 mzN2sauN1huN5.wav
+ \xe  The flame in the middle of the country was very bright
+-\xv  ꩡ︀ွင︀ ဢ︀ꩫ︀ ပ︀ိၺႃ်ႜ ဝ︀ွေ︀ႃင︀ ၵ︀ွ် ꩡ︀ိုဝ︀ လ︀ႝ ထ︀ွု ၺ က︀ွႝ ꩫ︀ံ
++\xv  ꩡ︀ွင︀ ဢ︀ꩫ︀ ပ︀ိၺႃ်ႜ ဝ︀ွေ︀ႃင︀ ၵ︀ွ် ꩡ︀ိုဝ︀ လ︀ႝ ထ︀ွုၺ က︀ွႝ ꩫ︀ံ
+ \xr  cauŋ⁵ an² piŋ¹ ŋyā¹ wɔŋ⁴ khau³ cǖ⁵ lāi⁶ thoi¹ kɔi² nam⁶
+ \so  phk_cauN5an2piN1Nyaa1wqN4khau3cV5laai6thoi1kqi2nam6.wav
+ \xe  The manner of Buddha's knowledge entered the name of many subjects
+@@ -14387,8 +14387,8 @@ two palms of hands together
+ \notes 
+ \dt  03/Feb/2024
+ 
+-\lx  က︀ျွု က︀်
+-\le  က︀ျု က︀် 
++\lx  က︀ျွုက︀်
++\le  က︀ျ ုက︀် 
+ \ph  kyok¹
+ \so  phk_kyok1.wav
+ \ps  n.
+@@ -14407,7 +14407,7 @@ two palms of hands together
+ \notes  ailot
+ \dt  05/May/2023
+ 
+-\lx  က︀ျွု ꩫ︀်
++\lx  က︀ျွုꩫ︀်
+ \le 
+ \le 
+ \ph  kyon²
+@@ -14456,8 +14456,8 @@ Lord Buddha during the water splashing festival
+ \notes  ailot
+ \dt  01/Oct/2023
+ 
+-\lx  က︀ျွင︀်က︀ျု ဝ︀်
+-\le  က︀ျေ︀ႃင︀်က︀ျွု ဝ︀်
++\lx  က︀ျွင︀်က︀ျ ုဝ︀်
++\le  က︀ျေ︀ႃင︀်က︀ျွုဝ︀်
+ \ph  kyauŋ² kyo²
+ \so  phk_kyauN2kyo2.wav
+ \ps  n.
+@@ -14646,7 +14646,7 @@ rounder than female male variety (vitex female plant)
+ \dn 
+ \rf  
+ 
+-\xv  ၵ︀ႃႜ ꩬ︀င︀ တ︀ိက︀ မ︀ွု ꩫ︀ ၵ︀ံ မ︀ဝ︀ ꩫ︀ႝ က︀ွႝ ယ︀ွ်
++\xv  ၵ︀ႃႜ ꩬ︀င︀ တ︀ိက︀ မ︀ွုꩫ︀ ၵ︀ံ မ︀ဝ︀ ꩫ︀ႝ က︀ွႝ ယ︀ွ်
+ \xr  khā⁶ saŋ⁶ taik⁴ mon² kham² mau¹ nai³ kɔi⁴ yau⁴
+ \so  phk_khaa6saN6taik4mon2kham2mau1nai3kqi4yau4.wav
+ \xe  They could not find anything to compare with the golden Buddha
+@@ -16573,8 +16573,8 @@ while playing as any one of the pieces in the game of < kai1>
+ \notes 
+ \dt  14/Feb/2024
+ 
+-\lx  က︀ျု ꩫ︀်
+-\le  က︀ျု ꩫ︀်
++\lx  က︀ျ ုꩫ︀်
++\le  က︀ျ ုꩫ︀်
+ \le  က︀ျွုꩫ︀်
+ \ph  kyon²
+ \so  phk_kyon2.wav
+@@ -16588,19 +16588,19 @@ while playing as any one of the pieces in the game of < kai1>
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ျွု ꩫ︀်ꩡ︀ိုင︀်ၸ︀ႃ
++\xv  က︀ျွုꩫ︀်ꩡ︀ိုင︀်ၸ︀ႃ
+ \xr  kyon² cüŋ⁵ phā⁴
+ \so  phk_kyon2cvN5phaa4.wav
+ \xe  the world
+-\xv  ꩫ︀ိꩫ︀် လ︀ုင︀် ꩬ︀ီ လ︀်ေ︀က︀ျွု ꩫ︀်
++\xv  ꩫ︀ိꩫ︀် လ︀ုင︀် ꩬ︀ီ လ︀်ေ︀က︀ျွုꩫ︀်
+ \xr  nin² loŋ⁶ si¹ le² kyon²
+ \so  phk_nin2loN6si1le2kyon2.wav
+ \xe  the four continents of the earth 
+ \notes 
+ \dt  22/Oct/2023
+ 
+-\lx  က︀ျု ဝ︀်က︀ျႃ
+-\le  က︀ျွု ဝ︀်က︀ျႃ
++\lx  က︀ျ ုဝ︀်က︀ျႃ
++\le  က︀ျွုဝ︀်က︀ျႃ
+ \ph  kyo² kyā²
+ \so  phk_kyo2kyaa2
+ \ps  v.
+@@ -16619,8 +16619,8 @@ while playing as any one of the pieces in the game of < kai1>
+ \notes 
+ \dt  05/May/2023
+ 
+-\lx  က︀ျု ဝ︀်ꩡ︀ႃ
+-\le  က︀ျွု ဝ︀်ꩡ︀ႃ
++\lx  က︀ျ ုဝ︀်ꩡ︀ႃ
++\le  က︀ျွုဝ︀်ꩡ︀ႃ
+ \ph  kyo² cā²
+ \so  phk_kyo2caa2.wav
+ \ps  v.
+@@ -19281,7 +19281,7 @@ to be brilliant, speaking proudly as if surpassing all others
+ \notes  ailot
+ \dt  20/Apr/2023
+ 
+-\lx  က︀ျို ဝ︀်က︀ျႃ
++\lx  က︀ျိ ုဝ︀်က︀ျႃ
+ \le 
+ \ph  kyə² kyā²
+ \so  phk_kyz2kyaa2
+@@ -19301,7 +19301,7 @@ to be brilliant, speaking proudly as if surpassing all others
+ \notes 
+ \dt  05/May/2023
+ 
+-\lx  က︀ျို ဝ︀်ꩡ︀ႃ
++\lx  က︀ျိ ုဝ︀်ꩡ︀ႃ
+ \le 
+ \ph  kyə² cā²
+ \so  phk_kyz2caaa2.wav
+@@ -20316,7 +20316,7 @@ nai3khaam1svn6thqm1ta1la2sI1laa1- sI1laa1cau3ke1cU2keu2maa2tI5khaa3 ta8
+ \dt  20/Jan/2022
+ 
+ \lx  က︀ျုꩫ︀်
+-\le  က︀ျု ꩫ︀်
++\le  က︀ျ ုꩫ︀်
+ \le  က︀ျွုꩫ︀်
+ \ph  kyon²
+ \so  phk_kyon2.wav
+@@ -22331,7 +22331,7 @@ esp. before midnight
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ုꩫ︀်ꩬ︀ွု ပ︀်ꩫ︀ံတ︀ꩫ︀်ꩫ︀ႝႜ ယ︀ႃထ︀ွံၵ︀ွံၵ︀ႝမ︀ꩫ︀်ၵ︀ꩫ︀်
++\xv  က︀ုꩫ︀်ꩬ︀ွုပ︀်ꩫ︀ံတ︀ꩫ︀်ꩫ︀ႝႜ ယ︀ႃထ︀ွံၵ︀ွံၵ︀ႝမ︀ꩫ︀်ၵ︀ꩫ︀်
+ \xr  kon² sop¹ nam⁶ tān³ nāi² yā¹ thɔm¹ khām² khai⁵ mün² khān²
+ \so  phk_kon2sop1nam6taan3naai2yaa1thqm1khaam2khai5mvn2khaan2.wav
+ \xe  a talkative person speak with no purpose, so not to listen too much what he give account
+@@ -22475,7 +22475,7 @@ esp. before midnight
+ \xr  khān⁴ ŋin²
+ \so  phK_khaan4Nin2.wav
+ \xe  to be unwilling to hear or listen, because of  hatred
+-\xv ွ ်ၵ︀ꩫ︀်တ︀ꩫ︀်
++\xv  ွ်ၵ︀ꩫ︀်တ︀ꩫ︀်
+ \xr  khān⁴ tān³
+ \so  phk_khaan4taan3.wav
+ \xe  to unwilling to talk about,  beacuse of hatred
+@@ -24095,7 +24095,7 @@ the others good name
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ၵ︀ႃꩬ︀ုပ︀်
++\xv  ွၵ︀ႃꩬ︀ုပ︀်
+ \xr  khā³ sop¹
+ \so  phk_khaa3sop1.wav
+ \pde  the act chewing something  (betel nut or spices) after meal to make freshness of the mouth 
+@@ -26939,7 +26939,7 @@ someone feel nostalgic (Tai Phake saying)
+ \dt  19/Nov/2023
+ 
+ \lx  ၵ︀ုက︀်
+-\le  ၵ︀ွု က︀်
++\le  ၵ︀ွုက︀်
+ \ph  khok³
+ \so  phk_khok3.wav
+ \ps  n
+@@ -27115,7 +27115,7 @@ foot of each of a pair for powering to pound rice
+ \dt  30/Jan/2023
+ 
+ \lx  ၵ︀ုင︀်
+-\le  ၵ︀ွု င︀်
++\le  ၵ︀ွုင︀်
+ \ph  khoŋ⁴
+ \so  phk_khoN4.wav
+ \ps  n.
+@@ -27161,7 +27161,7 @@ foot of each of a pair for powering to pound rice
+ \dt  15/May/2022
+ 
+ \lx  ၵ︀ုင︀်
+-\le  ၵ︀ွု င︀်
++\le  ၵ︀ွုင︀်
+ \ph  khoŋ²
+ \so  phk_khoN2.wav
+ \ps  n.
+@@ -27320,7 +27320,7 @@ foot of each of a pair for powering to pound rice
+ \dt  15/Mar/2021
+ 
+ \lx  ၵ︀ုတ︀်
+-\le  ၵ︀ွု တ︀်
++\le  ၵ︀ွုတ︀်
+ \ph  khōt¹
+ \so  phk_khOt1.wav
+ \ps  adj.
+@@ -27378,7 +27378,7 @@ foot of each of a pair for powering to pound rice
+ \dt  02/Apr/2023
+ 
+ \lx  ၵ︀ုတ︀်
+-\le  ၵ︀ွု တ︀်
++\le  ၵ︀ွုတ︀်
+ \ph  khot⁴
+ \so  phk_khot4.wav
+ \ps  v
+@@ -27837,7 +27837,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  15/Mar/2021
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \ph  khōn²
+ \so  phk_khOn2.wav
+ \ps  v.
+@@ -27878,7 +27878,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \ph  khōn³
+ \so  phk_khOn3.wav
+ \ps  n.
+@@ -27898,7 +27898,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \sn  1
+ \ph  khōn⁴
+ \so  phk_khon4.wav
+@@ -27924,7 +27924,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  02/Apr/2023
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \ph  khōn⁴
+ \so  phk_khOn4
+ \ps  v.
+@@ -27953,7 +27953,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  07/Oct/2023
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \ph  khōn⁴
+ \so  phk_khOn4.wav
+ \ps  v.
+@@ -27970,7 +27970,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \xr  khon⁴ lik⁴
+ \so  phk_khon4lik4.wav
+ \xe  to do reseach on literature or search out
+-\xv  က︀ႃႜဢ︀ꩫ︀်တ︀ူၵ︀ႃႜၵ︀ွု ꩫ︀်ၵ︀ွေ︀ႃႜင︀ိင︀်ꩫ︀်ေ︀က︀ꩫ︀
++\xv  က︀ႃႜဢ︀ꩫ︀်တ︀ူၵ︀ႃႜၵ︀ွုꩫ︀်ၵ︀ွေ︀ႃႜင︀ိင︀်ꩫ︀်ေ︀က︀ꩫ︀
+ \xr  kā⁵ an² tū⁴ khā³  khon⁴ khɔ³  ŋeŋ⁵ nɛ⁶ kün²
+ \so  phk_kaa5an2tU4khaa3khon4khq3 NeN5nj6kvn2.wav
+ \xe  And then we research the matter, every corner ( point of view), explaining it
+@@ -28013,7 +28013,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  04/Apr/2023
+ 
+ \lx  ၵ︀ုꩫ︀်
+-\le  ၵ︀ွု ꩫ︀်
++\le  ၵ︀ွုꩫ︀်
+ \ph  khon⁴
+ \so  phk_khon4
+ \ps  v.
+@@ -28248,7 +28248,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \xr  khup⁴ ɔn² tāŋ² 
+ \so  phk_khup4qn2taaN2.wav
+ \xe  first time, previous time. the turn before this time
+-\xv  ၵ︀ုုပ︀ မ︀ိုဝ︀ ꩫ︀ႃႜ ၵ︀ိုꩫ︀ ꩭွု င︀ လ︀ိင︀ ꩬ︀ၞ်
++\xv  ၵ︀ုုပ︀ မ︀ိုဝ︀ ꩫ︀ႃႜ ၵ︀ိုꩫ︀ ꩭွုင︀ လ︀ိင︀ ꩬ︀ၞ်
+ \xr  khup¹ mə⁵ nā³ khün² huŋ⁵ laiŋ² saü⁶
+ \so  phk_khup4mz5naa3khvn2huN5laiN2sav6.wav
+ \xe  At that time the night shone brightly
+@@ -28299,7 +28299,7 @@ mzN2yav1hq6kham2kau2zi2.wav
+ \dt  22/Jan/2022
+ 
+ \lx  ၵ︀ုပ︀်
+-\le  ၵ︀ွု ပ︀်
++\le  ၵ︀ွုပ︀်
+ \ph  khop¹
+ \so  phk_khop1.wav
+ \ps  n.
+@@ -28329,7 +28329,7 @@ and two days <wan2 kam2> as Tai Phake people according to the sexagesimal sixty
+ \dt  05/May/2023
+ 
+ \lx  ၵ︀ုပ︀်
+-\le  ၵ︀ွု ပ︀်
++\le  ၵ︀ွုပ︀်
+ \ph  khop¹
+ \so  phk_khop1.wav
+ \ps  clf..
+@@ -28355,7 +28355,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုပ︀်
+-\le  ၵ︀ွု ပ︀်
++\le  ၵ︀ွုပ︀်
+ \ph  khop¹
+ \so  phk_khop1.wav
+ \ps  v.
+@@ -28638,7 +28638,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  24/Nov/2020
+ 
+ \lx  ၵ︀ုံ
+-\le  ၵ︀ွုံ 
++\le  ၵ︀ွံ ု
+ \ph  khom²
+ \so  phk_khom2.wav
+ \ps  v.
+@@ -28667,7 +28667,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုံ
+-\le  ၵ︀ွုံ 
++\le  ၵ︀ွံ ု
+ \ph  khom²
+ \so  phk_khom2.wav
+ \ps  n.
+@@ -28689,7 +28689,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \xr  kim² khom²
+ \so  phk_kim2khom2.wav
+ \xe  scissors, lit. a tong with sharp edges
+-\xv ု ံတ︀င︀်ၵ︀ုံ
++\xv  ုံတ︀င︀်ၵ︀ုံ
+ \xr  taŋ³ khom²
+ \so  phk_taN3khom2.wav
+ \xe  to place the cutting edge upward (as of a knife )
+@@ -28706,7 +28706,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုံ
+-\le  ၵ︀ွုံ 
++\le  ၵ︀ွံ ု
+ \ph  khom³
+ \so  phk_khom3.wav
+ \ps  n.
+@@ -28753,7 +28753,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  21/May/2021
+ 
+ \lx  ၵ︀ုံ
+-\le  ၵ︀ွုံ 
++\le  ၵ︀ွံ ု
+ \ph  khom⁴
+ \so  phk_khom4.wav
+ \ps  adj.
+@@ -28773,7 +28773,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ုံ
+-\le  ၵ︀ွုံ 
++\le  ၵ︀ွံ ု
+ \ph  khom³
+ \so  phk_khom3.wav
+ \ps  v. 
+@@ -31563,7 +31563,7 @@ other
+ \notes 
+ \dt  07/Oct/2023
+ 
+-\lx  ၵ︀ျွု ꩫ︀်
++\lx  ၵ︀ျွုꩫ︀်
+ \le 
+ \ph  khyon¹
+ \so  phk_khyon1.wav
+@@ -31672,15 +31672,15 @@ other
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ျု က︀်က︀ꩫ︀်
++\xv  ၵ︀ျ ုက︀်က︀ꩫ︀်
+ \xr  khyuk³ kan³
+ \so  phk_khyuk3kan3.wav
+ \xe  to bear, to restrain
+-\xv  ၵ︀ျု က︀်ꩡ︀ၞ်
++\xv  ၵ︀ျ ုက︀်ꩡ︀ၞ်
+ \xr  khyuk⁴ caü²
+ \so  phk_khyuk3cav2.wav
+ \xe  to control or restrain the feeling 
+-\xv  ၵ︀ျု က︀်ပ︀ျိင︀်
++\xv  ၵ︀ျ ုက︀်ပ︀ျိင︀်
+ \xr  khyuk³ paiŋ¹
+ \so  phk_khyuk3paiN1.wav
+ \xe  to rule over, control
+@@ -33847,7 +33847,7 @@ something regarded as having great value or very special status, dearly
+ \notes  ailot
+ \dt  22/Oct/2023
+ 
+-\lx  ၵ︀ျု ပ︀်
++\lx  ၵ︀ျ ုပ︀်
+ \le 
+ \ph  khyup³
+ \so  phk_khyup3.wav
+@@ -33860,7 +33860,7 @@ something regarded as having great value or very special status, dearly
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ျု ပ︀်ပ︀ျိင︀်
++\xv  ၵ︀ျ ုပ︀်ပ︀ျိင︀်
+ \xr  khyup³ paiŋ¹
+ \so  phk_khyup3paiN1.wav
+ \xe  rule over, to conrol
+@@ -37374,7 +37374,7 @@ tough also, applied to light shining strongly also applied to light shining stro
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭွု င︀ ပ︀ွင︀ ၸ︀ြႃႜ ပ︀ိတ︀ ꩫ︀ႃႜ ၸ︀ြွု ံ ၵ︀ၞႝ
++\xv  ꩭွုင︀ ပ︀ွင︀ ၸ︀ြႃႜ ပ︀ိတ︀ ꩫ︀ႃႜ ၸ︀ြွုံ ၵ︀ၞႝ
+ \xr  huŋ⁵ pauŋ¹ phā⁴ pɛt¹ nā³ phum¹ khwai²
+ \so  phk_huN5pauN1phaa4pjt1naa3phum1khwai2.wav
+ \xe  His (fame) was bright and joyful through all eight directions
+@@ -39098,7 +39098,7 @@ and extend out from the rest
+ \dt  03/Feb/2023
+ 
+ \lx  င︀ုင︀်
+-\le  င︀ွု င︀််
++\le  င︀ွုင︀််
+ \ph  ŋoŋ²
+ \so  phk_NoN2.wav
+ \ps  n.
+@@ -41135,7 +41135,7 @@ and turned them from brown to white
+ \dt  03/Feb/2023
+ 
+ \lx  င︀ိုမ︀်
+-\le ွ 
++\le  ွ
+ \ph  ŋəm⁵
+ \so  phk_Nzm5
+ \ps  v
+@@ -42365,7 +42365,7 @@ sik4kyaa1waa1laa1  (p) cakkavala
+ \xr  caŋ¹ tak¹ 
+ \so  phk_cvN1tak1.wav
+ \xe  then, future and past time marker
+-\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွု ꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
++\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွုꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
+ \xr  ŋau² saiŋ⁶ phrā² cüŋ¹ tak¹  khon⁴ naü² caü² mā² tɔ¹ tak¹ khaü³ lāt⁴ mə⁵ phrā⁴ khau³ cāt³
+ ma¹ hɔ¹ hɔ² pan²
+ \so  phk_Nau2saiN6phraa2caN1tak1khon4nav2cav2maa2tq1tak1khav5lat3mz5phraa4khau3caat4
+@@ -42655,7 +42655,7 @@ medicinal properties is used as vegetable
+ \xr  hā³ pāk¹ hā³ sip¹ cāt⁴
+ \so  phk_haa3paak1haa3sip1caat4.wav
+ \xe  550 stories of previous birth of the Buddha
+-\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွု ꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
++\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွုꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
+ \xr  ŋau² saiŋ⁶ phrā² cüŋ¹ tak¹  khon⁴ naü² caü²  mā² tɔ¹ tak¹ khaü³ lāt⁴ mə⁵  phrā⁴ khau³ cāt³
+ ma¹ hɔ¹ hɔ² pan²   
+ \so  phk_Nau2saiN6phraa2cvN1tak1khon4nav2cav2 maa2tq1tak1khav5laat4mz5phraa4khau3caat3
+@@ -45497,7 +45497,7 @@ bad omen and can bring a good or bad luck)
+ \dt  10/Apr/2023
+ 
+ \lx  ꩡ︀ႃလ︀ုံꩭွံ (တ︀ုꩫ︀်)
+-\le  ꩡ︀ႃလ︀ွု ံꩭွံ
++\le  ꩡ︀ႃလ︀ွုံꩭွံ
+ \ph  ca¹ lom² hɔm⁶ (ton³)
+ \so  phk_ca1lom2hqm6
+ \ps  n
+@@ -48030,7 +48030,7 @@ esp. used when binding the holy thread to someone
+ \dt  12/Feb/2023
+ 
+ \lx  ꩡ︀ုက︀်
+-\le  ꩡ︀ွု က︀်
++\le  ꩡ︀ွုက︀်
+ \ph  cok¹
+ \so  phk_cok1.wav
+ \ps  v
+@@ -48064,7 +48064,7 @@ is cold
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုက︀်
+-\le  ꩡ︀ွု က︀်
++\le  ꩡ︀ွုက︀်
+ \ph  cok⁴
+ \so  phk_cok4.wav
+ \ps  v.
+@@ -48085,7 +48085,7 @@ is cold
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုက︀်
+-\le  ꩡ︀ွု က︀်
++\le  ꩡ︀ွုက︀်
+ \ph  cok⁴
+ \so  phk_cok4.wav
+ \ps  v.
+@@ -48105,7 +48105,7 @@ is cold
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုက︀်
+-\le  ꩡ︀ွု က︀်
++\le  ꩡ︀ွုက︀်
+ \ph  cok¹
+ \so  phk_cok1.wav
+ \ps  v.
+@@ -48126,7 +48126,7 @@ is cold
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုက︀်
+-\le  ꩡ︀ွု က︀်
++\le  ꩡ︀ွုက︀်
+ \ph  cok¹ 
+ \so  phk_cok1.wav
+ \ps  v.
+@@ -48328,7 +48328,7 @@ ceremony in line/row.'
+ \dt  07/Nov/2020
+ 
+ \lx  ꩡ︀ုင︀်
+-\le  ꩡ︀ွု င︀်
++\le  ꩡ︀ွုင︀်
+ \ph  coŋ²
+ \so  phk_coN2.wav
+ \ps  n
+@@ -48390,7 +48390,7 @@ ceremony in line/row.'
+ \dt  10/Jun/2022
+ 
+ \lx  ꩡ︀ုင︀်က︀င︀်
+-\le  ꩡ︀ွု င︀်က︀င︀်
++\le  ꩡ︀ွုင︀်က︀င︀်
+ \ph  coŋ¹ kāŋ¹
+ \so  phk_coN1kaaN1.wav
+ \ps  adj.
+@@ -48411,7 +48411,7 @@ ceremony in line/row.'
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုင︀်ၵ︀ုင︀်
+-\le  ꩡ︀ွု င︀်ၵ︀ွု င︀်
++\le  ꩡ︀ွုင︀်ၵ︀ွုင︀်
+ \ph  coŋ¹ khoŋ⁵
+ \so  phk_coN1khoN5.wav
+ \ps  adj.
+@@ -48432,7 +48432,7 @@ ceremony in line/row.'
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုင︀်ၸ︀ုင︀်
+-\le  ꩡ︀ွု င︀်ၸ︀ွု င︀်
++\le  ꩡ︀ွုင︀်ၸ︀ွုင︀်
+ \ph  coŋ¹ phoŋ⁵
+ \so  phk_coN1phoN5
+ \ps  intensifier.
+@@ -48583,7 +48583,7 @@ frustrated
+ \dt  24/Nov/2023
+ 
+ \lx  ꩡ︀ုꩫ︀်
+-\le  ꩡ︀ွု ꩫ︀်
++\le  ꩡ︀ွုꩫ︀်
+ \ph  con²
+ \so  phk_con2
+ \ps  n.
+@@ -48745,7 +48745,7 @@ frustrated
+ \dt  23/Jan/2022
+ 
+ \lx  ꩡ︀ုꩫ︀်
+-\le  ꩡ︀ွု ꩫ︀်
++\le  ꩡ︀ွုꩫ︀်
+ \ph  con²
+ \so  phk_con2
+ \ps  n.
+@@ -49251,7 +49251,7 @@ frustrated
+ \dt  10/Oct/2023
+ 
+ \lx  ꩡ︀ုံ
+-\le  ꩡ︀ွု ံ
++\le  ꩡ︀ွုံ
+ \ph  com²
+ \so  phk_com2
+ \ps  adj
+@@ -49375,7 +49375,7 @@ joy
+ \dt  31/Jan/2024
+ 
+ \lx  ꩡ︀ုံ
+-\le  ꩡ︀ွု ံ
++\le  ꩡ︀ွုံ
+ \ph  com²
+ \so  phk_com2
+ \ps  v
+@@ -49401,7 +49401,7 @@ joy
+ \dt  13/Apr/2023
+ 
+ \lx  ꩡ︀ုံ
+-\le  ꩡ︀ွု ံ
++\le  ꩡ︀ွုံ
+ \ph  com²
+ \so  phk_com2
+ \ps  v.
+@@ -50409,7 +50409,7 @@ likes to eat fish, but fears fish-hooks and nets
+ \xr  kā¹ cɔt¹ han⁶ cɔt¹ 
+ \so  phk_kaa1cqt1han6cqt1 
+ \xe  to go and see each and every places  
+-\xv  ၵ︀ွံ ၵ︀ိုဝ︀ လ︀ွု ꩫ︀ ꩭွ် မ︀ိုင︀ ꩡ︀ွတ︀် ꩡ︀ိုင︀ ပ︀ိုꩫ︀ယ︀ွ်
++\xv  ၵ︀ွံ ၵ︀ိုဝ︀ လ︀ွုꩫ︀ ꩭွ် မ︀ိုင︀ ꩡ︀ွတ︀် ꩡ︀ိုင︀ ပ︀ိုꩫ︀ယ︀ွ်
+ \xr  khām² khə² lon⁴ hau² məŋ² cɔt¹ cüŋ⁵ pən⁵ yau⁴
+ \so  phk_khaam2khz2lon4hau2mzN2caut1cvN5pzn5yau4.wav
+ \xe  His news (kham khz) filled the length and breadth of countries everywhere
+@@ -54187,7 +54187,7 @@ have lived in
+ \xr  cüŋ¹ tak¹ 
+ \so  phk_cvN1tak1.wav
+ \xe  then, similar in meaning to < cvN1nai4 > now,  present and past time marker 
+-\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွု ꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
++\xv  င︀ွ် ꩬ︀ိင︀ ၸ︀ြုႃႜ ꩡ︀င︀ တ︀က︀ ၵ︀ွုꩫ︀ ꩫ︀ၞ် ꩡ︀ၞ် မ︀ႃႜ တ︀ွေ︀ႃ် ႜ တ︀က︀ ၵ︀ၞ် လ︀တ︀ မ︀ိုဝ︀ ၸ︀ြႃႜ ၵ︀ွ်ဝ︀ ꩡ︀တ︀ မ︀ႜꩭွေ︀ႃႜ ꩭွေ︀ႃ ပ︀ꩫ︀
+ \xr  ŋau² saiŋ⁶ phrā² caŋ¹ tak¹  khon⁴ naü² caü²  mā² tɔ¹ tak¹ khaü³ lat³ mə⁵ phrā⁴ khau³ cāt³
+ ma¹ hɔ¹ hɔ² pan²ŋau²saiŋ⁶phrā²caŋ¹tak¹khon⁴naü²caü²mā²tɔ¹tak¹khaü⁵lat³mə⁵phrā⁴khau³cāt⁴
+ ma¹hɔ¹hɔ²pan².waü            
+@@ -57275,7 +57275,7 @@ the entrance upon the novitiate
+ \xr  hə⁵ sāŋ² wāŋ²  
+ \so  phk_hz5sauN1saaN2waaN2  
+ \xe  intensely bright
+-\xv  တ︀ꩫ︀ၵ︀ိုဝ︀ ꩭုင︀ ꩬ︀င︀ဝ︀င︀ ꩬ︀ွု င︀ က︀ွꩫ︀
++\xv  တ︀ꩫ︀ၵ︀ိုဝ︀ ꩭုင︀ ꩬ︀င︀ဝ︀င︀ ꩬ︀ွုင︀ က︀ွꩫ︀
+ \xr  tan² khü⁴ huŋ⁴ sāŋ² wāŋ² suŋ⁶ kɔn¹
+ \so  phk_tan2khv4huN4saaN2waaN2suN6kqn1
+ \xe  Its power was intensely bright and tall
+@@ -60365,7 +60365,7 @@ females in turn or response as antiphonal songs
+ \xr  khun⁶ sā¹ cē¹  
+ \so  phk_khun6saa1cE1     
+ \xe  a rich man  
+-\xv  ၸ︀ႝႃႜပ︀ႃႜဝ︀ꩫ︀်ꩬ︀ုင︀်ꩡ︀ံႜၸ︀ုင︀်ၵ︀ွု ꩫ︀်ꩬ︀ႃႜꩡ︀ေ︀ꩬ︀င︀်ꩫ︀ၞ်မ︀ိုင︀်လ︀ႝꩡ︀ွ်ဝ︀
++\xv  ၸ︀ႝႃႜပ︀ႃႜဝ︀ꩫ︀်ꩬ︀ုင︀်ꩡ︀ံႜၸ︀ုင︀်ၵ︀ွုꩫ︀်ꩬ︀ႃႜꩡ︀ေ︀ꩬ︀င︀်ꩫ︀ၞ်မ︀ိုင︀်လ︀ႝꩡ︀ွ်ဝ︀
+ \xr  pāi² phā⁴ pā³ wan² suŋ⁶ phuŋ⁶ khun⁶ sā¹ cē¹ sāŋ³ naü² məŋ² lāi⁶ cau³
+ \so  phk_paai2phaa4paa3wan2suN6phuN6khun6saa1cE1saaN3nav2mzN2laai6cau3
+ \xe  Many rich men stayed in the (east) country
+@@ -63779,7 +63779,7 @@ spend it usefully
+ \dt  05/Nov/2023
+ 
+ \lx  ꩬ︀ုင︀်
+-\le  ꩬ︀ွု င︀်
++\le  ꩬ︀ွုင︀်
+ \ph  soŋ¹
+ \so  phk_soN1
+ \ps  v.
+@@ -63871,7 +63871,7 @@ spend it usefully
+ \dt  08/Nov/2023
+ 
+ \lx  ꩬ︀ုင︀် (ၵ︀ုꩫ︀်)
+-\le  ꩬ︀ွု င︀်
++\le  ꩬ︀ွုင︀်
+ \ph  soŋ⁶ (khun)
+ \so  phk_khun6
+ \ps  n.
+@@ -63968,7 +63968,7 @@ of goodness, a powerful evil spirit  (p) Mara
+ \xr  hə⁵ suŋ² huŋ²
+ \so  phk_hz5suN2huN2
+ \xe  exceedingly bright 
+-\xv  ꩫ︀ၞ် က︀ွေ︀ႃ တ︀ꩫ︀ၵ︀ိုဝ︀ ꩬ︀ိင︀ ꩫ︀်ဝ︀ ꩭိုဝ︀ ꩬ︀ုင︀ꩭုင︀ꩬ︀ွု တ︀ ၵ︀ွပ︀
++\xv  ꩫ︀ၞ် က︀ွေ︀ႃ တ︀ꩫ︀ၵ︀ိုဝ︀ ꩬ︀ိင︀ ꩫ︀်ဝ︀ ꩭိုဝ︀ ꩬ︀ုင︀ꩭုင︀ꩬ︀ွုတ︀ ၵ︀ွပ︀
+ \xr  naü⁶ kɔ⁴  tan² khə² saiŋ⁶ nau² hə⁵ suŋ² huŋ² sut¹ khɔp¹
+ \so  phk_nav6kq4 tan2khv4saiN6nau2hz5suN2huN2sut1khqp1
+ \xe  The power of the diamond star is so bright and extends to the horizon
+@@ -64071,7 +64071,7 @@ of goodness, a powerful evil spirit  (p) Mara
+ \dt  16/Feb/2023
+ 
+ \lx  ꩬ︀ုတ︀်
+-\le  ꩬ︀ွု တ︀်
++\le  ꩬ︀ွုတ︀်
+ \ph  sot⁴
+ \so  phk_sot4
+ \ps  v
+@@ -64297,7 +64297,7 @@ Dharma at the peak of knowledge
+ \dt  19/Oct/2020
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son²
+ \so  phk_son2
+ \ps  n
+@@ -64348,7 +64348,7 @@ Dharma at the peak of knowledge
+ \dt  24/Mar/2021
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son²
+ \so  phk_son2
+ \ps  v
+@@ -64373,7 +64373,7 @@ Dharma at the peak of knowledge
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son⁶
+ \so  phk_son6
+ \ps  v.
+@@ -64433,7 +64433,7 @@ Dharma at the peak of knowledge
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son⁶
+ \so  phk_son6
+ \ps  n
+@@ -64471,7 +64471,7 @@ Dharma at the peak of knowledge
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son³
+ \so  phk_son3
+ \ps  n
+@@ -64509,7 +64509,7 @@ Dharma at the peak of knowledge
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son²
+ \so  phk_son2
+ \ps  v
+@@ -64534,7 +64534,7 @@ Dharma at the peak of knowledge
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုꩫ︀်
+-\le  ꩬ︀ွု ꩫ︀်
++\le  ꩬ︀ွုꩫ︀်
+ \ph  son²
+ \so  phk_son2
+ \ps  v.
+@@ -64602,7 +64602,7 @@ for help or the lost things (with anxiety)
+ \xr  sun² lun² khap³ laŋ⁶ hən² cī¹ut⁴
+ \so  phk_sun2lun2khap3laN6hzn2cI1ut4
+ \xe  Houses were placed closely side by side
+-\xv  မ︀ွု ꩫ︀်လ︀ုက︀်ၸ︀ြႃႜꩬ︀ိၺ်ၵ︀ုꩫ︀်ꩬ︀ွုꩫ︀်လ︀ုꩫ︀်ꩡ︀ွ်ꩬ︀င︀်ꩫ︀ိုဝ︀်ဢ︀ိက︀်လ︀ုံၵ︀ွ်꩷
++\xv  မ︀ွုꩫ︀်လ︀ုက︀်ၸ︀ြႃႜꩬ︀ိၺ်ၵ︀ုꩫ︀်ꩬ︀ွုꩫ︀်လ︀ုꩫ︀်ꩡ︀ွ်ꩬ︀င︀်ꩫ︀ိုဝ︀်ဢ︀ိက︀်လ︀ုံၵ︀ွ်꩷
+ \xr  mun¹ luk⁴ phā⁴ sɛn⁶ khun⁶ sun² lun² cau³ sāŋ⁶ nə⁶ ik¹ lum⁵ khau⁶ əi²
+ \so  phk_mun1luk4 phaa4sjn6khun6sun2lun2cau3saaN6nz6ik1lum5khau6zi2
+ \xe  There were 10,000 children of the sky, lakhs of princes of the heavens above, and also of this world, oh you, listen
+@@ -64669,7 +64669,7 @@ for help or the lost things (with anxiety)
+ \dt  27/May/2021
+ 
+ \lx  ꩬ︀ုပ︀ꩰ
+-\le  ꩬ︀ွု ပ︀ꩰ
++\le  ꩬ︀ွုပ︀ꩰ
+ \ph  sop⁴ sop⁴
+ \so  phk_sop4sop4
+ \ps  intensifier.
+@@ -64690,7 +64690,7 @@ for help or the lost things (with anxiety)
+ \dt  24/Apr/2023
+ 
+ \lx  ꩬ︀ုပ︀်
+-\le  ꩬ︀ွု ပ︀်
++\le  ꩬ︀ွုပ︀်
+ \ph  sop⁴
+ \so  phk_sop4
+ \ps  clf.
+@@ -64711,7 +64711,7 @@ for help or the lost things (with anxiety)
+ \dt  05/May/2023
+ 
+ \lx  ꩬ︀ုပ︀်
+-\le  ꩬ︀ွု ပ︀်
++\le  ꩬ︀ွုပ︀်
+ \ph  sop⁴
+ \so  phk_sop4
+ \ps  v.
+@@ -64732,7 +64732,7 @@ for help or the lost things (with anxiety)
+ \dt  05/May/2023
+ 
+ \lx  ꩬ︀ုပ︀်
+-\le  ꩬ︀ွု ပ︀်
++\le  ꩬ︀ွုပ︀်
+ \ph  sop¹
+ \so  phk_sop1.wav
+ \ps  n.
+@@ -64826,7 +64826,7 @@ not to say about it
+ \dt  05/May/2023
+ 
+ \lx  ꩬ︀ုပ︀်
+-\le  ꩬ︀ွု ပ︀်
++\le  ꩬ︀ွုပ︀်
+ \ph  sop¹
+ \so  phk_sop1
+ \ps  v.
+@@ -65019,7 +65019,7 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \dt  08/Dec/2020
+ 
+ \lx  ꩬ︀ုပ︀်တ︀ူ
+-\le  ꩬ︀ွု ပ︀်တ︀ူ
++\le  ꩬ︀ွုပ︀်တ︀ူ
+ \ph  sop¹ tū⁶
+ \so  phk_sop1tU6
+ \ps  n.
+@@ -65031,7 +65031,7 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ꩬ︀ုပ︀်တ︀ူꩬ︀ေ︀
++\xv  ွꩬ︀ုပ︀်တ︀ူꩬ︀ေ︀
+ \xr  sop¹ tū⁶ sɛ⁵
+ \so  phk_sop1tU6sj5
+ \xe  a gate with bar
+@@ -65040,7 +65040,7 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \dt  05/May/2023
+ 
+ \lx  ꩬ︀ုပ︀်တ︀ူဢ︀ွꩫ︀်
+-\le  ꩬ︀ွု ပ︀်တ︀ူဢ︀ွꩫ︀်
++\le  ꩬ︀ွုပ︀်တ︀ူဢ︀ွꩫ︀်
+ \ph  sop¹ tū⁶ ɔn¹
+ \so  phk_sop1tU6qn1
+ \ps  n.
+@@ -65052,7 +65052,7 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ 
++\xv  ွ
+ \xr 
+ \xe 
+ \notes 
+@@ -65145,14 +65145,14 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \dt  04/Mar/2024
+ 
+ \lx  ꩬ︀ုံ
+-\le  ꩬ︀ွု ံ
+-\le  ꩬ︀ွု မ︀်
++\le  ꩬ︀ွုံ
++\le  ꩬ︀ွုမ︀်
+ \ph  sum⁶
+ \so  phk_sum6
+ \ps  v\
+ \de  to heap, to collect in a heap, gather in a heap
+ \ge  heap
+-\pl ု ံ
++\pl  ုံ
+ \pd 
+ \pde 
+ \pdn 
+@@ -65172,8 +65172,8 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \dt  05/May/2023
+ 
+ \lx  ꩬ︀ုံ 
+-\le  ꩬ︀ွု ံ
+-\le  ꩬ︀ွု မ︀်
++\le  ꩬ︀ွုံ
++\le  ꩬ︀ွုမ︀်
+ \ph  som³
+ \so  phk_som3
+ \de  sour, acid
+@@ -65225,8 +65225,8 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \dt  31/Mar/2021
+ 
+ \lx  ꩬ︀ုံ
+-\le  ꩬ︀ွု ံ
+-\le  ꩬ︀ွု မ︀်
++\le  ꩬ︀ွုံ
++\le  ꩬ︀ွုမ︀်
+ \ph  som⁴
+ \so  phk_som4
+ \ps  n.
+@@ -65320,8 +65320,8 @@ lake and flowing water. the base of the gear is inserted in to the mud of warer
+ \dt  14/Feb/2023
+ 
+ \lx  ꩬ︀ုံ
+-\le  ꩬ︀ွု ံ
+-\le  ꩬ︀ွု မ︀်
++\le  ꩬ︀ွုံ
++\le  ꩬ︀ွုမ︀်
+ \ph  som³
+ \so  phk_som3
+ \ps  adj.
+@@ -71779,7 +71779,7 @@ and having  in different colour and shape ( see maiN2 sI1 lA1 }
+ \dt  29/Feb/2024
+ 
+ \lx  ꩬ︀ျိင︀်က︀ႃꩬ︀ုံ (တ︀ုꩫ︀်)
+-\le  ꩬ︀ိင︀်က︀ႃꩬ︀ွု ံ (တ︀ွꩫ︀်)
++\le  ꩬ︀ိင︀်က︀ႃꩬ︀ွုံ (တ︀ွꩫ︀်)
+ \ph  saiŋ⁶ kā² som³
+ \ps  n.
+ \de  a kind herb plant
+@@ -72244,7 +72244,7 @@ innumerable, incalculable,
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ႝလ︀ွု ံတ︀ျိက︀်ꩬ︀ျိဝ︀်
++\xv  မ︀ႝလ︀ွုံတ︀ျိက︀်ꩬ︀ျိဝ︀်
+ \xr  mai⁴ lom⁴ taik¹ sɛu³
+ \so  phk_mai4lom4taik1sju3
+ \xe  a tree fell down and caused a splitting narrower at one end than at the other 
+@@ -72372,7 +72372,7 @@ innumerable, incalculable,
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ုင︀ ၵ︀ွု ꩫ︀ ꩬ︀ႜꩡ︀်ေ︀
++\xv  ၸ︀ုင︀ ၵ︀ွုꩫ︀ ꩬ︀ႜꩡ︀်ေ︀
+ \xr  phuŋ⁶ khun⁶ sā¹ cē¹
+ \so  phk_phuN6 khun6saa1cE1
+ \xe  a group of rich man
+@@ -75738,7 +75738,7 @@ disodient
+ \xr  yeŋ² tan²
+ \so  phk_yeN2tan2
+ \xe  look here and there  
+-\xv  ꩬ︀ႝ တ︀ႃႜ ယ︀ိင︀ တ︀ꩫ︀ မ︀ွု င︀ မ︀ိုဝ︀ ꩫ︀ၞ် ထ︀င︀ ꩭွတ︀ ꩫ︀ေ︀ဝ︀ꩫ︀
++\xv  ꩬ︀ႝ တ︀ႃႜ ယ︀ိင︀ တ︀ꩫ︀ မ︀ွုင︀ မ︀ိုဝ︀ ꩫ︀ၞ် ထ︀င︀ ꩭွတ︀ ꩫ︀ေ︀ဝ︀ꩫ︀
+ \xr  sāi⁶ tā² yiŋ² tan² muŋ⁵ mə⁵ naü⁶ thāŋ¹ hɔt⁴ nɛ⁶ wan²
+ \so  phk_saai6taa2yiN2tan2muN5mz5nav6thaaN1hqt4nj6wan2
+ \xe  That the eyes can look everywhere that they wish and see everything
+@@ -77455,7 +77455,7 @@ phra2wqN5cqm2phI6yqt4cau3
+ \notes  ailot
+ \dt  14/Jul/2021
+ 
+-\lx  တ︀ႃၵ︀ျွင︀်ဢ︀ိၺ် ( -ု  )
++\lx  တ︀ႃၵ︀ျွင︀်ဢ︀ိၺ် ( - ု )
+ \le 
+ \ph  ta¹ khyauŋ¹ ɛn⁴
+ \so  phk_ta1khyauN1jn4
+@@ -80355,7 +80355,7 @@ yau⁵
+ \dt  28/Jan/2022
+ 
+ \lx  တ︀ုက︀်
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹
+ \so  phk_tok1
+ \ps  v
+@@ -80530,7 +80530,7 @@ yau⁵
+ \dt  18/Dec/2023
+ 
+ \lx  တ︀ုက︀်
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹
+ \so  phk_tok1
+ \ps  v.
+@@ -80551,7 +80551,7 @@ yau⁵
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုက︀်
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹
+ \so  phk_tok1
+ \ps  n
+@@ -80572,7 +80572,7 @@ yau⁵
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုက︀်
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹
+ \so  phk_tok1
+ \ps  v.
+@@ -80593,7 +80593,7 @@ yau⁵
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုက︀်
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹
+ \so  phk_tok1
+ \ps  v.
+@@ -80614,7 +80614,7 @@ yau⁵
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုက︀်  (ꩭိုꩫ︀်)
+-\le  တ︀ွု က︀်
++\le  တ︀ွုက︀်
+ \ph  tok¹ (hən²)
+ \so  phk_tok
+ \ps  v.
+@@ -80771,7 +80771,7 @@ tushita
+ \dt  02/Jun/2021
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ¹
+ \so  phk_toN1
+ \ps  n
+@@ -80817,7 +80817,7 @@ two ends seamed together)
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ²
+ \so  phk_toN2
+ \ps  n
+@@ -80846,7 +80846,7 @@ two ends seamed together)
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ²
+ \so  phk_toN2
+ \ps  v
+@@ -80867,7 +80867,7 @@ two ends seamed together)
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ⁴
+ \so  phk_toN4
+ \ps  v.
+@@ -80904,7 +80904,7 @@ two ends seamed together)
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ⁴
+ \so  phk_toN4
+ \ps  n.
+@@ -80934,7 +80934,7 @@ smell
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ⁵
+ \so  phk_toN5
+ \ps  n
+@@ -80975,7 +80975,7 @@ smell
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  toŋ⁴
+ \so  phk_toN4
+ \ps  n.
+@@ -80997,7 +80997,7 @@ water remain at rest temporary due to heavy siltation on side
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  tuŋ²
+ \so  phk_tuN2
+ \ps  v
+@@ -81043,7 +81043,7 @@ vessel or joining two hands together, or spreading cloth under, ready to receive
+ \dt  31/Jan/2024
+ 
+ \lx  တ︀ုင︀်
+-\le  တ︀ွု င︀်
++\le  တ︀ွုင︀်
+ \ph  tuŋ¹
+ \so  phk_tuN1
+ \ps  v.
+@@ -81165,7 +81165,7 @@ it mean dried corps of spider( Tai Phake riddle )
+ \dt  01/Jun/2023
+ 
+ \lx  တ︀ုင︀်တ︀င︀်
+-\le  တ︀ွု င︀်တ︀င︀်
++\le  တ︀ွုင︀်တ︀င︀်
+ \ph  toŋ² tāŋ⁴
+ \so  phk_toN2taaN4
+ \ps  n.
+@@ -81185,7 +81185,7 @@ it mean dried corps of spider( Tai Phake riddle )
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုင︀်ပ︀ွ်    
+-\le  တ︀ွု င︀်ပ︀ဝ︀်
++\le  တ︀ွုင︀်ပ︀ဝ︀်
+ \ph  toŋ¹ pau¹
+ \so  phk_toN1pau1  
+ \ps  cardinal number.
+@@ -81303,7 +81303,7 @@ transgender
+ \dt  07/Apr/2021
+ 
+ \lx  တ︀ုတ︀်
+-\le  တ︀ွု တ︀်
++\le  တ︀ွုတ︀်
+ \ph  tot¹
+ \so  phk_tot1
+ \ps  v.
+@@ -81411,7 +81411,7 @@ become crook as by heat of fire
+ \dt  02/Jun/2021
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton⁴
+ \so  phk_ton4
+ \ps  adj.
+@@ -81440,7 +81440,7 @@ become crook as by heat of fire
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton³
+ \so  phk_ton3
+ \ps  clf.
+@@ -81516,7 +81516,7 @@ become crook as by heat of fire
+ \dt  01/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton²
+ \so  phk_ton2
+ \ps  v.
+@@ -81537,7 +81537,7 @@ become crook as by heat of fire
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton²
+ \so  phk_ton2
+ \ps  v.
+@@ -81562,7 +81562,7 @@ become crook as by heat of fire
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton²
+ \so  phk_ton2
+ \ps  v.
+@@ -81583,7 +81583,7 @@ become crook as by heat of fire
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton⁴
+ \so  phk_ton4
+ \ps  v.
+@@ -81604,7 +81604,7 @@ become crook as by heat of fire
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton⁴
+ \so  phk_ton4
+ \ps  v
+@@ -81635,7 +81635,7 @@ from the stomach through the mouth
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton³
+ \so  phk_ton3
+ \ps  n
+@@ -81818,7 +81818,7 @@ from the stomach through the mouth
+ \dt  18/Dec/2023
+ 
+ \lx  တ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀်
+ \ph  ton³
+ \so  phk_ton3
+ \ps  n.
+@@ -81847,7 +81847,7 @@ from the stomach through the mouth
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုꩫ︀်ꩬ︀ုꩫ︀်
+-\le  တ︀ွု ꩫ︀် ꩬ︀ွု ꩫ︀်
++\le  တ︀ွုꩫ︀် ꩬ︀ွုꩫ︀်
+ \ph  ton² son²
+ \so  phk_ton2son2
+ \ps  v.
+@@ -82027,7 +82027,7 @@ from the stomach through the mouth
+ \dt 
+ 
+ \lx  တ︀ုပ︀်
+-\le  တ︀ွု ပ︀်
++\le  တ︀ွုပ︀်
+ \ph  top¹ 
+ \so  phk_top1 
+ \ps  v.
+@@ -82089,7 +82089,7 @@ something
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုပ︀်
+-\le  တ︀ွု ပ︀်
++\le  တ︀ွုပ︀်
+ \ph  top⁴
+ \so  phk_top4
+ \ps  v
+@@ -82126,7 +82126,7 @@ something
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုပ︀်
+-\le  တ︀ွု ပ︀်
++\le  တ︀ွုပ︀်
+ \ph  top⁴
+ \so  phk_top4
+ \ps  clf.
+@@ -82147,7 +82147,7 @@ something
+ \dt  02/May/2023
+ 
+ \lx  တ︀ုပ︀်က︀ုပ︀်
+-\le  တ︀ွု ပ︀်က︀ွု ပ︀်
++\le  တ︀ွုပ︀်က︀ွုပ︀်
+ \ph  top¹ kop¹
+ \so  phk_top1kop1
+ \ps  intensier.
+@@ -82863,7 +82863,7 @@ running through the untidy small bush
+ \dt  29/Apr/2023
+ 
+ \lx  တ︀ုံ
+-\le  တ︀ွု ံ
++\le  တ︀ွုံ
+ \ph  tom³
+ \so  phk_tom3
+ \ps  v
+@@ -85770,7 +85770,7 @@ does it is said or mean ? it is the moon ( a Tai phake riddle )
+ \de  to look forward to, to hope, to expect as to somebody to come or to give
+ something (while staying at home)
+ \ge  expect.to
+-\pl ွ ်
++\pl  ွ်
+ \pd 
+ \pde 
+ \pdn 
+@@ -89992,7 +89992,7 @@ normal, going beyond the limit)
+ \xr  taik⁴ kün² naü⁶ khɛn² nī²
+ \so  phk_taik4kvn2nav6 khjn2nI2
+ \xe  to compare which is better  
+-\xv  ၵ︀ႃႜ ꩬ︀င︀ တ︀ိက︀ မ︀ွု ꩫ︀ ၵ︀ံ မ︀ဝ︀ ꩫ︀ႝ က︀ွႝ ယ︀ွ်
++\xv  ၵ︀ႃႜ ꩬ︀င︀ တ︀ိက︀ မ︀ွုꩫ︀ ၵ︀ံ မ︀ဝ︀ ꩫ︀ႝ က︀ွႝ ယ︀ွ်
+ \xr  khā⁶ saŋ⁶  taik⁴ mon² kham² mau¹ nai³ kɔi⁴ yau⁴
+ \so  phk_khaa6saN6 taik4mon2kham2mau1nai3kqi4yau4
+ \xe  They could not find anything to compare with the golden Buddha
+@@ -90803,7 +90803,7 @@ or covering paddy, while being carried from the paddy field to the house
+ \ps  v
+ \de  to walk, to travel
+ \ge  walk
+-\pl ု 
++\pl  ု
+ \pd 
+ \pde 
+ \pdn 
+@@ -94199,7 +94199,7 @@ one's liking
+ \dt  09/Sep/2020
+ 
+ \lx  ထ︀ုꩫ︀်
+-\le  ထ︀ွု ꩫ︀်
++\le  ထ︀ွုꩫ︀်
+ \ph  thon²
+ \so  phk_thon2
+ \ps  adj.
+@@ -94220,7 +94220,7 @@ one's liking
+ \dt  01/Jun/2023
+ 
+ \lx  ထ︀ုꩫ︀်
+-\le  ထ︀ွု ꩫ︀်
++\le  ထ︀ွုꩫ︀်
+ \ph  thon³
+ \so  phk_thon3
+ \ps  n.
+@@ -94302,7 +94302,7 @@ one's liking
+ \dt  18/Aug/2021
+ 
+ \lx  ထ︀ုပ︀်
+-\le  ထ︀ွု ပ︀်
++\le  ထ︀ွုပ︀်
+ \ph  thop¹
+ \so  phk_thop1
+ \ps  n.
+@@ -94322,7 +94322,7 @@ one's liking
+ \dt  01/Jun/2023
+ 
+ \lx  ထ︀ုပ︀်
+-\le  ထ︀ွု ပ︀်
++\le  ထ︀ွုပ︀်
+ \ph  thop¹
+ \so  phk_thop1
+ \ps  v
+@@ -94364,7 +94364,7 @@ one's liking
+ \dt  11/Nov/2023
+ 
+ \lx  ထ︀ုပ︀်
+-\le  ထ︀ွု ပ︀်
++\le  ထ︀ွုပ︀်
+ \ph  thop¹
+ \so  phk_thop1
+ \ps  v.
+@@ -94393,7 +94393,7 @@ one's liking
+ \dt  01/Jun/2023
+ 
+ \lx  ထ︀ုပ︀်
+-\le  ထ︀ွု ပ︀်
++\le  ထ︀ွုပ︀်
+ \ph  thop¹
+ \so  phk_thop1
+ \ps  adj.
+@@ -94769,7 +94769,7 @@ hand-bellow
+ \dt  18/Aug/2021
+ 
+ \lx  ထ︀ုံ
+-\le  ထ︀ွု ံ
++\le  ထ︀ွုံ
+ \ph  thom³
+ \so  phk_thom3
+ \ps  v.
+@@ -96751,7 +96751,7 @@ typically shown with a space on either side when written or printeng
+ \xr  a¹ sāk⁴ thŋ⁶ kha¹ laü²
+ \so  phk_a1saak4thvN6kha1lav2
+ \xe  how old are you?
+-\xv  ၵ︀ွံꩭွတ︀ဝ︀ွေ︀ႃင︀မ︀ွု ꩫ︀ꩬ︀ွင︀ထ︀ိုင︀ꩭူ
++\xv  ၵ︀ွံꩭွတ︀ဝ︀ွေ︀ႃင︀မ︀ွုꩫ︀ꩬ︀ွင︀ထ︀ိုင︀ꩭူ
+ \xr  khām² hɔt⁴ wɔŋ⁴ mon² sauŋ¹ thüŋ⁶ hū⁶
+ \so  phk_khaam2hqt4wqN4mon2sauN1thvN6hU6
+ \xe  Their words reached the ears of the Buddha
+@@ -98743,7 +98743,7 @@ and also used for addressing them
+ \xr  naŋ⁵ süŋ¹ naŋ⁵ məŋ²
+ \so  phk_naN5svN1naN5mzN2
+ \xe  a meeting organised by the leader of a village for a cause
+-\xv ွ ꩭွ်တ︀ႃꩫ︀င︀်က︀ိုꩫ︀်ꩫ︀င︀်က︀ွ်ပ︀ွက︀်ꩫ︀ိုင︀်
++\xv  ွꩭွ်တ︀ႃꩫ︀င︀်က︀ိုꩫ︀်ꩫ︀င︀်က︀ွ်ပ︀ွက︀်ꩫ︀ိုင︀်
+ \xr  hau² ta¹ naŋ⁵ kün² naŋ¹ kau¹ pauk⁴ nüŋ⁵
+ \so  phk_hau2ta1naN5kvn2naN1kau1pauk4nvN5
+ \xe  we will have another one more sitting
+@@ -99680,7 +99680,7 @@ the religious festival, mostly specially woven as an offering, a flag
+ \dt  22/Feb/2023
+ 
+ \lx  ꩫ︀မ︀်ꩬ︀ုပ︀်ꩫ︀ံ (တ︀ုꩫ︀်)
+-\le  ꩫ︀ံꩬ︀ွု ပ︀်ꩫ︀ံ
++\le  ꩫ︀ံꩬ︀ွုပ︀်ꩫ︀ံ
+ \ph  nām⁶ sop¹ nam² (ton³)
+ \so  phk_naam6sop1nam2
+ \ps  n.
+@@ -99908,11 +99908,11 @@ time before something take place, a page,
+ \pd  nā³ kai¹
+ \so  phk_naa3kai1
+ \pde  the time when the cock crows, around 3.a.m.
+-\xv  ꩫ︀ႃက︀ျု ꩫ︀်
++\xv  ꩫ︀ႃက︀ျ ုꩫ︀်
+ \xr  nā³ kyon² 
+ \so  phk_naa3kyon2 
+ \xe  on the land, the face of the earth 
+-\xv  ꩫ︀ႃက︀ျု ꩫ︀်ꩭိုင︀်ꩡ︀ံပ︀ူ
++\xv  ꩫ︀ႃက︀ျ ုꩫ︀်ꩭိုင︀်ꩡ︀ံပ︀ူ
+ \xr  nā³ kyon² hüŋ² cam² pū¹
+ \so  phk_naa3kyon2hvN2cam2pU1
+ \xe  on the bright or holy land of Jambudipa
+@@ -101221,7 +101221,7 @@ whatever to speak (Tai Phake saying)
+ \xr  sā¹ neŋ³   
+ \so  phk_saa1neN3 
+ \xe  the granulated tea, the dried crushed leaves of the tea plant
+-\xv ွ ်တ︀င︀်ꩫ︀ိင︀်
++\xv  ွ်တ︀င︀်ꩫ︀ိင︀်
+ \xr  taŋ³ neŋ³
+ \so  phk_taN3neN3
+ \xe  to make tea, i.e. making the drink by putting the dried tea leaves
+@@ -101333,7 +101333,7 @@ in the boiling water
+ \ps  n.
+ \de  Adam's apple 
+ \ge  Adam's.apple
+-\pl ွ 
++\pl  ွ
+ \pd 
+ \pde 
+ \pdn 
+@@ -102865,7 +102865,7 @@ supramundane consciousness (term supramuane or sotapati)
+ \dt  07/Jun/2021
+ 
+ \lx  ꩫ︀ုက︀်
+-\le  ꩫ︀ွု က︀်
++\le  ꩫ︀ွုက︀်
+ \ph  nok⁴
+ \so  phk_nok4
+ \ps  n.
+@@ -102905,7 +102905,7 @@ supramundane consciousness (term supramuane or sotapati)
+ \dt  28/Aug/2020
+ 
+ \lx  ꩫ︀ုက︀်
+-\le  ꩫ︀ွု က︀်
++\le  ꩫ︀ွုက︀်
+ \ph  nok¹
+ \ps  adj.
+ \de  deaf
+@@ -102916,11 +102916,11 @@ supramundane consciousness (term supramuane or sotapati)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭူꩫ︀ွု က︀်
++\xv  ꩭူꩫ︀ွုက︀်
+ \xr  hū⁶ nok¹
+ \so  phk_hU6nok1
+ \xe  a deaf ear 
+-\xv  ꩭူꩫ︀ွု က︀်တ︀ႃမ︀ွတ︀်
++\xv  ꩭူꩫ︀ွုက︀်တ︀ႃမ︀ွတ︀်
+ \xr  hū⁶ nok¹ tā² mɔt¹
+ \so  phk_hU6nok1taa2mqt1
+ \xe  a deaf and blind also illiterate
+@@ -102928,7 +102928,7 @@ supramundane consciousness (term supramuane or sotapati)
+ \xr  nok¹ tüŋ¹ pəŋ²
+ \so  phk_nok1tvN1pzN2
+ \xe  completely deaf
+-\xv  က︀ွု ꩫ︀်ꩭူꩫ︀ွု က︀်
++\xv  က︀ွုꩫ︀်ꩭူꩫ︀ွုက︀်
+ \xr  kon² hū⁶ nok¹
+ \so  phk_kon2hU6nok1
+ \xe  a deaf person
+@@ -103031,7 +103031,7 @@ supramundane consciousness (term supramuane or sotapati)
+ \dt  22/Feb/2023
+ 
+ \lx  ꩫ︀ုက︀်
+-\le  ꩫ︀ွု က︀်
++\le  ꩫ︀ွုက︀်
+ \ph  nok⁴
+ \so  phk_nok4
+ \ps  n
+@@ -103353,7 +103353,7 @@ peacock-male
+ \dt  19/Oct/2023
+ 
+ \lx  ꩫ︀ုက︀်
+-\le  ꩫ︀ွု က︀်
++\le  ꩫ︀ွုက︀်
+ \ph  nok¹
+ \so  phk_nok1
+ \ps  n.
+@@ -103377,7 +103377,7 @@ peacock-male
+ \xr  sēn³ caü² nok¹
+ \so  phk_sEn3cav2nok1
+ \xe  unwise, stupid, a deaf hearted
+-\xv  ꩭူꩫ︀ွု က︀်တ︀ႃမ︀ွတ︀်
++\xv  ꩭူꩫ︀ွုက︀်တ︀ႃမ︀ွတ︀်
+ \xr  hū⁶ nok¹ tā² mɔt¹
+ \so  phk_hU6nok1taa2mqt1
+ \xe  unlearned, ignorant, illiterate, lit. deaf and blind
+@@ -103408,7 +103408,7 @@ peacock-male
+ \dt  11/Dec/2023
+ 
+ \lx  ꩫ︀ုက︀်က︀ီꩭုက︀်
+-\le  ꩫ︀ွု က︀်က︀ꩭုက︀်
++\le  ꩫ︀ွုက︀်က︀ꩭုက︀်
+ \ph  nok⁴ ki¹ hok¹
+ \so  phk_nok4ki1hok1
+ \ps  n.
+@@ -103515,7 +103515,7 @@ peacock-male
+ \dt  10/Dec/2023
+ 
+ \lx  ꩫ︀ုင︀်
+-\le  ꩫ︀ွု င︀်
++\le  ꩫ︀ွုင︀်
+ \ph  noŋ²
+ \so  phk_noN2
+ \ps  n
+@@ -103593,7 +103593,7 @@ peacock-male
+ \dt  04/Jan/2024
+ 
+ \lx  ꩫ︀ုင︀်
+-\le  ꩫ︀ွု င︀်
++\le  ꩫ︀ွုင︀်
+ \ph  noŋ³
+ \so  phk_noN3
+ \ps  n.
+@@ -103673,7 +103673,7 @@ peacock-male
+ \dt  19/Aug/2021
+ 
+ \lx  ꩫ︀ုတ︀်
+-\le  ꩫ︀ွု တ︀်
++\le  ꩫ︀ွုတ︀်
+ \ph  not¹
+ \so  phk_not1
+ \ps  n.
+@@ -103715,7 +103715,7 @@ peacock-male
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ုတ︀်
+-\le  ꩫ︀ွု တ︀်
++\le  ꩫ︀ွုတ︀်
+ \ph  not⁴
+ \so  phk_not4
+ \ps  v.
+@@ -103752,7 +103752,7 @@ peacock-male
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ုတ︀်
+-\le  ꩫ︀ွု တ︀်
++\le  ꩫ︀ွုတ︀်
+ \ph  not⁴
+ \so  phk_not4
+ \ps  v.
+@@ -103814,7 +103814,7 @@ peacock-male
+ \dt  12/Apr/2021
+ 
+ \lx  ꩫ︀ုတ︀်ꩫ︀င︀်
+-\le  ꩫ︀ွု တ︀်ꩫ︀င︀်
++\le  ꩫ︀ွုတ︀်ꩫ︀င︀်
+ \ph  not¹ nāŋ⁵
+ \so  phk_not1naaN5
+ \ps  n.
+@@ -103837,7 +103837,7 @@ twine round any suitable support which help in creeping
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ုꩫ︀်
+-\le  ꩫ︀ွု ꩫ︀်
++\le  ꩫ︀ွုꩫ︀်
+ \ph  non³
+ \so  phk_non3
+ \ps  n
+@@ -103946,7 +103946,7 @@ twine round any suitable support which help in creeping
+ \dt  07/May/2023
+ 
+ \lx  ꩫ︀ုꩫ︀်
+-\le ွ ꩫ︀ွု ꩫ︀်
++\le  ွꩫ︀ွုꩫ︀်
+ \ph  non³
+ \so  phk_non3
+ \ps  n
+@@ -104112,8 +104112,8 @@ twine round any suitable support which help in creeping
+ \dt  06/May/2023
+ 
+ \lx  ꩫ︀ုံ
+-\le  ꩫ︀ွု ံ
+-\le  ꩫ︀ွု မ︀်
++\le  ꩫ︀ွုံ
++\le  ꩫ︀ွုမ︀်
+ \ph  nom²
+ \so  phk_nom2
+ \ps  v.
+@@ -104133,8 +104133,8 @@ twine round any suitable support which help in creeping
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ုံ
+-\le  ꩫ︀ွု ံ
+-\le  ꩫ︀ွု မ︀်
++\le  ꩫ︀ွုံ
++\le  ꩫ︀ွုမ︀်
+ \ph  num¹
+ \so  phk_num1
+ \ps  adj.
+@@ -104202,8 +104202,8 @@ twine round any suitable support which help in creeping
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ုံ
+-\le  ꩫ︀ွု ံ
+-\le  ꩫ︀ွု မ︀်
++\le  ꩫ︀ွုံ
++\le  ꩫ︀ွုမ︀်
+ \ph  nom²
+ \so  phk_nom2
+ \ps  n.
+@@ -106038,7 +106038,7 @@ noi³ taü³ nam⁴ sip⁴ kuk⁴ te¹
+ \xr  naü⁶ kɔ⁴ 
+ \so  phk_nav6kq4
+ \xe  nevertheless, topic linker, then, and then,   
+-\xv  ꩫ︀ၞ် က︀ွေ︀ႃ တ︀ꩫ︀ၵ︀ိုဝ︀ ꩬ︀ိင︀ ꩫ︀်ဝ︀ ꩭိုဝ︀ ꩬ︀ုင︀ꩭုင︀ꩬ︀ွု တ︀ ၵ︀ွပ︀
++\xv  ꩫ︀ၞ် က︀ွေ︀ႃ တ︀ꩫ︀ၵ︀ိုဝ︀ ꩬ︀ိင︀ ꩫ︀်ဝ︀ ꩭိုဝ︀ ꩬ︀ုင︀ꩭုင︀ꩬ︀ွုတ︀ ၵ︀ွပ︀
+ \xr  naü⁶ kɔ⁴  tan² khü⁴ saiŋ⁶ nau² hə⁵ suŋ² huŋ² sut³ khɔp¹
+ \so  phk_nav6kq4tan2khv4saiN6nau2hz5suN2huN2sut3khqp1
+ \xe  The power of the diamond star is so bright and extends to the horizon
+@@ -109623,7 +109623,7 @@ used as medicine, lit. coal blood
+ \dt  02/Jun/2023
+ 
+ \lx  ꩫ︀ံလ︀ုံꩭွံ (တ︀ုꩫ︀်)
+-\le  ꩫ︀မ︀်လ︀ွု ံꩭွံ
++\le  ꩫ︀မ︀်လ︀ွုံꩭွံ
+ \ph  nam⁴ lom² hɔm⁶ (ton³)
+ \so  phk_nam4lom2hqm6
+ \ps  n.
+@@ -109967,8 +109967,8 @@ something looks or seems
+ \dt  12/Mar/2024
+ 
+ \lx  ꩫ︀ွ်ꩭုံꩬ︀ွꩫ︀်
+-\le  ꩫ︀ဝ︀်ꩭွု မ︀်ꩬ︀ွꩫ︀် 
+-\le  ꩫ︀ွ်ဝ︀်ꩭွု မ︀်ꩬ︀ွꩫ︀် 
++\le  ꩫ︀ဝ︀်ꩭွုမ︀်ꩬ︀ွꩫ︀် 
++\le  ꩫ︀ွ်ဝ︀်ꩭွုမ︀်ꩬ︀ွꩫ︀် 
+ \ph  nāu² hom⁵ sɔn⁴
+ \so  phk_naau2hom5sqn4
+ \ps  n.
+@@ -110861,7 +110861,7 @@ ground, to insert,
+ \xr  pāk¹ mɔ³
+ \so  phk_paak1mq3
+ \xe  mouth of a pot
+-\xv ွ ဢ︀ုံꩫ︀ၞ်ပ︀က︀်
++\xv  ွဢ︀ုံꩫ︀ၞ်ပ︀က︀်
+ \xr  om² naü² pāk¹
+ \so  phk_om2nav2paak1
+ \xe  to keep (something) in the mouth
+@@ -112153,7 +112153,7 @@ to pastes mud or cement on something
+ \ps  intensifier
+ \de  an intensifying word for < som3 > sour 
+ \ge  INTENSE- sour, sharp taste 
+-\pl ွု 
++\pl  ွု
+ \pd 
+ \pde 
+ \pdn 
+@@ -118696,7 +118696,7 @@ but do not preach the way of deliverance to the world (p)  Pacceka Buddhathe Bud
+ \dt  01/Feb/2022
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴
+ \so  phk_pok4
+ \ps  v.
+@@ -118725,7 +118725,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴
+ \so  phk_pok4
+ \ps  clf
+@@ -118746,7 +118746,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴
+ \so  phk_pok4
+ \ps  n
+@@ -118783,7 +118783,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴
+ \so  phk_pok4
+ \ps  clf.
+@@ -118804,7 +118804,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok¹
+ \so  phk_pok1
+ \ps  n.
+@@ -118825,7 +118825,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok¹
+ \so  phk_pok1
+ \ps  v
+@@ -118846,7 +118846,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok¹
+ \so  phk_pok1
+ \ps  v.
+@@ -118886,7 +118886,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴ 
+ \so  phk_pok4
+ \ps  v.
+@@ -118936,7 +118936,7 @@ up things
+ \dt  19/Aug/2021
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok¹
+ \so  phk_pok1
+ \ps  v.
+@@ -118961,7 +118961,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok⁴
+ \so  phk_pok4
+ \ps  n.
+@@ -118981,7 +118981,7 @@ up things
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုက︀်
+-\le  ပ︀ွု က︀်
++\le  ပ︀ွုက︀်
+ \ph  pok¹
+ \so  phk_pok1
+ \ps  v.
+@@ -119257,7 +119257,7 @@ the monk
+ \dt  29/Jan/2022
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ²
+ \so  phk_pON2
+ \ps  n
+@@ -119403,7 +119403,7 @@ between a long play programme
+ \dt  10/Jun/2021
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ¹
+ \so  phk_pON1
+ \ps  n.
+@@ -119491,7 +119491,7 @@ and winded it on beam of a loom (word derives from 'set down')
+ \dt  10/May/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ¹
+ \so  phk_pON1
+ \ps  adj
+@@ -119513,7 +119513,7 @@ ferrea) put forth new leaves and flowers in plenty
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ²
+ \so  phk_pON2
+ \ps  v
+@@ -119534,7 +119534,7 @@ ferrea) put forth new leaves and flowers in plenty
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ²
+ \so  phk_pON2
+ \ps  v
+@@ -119642,7 +119642,7 @@ monk , to give adecree
+ \dt  16/Dec/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ¹
+ \so  phk_pON1
+ \ps  v.
+@@ -119677,7 +119677,7 @@ monk , to give adecree
+ \dt  09/Nov/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ¹
+ \so  phk_pON1
+ \ps  v.
+@@ -119726,7 +119726,7 @@ monk , to give adecree
+ \dt  23/Feb/2023
+ 
+ \lx  ပ︀ုင︀်
+-\le  ပ︀ွု င︀်
++\le  ပ︀ွုင︀်
+ \ph  pōŋ²
+ \so  phk_pON2
+ \ps  v.
+@@ -119870,7 +119870,7 @@ monk , to give adecree
+ \dt  19/Aug/2021
+ 
+ \lx  ပ︀ုတ︀်
+-\le  ပ︀ွု တ︀်
++\le  ပ︀ွုတ︀်
+ \ph  pōt¹
+ \so  phk_pOt1
+ \ps  v.
+@@ -119974,7 +119974,7 @@ monk , to give adecree
+ \dt  08/Jul/2021
+ 
+ \lx  ပ︀ုတ︀်
+-\le  ပ︀ွု တ︀်
++\le  ပ︀ွုတ︀်
+ \ph  pot¹ 
+ \so  phk_pot1 
+ \ps  v.
+@@ -119999,7 +119999,7 @@ monk , to give adecree
+ \dt  02/Jun/2023
+ 
+ \lx  ပ︀ုတ︀်
+-\le  ပ︀ွု တ︀်
++\le  ပ︀ွုတ︀်
+ \ph  pōt¹
+ \so  phk_pOt1
+ \ps  v
+@@ -120049,7 +120049,7 @@ monk , to give adecree
+ \dt  21/Oct/2023
+ 
+ \lx  ပ︀ုတ︀်
+-\le  ပ︀ွု တ︀်
++\le  ပ︀ွုတ︀်
+ \ph  pōt¹
+ \so  phk_pot1
+ \ps  v.
+@@ -120275,7 +120275,7 @@ succession, to replace another person
+ \dt  19/Jul/2021
+ 
+ \lx  ပ︀ုꩫ︀်
+-\le  ပ︀ွု ꩫ︀်
++\le  ပ︀ွုꩫ︀်
+ \ph  pon²
+ \so  phk_pon2
+ \ps  adv
+@@ -120341,7 +120341,7 @@ succession, to replace another person
+ \dt  01/Feb/2022
+ 
+ \lx  ပ︀ုꩫ︀်
+-\le  ပ︀ွု ꩫ︀်
++\le  ပ︀ွုꩫ︀်
+ \ph  pon⁴
+ \so  phk_pon4
+ \ps  adj
+@@ -120464,7 +120464,7 @@ necessry, to express tought
+ \xr  au² mon² khiŋ² saiŋ⁶ pon⁴ phe² kaŋ² haǖ³ lɔt⁴
+ \so  phk_au2mon2khiN2saiN6 pon4 phe2 kaN2 haV3 lqt
+ \xe  by the glory of the diamond bodied one, may we be free from all danger 
+-\xv  တ︀က︀ ꩭိမ︀ ꩭုင︀ ꩭင︀ ပ︀ွု ꩫ︀ ၵ︀ိုꩫ︀ လ︀င︀ ပ︀က︀ က︀ႃႜ ꩡ︀ံ ယ︀ွ်
++\xv  တ︀က︀ ꩭိမ︀ ꩭုင︀ ꩭင︀ ပ︀ွုꩫ︀ ၵ︀ိုꩫ︀ လ︀င︀ ပ︀က︀ က︀ႃႜ ꩡ︀ံ ယ︀ွ်
+ \xr  tak¹ hɛm² hoŋ⁶ hāŋ² pon⁴ khün⁶ laŋ⁶ pāk¹ kā¹ cam² yau⁴
+ \so  phk_tak1hjm2hoN6haaN2pon4khvn6laN6paak1kaa1cam2yau4
+ \xe  That the (country's) fame will be a hundred fold greater than before
+@@ -120485,7 +120485,7 @@ necessry, to express tought
+ \dt  02/Feb/2024
+ 
+ \lx  ပ︀ုꩫ︀်
+-\le  ပ︀ွု ꩫ︀်
++\le  ပ︀ွုꩫ︀်
+ \ph  pon⁴
+ \so  phk_pon4
+ \ps  adj.
+@@ -120506,7 +120506,7 @@ necessry, to express tought
+ \dt  03/Jun/2023
+ 
+ \lx  ပ︀ုꩫ︀်
+-\le  ပ︀ွု ꩫ︀်
++\le  ပ︀ွုꩫ︀်
+ \ph  pon⁴
+ \so  phk_pon4
+ \ps  adj..
+@@ -120534,7 +120534,7 @@ necessry, to express tought
+ \dt  03/Jun/2023
+ 
+ \lx  ပ︀ုပ︀်
+-\le  ပ︀ွု ပ︀်
++\le  ပ︀ွုပ︀်
+ \ph  pop¹
+ \so  phk_pop1
+ \ps  n.
+@@ -125993,7 +125993,7 @@ or down ward or sideway
+ \xr  tɔ¹ nai⁴ khaik¹ pāi² phā⁴ naü⁶ mā²
+ \so  phk_tq1nai4khaik1paai2phaa4nav6maa2
+ \xe  then the guest are coming from which direction?, ie. end of the sky
+-\xv  ၸ︀ႝႃႜ ပ︀ႃႜ ဝ︀ꩫ︀ ꩬ︀ုင︀ ꩡ︀ံႜၸ︀ုင︀်ၵ︀ွု ꩫ︀်ꩬ︀ႃႜꩡ︀ေ︀ꩬ︀င︀်ꩫ︀ၞ်မ︀ိုင︀်လ︀ႝꩡ︀ွ်ဝ︀
++\xv  ၸ︀ႝႃႜ ပ︀ႃႜ ဝ︀ꩫ︀ ꩬ︀ုင︀ ꩡ︀ံႜၸ︀ုင︀်ၵ︀ွုꩫ︀်ꩬ︀ႃႜꩡ︀ေ︀ꩬ︀င︀်ꩫ︀ၞ်မ︀ိုင︀်လ︀ႝꩡ︀ွ်ဝ︀
+ \xr  pāi² phā⁴ pā³ wan² suŋ⁶ phuŋ⁶ khun⁶ sā¹ cē¹ sāŋ³ naü² məŋ² lāi⁶ cau³
+ \so  phk_paai2phaa4paa3wan2suN6phuN6khun6saa1cE1saaN3nav mzN2laai6cau3
+ \xe  Many rich men stayed in the (east) country
+@@ -126343,7 +126343,7 @@ freely
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ပ︀ိုိုဝ︀်ꩬ︀ေ︀ꩫ︀ႝꩫ︀ꩫ︀်ၵ︀ျိꩫ︀်ꩫ︀ီ
++\xv  ွပ︀ိုိုဝ︀်ꩬ︀ေ︀ꩫ︀ႝꩫ︀ꩫ︀်ၵ︀ျိꩫ︀်ꩫ︀ီ
+ \xr  pə⁵ sɛ⁶  nai⁴ nan⁴ khɛn² nī  
+ \so  phk_pz5sj6nai4nan4khjn2nI  
+ \xe  it is better than that
+@@ -127488,7 +127488,7 @@ him and relied on him
+ 
+ \lx  ပ︀ျိꩫ︀်ၵ︀ုက︀်
+ \le  ပ︀ိꩫ︀်ၵ︀ုက︀်
+-\le  ပ︀ိၺ်ၵ︀ွု က︀်
++\le  ပ︀ိၺ်ၵ︀ွုက︀်
+ \ph  pɛn² khok⁴
+ \so  phk_pjn2khok4
+ \ps  n.
+@@ -127590,7 +127590,7 @@ him and relied on him
+ 
+ \lx  ပ︀ျိꩫ︀်တ︀င︀်ၵ︀ုၺ် (ꩫ︀င︀်)
+ \le  ပ︀ိꩫ︀်တ︀င︀်ၵ︀ုၺ်
+-\le  ပ︀ိၺ်တ︀င︀်ၵ︀ွု ၺ်
++\le  ပ︀ိၺ်တ︀င︀်ၵ︀ွုၺ်
+ \ph  pɛn³ taŋ¹ khoi¹ (naŋ⁵)
+ \so  phk_pjn3taN1khoi1
+ \ps  n.
+@@ -129282,11 +129282,11 @@ the grain
+ \pdn 
+ \dn 
+ \rf 
+-\le  လ︀ိတ︀်ၸ︀ြတ︀်ၵ︀ွု ꩫ︀
++\le  လ︀ိတ︀်ၸ︀ြတ︀်ၵ︀ွုꩫ︀
+ \xr  lit⁴ phāt¹ khon⁴
+ \so  phk_lit4phaat1khon4
+ \xe  to evaluate
+-\xv  က︀ိၺꩡ︀ွ် လ︀ိတ︀ ၸ︀ြတ︀ ၵ︀ွု ꩫ︀ ပ︀ꩫ︀ က︀ွꩫ︀ ꩫ︀်ေ︀ꩭွႃ်
++\xv  က︀ိၺꩡ︀ွ် လ︀ိတ︀ ၸ︀ြတ︀ ၵ︀ွုꩫ︀ ပ︀ꩫ︀ က︀ွꩫ︀ ꩫ︀်ေ︀ꩭွႃ်
+ \xr  kɛ²¹ cau² lit⁴ phāt¹ khon⁴ pān² kɔn¹ nɛ⁶ hau² hɔ²
+ \so  phk_kjn1cau2lit4phaat1khon4paan2kqn1nj6hau2haa2.wav
+ \xe  The Buddha unfolds and evaluates his earlier life, showing us
+@@ -131261,7 +131261,7 @@ for prince or princess
+ \dt  03/Jun/2023
+ 
+ \lx  ၸ︀ႃမ︀ွင︀်
+-\le ွ 
++\le  ွ
+ \ph  phā³ mauŋ⁶
+ \so  phk_phaa3mauN6
+ \ps  n.
+@@ -132852,7 +132852,7 @@ of the nose)
+ \dt  24/Apr/2021
+ 
+ \lx  ၸ︀ုက︀်
+-\le  ၸ︀ွု က︀်
++\le  ၸ︀ွုက︀်
+ \ph  phok⁴
+ \so  phk_phok4
+ \ps  v.
+@@ -133357,7 +133357,7 @@ of the nose)
+ \dt  24/Apr/2021
+ 
+ \lx  ၸ︀ုတ︀်
+-\le  ၸ︀ွု တ︀်
++\le  ၸ︀ွုတ︀်
+ \ph  phot⁴
+ \so  phk_phot4
+ \ps  v
+@@ -133420,7 +133420,7 @@ of the nose)
+ \dt  04/Jan/2021
+ 
+ \lx  ၸ︀ုတ︀်
+-\le  ၸ︀ွု တ︀်
++\le  ၸ︀ွုတ︀်
+ \ph  phot⁴
+ \so  phk_phot4
+ \ps  v.
+@@ -133445,7 +133445,7 @@ of the nose)
+ \dt  03/Jun/2023
+ 
+ \lx  ၸ︀ုတ︀်
+-\le  ၸ︀ွု တ︀်
++\le  ၸ︀ွုတ︀်
+ \ph  phot⁴
+ \so  phk_phot4
+ \ps  n.
+@@ -133544,7 +133544,7 @@ of the nose)
+ \dt  28/Nov/2023
+ 
+ \lx  ၸ︀ုꩫ︀်
+-\le  ၸ︀ွု ꩫ︀်
++\le  ၸ︀ွုꩫ︀်
+ \ph  phon¹
+ \so  phk_phon1
+ \ps  v
+@@ -133670,7 +133670,7 @@ sleeping as a patient
+ \dt  16/May/2023
+ 
+ \lx  ၸ︀ုꩫ︀်
+-\le  ၸ︀ွု ꩫ︀်
++\le  ၸ︀ွုꩫ︀်
+ \ph  phon⁶
+ \so  phk_phon6
+ \ps  v
+@@ -134061,7 +134061,7 @@ of Arahantship) is identical with sotapattiphala, in general: arahatta
+ \dt  24/Apr/2021
+ 
+ \lx  ၸ︀ုံ
+-\le  ၸ︀ွု ံ
++\le  ၸ︀ွုံ
+ \ph  phom⁵
+ \so  phk_phom5
+ \ps  adj.
+@@ -134332,7 +134332,7 @@ of Arahantship) is identical with sotapattiphala, in general: arahatta
+ \xr  phū³ ho⁶ hān⁶
+ \so  phk_phU3ho6haan6
+ \xe  a brave leader
+-\xv  ၸ︀ူဢ︀ုပ︀်ၵ︀ျု က︀်
++\xv  ၸ︀ူဢ︀ုပ︀်ၵ︀ျ ုက︀်
+ \xr  phū³ up³ khyuk¹
+ \so  phk_phU3up4khyuk1
+ \xe  the ruler, the adminstrator
+@@ -146654,7 +146654,7 @@ from the stalk by threshing
+ \dt  19/Aug/2021
+ 
+ \lx  မ︀ုက︀်
+-\le  မ︀ွု က︀်
++\le  မ︀ွုက︀်
+ \ph  mok¹
+ \so  phk_mok1
+ \ps  v
+@@ -147054,7 +147054,7 @@ spring or young
+ \dt  29/Apr/2021
+ 
+ \lx  မ︀ုင︀်
+-\le  မ︀ွု င︀်
++\le  မ︀ွုင︀်
+ \ph  moŋ³
+ \so  phk_moN3
+ \ps  n
+@@ -147083,7 +147083,7 @@ spring or young
+ \dt  04/Jun/2023
+ 
+ \lx  မ︀ုင︀်
+-\le  မ︀ွု င︀်
++\le  မ︀ွုင︀်
+ \ph  moŋ⁶
+ \so  phk_moN6
+ \ps  n
+@@ -147293,7 +147293,7 @@ females, to become wild for sexual intercourse
+ \dt  04/Feb/2023
+ 
+ \lx  မ︀ုတ︀်
+-\le  မ︀ွု တ︀်
++\le  မ︀ွုတ︀်
+ \ph  mot⁴
+ \so  phk_mot4
+ \ps  n.
+@@ -147330,7 +147330,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုတ︀်
+-\le  မ︀ွု တ︀်
++\le  မ︀ွုတ︀်
+ \ph  mot¹
+ \so  phk_mot1
+ \ps  adj
+@@ -147371,7 +147371,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုꩫ︀်
+-\le  မ︀ွု ꩫ︀်
++\le  မ︀ွုꩫ︀်
+ \ph  mon²
+ \so  phk_mon2
+ \ps  n.
+@@ -147432,7 +147432,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Mar/2024
+ 
+ \lx  မ︀ုꩫ︀်
+-\le  မ︀ွု ꩫ︀်
++\le  မ︀ွုꩫ︀်
+ \ph  mon⁵
+ \so  phk_mon5
+ \ps  adj.
+@@ -147596,7 +147596,7 @@ females, to become wild for sexual intercourse
+ \dt  19/Aug/2021
+ 
+ \lx  မ︀ုꩫ︀်
+-\le  မ︀ွု ꩫ︀်
++\le  မ︀ွုꩫ︀်
+ \ph  mon²
+ \so  phk_mon2
+ \ps  adj.
+@@ -147629,7 +147629,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုꩫ︀်
+-\le  မ︀ွု ꩫ︀်
++\le  မ︀ွုꩫ︀်
+ \ph  mon⁴
+ \so  phk_mon4
+ \ps  v.
+@@ -147654,7 +147654,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုꩫ︀်
+-\le  မ︀ွု ꩫ︀်
++\le  မ︀ွုꩫ︀်
+ \ph  mon⁴
+ \so  phk_mon4
+ \ps  v.
+@@ -147817,7 +147817,7 @@ females, to become wild for sexual intercourse
+ \dt  24/Oct/2023
+ 
+ \lx  မ︀ုပ︀်
+-\le  မ︀ွု ပ︀်
++\le  မ︀ွုပ︀်
+ \ph  mop¹
+ \so  phk_mop1
+ \ps  v.
+@@ -147838,7 +147838,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုပ︀်
+-\le  မ︀ွု ပ︀်
++\le  မ︀ွုပ︀်
+ \ph  mop¹
+ \so  phk_mop1
+ \ps  n
+@@ -147863,7 +147863,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုပ︀် 
+-\le  မ︀ွု ပ︀်
++\le  မ︀ွုပ︀်
+ \ph  mop⁴
+ \so  phk_mop4
+ \ps  v.
+@@ -147889,7 +147889,7 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုပ︀်
+-\le  မ︀ွု ပ︀်
++\le  မ︀ွုပ︀်
+ \ph  mop⁴
+ \so  phk_mop4
+ \ps  v.
+@@ -148128,8 +148128,8 @@ females, to become wild for sexual intercourse
+ \dt  09/Mar/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom¹
+ \so  phk_mom1
+ \ps  v.
+@@ -148158,8 +148158,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom¹
+ \so  phk_mom1
+ \ps   v .
+@@ -148179,8 +148179,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom¹
+ \so  phk_mom1
+ \ps  v
+@@ -148200,8 +148200,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom⁴
+ \so  phk_mom4
+ \ps  adj.
+@@ -148222,8 +148222,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom¹
+ \so  phk_mom1
+ \ps  v.
+@@ -148244,8 +148244,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံ
+-\le  မ︀ွု ံ
+-\le  မ︀ွု မ︀်
++\le  မ︀ွုံ
++\le  မ︀ွုမ︀်
+ \ph  mom¹
+ \so  phk_mom1
+ \ps  v
+@@ -148265,8 +148265,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံꩬ︀ုံ
+-\le  မ︀ွု ံꩬ︀ွု ံ
+-\le  မ︀ွု မ︀်ꩬ︀ွု မ︀်
++\le  မ︀ွုံꩬ︀ွုံ
++\le  မ︀ွုမ︀်ꩬ︀ွုမ︀်
+ \ph  mom⁴ som⁴
+ \so  phk_mom4som4
+ \ps   n .
+@@ -148286,8 +148286,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံꩬ︀ုံ
+-\le  မ︀ွု ံꩬ︀ွု ံ
+-\le  မ︀ွု မ︀်ꩬ︀ွု မ︀်
++\le  မ︀ွုံꩬ︀ွုံ
++\le  မ︀ွုမ︀်ꩬ︀ွုမ︀်
+ \ph  mom¹ som⁴
+ \so  phk_mom1 om4
+ \ps  adj.
+@@ -148307,8 +148307,8 @@ females, to become wild for sexual intercourse
+ \dt  05/Jun/2023
+ 
+ \lx  မ︀ုံမ︀ိုမ︀်
+-\le  မ︀ွု ံမ︀ိုမ︀်
+-\le  မ︀ွု မ︀်မ︀ိုုမ︀်
++\le  မ︀ွုံမ︀ိုမ︀်
++\le  မ︀ွုမ︀်မ︀ိုုမ︀်
+ \ph  mum¹ məm⁵
+ \so  phk_mum1mzm5
+ \ps  adj.
+@@ -148320,7 +148320,7 @@ females, to become wild for sexual intercourse
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ုံမ︀ိုမ︀် မ︀ိုꩫ︀ လ︀ုက︀ ၸ︀ြႃႜ ပ︀ွင︀ က︀ꩫ︀ တ︀က︀ ဝ︀ွႃႜ ၵ︀ုပ︀် လ︀ွ် ဝ︀ွေ︀ႃင︀ မ︀ွု ꩫ︀် ꩬ︀ုင︀ ယ︀ွꩫ︀ ၵ︀ွံ 
++\xv  မ︀ုံမ︀ိုမ︀် မ︀ိုꩫ︀ လ︀ုက︀ ၸ︀ြႃႜ ပ︀ွင︀ က︀ꩫ︀ တ︀က︀ ဝ︀ွႃႜ ၵ︀ုပ︀် လ︀ွ် ဝ︀ွေ︀ႃင︀ မ︀ွုꩫ︀် ꩬ︀ုင︀ ယ︀ွꩫ︀ ၵ︀ွံ 
+ \xr  mum¹ məm⁵ mün¹ luk⁴ phā⁵ pauŋ² kün² tak¹ wā⁵ khup⁴ lau⁵ wɔŋ⁴ mon² suŋ⁶ yɔn² khām²
+ \so  phk_mum1mzm5mvn1luk4phaa5pauN2kvn2tak1waa5khup4lau5wqN4mon2suN6yqn2 khaam2
+ \xe  Swarming like 10,000 disciples gathered. 'Kneeling and begging that the glorious emperor tell the words 
+@@ -152005,7 +152005,7 @@ Their power was complete in the whole country, outside and inside
+ \ps  n
+ \de  a young (unmarried) man
+ \ge  young
+-\pl ု 
++\pl  ု
+ \pd 
+ \pde 
+ \pdn 
+@@ -152839,8 +152839,8 @@ word, symbol, line, pattern, texture on an object
+ \notes  ailot
+ \dt  05/Nov/2023
+ 
+-\lx  မ︀ျု ံ
+-\le  မ︀ျွု ံ
++\lx  မ︀ျ ုံ
++\le  မ︀ျွုံ
+ \ph  myom⁵
+ \so  phk_myom5
+ \ps  adj.
+@@ -152852,15 +152852,15 @@ word, symbol, line, pattern, texture on an object
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ုꩫ︀်မ︀ျု ံ
++\xv  က︀ုꩫ︀်မ︀ျ ုံ
+ \xr  kon² myom⁵
+ \so  phk_kon2myom5
+ \xe  a  mild person
+-\xv  မ︀ျု ံမ︀ျု ံ 
++\xv  မ︀ျ ုံမ︀ျ ုံ 
+ \xr  myom⁵ myom⁵
+ \so  phk_myom5 myom5 
+ \xe  mildly, amiably gentle 
+-\xv  မ︀ျု ံမ︀ျု ံ ꩬ︀ေ︀တ︀ꩫ︀်
++\xv  မ︀ျ ုံမ︀ျ ုံ ꩬ︀ေ︀တ︀ꩫ︀်
+ \xr  myom⁵ myom⁵ sɛ⁶ tān³
+ \so  phk_myom5 myom5sj6 taan3
+ \xe  to speak mildly 
+@@ -156208,7 +156208,7 @@ out, probably will remember it very soon
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ယ︀င︀်မ︀ွု တ︀်ဝ︀ျိꩫ︀်က︀ႃ
++\xv  ယ︀င︀်မ︀ွုတ︀်ဝ︀ျိꩫ︀်က︀ႃ
+ \xr  yāŋ⁶ mot¹ wɛn⁵ kā¹
+ \so  phk_yaaN6mot1wjn5kaa1
+ \xe  to have eaten up all
+@@ -157275,7 +157275,7 @@ progress may be made
+ \dn 
+ \rf  
+ 
+-\xv  ၵ︀ိင︀ ဝ︀ိꩫ︀ က︀ဝ︀ ၵ︀ွု ꩫ︀ ꩫ︀ႝ ꩡ︀ိတ︀ ပ︀ီ ယ︀ပ︀ ယ︀ွေ︀ႃ
++\xv  ၵ︀ိင︀ ဝ︀ိꩫ︀ က︀ဝ︀ ၵ︀ွုꩫ︀ ꩫ︀ႝ ꩡ︀ိတ︀ ပ︀ီ ယ︀ပ︀ ယ︀ွေ︀ႃ
+ \xr  khiŋ² wen² kau² khun⁶ nai³ cet¹  pī² yap⁴ yɔ⁵
+ \so  phk_khiN2wen2kau2khun6nai3cet1pI2yap4yq5
+ \xe  My who can fly now, when I reached seven years
+@@ -158175,7 +158175,7 @@ flower is white and the other is yellow  ( yA3 khat1 loN6 and yA3 khat1 qn1 )
+ \pc1  1_phk_yA3ho6loN6.jpg
+ \pc2  2_phk_yA3ho6loN6.jpg
+ \pc3  3_phk_yA3ho6loN6.jpg
+-\xv ွု ယ︀ႃꩭွံၵ︀ိဝ︀်
++\xv  ွုယ︀ႃꩭွံၵ︀ိဝ︀်
+ \xr  yā³ hɔm³ kheu⁶
+ \so  phk_yaa3hqm3kheu6
+ \xe  altermanthera sessilis, sessile joyweed, a kind of aquatic plant <matikaduri in Assamese>
+@@ -159530,7 +159530,7 @@ without human voice
+ \ps  adj.
+ \de  glittering, dazzling
+ \ge  glittering
+-\pl ွ ်
++\pl  ွ်
+ \pd 
+ \pde 
+ \pdn 
+@@ -159856,7 +159856,7 @@ about something unimportant or trivial
+ \ps  adj.
+ \de  (in character) bad, evil, wicked
+ \ge  bad
+-\pl ွု 
++\pl  ွု
+ \pd 
+ \pde 
+ \pdn 
+@@ -159903,7 +159903,7 @@ about something unimportant or trivial
+ \dt  10/Feb/2022
+ 
+ \lx  ယ︀ုက︀်
+-\le  ယ︀ွု က︀်
++\le  ယ︀ွုက︀်
+ \ph  yok¹
+ \so  phk_yok1
+ \ps  n
+@@ -159924,7 +159924,7 @@ about something unimportant or trivial
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ုက︀်
+-\le  ယ︀ွု က︀်
++\le  ယ︀ွုက︀်
+ \ph  yok⁴
+ \so  phk_yok4
+ \ps  v.
+@@ -159997,7 +159997,7 @@ about something unimportant or trivial
+ \dt  12/Mar/2023
+ 
+ \lx  ယ︀ုက︀်
+-\le  ယ︀ွု က︀်
++\le  ယ︀ွုက︀်
+ \ph  yok⁴
+ \so  phk_yok4
+ \ps  v.
+@@ -160018,7 +160018,7 @@ about something unimportant or trivial
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ုက︀် (က︀ုၺ်)
+-\le  ယ︀ွု က︀်
++\le  ယ︀ွုက︀်
+ \ph  yok¹ (koi³)
+ \so  phk_yok1
+ \ps  n.
+@@ -160166,7 +160166,7 @@ according to the law of kamma, synonym  (P) vipaka
+ \dt  18/Jun/2021
+ 
+ \lx  ယ︀ုင︀ꩰ
+-\le  ယ︀ွု င︀ꩰ
++\le  ယ︀ွုင︀ꩰ
+ \ph  yoŋ⁵ yoŋ⁵
+ \so  phk_yoN5yoN5
+ \ps  intensifier
+@@ -160187,7 +160187,7 @@ according to the law of kamma, synonym  (P) vipaka
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ုင︀်
+-\le  ယ︀ွု င︀်
++\le  ယ︀ွုင︀်
+ \ph  yoŋ⁵
+ \so  phk_yoN5
+ \ps  v
+@@ -160324,7 +160324,7 @@ there is unrest in the country
+ \dt  19/Feb/2024
+ 
+ \lx  ယ︀ုင︀ꩰ
+-\le  ယ︀ွု င︀ꩰ
++\le  ယ︀ွုင︀ꩰ
+ \ph  yoŋ⁵ yoŋ⁵
+ \so  phk_yoN5yoN5
+ \ps  v.
+@@ -160452,7 +160452,7 @@ lessen the heat, lit. to stop the fire for a while
+ \dt  04/May/2021
+ 
+ \lx  ယ︀ုꩫ︀်
+-\le  ယ︀ွု ꩫ︀်
++\le  ယ︀ွုꩫ︀်
+ \ph  yon⁵
+ \so  phk_yon5
+ \ps  v
+@@ -160472,7 +160472,7 @@ lessen the heat, lit. to stop the fire for a while
+ \dt  01/Mar/2024
+ 
+ \lx  ယ︀ုꩫ︀်
+-\le  ယ︀ွု ꩫ︀်
++\le  ယ︀ွုꩫ︀်
+ \ph  yon²
+ \so  phk_yon2
+ \ps  n.
+@@ -160492,7 +160492,7 @@ lessen the heat, lit. to stop the fire for a while
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ုꩫ︀်
+-\le  ယ︀ွု ꩫ︀်
++\le  ယ︀ွုꩫ︀်
+ \ph  yon⁵
+ \so  phk_yon5
+ \ps  v.
+@@ -160512,7 +160512,7 @@ lessen the heat, lit. to stop the fire for a while
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ုꩫ︀်
+-\le  ယ︀ွု ꩫ︀်
++\le  ယ︀ွုꩫ︀်
+ \ph  yon⁵ 
+ \so  phk_yon5 
+ \ps  v.
+@@ -160556,7 +160556,7 @@ lessen the heat, lit. to stop the fire for a while
+ \dt  19/Feb/2024
+ 
+ \lx  ယ︀ုꩫ︀် (မ︀ိုင︀်)
+-\le  ယ︀ွု ꩫ︀်
++\le  ယ︀ွုꩫ︀်
+ \ph  yon² (məŋ²)
+ \so  phk_yon2
+ \ps  n.
+@@ -160728,9 +160728,9 @@ to raise the elbow
+ \dt  11/Nov/2023
+ 
+ \lx  ယ︀ုံ
+-\le  ယ︀ွု ံ
++\le  ယ︀ွုံ
+ \le  ယ︀ုမ︀်
+-\le  ယ︀ွု မ︀်
++\le  ယ︀ွုမ︀်
+ \ph  yom⁴
+ \so  phk_yom4
+ \ps  v.
+@@ -160919,9 +160919,9 @@ esp. of keys;  a tuft, as of hair, beard
+ 
+ \lx  ယ︀ုံ
+ \le  ယ︀ုံ
+-\le  ယ︀ွု ံ
++\le  ယ︀ွုံ
+ \le  ယ︀ုမ︀်
+-\le  ယ︀ွု မ︀်
++\le  ယ︀ွုမ︀်
+ \ph  yom²
+ \so  phk_yom2
+ \ps  adj.
+@@ -160964,9 +160964,9 @@ esp. of keys;  a tuft, as of hair, beard
+ 
+ \lx  ယ︀ုံ
+ \le  ယ︀ုံ
+-\le  ယ︀ွု ံ
++\le  ယ︀ွုံ
+ \le  ယ︀ုမ︀်
+-\le  ယ︀ွု မ︀်
++\le  ယ︀ွုမ︀်
+ \ph  yom⁴
+ \so  phk_yom4
+ \ps  v.
+@@ -162643,7 +162643,7 @@ less strong
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ်ၵ︀ွ်ယ︀ႝ
++\xv  ွ်ၵ︀ွ်ယ︀ႝ
+ \xr  khau³ yāi⁵
+ \so  phk_khau3yaai5
+ \xe  cooked rice did not stick together
+@@ -162651,7 +162651,7 @@ less strong
+ \xr  phuŋ⁶ kon² yāi⁵
+ \so  phk_phuN6kon2yaai5
+ \xe  the group of people were scattered 
+-\xv ွ ်တ︀ုံယ︀ႝတ︀ုံယ︀ႝ  
++\xv  ွ်တ︀ုံယ︀ႝတ︀ုံယ︀ႝ  
+ \xr  tum² yāi⁵ tum² yāi⁵ 
+ \so  phk_tum2yaai5tum2yaai5
+ \xe  to gathered and disperse repeatedly 
+@@ -170912,7 +170912,7 @@ used of money lent
+ \ps  adv.
+ \de  suddenly, quickly and unexpectedly, at once
+ \ge  suddenly
+-\pl ု 
++\pl  ု
+ \pd 
+ \pde 
+ \pdn 
+@@ -171145,7 +171145,7 @@ and causing the mouth is to be filled with saliva
+ \dt  05/Nov/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ⁴
+ \so  phk_loN4
+ \ps  v
+@@ -171171,7 +171171,7 @@ strand in to decorative band as a whistle's string
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ²
+ \so  phk_loN2
+ \ps  v
+@@ -171229,7 +171229,7 @@ strand in to decorative band as a whistle's string
+ \dt  16/Nov/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ⁶
+ \so  phk_loN6
+ \ps  adj.
+@@ -171288,7 +171288,7 @@ strand in to decorative band as a whistle's string
+ \dt  29/Feb/2024
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ⁶
+ \so  phk_loN6
+ \ps  adv.
+@@ -171338,7 +171338,7 @@ strand in to decorative band as a whistle's string
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ²
+ \so  phk_loN2
+ \ps  exclam.
+@@ -171370,7 +171370,7 @@ strand in to decorative band as a whistle's string
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ²
+ \so  phk_loN2
+ \ps  adj.
+@@ -171391,7 +171391,7 @@ strand in to decorative band as a whistle's string
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ⁴
+ \so  phk_loN4
+ \ps  v.
+@@ -171416,7 +171416,7 @@ strand in to decorative band as a whistle's string
+ \dt  05/Dec/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ²
+ \so  phk_loN2
+ \ps  v.
+@@ -171448,7 +171448,7 @@ strand in to decorative band as a whistle's string
+ \dt  16/Nov/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ⁶
+ \so  phk_loN6
+ \ps  adj.
+@@ -171477,7 +171477,7 @@ strand in to decorative band as a whistle's string
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုင︀်
+-\le  လ︀ွု င︀်
++\le  လ︀ွုင︀်
+ \ph  loŋ²
+ \so  phk_loN2
+ \ps  v.
+@@ -171757,7 +171757,7 @@ spells < k?? or kz >
+ \dt  14/Mar/2023
+ 
+ \lx  လ︀ုꩫ︀်
+-\le  လ︀ွု ꩫ︀်
++\le  လ︀ွုꩫ︀်
+ \ph  lon⁴
+ \so  phk_lon4
+ \ps  adj.
+@@ -171785,7 +171785,7 @@ spells < k?? or kz >
+ \xr  khau³ lon⁴ khau³ lə⁶
+ \so  phk_khau3lon4khau3lz6
+ \xe  the amount of rice is more than sufficient
+-\xv  ပ︀ႝꩭꩫ︀ၵ︀ုꩫ︀မ︀ိုင︀လ︀ွု ꩫ︀ꩫ︀ိုဝ︀ꩬ︀ိုင︀  
++\xv  ပ︀ႝꩭꩫ︀ၵ︀ုꩫ︀မ︀ိုင︀လ︀ွုꩫ︀ꩫ︀ိုဝ︀ꩬ︀ိုင︀  
+ \xr  pāi² hān⁶ khun⁶ məŋ² lon⁴ nə⁶ süŋ¹
+ \so  phk_paai2haan6khun6mzN2lon4nz6svN1
+ \xe  The number of brave elephants of the rich man exceeded the shelter available.
+@@ -171802,7 +171802,7 @@ spells < k?? or kz >
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုꩫ︀်
+-\le  လ︀ွု ꩫ︀်
++\le  လ︀ွုꩫ︀်
+ \ph  lon¹
+ \so  phk_lon1
+ \ps  v
+@@ -171823,7 +171823,7 @@ spells < k?? or kz >
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုꩫ︀်
+-\le  လ︀ွု ꩫ︀်
++\le  လ︀ွုꩫ︀်
+ \ph  lon¹
+ \so  phk_lon1
+ \ps  adj.
+@@ -171888,7 +171888,7 @@ spells < k?? or kz >
+ \dt  17/Aug/2021
+ 
+ \lx  လ︀ုꩫ︀်
+-\le  လ︀ွု ꩫ︀်
++\le  လ︀ွုꩫ︀်
+ \ph  lon¹
+ \so  phk_lon1
+ \ps  v.
+@@ -172128,7 +172128,7 @@ a number of 40 stick that fasten or to be fasten
+ \dt  07/May/2021
+ 
+ \lx  လ︀ုပ︀်
+-\le  လ︀ွု ပ︀််
++\le  လ︀ွုပ︀််
+ \ph  lop¹ 
+ \so  phk_lop1 
+ \ps  adv.
+@@ -172335,9 +172335,9 @@ yam² ŋau²
+ \dt  11/Mar/2024
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom¹
+ \so  phk_lom1
+ \ps  n.
+@@ -172384,9 +172384,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  04/Mar/2024
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom²
+ \so  phk_lom2
+ \ps  v.
+@@ -172406,9 +172406,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  15/Nov/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom²
+ \so  phk_lom2
+ \ps  n.
+@@ -172449,9 +172449,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom²
+ \so  phk_lom2
+ \ps  n.
+@@ -172552,9 +172552,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom³
+ \so  phk_lom3
+ \ps  v
+@@ -172595,9 +172595,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom³
+ \so  phk_lom3
+ \ps  v.
+@@ -172622,9 +172622,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom⁴
+ \so  phk_lom4
+ \ps  v
+@@ -172691,9 +172691,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  31/Jan/2024
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom⁶
+ \so  phk_lom6
+ \ps  adj.
+@@ -172780,9 +172780,9 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \dt  26/May/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom⁶
+ \so  phk_lom6
+ \ps  v.
+@@ -172803,9 +172803,9 @@ to persuade one to do
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ုံ
+-\le  လ︀ွု ံ
++\le  လ︀ွုံ
+ \le  လ︀ုမ︀်
+-\le  လ︀ွု မ︀်
++\le  လ︀ွုမ︀်
+ \ph  lom⁶
+ \so  phk_lom6
+ \ps  v.
+@@ -174871,7 +174871,7 @@ believed to cause or source of suffering or harm or undesirable (see malauN2)
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ လ︀ွꩫ︀်ၵ︀ျိပ︀်တ︀ိꩫ︀်
++\xv  ွလ︀ွꩫ︀်ၵ︀ျိပ︀်တ︀ိꩫ︀်
+ \xr  lɔn³ khɛp¹ tin²
+ \so  phk_lqn3khjp1tin2
+ \xe  to take off one's shoe
+@@ -178465,7 +178465,7 @@ there is a lot more
+ \ps  adv.
+ \de  of great size, huge
+ \ge  of great size, huge
+-\pl ွ 
++\pl  ွ
+ \pd 
+ \pde 
+ \pdn 
+@@ -181796,7 +181796,7 @@ showing disagreement or refusal
+ \xr  khiŋ² wen²
+ \so  phk_khiN2wen2
+ \xe  flying body
+-\xv  ၵ︀ိင︀ ဝ︀ိꩫ︀ က︀ဝ︀ ၵ︀ွု ꩫ︀ ꩫ︀ႝ ꩡ︀ိတ︀ ပ︀ီ ယ︀ပ︀ ယ︀ွေ︀ႃ
++\xv  ၵ︀ိင︀ ဝ︀ိꩫ︀ က︀ဝ︀ ၵ︀ွုꩫ︀ ꩫ︀ႝ ꩡ︀ိတ︀ ပ︀ီ ယ︀ပ︀ ယ︀ွေ︀ႃ
+ \xr  khiŋ² wen² kau² khun⁶ nai³ cet¹  pī² yap⁴ yɔ⁵
+ \so  phk_khiN2wen2kau2khun6nai3cet1pI2yap4yq5
+ \xe  My who can fly now, when I reached seven years
+@@ -182534,7 +182534,7 @@ in Vinayaka Pitika  it lays 227 rules of monastic life for Bhikkhus ( Buddhist m
+ \dt  19/Dec/2023
+ 
+ \lx  ဝ︀ုင︀်
+-\le  ဝ︀ွု င︀်
++\le  ဝ︀ွုင︀်
+ \ph  woŋ⁵
+ \so  phk_woN5
+ \ps  prep.
+@@ -182638,7 +182638,7 @@ in Vinayaka Pitika  it lays 227 rules of monastic life for Bhikkhus ( Buddhist m
+ \dt  11/May/2021
+ 
+ \lx  ဝ︀ုတ︀်
+-\le  ဝ︀ွု တ︀်
++\le  ဝ︀ွုတ︀်
+ \ph  wot⁴
+ \so  phk_wot4
+ \ps  n
+@@ -182672,7 +182672,7 @@ to makes him suffer in the present life (mostly bad deed)
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုတ︀်
+-\le  ဝ︀ွု တ︀်
++\le  ဝ︀ွုတ︀်
+ \ph  wot⁴
+ \so  phk_wot4
+ \ps  n.
+@@ -182693,7 +182693,7 @@ to makes him suffer in the present life (mostly bad deed)
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုတ︀်
+-\le  ဝ︀ွု တ︀်
++\le  ဝ︀ွုတ︀်
+ \ph  wot⁴
+ \so  phk_wot4
+ \ps  v
+@@ -182726,7 +182726,7 @@ to makes him suffer in the present life (mostly bad deed)
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုတ︀်
+-\le  ဝ︀ွု တ︀်
++\le  ဝ︀ွုတ︀်
+ \ph  wot⁴
+ \so  phk_wot4
+ \ps  v.
+@@ -182747,7 +182747,7 @@ to makes him suffer in the present life (mostly bad deed)
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုꩫ︀်
+-\le  ဝ︀ွု ꩫ︀်
++\le  ဝ︀ွုꩫ︀်
+ \ph  won⁴
+ \so  phk_won4
+ \ps  v.
+@@ -182769,7 +182769,7 @@ prepatory to weaving
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုꩫ︀်
+-\le  ဝ︀ွု ꩫ︀်
++\le  ဝ︀ွုꩫ︀်
+ \ph  won⁴
+ \so  phk_won4
+ \ps  v.
+@@ -182875,7 +182875,7 @@ prepatory to weaving
+ \dt  09/Mar/2024
+ 
+ \lx  ဝ︀ုꩫ︀်တ︀ႃ
+-\le  ဝ︀ွု ꩫ︀်တ︀ႃ
++\le  ဝ︀ွုꩫ︀်တ︀ႃ
+ \ph  won¹ tā¹
+ \so  phk_won1taa1
+ \ps  n.
+@@ -182896,7 +182896,7 @@ prepatory to weaving
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုꩫ︀်တ︀ႃ
+-\le  ဝ︀ွု ꩫ︀်တ︀ႃ
++\le  ဝ︀ွုꩫ︀်တ︀ႃ
+ \ph  won¹ tā¹
+ \so  phk_won1taa1
+ \ps  v
+@@ -182916,7 +182916,7 @@ prepatory to weaving
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုꩫ︀်တ︀်ေ︀
+-\le  ဝ︀ွု ꩫ︀်တ︀်ေ︀
++\le  ဝ︀ွုꩫ︀်တ︀်ေ︀
+ \ph  won¹ tē¹
+ \so  phk_won1tE1
+ \ps  v
+@@ -182937,7 +182937,7 @@ prepatory to weaving
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုဝ︀်
+-\le  ဝ︀ွု ဝ︀်
++\le  ဝ︀ွုဝ︀်
+ \ph  wo²
+ \so  phk_wo2
+ \ps  n
+@@ -182962,7 +182962,7 @@ prepatory to weaving
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ုဝ︀်
+-\le  ဝ︀ွု ဝ︀်
++\le  ဝ︀ွုဝ︀်
+ \ph  wo²
+ \so  phk_wo2
+ \ps  v.
+@@ -184510,8 +184510,8 @@ thing (of the sun) to be heading west
+ \dt  31/May/2023
+ 
+ \lx  ဝ︀ွ်
+-\le ွ ်ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wāu²
+ \so  phk_waau2
+ \ps  v
+@@ -184560,7 +184560,7 @@ old saying of Tai Phake)
+ 
+ \lx  ဝ︀ွ်
+ \le  ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wau²
+ \so  phk_wau2
+ \ps  v.
+@@ -184586,7 +184586,7 @@ old saying of Tai Phake)
+ 
+ \lx  ဝ︀ွ်
+ \le  ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wāu⁵
+ \so  phk_waau5
+ \ps  n.
+@@ -184695,7 +184695,7 @@ old saying of Tai Phake)
+ 
+ \lx  ဝ︀ွ်
+ \le  ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wāu¹
+ \so  phk_waau1
+ \ps  n.
+@@ -184737,7 +184737,7 @@ old saying of Tai Phake)
+ 
+ \lx  ဝ︀ွ်
+ \le  ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wau²
+ \so  phk_wau2
+ \ps  adj.
+@@ -184874,8 +184874,8 @@ engulfed by fire, the hen fled away to a far distance
+ \dt  31/May/2023
+ 
+ \lx  ဝ︀ွ်
+-\le ွ ်ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wāu²
+ \so  phk_waau2
+ \ps  v
+@@ -185057,7 +185057,7 @@ intended to have long term result
+ 
+ \lx  ဝ︀ွ် (ꩡ︀ၞ်)
+ \le  ဝ︀ဝ︀်
+-\le ွ ်ဝ︀ွ်ဝ︀်
++\le  ွ်ဝ︀ွ်ဝ︀်
+ \ph  wāu¹ (caü²)
+ \so  phk_waau1
+ \ps  adj.
+@@ -186422,7 +186422,7 @@ dhamma
+ \xr  hoŋ⁶ hāŋ²
+ \so  phk_hoN6haaN2
+ \xe  renowned one
+-\xv  တ︀က︀ ꩭိမ︀ ꩭုင︀ ꩭင︀ ပ︀ွု ꩫ︀ ၵ︀ိုꩫ︀ လ︀င︀ ပ︀က︀ က︀ႃႜ ꩡ︀ံ ယ︀ွ်
++\xv  တ︀က︀ ꩭိမ︀ ꩭုင︀ ꩭင︀ ပ︀ွုꩫ︀ ၵ︀ိုꩫ︀ လ︀င︀ ပ︀က︀ က︀ႃႜ ꩡ︀ံ ယ︀ွ်
+ \xr  tak¹ hɛm² hoŋ⁶ hāŋ² pon⁴ khün⁶ laŋ⁶ pāk¹ kā¹ cam² yau⁴
+ \so  phk_tak1hjm2hoN6haaN2pon4khvn6laN6paak1kaa1cam2yau4
+ \xe  That the (country's) fame will be a hundred fold greater than before
+@@ -188855,7 +188855,7 @@ wāi¹ mə² hən² kɔi⁴
+ \xr  pān² heŋ²
+ \so  phk_paan2heN2
+ \xe  young generation
+-\xv  ꩡ︀်ံ မ︀ိုဝ︀ ၸ︀ြႃႜ ပ︀ႝ ထ︀ွု ꩫ︀ ယ︀င︀ ꩭိင︀
++\xv  ꩡ︀်ံ မ︀ိုဝ︀ ၸ︀ြႃႜ ပ︀ႝ ထ︀ွုꩫ︀ ယ︀င︀ ꩭိင︀
+ \xr  cem² mə⁵  phā⁴ pai¹ thon³ yaŋ² heŋ²
+ \so  phk_cem2mz5phaa4pai1thon3yaN2heN2
+ \xe  At that time, the Lord was not yet fully grown, still young
+@@ -190369,7 +190369,7 @@ and golden in the middle
+ \dt  16/Feb/2022
+ 
+ \lx  ꩭုက︀်
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  huk¹
+ \so  phk_huk1
+ \ps  n
+@@ -190390,7 +190390,7 @@ and golden in the middle
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုက︀်
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  hok⁴
+ \so  phk_hok4
+ \ps  adj.
+@@ -190423,7 +190423,7 @@ and golden in the middle
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုက︀်
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  hok⁴
+ \so  phk_hok4
+ \ps  n.
+@@ -190448,7 +190448,7 @@ and golden in the middle
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုက︀်
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  hok¹
+ \so  phk_hok1
+ \ps  cardinal number.
+@@ -190534,7 +190534,7 @@ and golden in the middle
+ \dt  06/Feb/2021
+ 
+ \lx  ꩭုက︀်
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  hok¹
+ \so  phk_hok
+ \ps  n.
+@@ -190559,7 +190559,7 @@ and golden in the middle
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုက︀် (မ︀ႝ )
+-\le  ꩭွု က︀်
++\le  ꩭွုက︀်
+ \ph  hok⁴ (mai⁴)
+ \so  phk_hok4
+ \ps  n
+@@ -190579,7 +190579,7 @@ and golden in the middle
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုက︀်က︀ႃလ︀ႝ
+-\le  ꩭွု က︀်က︀ႃလ︀ႝ
++\le  ꩭွုက︀်က︀ႃလ︀ႝ
+ \ph  hok¹ ka¹ lai⁶
+ \so  pk_hok1ka1lai6
+ \ps  n.
+@@ -190657,7 +190657,7 @@ and golden in the middle
+ \dt  25/Jun/2021
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ²
+ \so  phk_hoN2
+ \ps  n
+@@ -190682,7 +190682,7 @@ and golden in the middle
+ \dt  28/Apr/2023
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ⁵
+ \so  phk_hoN5, 
+ \ps  v.
+@@ -190784,7 +190784,7 @@ fall to the ground
+ \dt  27/Jul/2021
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ²
+ \so  phk_hoN2
+ \ps  n.
+@@ -190805,7 +190805,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ²
+ \so  phk_hoN2
+ \ps  clf.
+@@ -190826,7 +190826,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ⁶
+ \so  phk_hoN6
+ \ps  adj.
+@@ -190886,7 +190886,7 @@ fall to the ground
+ \dt  01/Feb/2024
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ²
+ \so  phk_hoN2
+ \ps  n.
+@@ -190907,7 +190907,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ¹
+ \so  phk_hoN1
+ \ps  v
+@@ -190928,7 +190928,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ²
+ \so  phk_hoN2
+ \ps  n
+@@ -191016,7 +191016,7 @@ fall to the ground
+ \dt  04/Aug/2021
+ 
+ \lx  ꩭုင︀်
+-\le  ꩭွု င︀်
++\le  ꩭွုင︀်
+ \ph  hoŋ² 
+ \so  phk_hoN2 
+ \ps  n.
+@@ -191106,7 +191106,7 @@ fall to the ground
+ \dt  16/Mar/2023
+ 
+ \lx  ꩭုင︀်က︀ိꩫ︀်ꩫ︀ံ
+-\le  ꩭွု င︀်က︀ိꩫ︀်ꩫ︀ံ
++\le  ꩭွုင︀်က︀ိꩫ︀်ꩫ︀ံ
+ \ph  hoŋ² kin² nam⁴ 
+ \so  phk_hoN2kin2nam4 
+ \ps  n.
+@@ -191126,7 +191126,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်က︀ႝၸ︀ႃ
+-\le  ꩭွု င︀်က︀ႝၸ︀ႃ
++\le  ꩭွုင︀်က︀ႝၸ︀ႃ
+ \ph  hoŋ² kāi¹ phā⁴
+ \so  phk_hoN2kaai1phaa4
+ \ps  n.
+@@ -191146,7 +191146,7 @@ fall to the ground
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်ၸ︀ႝ
+-\le  ꩭွု င︀်ၸ︀ႝ
++\le  ꩭွုင︀်ၸ︀ႝ
+ \ph  hoŋ² phai²
+ \so  phk_hoN2phai2
+ \ps  n.
+@@ -191195,7 +191195,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  16/Feb/2022
+ 
+ \lx  ꩭုင︀်ၸ︀ိုက︀် (တ︀ုꩫ︀်)
+-\le  ꩭွု င︀်ၸ︀ိုက︀်
++\le  ꩭွုင︀်ၸ︀ိုက︀်
+ \ph  hoŋ² phək¹ (ton³)
+ \so  phk_hoN2phzk1
+ \ps  n.
+@@ -191215,7 +191215,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်ꩭျိင︀်
+-\le  ꩭွု င︀်ꩭျိင︀်
++\le  ꩭွုင︀်ꩭျိင︀်
+ \ph  hoŋ⁵ haiŋ⁴
+ \so  phk_hoN5haiN4
+ \ps  n.
+@@ -191235,7 +191235,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုင︀်တ︀ေ︀ႃ
+-\le  ꩭွု င︀်တ︀ေ︀ႃ
++\le  ꩭွုင︀်တ︀ေ︀ႃ
+ \ph  hoŋ² tɔ¹
+ \so  phk_hoN2tq1
+ \ps  n.
+@@ -191459,7 +191459,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  17/Aug/2021
+ 
+ \lx  ꩭုတ︀်
+-\le  ꩭွု တ︀်
++\le  ꩭွုတ︀်
+ \ph  hot⁴
+ \so  phk_hot4
+ \ps  n.
+@@ -191488,7 +191488,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုတ︀်
+-\le  ꩭွု တ︀်
++\le  ꩭွုတ︀်
+ \ph  hot¹
+ \so  phk_hot1
+ \ps  v
+@@ -191521,7 +191521,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုတ︀်
+-\le  ꩭွု တ︀်
++\le  ꩭွုတ︀်
+ \ph  hot¹
+ \so  phk_hot1
+ \ps  v
+@@ -191558,7 +191558,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုတ︀်
+-\le  ꩭွု တ︀်
++\le  ꩭွုတ︀်
+ \ph  hot¹
+ \so  phk_hot1
+ \ps  v.
+@@ -191608,7 +191608,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  17/Aug/2021
+ 
+ \lx  ꩭုꩫ︀်
+-\le  ꩭွု ꩫ︀်
++\le  ꩭွုꩫ︀်
+ \ph  hon⁶
+ \so  phk_hon6
+ \ps  v.
+@@ -191730,7 +191730,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \ps  v.
+ \de  sprout, to begin to sprout, begin to shoot up as new leaf, teeth of a baby or hair grow on baldhead or after trimming 
+ \ge  sprout
+-\pl ု 
++\pl  ု
+ \pd 
+ \pde 
+ \pdn 
+@@ -191761,7 +191761,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  27/Jul/2021
+ 
+ \lx  ꩭုꩫ︀်
+-\le  ꩭွု ꩫ︀်
++\le  ꩭွုꩫ︀်
+ \ph  hon⁶
+ \so  phk_hon6
+ \ps  v
+@@ -191794,7 +191794,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုꩫ︀်
+-\le  ꩭွု ꩫ︀်
++\le  ꩭွုꩫ︀်
+ \ph  hon⁶
+ \so  phk_hon6
+ \ps  v
+@@ -191924,7 +191924,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \dt  04/Feb/2021
+ 
+ \lx  ꩭုပ︀်
+-\le  ꩭွု ပ︀်
++\le  ꩭွုပ︀်
+ \ph  hup¹
+ \so  phk_hup1
+ \ps  v
+@@ -192020,7 +192020,7 @@ over
+ \dt  23/Oct/2023
+ 
+ \lx  ꩭုပ︀်
+-\le  ꩭွု ပ︀်
++\le  ꩭွုပ︀်
+ \ph  hop⁴
+ \so  phk_hop4
+ \ps  v
+@@ -192053,7 +192053,7 @@ over
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုပ︀်
+-\le  ꩭွု ပ︀်
++\le  ꩭွုပ︀်
+ \ph  hop¹
+ \so  phk_hop1
+ \ps  v
+@@ -192526,7 +192526,7 @@ lineage
+ \xr  ho⁶ hok¹ ka¹ lai⁶
+ \so  phk_ho6hok1ka1lai6
+ \xe  a stairhead, the head of a ladder, the upper part of a ladder
+-\xv ု ꩭုဝ︀်ꩭိုꩫ︀်
++\xv  ုꩭုဝ︀်ꩭိုꩫ︀်
+ \xr  ho⁶ hən²
+ \so  phk_ho6hzn2
+ \xe  a house with family
+@@ -192782,9 +192782,9 @@ because of being interested in the same thing to be in harmony
+ \dt  16/Mar/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom³
+ \so  phk_hom3
+ \ps  v 
+@@ -192812,9 +192812,9 @@ because of being interested in the same thing to be in harmony
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom¹
+ \so  phk_hom1
+ \ps  v
+@@ -192942,9 +192942,9 @@ of  < mai4 phaa3 > usually used to a woman has recently given birth
+ \dt  05/Feb/2021
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom⁵
+ \so  phk_hom5
+ \ps  adv.
+@@ -192997,9 +192997,9 @@ of  < mai4 phaa3 > usually used to a woman has recently given birth
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom⁵
+ \so  phk_hom5
+ \ps  n.
+@@ -193040,9 +193040,9 @@ of  < mai4 phaa3 > usually used to a woman has recently given birth
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom¹
+ \so  phk_hom1
+ \ps  v
+@@ -193067,9 +193067,9 @@ of  < mai4 phaa3 > usually used to a woman has recently given birth
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom⁵
+ \so  phk_hom5
+ \ps  adv
+@@ -193134,9 +193134,9 @@ of  < mai4 phaa3 > usually used to a woman has recently given birth
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom¹
+ \so  phk_hom1
+ \ps  v.
+@@ -193167,9 +193167,9 @@ lit. to cover
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom¹
+ \so  phk_hom1
+ \ps  v..
+@@ -193189,9 +193189,9 @@ lit. to cover
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭုံ
+-\le  ꩭွု ံ
++\le  ꩭွုံ
+ \le  ꩭုမ︀်
+-\le  ꩭွု မ︀်
++\le  ꩭွုမ︀်
+ \ph  hom³
+ \so  phk_hom3
+ \ps  v.
+@@ -194037,7 +194037,7 @@ cover
+ \xr  hauŋ³ hən² kāŋ³
+ \so  phk_hauN3hzn2kaaN3
+ \xe  a  big house
+-\xv  ꩬ︀ိင︀ က︀ွေ︀ႃ လ︀ွု ꩫ︀ က︀ူ ꩭွင︀ လ︀ိုဝ︀ ယ︀်ေ︀
++\xv  ꩬ︀ိင︀ က︀ွေ︀ႃ လ︀ွုꩫ︀ က︀ူ ꩭွင︀ လ︀ိုဝ︀ ယ︀်ေ︀
+ \xr  saiŋ⁶ kɔ¹  lon⁴ kū⁵ hauŋ³ lə⁶ ye² 
+ \so  phk_saiN6kq1lon4kU5hauN3lz6ye2 
+ \xe  Diamonds covered every room and even the granaries
+@@ -196115,7 +196115,7 @@ Grandchildren
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ွံ ၵ︀ိုဝ︀ လ︀ွု ꩫ︀ ꩭွ် မ︀ိုင︀ ꩡ︀ွတ︀် ꩡ︀ိုင︀ ပ︀ိုꩫ︀ယ︀ွ်
++\xv  ၵ︀ွံ ၵ︀ိုဝ︀ လ︀ွုꩫ︀ ꩭွ် မ︀ိုင︀ ꩡ︀ွတ︀် ꩡ︀ိုင︀ ပ︀ိုꩫ︀ယ︀ွ်
+ \xr  khām² khü⁴ lɔn⁴  hāu²  məŋ² cɔt¹ cǖŋ⁵ pən⁵ yau⁴
+ \so  phk_khaam2khv4lqn4haau2 mzN2cqt1cVN5pzn5yau4
+ \xe  His news (kham khv) filled the length and breadth of countries everywhere
+@@ -196233,15 +196233,15 @@ Grandchildren
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ်မ︀ႃꩭွ်
++\xv  ွ်မ︀ႃꩭွ်
+ \xr  mā⁶ hau¹
+ \so  phk_maa6hau1
+ \xe  a dog barks
+-\xv ွ ်င︀ူꩭွ်
++\xv  ွ်င︀ူꩭွ်
+ \xr  ŋū² hau¹
+ \so  phk_NU2hau1
+ \xe  a smake hisese, a king cobra
+-\xv ွ ်မ︀ႃꩭွ်လ︀ေ︀ႃꩭွ်လ︀ေ︀ႃ
++\xv  ွ်မ︀ႃꩭွ်လ︀ေ︀ႃꩭွ်လ︀ေ︀ႃ
+ \xr  mā⁶ hau¹ lɔ⁵ hau¹ lɔ⁵
+ \so  phk_maa6hau1lq5hau1lq5
+ \xe  the dogs are barking and running back and forh
+@@ -200976,7 +200976,7 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ႃက︀ျု ဝ︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်ဢ︀ႃက︀ျွင︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်
++\xv  ဢ︀ႃက︀ျ ုဝ︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်ဢ︀ႃက︀ျွင︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်
+ \xr  a¹ kyo² kə⁴ mā⁵ yaŋ⁶ a¹ kyauŋ² kə⁴ mā⁵ yaŋ⁶
+ \so  phk_a1kyo2kz4maa5yaN6a1kyauN2kz4maa5yaN6
+ \xe  to have no merit and also nothing appeared to be 
+@@ -201138,11 +201138,11 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ႃက︀ျု ဝ︀်မ︀က︀်
++\xv  ဢ︀ႃက︀ျ ုဝ︀်မ︀က︀်
+ \xr  ā¹ kyo² māk⁴
+ \so  phk_aa1kyo2maak4
+ \xe  much  merit, heap with  religious merit
+-\xv  ဢ︀ႃက︀ျု ဝ︀်ဢ︀ႃမ︀ျႃ
++\xv  ဢ︀ႃက︀ျ ုဝ︀်ဢ︀ႃမ︀ျႃ
+ \xr  ā¹ kyo² ā¹ myā²
+ \so  phk_aa1kyo2aa1myaa2
+ \xe  religious merit and metta
+@@ -203136,7 +203136,7 @@ responsibilty, to shoulder a respond responsibility
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ်ဢ︀ႃလ︀ီယ︀ႃလ︀ႝꩡ︀ွ်လ︀ႝပ︀ႃ
++\xv  ွ်ဢ︀ႃလ︀ီယ︀ႃလ︀ႝꩡ︀ွ်လ︀ႝပ︀ႃ
+ \xr  ā¹ lī¹ yā³ lāi⁶ cau³ lāi⁶ pā²
+ \so  phk_aa1lI1yaa1laai6cau3laai6paa2
+ \xe  several desciple of Buddha
+@@ -205040,7 +205040,7 @@ enough to mind and throat
+ \dt  21/Mar/2020
+ 
+ \lx  ဢ︀ုက︀ꩰ
+-\le  ဢ︀ွု က︀ꩰ
++\le  ဢ︀ွုက︀ꩰ
+ \ph  ok⁴ ok⁴
+ \so  phk_ok4ok4
+ \ps  onom
+@@ -205061,7 +205061,7 @@ enough to mind and throat
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုက︀်
+-\le  ဢ︀ွု က︀်
++\le  ဢ︀ွုက︀်
+ \ph  ok¹
+ \so  phk_ok1
+ \ps  n.
+@@ -205081,7 +205081,7 @@ enough to mind and throat
+ \dt  25/Feb/2024
+ 
+ \lx  ဢ︀ုက︀်
+-\le  ဢ︀ွု က︀်
++\le  ဢ︀ွုက︀်
+ \ph  ok¹
+ \so  phk_ok1
+ \ps  n.
+@@ -205122,7 +205122,7 @@ enough to mind and throat
+ \dt  06/Mar/2024
+ 
+ \lx  ဢ︀ုက︀် (ꩭုဝ︀်)
+-\le  ဢ︀ွု က︀်
++\le  ဢ︀ွုက︀်
+ \ph  ok¹ (ho⁶)
+ \so  phk_ok1
+ \ps  n.
+@@ -205324,7 +205324,7 @@ and the 15th of the waxing and the waning moon)
+ \dt  24/Mar/2023
+ 
+ \lx  ဢ︀ုင︀်
+-\le  ဢ︀ွု င︀်
++\le  ဢ︀ွုင︀်
+ \ph  oŋ³ 
+ \so  phk_oN3
+ \ps  n.
+@@ -205374,7 +205374,7 @@ and the 15th of the waxing and the waning moon)
+ \dt  17/Feb/2022
+ 
+ \lx  ဢ︀ုင︀်
+-\le  ဢ︀ွု င︀်
++\le  ဢ︀ွုင︀်
+ \ph  oŋ³ 
+ \so  phk_oN3
+ \ps  n.
+@@ -205582,7 +205582,7 @@ interested
+ \dt  02/Apr/2020
+ 
+ \lx  ဢ︀ုတ︀်
+-\le  ဢ︀ွု တ︀်
++\le  ဢ︀ွုတ︀်
+ \ph  ot¹
+ \so  phk_ot1
+ \ps  n.
+@@ -205623,7 +205623,7 @@ interested
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုတ︀်
+-\le  ဢ︀ွု တ︀်
++\le  ဢ︀ွုတ︀်
+ \ph  ot¹
+ \so  phk_ot1
+ \ps  v
+@@ -205841,7 +205841,7 @@ to block entry of water or sound
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³
+ \so  phk_on3
+ \ps  v
+@@ -205883,7 +205883,7 @@ to block entry of water or sound
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³
+ \so  phk_on3
+ \ps  adj.
+@@ -205912,7 +205912,7 @@ way under pressure
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³
+ \so  phk_on3
+ \ps  adj.
+@@ -205961,7 +205961,7 @@ way under pressure
+ \dt  07/Mar/2024
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³
+ \so  phk_on3
+ \ps  adj.
+@@ -205981,7 +205981,7 @@ way under pressure
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³ 
+ \so  phk_on3 
+ \ps  adj.
+@@ -206017,7 +206017,7 @@ way under pressure
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³ 
+ \so  phk_on3 
+ \ps  adj.
+@@ -206045,7 +206045,7 @@ way under pressure
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုꩫ︀်
+-\le  ဢ︀ွု ꩫ︀်
++\le  ဢ︀ွုꩫ︀်
+ \ph  on³ 
+ \so  phk_on3 
+ \ps  adj.
+@@ -206386,7 +206386,7 @@ time or go
+ \dt  14/Jan/2022
+ 
+ \lx  ဢ︀ုပ︀်
+-\le  ဢ︀ွု ပ︀်
++\le  ဢ︀ွုပ︀်
+ \ph  op¹
+ \so  phk_op1
+ \ps  adj.
+@@ -206463,7 +206463,7 @@ time or go
+ \dt  08/Nov/2023
+ 
+ \lx  ဢ︀ုပ︀်ဢ︀ပ︀်
+-\le  ဢ︀ွု ပ︀်ဢ︀ပ︀်
++\le  ဢ︀ွုပ︀်ဢ︀ပ︀်
+ \ph  op⁴ āp⁴
+ \so  phk_op4aap4
+ \ps  n
+@@ -206523,7 +206523,7 @@ time or go
+ \dt  27/Jan/2021
+ 
+ \lx  ဢ︀ုပ︀်ပ︀ြုပ︀်
+-\le  ဢ︀ွ ပ︀်ပ︀ြွု ပ︀်
++\le  ဢ︀ွ ပ︀်ပ︀ြွုပ︀်
+ \ph  op¹ plop¹
+ \so  phk_op1plop1
+ \ps  v.
+@@ -206657,9 +206657,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  02/Aug/2021
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om²
+ \so  phk_om2
+ \ps  v
+@@ -206688,9 +206688,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om²
+ \so  phk_om2
+ \ps  v.
+@@ -206715,9 +206715,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om²
+ \so  phk_om2
+ \ps  v
+@@ -206742,9 +206742,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om²
+ \so  phk_om2
+ \ps  v.
+@@ -206790,9 +206790,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  10/Jul/2021
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om²
+ \ps  clf.
+ \de  a classifier for a mouthful
+@@ -206812,9 +206812,9 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \dt  08/Jun/2023
+ 
+ \lx  ဢ︀ုံ
+-\le  ဢ︀ွု ံ
++\le  ဢ︀ွုံ
+ \le  ဢ︀ုမ︀်
+-\le  ဢ︀ွု မ︀်
++\le  ဢ︀ွုမ︀်
+ \ph  om¹
+ \so  phk_om1
+ \ps  n.
+@@ -213176,7 +213176,7 @@ separated from the husked rice from the flat tray made of bamboo strip by shakin
+ 
+ \lx  က︀ွေ︀
+ \le  က︀ုၺ်
+-\le  က︀ွု ၺ်
++\le  က︀ွုၺ်
+ \ph  koi³
+ \so  phk_koi3.wav
+ \ps  n
+@@ -213230,7 +213230,7 @@ separated from the husked rice from the flat tray made of bamboo strip by shakin
+ 
+ \lx  က︀ွေ︀ꩬ︀င︀်ၸ︀ေ︀ႃ
+ \le  က︀ုၺ်ꩬ︀င︀်ၸ︀ေ︀ႃ
+-\le  က︀ွု ၺ်ꩬ︀င︀်ၸ︀ေ︀ႃ
++\le  က︀ွုၺ်ꩬ︀င︀်ၸ︀ေ︀ႃ
+ \ph  koi³ sāŋ² phɔ²
+ \so  phk_koi3saaN2phq2.wav
+ \ps  n.
+@@ -213633,7 +213633,7 @@ separated from the husked rice from the flat tray made of bamboo strip by shakin
+ \xr  khɛ⁶ nok
+ \so  phk_khj6nok4.wav
+ \xe  a net-trap for cathing birds
+-\xv ွ ်ၸ︀ွ်ၵ︀ေ︀
++\xv  ွ်ၸ︀ွ်ၵ︀ေ︀
+ \xr  phāu¹ khɛ⁶
+ \so  phk_phaau1khj6.wav
+ \xe  to catch fish with casting net, lit. to throw a casting net
+@@ -214478,7 +214478,7 @@ Indian laburnam, ( Cassia Fistula)
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi⁶
+ \so  phk_khoi6.wav
+ \ps  n. 
+@@ -214504,7 +214504,7 @@ Indian laburnam, ( Cassia Fistula)
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi⁶
+ \so  phk_khoi6.wav
+ \ps  n 
+@@ -214550,7 +214550,7 @@ Indian laburnam, ( Cassia Fistula)
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi¹
+ \so  phk_khoi1.wav
+ \ps  n
+@@ -214572,7 +214572,7 @@ Indian laburnam, ( Cassia Fistula)
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi¹
+ \so  phk_khoi1.wav
+ \ps  n.
+@@ -214608,7 +214608,7 @@ a circle
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi¹
+ \so  phk_khoi1.wav
+ \ps  v.
+@@ -214630,7 +214630,7 @@ a circle
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi¹
+ \so  phk_khoi1.wav
+ \ps  v.
+@@ -214657,7 +214657,7 @@ feet resting on the thighs as the Buddha image
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi²
+ \so  phk_khoi2.wav
+ \ps  eupho
+@@ -214683,7 +214683,7 @@ feet resting on the thighs as the Buddha image
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi¹
+ \so  phk_khoi1.wav
+ \ps  n
+@@ -214713,7 +214713,7 @@ feet resting on the thighs as the Buddha image
+ 
+ \lx  ၵ︀ွေ︀
+ \le  ၵ︀ုၺ်
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi³
+ \so  phk_khoi3.wav
+ \ps  n.
+@@ -214734,7 +214734,7 @@ feet resting on the thighs as the Buddha image
+ \dt  07/Apr/2023
+ 
+ \lx  ၵ︀ွေ︀
+-\le  ၵ︀ွု ၺ်
++\le  ၵ︀ွုၺ်
+ \ph  khoi⁶
+ \so  phk_khoi6.wav
+ \ps  n. 
+@@ -214775,7 +214775,7 @@ animal
+ 
+ \lx  ၵ︀ွေ︀တ︀ွက︀်
+ \le  ၵ︀ုၺ်တ︀ွက︀်
+-\le  ၵ︀ွု ၺ်တ︀ွက︀်
++\le  ၵ︀ွုၺ်တ︀ွက︀်
+ \ph  khoi¹ tauk³
+ \so  phk_khoi1tauk3.wav
+ \ps  n.
+@@ -215298,7 +215298,7 @@ an epithet of  the Nirvana (p) khema +amata
+ 
+ \lx  င︀ွေ︀
+ \le  င︀ုၺ်
+-\le  င︀ွု ၺ်
++\le  င︀ွုၺ်
+ \ph  ŋoi⁴
+ \so  phk_Noi4.wav  
+ \ps  adj.
+@@ -215332,7 +215332,7 @@ an epithet of  the Nirvana (p) khema +amata
+ 
+ \lx  င︀ွေ︀
+ \le  င︀ုၺ်
+-\le  င︀ွု ၺ်
++\le  င︀ွုၺ်
+ \ph  ŋoi¹
+ \so  phk_Noi1.wav 
+ \ps  n.
+@@ -216339,7 +216339,7 @@ used for decoration attached to flag of consecration
+ 
+ \lx  ꩡ︀ွေ︀
+ \le  ꩡ︀ုၺ်
+-\le  ꩡ︀ွု ၺ်
++\le  ꩡ︀ွုၺ်
+ \ph  coi⁴
+ \so  phk_coi4
+ \ps  v.
+@@ -217742,7 +217742,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi²
+ \so  phk_soi2
+ \ps  v
+@@ -217769,7 +217769,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi²
+ \so  phk_soi2
+ \ps  v.
+@@ -217794,7 +217794,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi¹
+ \so  phk_soi1
+ \ps  n.
+@@ -217841,7 +217841,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi¹
+ \so  phk_soi1
+ \ps  n.
+@@ -217867,7 +217867,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi¹
+ \so  phk_soi1
+ \ps  n.
+@@ -217888,7 +217888,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi³
+ \so  phk_soi3
+ \ps  adj
+@@ -217923,7 +217923,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi⁵
+ \so  phk_soi5
+ \ps  v.
+@@ -217944,7 +217944,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi⁶
+ \so  phk_soi6
+ \ps  adj.
+@@ -217974,7 +217974,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi¹
+ \so  phk_soi1
+ \ps  n.
+@@ -218013,7 +218013,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀
+ \le  ꩬ︀ုၺ်
+-\le  ꩬ︀ွု ၺ်
++\le  ꩬ︀ွုၺ်
+ \ph  soi¹
+ \so  phk_soi1
+ \ps  adj.
+@@ -218034,7 +218034,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀ၵ︀ျႃ
+ \le  ꩬ︀ုၺ်ၵ︀ျႃ
+-\le  ꩬ︀ွု ၺ်ၵ︀ျႃ
++\le  ꩬ︀ွုၺ်ၵ︀ျႃ
+ \ph  soi¹ khyā¹
+ \so  phk_soi1khyaa1
+ \ps  n.
+@@ -218055,7 +218055,7 @@ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ 
+ \lx  ꩬ︀ွေ︀ထ︀ုဝ︀် ( ‌ေ︀ )
+ \le  ꩬ︀ုၺ်ထ︀ုဝ︀်
+-\le  ꩬ︀ွု ၺ်ထ︀ုဝ︀်
++\le  ꩬ︀ွုၺ်ထ︀ုဝ︀်
+ \ph  soi¹ tho² ( ɛ, e )
+ soi¹tho²
+ \ps  n.
+@@ -218077,7 +218077,7 @@ soi¹tho²
+ 
+ \lx  ꩬ︀ွေ︀ထ︀ုဝ︀်ၵ︀ျႃ ( ‌ေ︀-ႃ )
+ \le  ꩬ︀ုၺ်ထ︀ုဝ︀်ၵ︀ျႃ
+-\le  ꩬ︀ွု ၺ်ထ︀ုဝ︀်ၵ︀ျႃ
++\le  ꩬ︀ွုၺ်ထ︀ုဝ︀်ၵ︀ျႃ
+ \ph  soi¹ tho² khyā¹ ( ɔ, ɔ̄ > )
+ \so  phk_soi1tho2khyaa1
+ \ps  n.
+@@ -218097,9 +218097,9 @@ soi¹tho²
+ \notes  ailot
+ \dt  24/Apr/2023
+ 
+-\lx  ꩬ︀ွေ︀ထ︀ုဝ︀်ဝ︀ႃꩬ︀ွႝ ( ‌ေ︀-ွ  )
++\lx  ꩬ︀ွေ︀ထ︀ုဝ︀်ဝ︀ႃꩬ︀ွႝ ( ‌ေ︀- ွ )
+ \le  ꩬ︀ုၺ်ထ︀ုဝ︀်ဝ︀ႃꩬ︀ွႝ
+-\le  ꩬ︀ွု ၺ်ထ︀ုဝ︀်ဝ︀ႃꩬ︀ွႝ
++\le  ꩬ︀ွုၺ်ထ︀ုဝ︀်ဝ︀ႃꩬ︀ွႝ
+ \ph  soi¹ tho² wa³ soi² ( oi )
+ \so  phk_soi1tho2wa3soi2
+ \ps  n.
+@@ -218120,7 +218120,7 @@ soi¹tho²
+ 
+ \lx  ꩬ︀ွေ︀ပ︀ꩫ︀် (ထ︀ွ်)
+ \le  ꩬ︀ုၺ်ပ︀ꩫ︀်
+-\le  ꩬ︀ွု ၺ်ပ︀ꩫ︀်
++\le  ꩬ︀ွုၺ်ပ︀ꩫ︀်
+ \ph  soi¹ pān¹ (thau⁶)
+ \so  phk_soi1paan1
+ \ps   n.
+@@ -218141,7 +218141,7 @@ soi¹tho²
+ 
+ \lx  ꩬ︀ွေ︀လ︀င︀်ပ︀ုင︀်  
+ \le  ꩬ︀ုၺ်လ︀င︀်ပ︀ုင︀်
+-\le  ꩬ︀ွု ၺ်လ︀င︀်ပ︀ုင︀်
++\le  ꩬ︀ွုၺ်လ︀င︀်ပ︀ုင︀်
+ \ph  soi¹  lāŋ¹ puŋ¹
+ \so  phk_soi1laaN1puN1
+ \ps  n.
+@@ -218167,7 +218167,7 @@ soi¹tho²
+ 
+ \lx  ꩬ︀ွေ︀လ︀ူ
+ \le  ꩬ︀ုၺ်လ︀ူ
+-\le  ꩬ︀ွု ၺ်လ︀ူ
++\le  ꩬ︀ွုၺ်လ︀ူ
+ \ph  soi¹ lū²
+ \so  phk_soi1lU2
+ \ps  adj.
+@@ -219845,7 +219845,7 @@ happen
+ \xr  luk⁴ sɛ⁵ kāŋ² naü⁶ haü³ pɔ² tɔ¹ kāŋ² kham⁵  
+ \so  phk_luk4sj5kaaN2nav6hav3pq2tq1kaaN2kham5  
+ \xe  from morning upto night
+-\xv  တ︀ွေ︀ႃမ︀ိုဝ︀ၵ︀ိင︀က︀ဝ︀ဢ︀ႜလ︀ွင︀်ပ︀ိꩫ︀က︀ုꩫ︀ꩡ︀ူပ︀ွု ꩫ︀က︀ႃႜ
++\xv  တ︀ွေ︀ႃမ︀ိုဝ︀ၵ︀ိင︀က︀ဝ︀ဢ︀ႜလ︀ွင︀်ပ︀ိꩫ︀က︀ုꩫ︀ꩡ︀ူပ︀ွုꩫ︀က︀ႃႜ
+ \xr  tɔ¹ mə⁵ khiŋ¹ kau² a¹ lauŋ² pen² kon² co⁵ pon⁴ kā¹
+ \so  phk_tq1mz5khiN1kau2a1lauN2pen2kon2co5pon4kaa1
+ \xe  Until the time that my body as a Bodhisattva became a person for the passing
+@@ -220278,7 +220278,7 @@ something or do something again or more
+ 
+ \lx  တ︀ွေ︀  
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi²
+ \so  phk_toi2
+ \ps  n
+@@ -220300,7 +220300,7 @@ something or do something again or more
+ 
+ \lx  တ︀ွေ︀  
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi¹
+ \so  phk_toi1
+ \ps  v.
+@@ -220334,7 +220334,7 @@ something or do something again or more
+ 
+ \lx  တ︀ွေ︀
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi²
+ \so  phk_toi2
+ \ps  v
+@@ -220360,7 +220360,7 @@ something or do something again or more
+ 
+ \lx  တ︀ွေ︀  
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi²
+ \so  phk_toi2
+ \ps  n.
+@@ -220383,7 +220383,7 @@ to protect the wearer from rain in the back
+ 
+ \lx  တ︀ွေ︀  
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi²
+ \so  phk_toi2
+ \ps  v.
+@@ -220425,7 +220425,7 @@ to protect the wearer from rain in the back
+ 
+ \lx  တ︀ွေ︀ (ꩫ︀ံလ︀ုံ)
+ \le  တ︀ုၺ်
+-\le  တ︀ွု ၺ်
++\le  တ︀ွုၺ်
+ \ph  toi¹ (nam lom²) 
+ \so  phk_toi1 
+ \ps  n.
+@@ -220925,7 +220925,7 @@ weak, wilt, lose one's energy
+ 
+ \lx  ထ︀ွေ︀
+ \le  ထ︀ုၺ်
+-\le  ထ︀ွု ၺ်
++\le  ထ︀ွုၺ်
+ \ph  thoi¹
+ \so  phk_thoi1
+ \ps  n.
+@@ -221020,7 +221020,7 @@ cavity  of joining palm and kneel and bow down three times to pay homage
+ 
+ \lx  ထ︀ွေ︀ (ꩡ︀ၞ်)
+ \le  ထ︀ုၺ်
+-\le  ထ︀ွု ၺ်
++\le  ထ︀ွုၺ်
+ \ph  thoi³ (caü²)
+ \so  phk_thoi3
+ \ps  v.
+@@ -221111,7 +221111,7 @@ cavity  of joining palm and kneel and bow down three times to pay homage
+ 
+ \lx  ထ︀ွေ︀လ︀ႃ
+ \le  ထ︀ုၺ်လ︀ႃ
+-\le  ထ︀ွု ၺ်လ︀ႃ
++\le  ထ︀ွုၺ်လ︀ႃ
+ \ph  thoi¹ lā¹
+ \so  phk_thoi1laa1
+ \ps  n.
+@@ -223538,7 +223538,7 @@ from straw esp. by circularly spread  on a yard and allowing cattle to tread on
+ 
+ \lx  ပ︀ွေ︀က︀ျိင︀်
+ \le  ပ︀ုၺ်က︀ျိင︀်
+-\le ု ပ︀ွုု ၺ်က︀ျိင︀်
++\le  ုပ︀ွုုၺ်က︀ျိင︀်
+ \ph  poi¹ kaiŋ² 
+ \so  phk_poi1kaiN2 
+ \ps  n.
+@@ -224396,7 +224396,7 @@ Phake women
+ 
+ \lx  ၸ︀ွေ︀
+ \le  ၸ︀ုၺ်
+-\le  ၸ︀ွု ၺ်
++\le  ၸ︀ွုၺ်
+ \ph  phoi²
+ \so  phk_phoi2
+ \ps  n.
+@@ -224425,7 +224425,7 @@ Phake women
+ 
+ \lx  ၸ︀ွေ︀
+ \le  ၸ︀ုၺ်
+-\le  ၸ︀ွု ၺ်
++\le  ၸ︀ွုၺ်
+ \ph  phoi²
+ \so  phk_phoi2
+ \ps  n.
+@@ -224447,7 +224447,7 @@ Phake women
+ 
+ \lx  ၸ︀ွေ︀
+ \le  ၸ︀ုၺ်
+-\le  ၸ︀ွု ၺ်
++\le  ၸ︀ွုၺ်
+ \ph  phoi²
+ \so  phk_phoi2
+ \ps  v.
+@@ -224479,8 +224479,8 @@ Phake women
+ \dt  03/Jun/2023
+ 
+ \lx  ၸ︀ွေ︀
+-\le ု ၸ︀ုၺ်
+-\le ု ၸ︀ွု ၺ်
++\le  ုၸ︀ုၺ်
++\le  ုၸ︀ွုၺ်
+ \ph  phoi²
+ \so  phk_phoi2
+ \ps  n.
+@@ -225857,7 +225857,7 @@ by mucus occuring especially in children
+ \dt  25/Feb/2023
+ 
+ \lx  မ︀ွေ︀  
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \le  မ︀ုၺ် 
+ \ph  moi¹
+ \so  phk_moi1
+@@ -225880,7 +225880,7 @@ by mucus occuring especially in children
+ 
+ \lx  မ︀ွေ︀ 
+ \le  မ︀ုၺ်
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \ph  moi²
+ \so  phk_moi2
+ \ps  n.
+@@ -225915,7 +225915,7 @@ by mucus occuring especially in children
+ \dt  07/Jun/2023
+ 
+ \lx  မ︀ွေ︀
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \le  မ︀ုၺ်
+ \ph  moi²
+ \so  phk_moi2
+@@ -225946,7 +225946,7 @@ by mucus occuring especially in children
+ 
+ \lx  မ︀ွေ︀
+ \le  မ︀ုၺ်
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \ph  moi⁶
+ \so  phk_moi6
+ \ps  n.
+@@ -225968,7 +225968,7 @@ by mucus occuring especially in children
+ 
+ \lx  မ︀ွေ︀
+ \le  မ︀ုၺ်
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \ph  moi²
+ \so  phk_moi2
+ \ps  n
+@@ -226002,7 +226002,7 @@ water is meant for dyeing
+ 
+ \lx  မ︀ွေ︀  
+ \le  မ︀ုၺ်
+-\le  မ︀ွု ၺ် 
++\le  မ︀ွုၺ် 
+ \ph  moi⁴
+ \so  phk_moi4
+ \ps  v.
+@@ -226680,7 +226680,7 @@ yogi
+ \dt  16/May/2021
+ 
+ \lx  ယ︀ွေ︀
+-\le  ယ︀ွု ၺ်
++\le  ယ︀ွုၺ်
+ \le  ယ︀ုၺ်
+ \ph  yoi¹
+ \so  phk_yoi1
+@@ -226702,7 +226702,7 @@ yogi
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ွေ︀
+-\le  ယ︀ွု ၺ်
++\le  ယ︀ွုၺ်
+ \le  ယ︀ုၺ်
+ \ph  yoi²
+ \so  phk_yoi2
+@@ -226723,7 +226723,7 @@ yogi
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ွေ︀ (မ︀က︀်)
+-\le  ယ︀ွု ၺ်
++\le  ယ︀ွုၺ်
+ \le  ယ︀ုုၺ်
+ 
+ \ph  yoi² (māk¹)
+@@ -226748,7 +226748,7 @@ and other objects. ( Coix lacryma-jobi ) also call < loi2 >
+ \dt  06/Jun/2023
+ 
+ \lx  ယ︀ွေ︀ၺꩰ
+-\le  ယ︀ွု ၺꩰ
++\le  ယ︀ွုၺꩰ
+ \le  ယ︀ုၺꩰ
+ \ph  yoi² yoi²
+ \so  phk_yoi2yoi2
+@@ -227893,7 +227893,7 @@ existence ( P ) lokika
+ \dt  12/Mar/2024
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi¹
+ \so  phk_loi1
+@@ -227922,7 +227922,7 @@ esp. paddy for  husking
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi²
+ \so  phk_loi2
+@@ -227960,7 +227960,7 @@ esp. paddy for  husking
+ \dt  12/Mar/2024
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi³
+ \so  phk_loi3
+@@ -227986,7 +227986,7 @@ esp. paddy for  husking
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi⁵
+ \so  phk_loi5
+@@ -228008,7 +228008,7 @@ esp. paddy for  husking
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi⁵
+ \so  phk_loi5
+@@ -228039,7 +228039,7 @@ pale and sickly
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi⁵
+ \so  phk_loi5
+@@ -228061,7 +228061,7 @@ pale and sickly
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀ (မ︀က︀်)
+-\le  လ︀ွု ၺ် 
++\le  လ︀ွုၺ် 
+ \le  လ︀ုၺ်
+ \ph  loi² (māk¹)
+ \so  phk_loi2
+@@ -228087,7 +228087,7 @@ and other objects. (Coix lacryma-jobi ) also call < yoi2 >
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀ထ︀ွေ︀
+-\le  လ︀ွု ၺ် ထ︀ွၺု်
++\le  လ︀ွုၺ် ထ︀ွၺု်
+ \le  လ︀ုၺ်ထ︀ုၺ်
+ \ph  loi⁴ thoi⁴
+ \so  phk_loi4thoi4
+@@ -228306,7 +228306,7 @@ and wish in repeatative murmuring sound
+ \dt  02/Jan/2024
+ 
+ \lx  ဝ︀ွေ︀
+-\le  ဝ︀ွု ၺ်
++\le  ဝ︀ွုၺ်
+ \le  ဝ︀ုၺ်
+ \ph  woi¹
+ \so  phk_woi1
+@@ -228319,7 +228319,7 @@ and wish in repeatative murmuring sound
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဝ︀ွေ︀ဢ︀ႃက︀ျု ဝ︀်
++\xv  ဝ︀ွေ︀ဢ︀ႃက︀ျ ုဝ︀်
+ \xr  woi¹ a¹ kyo²
+ \so  phk_woi1a1kyo2
+ \xe  to bless, to share the religious merit
+@@ -228375,7 +228375,7 @@ years of Buddha
+ \dt  16/May/2021
+ 
+ \lx  ဝ︀ွေ︀တ︀ႃꩫ︀ႃ
+-\le  ဝ︀ွု ၺ်တ︀ႃꩫ︀ႃ
++\le  ဝ︀ွုၺ်တ︀ႃꩫ︀ႃ
+ \le  ဝ︀ုၺ်တ︀ႃꩫ︀ႃ
+ \ph  woi¹ ta¹ nā¹
+ \so  phk_woi1ta1naa1
+@@ -228397,7 +228397,7 @@ with external sense objects and the associated consciousness (P)Vedana
+ \dt  07/Jun/2023
+ 
+ \lx  ဝ︀ွေ︀ဝ︀ႝ
+-\le  ဝ︀ွု ၺ်ဝ︀ႝ
++\le  ဝ︀ွုၺ်ဝ︀ႝ
+ \le  ဝ︀ုၺ်ဝ︀ႝ
+ \ph  woi² wāi²
+ \so  phk_woi2waai2
+@@ -229157,7 +229157,7 @@ attribured by mud or putrid water
+ \dt  20/Aug/2021
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi²
+ \so  phk_hoi2
+@@ -229178,7 +229178,7 @@ attribured by mud or putrid water
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi³
+ \so  phk_hoi3
+@@ -229211,7 +229211,7 @@ began to flow out
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi²
+ \so  phk_hoi2
+@@ -229261,7 +229261,7 @@ began to flow out
+ \dt  14/Nov/2023
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi²
+ \so  phk_hoi2
+@@ -229283,7 +229283,7 @@ began to flow out
+ \dt  14/Nov/2023
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi¹
+ \so  phk_hoi1
+@@ -229333,7 +229333,7 @@ began to flow out
+ \dt  08/Jun/2023
+ 
+ \lx  ꩭွေ︀
+-\le  ꩭွု ၺ်
++\le  ꩭွုၺ်
+ \le  ꩭုၺ်
+ \ph  hoi¹
+ \so  phk_hoi1
+@@ -230261,7 +230261,7 @@ also <q ka>
+ \dt  21/Feb/2022
+ 
+ \lx  ဢ︀ွေ︀
+-\le  ဢ︀ွု ၺ်
++\le  ဢ︀ွုၺ်
+ \le  ဢ︀ုၺ်
+ \ph  oi²
+ \so  phk_oi2
+@@ -230274,7 +230274,7 @@ also <q ka>
+ \pdn 
+ \dn 
+ \rf 
+-\xv ွ ိဢ︀ုၺ်က︀ႃတ︀ေ︀
++\xv  ွိဢ︀ုၺ်က︀ႃတ︀ေ︀
+ \xr  oi¹ ka¹ tɛ⁴
+ \so  phk_oi1ka1tj4
+ \xe  to ask someone make respond to the call
+@@ -231130,385 +231130,3 @@ also <q ka>
+ \pde 
+ \pdn 
+ \dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  14/Aug/2020
+-
+-\lx  ၸ︀ြတ︀်
+-\le  ၸ︀တ︀်
+-\ph  phāt¹
+-\so  phk_phaat1
+-\ps  n.
+-\de  evaluate, to evaluate
+-\ge  evaluate
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\le  လ︀ိတ︀်ၸ︀ြတ︀်ၵ︀ွု ꩫ︀်
+-\xr  lit⁴ phāt¹ khon⁴
+-\so  phk_lit4phaat1khon4
+-\xe  to evaluate
+-\xv  က︀ိၺꩡ︀ွ် လ︀ိတ︀ ၸ︀ြတ︀ ၵ︀ွု ꩫ︀ ပ︀ꩫ︀ က︀ွꩫ︀ ꩫ︀်ေ︀ꩭွႃ်
+-\xr  kɛ²¹ cau² lit⁴ phāt¹ khon⁴ pān² kɔn¹ nɛ⁶ hau² hɔ²
+-\so  phk_kjn1cau2lit4phaat1khon4paan2kqn1nj6hau2haa2.wav
+-\xe  The Buddha unfolds and evaluates his earlier life, showing us
+-\xn 
+-\notes  ailot
+-\dt  25/Feb/2024
+-
+-\lx  ၜၸ︀ႃ 
+-\le 
+-\ph  |phrā²
+-\so  phk_phraa2
+-\ps  n.
+-\de  Lord Buddha, a Buddha image 
+-\ge  Lord Buddha
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv  ꩡ︀ွ်ၸ︀ြႃ
+-\xr  cau³ phrā²
+-\so  phk_cau3phraa2
+-\xe  Lord Buddha 
+-\xv  ၸ︀ြႃယ︀ွတ︀်ꩡ︀ွ်
+-\xr  phrā² yɔt⁴ cau³
+-\so  phk_phraa2yqt4cau3
+-\xe  Lord  Buddha
+-\xv  ၸ︀ြႃတ︀ြႃꩬ︀င︀်ၵ︀ႃ
+-\xr  phrā² trā² sāŋ¹ khā¹
+-\so  phk_phraa2traa2saaN1kha1
+-\xe  the Budhha, Dhamma, Sangha
+-\xv  ꩡ︀ွ်ၸ︀ြႃၵ︀ျွတ︀်က︀ွုꩫ︀်မ︀ိုင︀်က︀င︀်  
+-\xr  cau³ phrā² khyɔt⁴ kon² məŋ² kāŋ²  
+-\so  phk_cau3phraa2khyqt4kon2mzN2kaaN2  
+-\xe  Lord Buddha released the beings in the world from miseries
+-
+-\xn 
+-\se  ၸ︀ြႃတ︀ႃယ︀ႃက︀ႃ
+-\le 
+-\ph  phrā² ta¹ yā¹ kā¹
+-\so  phk_phraa2ta1yaa1kaa1
+-\ps  n.
+-\de  the Buddhist 
+-\ge  Buddhist
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ꩭင︀်ၸ︀ြႃ
+-\le 
+-\ph  hāŋ⁵ phrā²
+-\ps  n.
+-\de  a Buddha image 
+-\ge  Buddha image 
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၸ︀ြႃꩬ︀ျိင︀်ꩫ︀ွ်
+-\le 
+-\ph  |phrā² saiŋ⁶ nāu²
+-\so  phk_phraa2saiN6naau2
+-\ps  n.
+-\de  a Buddha statue made of white stone
+-\ge  Buddha statue of white stone 
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၸ︀ြႃတ︀ႃက︀ႃ
+-\le 
+-\ph  pha² ta¹ kā
+-\so  phk_pha2ta1kaa1
+-\ps  n.
+-\de  the Buddhist 
+-\ge  Buddhist
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၜၸ︀ႃပ︀ိꩫ︀်ꩡ︀ွ်
+-\le 
+-\ph  phrā² pen² cau³
+-\so  phk_phraa2pen2cau3
+-\ps  n.
+-\de  Lord Buddha
+-\ge  Lord Buddha
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၸ︀ြႃꩭုꩫ︀်တ︀ွင︀်
+-\le 
+-\ph  phrā² hun² tauŋ²
+-\so  phk_phraa2hun2tauN2
+-\ps  n.
+-\de  Lord Buddha image made of brasss
+-\ge  Buddha.image
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၸ︀ြႃဢ︀ိုၺ်
+-\le 
+-\ph  phrā² əi²
+-\so  phk_phaa2 Zi2
+-\ps  exclam.
+-\de  Oh! Lord Buddha
+-\ge  Oh! Buddha
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\se  ၸ︀ြႃၸ︀ြႃ
+-\le 
+-\ph  phrā² phrā²
+-\so  phk_phraa2phraa2
+-\ps  exclam.
+-\de  oh! Lord, oh! Lord,  used in exclamation expressing surprise, worry, 
+-\ge  EXCLAM
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  11/Jan/2022
+-
+-\lx  ၸ︀ြုင︀်ꩬ︀ုင︀်ၸ︀်ြင︀်ꩬ︀င︀်
+-\le 
+-\ph  phluŋ¹ suŋ⁵ phlaŋ⁴ sāŋ⁴ 
+-\so  phk_phluN1suN5phlaN4saaN4 
+-\ps  adv.
+-\de  to do roughly, carelessly
+-\ge  roughly
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  17/Aug/2021
+-
+-\lx  ၸ︀ြူ
+-\le 
+-\ph  phrū⁴
+-\so  phk_phrU4
+-\ps  onom
+-\de  Onom- the sound of many birds, being scattered and flying away
+-\ge  Onom
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv  ၸ︀ြူꩡ︀ိက︀်ꩡ︀ွက︀်
+-\xr  phrū⁴ cik¹ cauk¹
+-\so  phk_phrU4cik1cauk1
+-\xe  flew away and disperse in different direction
+-\xn 
+-\notes  ailot
+-\dt  30/Jun/2020
+-
+-\lx  မ︀ြꩡ︀ွႃ
+-\le  မ︀တ︀်ꩡ︀ွႃ
+-\ph  met⁴ cwā¹
+-\so  phk_met4cwaa1
+-\ps  adj.
+-\de  metta, compassionate, feeling or showing compassion or affection
+-\ge  affectionate
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  03/Aug/2021
+-
+-\lx  မ︀ြတ︀်
+-\le 
+-\ph  mat⁴
+-\so  phk_mat4
+-\ps  adj.
+-\de  excellent, outstanding, sacred
+-\ge  sacred
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes 
+-\dt  09/Mar/2024
+-
+-\lx  ၂လ︀ႃ (တ︀ႃꩫ︀င︀်က︀ႃလ︀ႃ)
+-\le 
+-\ph  sauŋ⁶ lā¹ (ta¹ naŋ¹ ka¹ lā¹)
+-\so  phk_sauN6laa1
+-\ps  n.
+-\de  2 is monday, abbreviations for the names of monday, based on their position in the week ( bookish )
+-\ge  monday
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  16/May/2021
+-
+-\lx  ၄ꩭူ (ပ︀ုက︀်တ︀ႃꩭူ)
+-\le 
+-\ph  sī¹ hū² ( puk⁴ ta¹ hū² )
+-\so  phk_sI1hU2
+-\ps  n.
+-\de  4 is wednesday, abbreviations for the names of wednesday, based on their position in the week ( bookish )
+-\ge  wednesday
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  16/May/2021
+-
+-\lx  ၅တ︀ေ︀ (က︀ျႃꩬ︀ပ︀်ပ︀ႃတ︀ေ︀)
+-\le 
+-\ph  hā³ te² (kyā¹ sap¹ pa¹ tē²)
+-\so  phk_haa3te2
+-\ps  n.
+-\de  5 is thursday, abbreviations for the names of thursday, based on their position in the week ( bookish )
+-\ge  thursday
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  16/May/2021
+-
+-\lx  ၁ꩫ︀ွေ︀ (တ︀ႃꩫ︀င︀်က︀ႃꩫ︀ွေ︀)
+-\le 
+-\ph  nüŋ⁵ noi¹ (ta¹ naŋ¹ ka¹ noi¹)
+-\so  phk_nvN5noi¹
+-\ps  n.
+-\de  1 is sunday, abbreviations for the names of sunday, based on their position in the week ( bookish )
+-\ge  sunday
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  16/May/2021
+-
+-\lx  ၇ꩫ︀်ေ︀ (ꩡ︀ႃꩫ︀်ေ︀)
+-\le 
+-\ph  cet¹ nē¹ (ca¹ nē¹)
+-\so  phk_cet1 nE1
+-\ps  n.
+-\de  7 is saturday, abbreviations for the names of saturday, based on their position in the week ( bookish 
+-\ge  saturday
+-\pl 
+-\pd 
+-\pde 
+-\pdn 
+-\dn 
+-\rf 
+-\xv 
+-\xr 
+-\xe 
+-\xn 
+-\notes  ailot
+-\dt  11/Mar/2022

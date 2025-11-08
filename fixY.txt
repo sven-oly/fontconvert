@@ -1,0 +1,3255 @@
+diff --git a/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt b/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
+index bef0b96..4136550 100644
+--- a/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
++++ b/test_data/Phake_Dictionary_Ailot_20240312_Unicode.txt
+@@ -752,7 +752,7 @@ because of jarring sound)
+ \xr  kaŋ³ lom²
+ \so  phk_kaN3lom2
+ \xe  to screen to protect from wind
+-\xv  က︀င︀်ꩭုုံံ
++\xv  က︀င︀်ꩭုုံ
+ \xr  kaŋ³ hom⁵
+ \so  phk_kaN3hom5
+ \xe  to shade  
+@@ -2478,7 +2478,7 @@ to control or suppress oneself the impulse to laugh
+ \notes  ailot
+ \dt  27/Mar/2023
+ 
+-\lx  က︀ꩫ︀်ၵ︀ျ ုက︀်ꩫ︀ီ
++\lx  က︀ꩫ︀်ၵ︀ျုက︀်ꩫ︀ီ
+ \le 
+ \ph  kān² khyuk³ nī¹
+ \so  phk_kaan2khyuk3nI1.wav
+@@ -2501,7 +2501,7 @@ to control or suppress oneself the impulse to laugh
+ \notes  ailot
+ \dt  16/Jan/2022
+ 
+-\lx  က︀ꩫ︀်ၵ︀ျ ုက︀်ၸ︀ိဝ︀်
++\lx  က︀ꩫ︀်ၵ︀ျုက︀်ၸ︀ိဝ︀်
+ \le 
+ \ph  kān² khyuk³ phiu¹
+ \so  phk_kaan2khyuk3phiu1.wav
+@@ -2973,7 +2973,7 @@ to control or suppress oneself the impulse to laugh
+ \xr  kap⁴ kap⁴
+ \so  phk_kap4kap4
+ \xe  tightly
+-\xv  က︀ပ︀ꩰꩭီီ
++\xv  က︀ပ︀ꩰꩭီ
+ \xr  kap⁴ kap⁴ hī¹ hī¹
+ \so  phk_kap3kap3hI1hI1.wav
+ \xe  in a well tight
+@@ -3418,7 +3418,7 @@ as found on a bamboo or it shoot, betel nut flower, over banana spadix. etc.
+ \xr  tauŋ⁴ kāp⁴
+ \so  phk_tauN4kaap4.wav
+ \xe  a griping pain in the stomach, an unpleasant sensation in the stomach
+-\xv  တ︀ုဝ︀်က︀ုꩫ︀််တ︀ုဝ︀်က︀ပ︀်
++\xv  တ︀ုဝ︀်က︀ုꩫ︀်တ︀ုဝ︀်က︀ပ︀်
+ \xr  to² kon⁴ to² kāp⁴
+ \so  phk_to2kon4kaap4.wav
+ \xe  body ache and pain, an unpleasant sensation in the body
+@@ -3687,7 +3687,7 @@ eating food
+ \notes  ailot
+ \dt  25/Mar/2023
+ 
+-\lx  က︀မ︀််
++\lx  က︀မ︀်
+ \le  က︀ံ
+ \ph  kām²
+ \so  phk_kaam2.wav
+@@ -3764,11 +3764,11 @@ eating food
+ \xr  sip¹ thɛu⁶ phā¹ mǖ² kā² sī⁶ poŋ² wai⁴ yɔ⁴
+ \so  phk_sip1thju6phaa1mV2kaa2sI6poN2wai4yq4.wav
+ \xe  to stretch the ten fingers and join the palm of both hands put down and prayed  
+-\xv  က︀ႃႃက︀ီီ 
++\xv  က︀ႃႃက︀ီ 
+ \xr  kā² kā² kī² kī²
+ \so  phk_kaa2kaa2kI2kI2.wav
+ \xe  (walk or move) in clumsy manner  
+-\xv  ပ︀ႝက︀ႃႃက︀ီီ 
++\xv  ပ︀ႝက︀ႃႃက︀ီ 
+ \xr  pai² kā² kā² kī² kī²
+ \so  phk_pai2kaa2kaa2kI2kI2.wav
+ \xe  walk move clumsily in manner   
+@@ -4307,7 +4307,7 @@ adjective, ingressive meaning in the past, as main verb meaning  ''to go'
+ \xr  khun⁶ ho⁶ mün² hauk¹ kā¹
+ \so  phk_khun6ho6mvn2hauk1kaa1.wav
+ \xe  his/her hair has turn grey
+-\xv  က︀ူၸ︀ꩫ︀်က︀ိုဝ︀်ꩫ︀ီီꩬ︀ီယ︀ွ်က︀ႃယ︀ွ်
++\xv  က︀ူၸ︀ꩫ︀်က︀ိုဝ︀်ꩫ︀ီꩬ︀ီယ︀ွ်က︀ႃယ︀ွ်
+ \xr  kū⁵ phan² kə⁴ nī² nī² sī⁶ yau⁴ kā¹ yau⁴
+ \so  phk_kU5phan2kz4nI2nI2sI6yau4kaa1yau4.wav
+ \xe  every thing went off well
+@@ -4802,7 +4802,7 @@ with <vN5 > as < vN5 kA2>
+ \xr  caü⁵ ka¹ sa¹
+ \so  phk_cav5ka1sa1.wav
+ \xe  prabably it may be, under suspicion of having done right 
+-\pl  မ︀ိုꩫ︀််တ︀ႃမ︀ႃက︀ႃꩬ︀ႃ
++\pl  မ︀ိုꩫ︀်တ︀ႃမ︀ႃက︀ႃꩬ︀ႃ
+ \pd  mün² ta¹ mā² ka¹ sa¹
+ \so  phk_mvn2ta1maa2ka1sa1.wav
+ \pde  probably he would come, (not  know whether he will come or not)
+@@ -6898,7 +6898,7 @@ thick with sour taste
+ \xr  khaŋ² khaŋ² mɔ² mɔ² kin² phā⁵ tüŋ¹ khün²
+ \so  phk_khaN2khaN2mq2mq2kin phaa5tvN1khvn2
+ \xe  making a lot of noise whole night
+-\xv  ၸ︀ႃꩫ︀ေ︀ၸ︀ုꩫ︀က︀ိꩫ︀််ꩫ︀ိုင︀်ꩫ︀ႝၸ︀ႃတ︀ိုင︀်ဝ︀ႃꩫ︀်
++\xv  ၸ︀ႃꩫ︀ေ︀ၸ︀ုꩫ︀က︀ိꩫ︀်ꩫ︀ိုင︀်ꩫ︀ႝၸ︀ႃတ︀ိုင︀်ဝ︀ႃꩫ︀်
+ \xr  phā⁴ nɛ⁴ phon⁶ kin² nüŋ¹ nai⁴ phā⁵ tüŋ¹ wan²
+ \so  phk_sam4khaam2kin2nvN1nai4phaa5tvN1wan2
+ \xe  to continuously raining whole day
+@@ -7356,7 +7356,7 @@ thick with sour taste
+ \xr  kep¹ wai⁴
+ \so  phk_kep1wai4.wav 
+ \xe  to pick up and keep
+-\xv  က︀ိပ︀ꩰꩭွံံ
++\xv  က︀ိပ︀ꩰꩭွံ
+ \xr  kep¹ kep¹ hɔm⁶ hɔm⁶
+ \so  phk_kep1kep1hqm6hqm6.wav
+ \xe  to collect and accumulate 
+@@ -8716,7 +8716,7 @@ or mud ball made of curved bamboo joined at both ends by a taut string  and also
+ \xr  koŋ² kai¹
+ \so  phk_koN2kai1.wav
+ \xe  an implement used for stretching the cloth wide and the warp in the the loom
+-\xv  က︀ုင︀်ၸ︀တ︀်က︀ုၺ်် 
++\xv  က︀ုင︀်ၸ︀တ︀်က︀ုၺ် 
+ \xr  koŋ² phat⁴ kui² 
+ \so  phk_koN2phat4kui2.wav
+ \xe  a kind tool like a bow used for fluffing cotton to clean
+@@ -9760,7 +9760,7 @@ esculentum (Polypdiaseae)
+ \xr  kon² kat⁴
+ \so  phk_kon 2kat4
+ \xe  a strong and active person, a capable person 
+-\xv  က︀ုꩫ︀်က︀တ︀်က︀ုꩫ︀်ꩭျိင︀််
++\xv  က︀ုꩫ︀်က︀တ︀်က︀ုꩫ︀်ꩭျိင︀်
+ \xr  kon² kat⁴ kon² haiŋ²
+ \so  phk_kon2kat4kon2haiN2.wav  
+ \xe  a strong and active person, skillful person
+@@ -11046,15 +11046,15 @@ made for resting the spirit of a dead person
+ \xr  luk⁴ ɔn¹ nɛ⁴ caü² kum¹ loŋ⁶
+ \so  phk_uk4qn1nj4cav2 kum1loN6.wav
+ \xe  this boy is very thoghtful
+-\xv  က︀ုံံ
++\xv  က︀ုံ
+ \xr  kum¹ kum¹
+ \so  phk_kum1kum1.wav
+ \xe  be sufficiently all the varieties are be in suffice  
+-\xv  မ︀ွက︀်ယ︀ႃက︀ူၸ︀ꩫ︀်ꩭၞ်က︀ုံံ
++\xv  မ︀ွက︀်ယ︀ႃက︀ူၸ︀ꩫ︀်ꩭၞ်က︀ုံ
+ \xr  mauk¹ yā³ kū⁵ phan² haü³ kum¹ kum¹
+ \so  phk_mauk1yaa3kU5phan2hav3kum1kum1.wav
+ \xe  let every varieties of flowers are be in suffice
+-\xv  က︀ူꩡ︀ႃက︀ူၸ︀ꩫ︀်ꩭၞ်က︀ုံံ
++\xv  က︀ူꩡ︀ႃက︀ူၸ︀ꩫ︀်ꩭၞ်က︀ုံ
+ \xr  kū⁵ cā⁴ kū⁵ phan² haü³ kum¹ kum¹
+ \so  phk_kU5caa4kU5phan2hav3kum1kum1
+ \xe  to let every varieties of things are be in suffice
+@@ -11167,7 +11167,7 @@ made for resting the spirit of a dead person
+ \lx  က︀ုံ
+ \le  က︀ုမ︀်
+ \le  က︀ွုံ 
+-\le  က︀ွုမ︀််    
++\le  က︀ွုမ︀်    
+ \ph  kom³
+ \so  phk_kom3.wav
+ \ps  v
+@@ -14388,7 +14388,7 @@ two palms of hands together
+ \dt  03/Feb/2024
+ 
+ \lx  က︀ျွုက︀်
+-\le  က︀ျ ုက︀် 
++\le  က︀ျုက︀် 
+ \ph  kyok¹
+ \so  phk_kyok1.wav
+ \ps  n.
+@@ -14456,7 +14456,7 @@ Lord Buddha during the water splashing festival
+ \notes  ailot
+ \dt  01/Oct/2023
+ 
+-\lx  က︀ျွင︀်က︀ျ ုဝ︀်
++\lx  က︀ျွင︀်က︀ျုဝ︀်
+ \le  က︀ျေ︀ႃင︀်က︀ျွုဝ︀်
+ \ph  kyauŋ² kyo²
+ \so  phk_kyauN2kyo2.wav
+@@ -14978,15 +14978,15 @@ died, leaving corpses in heaps everywhere
+ \xr  ŋo² kam¹
+ \so  phk_No2kam1.wav
+ \xe  a brown bull  
+-\xv  က︀ံံꩫ︀ံံ
++\xv  က︀ံꩫ︀ံ
+ \xr  kam¹ kam¹ nam² nam²
+ \so  phk_kam1kam1nam2nam2.wav
+ \xe  in a state of dark maroon colour  
+-\xv  တ︀က︀်ꩫ︀ျိတ︀်ꩬ︀ေ︀ꩫ︀ႃမ︀ိုꩫ︀်က︀ံံꩫ︀ံံ
++\xv  တ︀က︀်ꩫ︀ျိတ︀်ꩬ︀ေ︀ꩫ︀ႃမ︀ိုꩫ︀်က︀ံꩫ︀ံ
+ \xr  tāk¹ nɛt¹ sɛ⁶ nā³ mün² kam¹ kam¹ nam² nam²
+ \so  phk_taak1njtsj6naa3mvn2kam1kam1nam2nam2.wav
+ \xe  being exposed to the sun his face become suntan
+-\xv  ၸ︀ႃꩫ︀ေ︀က︀ံံꩫ︀ံံမ︀ႃမ︀ႃ
++\xv  ၸ︀ႃꩫ︀ေ︀က︀ံꩫ︀ံမ︀ႃမ︀ႃ
+ \xr  phā⁴ nɛ⁴ pen² mā² kam¹ kam¹ nam² nam²
+ \so  phk_phaa4 nj4pen2maa2kam1kam1nam2nam2.wav
+ \xe  a large, dark cloud covering the sky that bring rain 
+@@ -16266,7 +16266,7 @@ while playing as any one of the pieces in the game of < kai1>
+ \xr  kai¹ tī² tī² əi² nɔn² nɔn²
+ \so  phk_kai1tI2tI2zi2nqn2nqn2.wav
+ \xe  oh! dear young! sleep and sleep
+-\xv  က︀ႝ တ︀ီီ ဢ︀ိုၺ် ၸ︀ူ လ︀ုꩫ︀် ပ︀ꩫ︀် ꩫ︀ႃ ꩫ︀ွꩫ︀ꩰ   
++\xv  က︀ႝ တ︀ီ ဢ︀ိုၺ် ၸ︀ူ လ︀ုꩫ︀် ပ︀ꩫ︀် ꩫ︀ႃ ꩫ︀ွꩫ︀ꩰ   
+ \xr  kai¹ tī² tī² əi² phu³ lun¹ pān¹ nā² nɔn² nɔn²
+ \so  phk_kai1tI2tI2zi2phu3lun1paan1naa2nqn2nqn2  
+ \xe  Little rooster, ti2 ti2, little soft boy, sleep, sleep!
+@@ -16573,8 +16573,8 @@ while playing as any one of the pieces in the game of < kai1>
+ \notes 
+ \dt  14/Feb/2024
+ 
+-\lx  က︀ျ ုꩫ︀်
+-\le  က︀ျ ုꩫ︀်
++\lx  က︀ျုꩫ︀်
++\le  က︀ျုꩫ︀်
+ \le  က︀ျွုꩫ︀်
+ \ph  kyon²
+ \so  phk_kyon2.wav
+@@ -16599,7 +16599,7 @@ while playing as any one of the pieces in the game of < kai1>
+ \notes 
+ \dt  22/Oct/2023
+ 
+-\lx  က︀ျ ုဝ︀်က︀ျႃ
++\lx  က︀ျုဝ︀်က︀ျႃ
+ \le  က︀ျွုဝ︀်က︀ျႃ
+ \ph  kyo² kyā²
+ \so  phk_kyo2kyaa2
+@@ -16619,7 +16619,7 @@ while playing as any one of the pieces in the game of < kai1>
+ \notes 
+ \dt  05/May/2023
+ 
+-\lx  က︀ျ ုဝ︀်ꩡ︀ႃ
++\lx  က︀ျုဝ︀်ꩡ︀ႃ
+ \le  က︀ျွုဝ︀်ꩡ︀ႃ
+ \ph  kyo² cā²
+ \so  phk_kyo2caa2.wav
+@@ -20316,7 +20316,7 @@ nai3khaam1svn6thqm1ta1la2sI1laa1- sI1laa1cau3ke1cU2keu2maa2tI5khaa3 ta8
+ \dt  20/Jan/2022
+ 
+ \lx  က︀ျုꩫ︀်
+-\le  က︀ျ ုꩫ︀်
++\le  က︀ျုꩫ︀်
+ \le  က︀ျွုꩫ︀်
+ \ph  kyon²
+ \so  phk_kyon2.wav
+@@ -20331,19 +20331,19 @@ nai3khaam1svn6thqm1ta1la2sI1laa1- sI1laa1cau3ke1cU2keu2maa2tI5khaa3 ta8
+ \dn 
+ \rf  
+ 
+-\xv  က︀ျုွꩫ︀်လ︀ုင︀်တ︀ီီက︀ုꩫ︀်ယ︀ူ
++\xv  က︀ျွုꩫ︀်လ︀ုင︀်တ︀ီက︀ုꩫ︀်ယ︀ူ
+ \xr  kyon² loŋ⁶ tī⁵ kon² yū¹
+ \so  phk_kyon2loN6tI5kon2yU1.wav
+ \xe  the earth where we live in
+-\xv  ꩬ︀ီꩡ︀ိင︀်လ︀်ေ︀က︀ျုွꩫ︀်
++\xv  ꩬ︀ီꩡ︀ိင︀်လ︀်ေ︀က︀ျွုꩫ︀်
+ \xr  si¹ cēŋ¹ le² kyon²
+ \so  phk_si1cEN1le2kyon2.wav
+ \xe  all the four hemisphere, all  side
+-\xv  ꩫ︀ိꩫ︀် လ︀ုင︀် ꩬ︀ီ လ︀်ေ︀က︀ျုွꩫ︀်
++\xv  ꩫ︀ိꩫ︀် လ︀ုင︀် ꩬ︀ီ လ︀်ေ︀က︀ျွုꩫ︀်
+ \xr  nin² loŋ⁶ si¹ le² kyon²
+ \so  phk_nin2loN6si1le2kyon2.wav
+ \xe  the four continents of the earth 
+-\xv  က︀ျုွꩫ︀်လ︀ုင︀်က︀ျုꩫ︀်က︀ီဢ︀ႃမ︀တ︀်ႃၵ︀ေ︀မ︀ႃ
++\xv  က︀ျွုꩫ︀်လ︀ုင︀်က︀ျုꩫ︀်က︀ီဢ︀ႃမ︀တ︀်ႃၵ︀ေ︀မ︀ႃ
+ \xr  kyon² loŋ⁶ kyon² kī² a¹ mat¹ tā¹ khe¹ mā¹
+ \so  phk_kyon2loN6kyon2kI2a1mat1taa1khe1maa1   
+ \xe  the nibbana
+@@ -21026,7 +21026,7 @@ oneself
+ \xr  khāŋ² kün³ kā¹   
+ \so  phk_khaaN3kvn2kaa1.wav   
+ \xe  to be adjacent with each other  
+-\xv  ꩭိုꩫ︀်ꩬ︀ွင︀််လ︀င︀်ၵ︀င︀်က︀ိုꩫ︀်
++\xv  ꩭိုꩫ︀်ꩬ︀ွင︀်လ︀င︀်ၵ︀င︀်က︀ိုꩫ︀်
+ \xr  hən² sauŋ⁶ laŋ⁶ khāŋ² kün²
+ \so  phk_hzn2sauN6laN6khaaN2kvn2.wav
+ \xe  the two houses are near each other 
+@@ -22731,7 +22731,7 @@ unfortunate suddenly with hand
+ \xr  yɔt⁴ khai¹ phā⁴ pāk¹ wā⁵ khān⁶ kam²
+ \so  phk_yqt4khai1phaa4paak1waa5khaan6kam2.wav
+ \xe  'the Supreme Egg of the sky' the Lord Budhha spoke further
+-\xv  ꩫ︀င︀် ꩫ︀ီ ၵ︀ꩫ︀် ꩬ︀ိင︀် တ︀ွပ︀ လ︀ံံ က︀ွႝ က︀ေ︀
++\xv  ꩫ︀င︀် ꩫ︀ီ ၵ︀ꩫ︀် ꩬ︀ိင︀် တ︀ွပ︀ လ︀ံ က︀ွႝ က︀ေ︀
+ \xr  nāŋ² nī² khān⁶ seŋ⁶  tɔp¹ lam² lam² kɔi² kɛ³
+ \so  phk_naaN2nI2khaan6seN6 tqp1lam2lam2kqi2kj3.wav
+ \xe  then the good lady answered in response to him  (in the sense of solving a question)
+@@ -23418,7 +23418,7 @@ suffer a punishment or fate that someone deserve for the act of one's sin deed
+ \xr  naŋ⁵ khām² kün²
+ \so  phk_naN5khaam2kvn2.wav
+ \xe  be seated next to each other, to sit side by side
+-\xv  ꩭိုꩫ︀််ၵ︀မ︀်က︀ိုꩫ︀် 
++\xv  ꩭိုꩫ︀်ၵ︀မ︀်က︀ိုꩫ︀် 
+ \xr  hən² khām² kün²
+ \so  phk_hzn2khaam2kvn2.wav
+ \xe  the houses are next to each other or  side by side, 
+@@ -24130,7 +24130,7 @@ having meal to make freshness of the mouth
+ \xr  khun⁶ tāŋ² khā⁵
+ \sn  phk_khun6taaN2khaa5.wav
+ \xe  a branch road 
+-\xv  ၵ︀ႃႃၵ︀ီီ
++\xv  ၵ︀ႃႃၵ︀ီ
+ \xr  khā⁵ khā⁵ khī⁵ khī⁵
+ \so  phk_khaa5khaa5khI5khI5.wav
+ \xe  many branches 
+@@ -28371,7 +28371,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \xr  haü³ kin² haü³ khop¹
+ \so  phk_hav3kin2hav3khop1.wav
+ \xe  to entertain with meal as to guest, lit. have given eat and bite
+-\xv  ၵ︀ိုင︀််က︀ိꩫ︀်တ︀င︀်ၵ︀ုပ︀်
++\xv  ၵ︀ိုင︀်က︀ိꩫ︀်တ︀င︀်ၵ︀ုပ︀်
+ \xr  khüŋ⁵ kin² tāŋ² khop¹
+ \so  phk_khvN5kin2taaN2khop1.wav
+ \xe  food stuff,  edible item, lit. thing to be eating and biting
+@@ -28446,7 +28446,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \xr  kho⁶ mai⁴ sāŋ² 
+ \so  phk_kho6mai4saaN2.wav
+ \xe  bamboo bridge 
+-\xv  ၵ︀ုဝ︀်ꩬ︀ꩫ︀််
++\xv  ၵ︀ုဝ︀်ꩬ︀ꩫ︀်
+ \xr  kho⁶ sān⁶ 
+ \so  phk_kho6saan6.wav
+ \xe  a bridge made of woven bamboo 
+@@ -28600,7 +28600,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \xr  yā³ nai⁴ khum⁶ wa¹ khum⁶
+ \so  phk_yaa3nai4khum6wa1khum6.wav
+ \xe  this medicine is very bitter in taste
+-\xv  ၵ︀ုံံဝ︀ꩫ︀ꩰ
++\xv  ၵ︀ုံဝ︀ꩫ︀ꩰ
+ \xr  khum⁶ khum⁶ wān⁶ wān⁶
+ \so  phk_khum6khum6waan6waan6.wav
+ \xe  bitter and sweet taste
+@@ -28658,7 +28658,7 @@ and two days <wan2 kam2> ) as Tai Phake people do their work accrding to <lak1 n
+ \xr  khom² tüŋ¹ to²
+ \so  phk_khom2tvN1to2
+ \xe  itchy all over his body
+-\xv  ၵ︀ုံံက︀ႝ ႝ
++\xv  ၵ︀ုံက︀ႝ ႝ
+ \xr  khom² khom² kāi² kāi²
+ \so  phk_khom2khom2kaai2kaai2.wav
+ \xe  feeling itchy and irritating sensation 
+@@ -28947,7 +28947,7 @@ to be emptied (of a container)
+ \notes  ailot
+ \dt  07/Apr/2023
+ 
+-\lx  ၵ︀ုံံ
++\lx  ၵ︀ုံ
+ \le 
+ \ph  khum⁴ khum⁴
+ \so  phk_khum4khum4.wav
+@@ -28960,7 +28960,7 @@ to be emptied (of a container)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ႃၸ︀ုꩫ︀်လ︀ေ︀ႃၵ︀ုံံ
++\xv  ၸ︀ႃၸ︀ုꩫ︀်လ︀ေ︀ႃၵ︀ုံ
+ \xr  phā⁴ phon⁶ lɔ̄¹ khum⁴ khum⁴
+ \so  phk_phaa4phon6lq1khum4khum4
+ \xe  the rain downpour heavily
+@@ -28968,7 +28968,7 @@ to be emptied (of a container)
+ \notes  ailot
+ \dt  17/May/2022
+ 
+-\lx  ၵ︀ုံံ
++\lx  ၵ︀ုံ
+ \le 
+ \ph  khum⁴ khum⁴
+ \so  phk_khum4khum4.wav
+@@ -28981,7 +28981,7 @@ to be emptied (of a container)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ိင︀်ꩬ︀ꩫ︀်ၵ︀ုံံ
++\xv  ဢ︀ိင︀်ꩬ︀ꩫ︀်ၵ︀ုံ
+ \xr  iŋ¹ san¹ khum⁴ khum⁴
+ \so  phk_iN1san1khum4khum4  
+ \xe  earth is quaking or shaking intensely
+@@ -29985,7 +29985,7 @@ big room
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩫ︀ံꩭျိင︀်ၵ︀ွင︀်လ︀ွင︀််
++\xv  ꩫ︀ံꩭျိင︀်ၵ︀ွင︀်လ︀ွင︀်
+ \xr  nam⁴ haiŋ³ khauk¹ lauk¹ 
+ \so  phk_nam4haiN3khauk1lauk1.wav
+ \xe  the water has completely dried out at the low land paddy field
+@@ -30522,7 +30522,7 @@ khqn6 > Book of calling < khqn6 > there are many as 120
+ \xr  khɔn⁶ tok¹
+ \so  phk_khqn6tok1
+ \xe  the soul left the body, because of fright (according to Tai Phake belief)
+-\xv  ၵ︀ွꩫ︀််ပ︀ႝ
++\xv  ၵ︀ွꩫ︀်ပ︀ႝ
+ \xr  khɔn⁶ pāi⁵
+ \so  phk_khqn6paai5.wav
+ \xe  the soul one have run away
+@@ -31672,15 +31672,15 @@ other
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ျ ုက︀်က︀ꩫ︀်
++\xv  ၵ︀ျုက︀်က︀ꩫ︀်
+ \xr  khyuk³ kan³
+ \so  phk_khyuk3kan3.wav
+ \xe  to bear, to restrain
+-\xv  ၵ︀ျ ုက︀်ꩡ︀ၞ်
++\xv  ၵ︀ျုက︀်ꩡ︀ၞ်
+ \xr  khyuk⁴ caü²
+ \so  phk_khyuk3cav2.wav
+ \xe  to control or restrain the feeling 
+-\xv  ၵ︀ျ ုက︀်ပ︀ျိင︀်
++\xv  ၵ︀ျုက︀်ပ︀ျိင︀်
+ \xr  khyuk³ paiŋ¹
+ \so  phk_khyuk3paiN1.wav
+ \xe  to rule over, control
+@@ -31956,7 +31956,7 @@ other
+ \so  phk_khav3cav2yaau2
+ \xe  to think deeply and seriously, to give very careful and through consideration 
+ (to something) 
+-\xv  ၵ︀ၞ်ꩡ︀ၞ်ꩫ︀ီီ
++\xv  ၵ︀ၞ်ꩡ︀ၞ်ꩫ︀ီ
+ \xr  khaü³ caü² nī² nī²
+ \so  phk_khav3cav2nI2nI2.wav
+ \xe  think carefully about
+@@ -33847,7 +33847,7 @@ something regarded as having great value or very special status, dearly
+ \notes  ailot
+ \dt  22/Oct/2023
+ 
+-\lx  ၵ︀ျ ုပ︀်
++\lx  ၵ︀ျုပ︀်
+ \le 
+ \ph  khyup³
+ \so  phk_khyup3.wav
+@@ -33860,7 +33860,7 @@ something regarded as having great value or very special status, dearly
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ျ ုပ︀်ပ︀ျိင︀်
++\xv  ၵ︀ျုပ︀်ပ︀ျိင︀်
+ \xr  khyup³ paiŋ¹
+ \so  phk_khyup3paiN1.wav
+ \xe  rule over, to conrol
+@@ -38174,7 +38174,7 @@ having medicinal properties
+ \xr  ŋā⁶ nā²
+ \so  phk_Naa6naa2
+ \xe  to leased  low land paddy field
+-\xv  င︀ႃꩭိုꩫ︀်ပ︀ိုꩫ︀််ဢ︀ူ
++\xv  င︀ႃꩭိုꩫ︀်ပ︀ိုꩫ︀်ဢ︀ူ
+ \xr  ŋā⁶ hən² pən⁵ ū¹
+ \so  phk_Naa6hzn2pzn5U1
+ \xe  to hire a house to live
+@@ -39098,7 +39098,7 @@ and extend out from the rest
+ \dt  03/Feb/2023
+ 
+ \lx  င︀ုင︀်
+-\le  င︀ွုင︀််
++\le  င︀ွုင︀်
+ \ph  ŋoŋ²
+ \so  phk_NoN2.wav
+ \ps  n.
+@@ -39528,7 +39528,7 @@ down-wards as the  horn of buffalo or bull
+ \notes  ailot
+ \dt  02/Jun/2022
+ 
+-\lx  င︀ုံံ
++\lx  င︀ုံ
+ \le  င︀ုံင︀ုံ
+ \ph  ŋum¹ ŋum¹
+ \so  phk_Num1Num1.wav
+@@ -40178,7 +40178,7 @@ showing agreement, understanding or approval
+ \notes 
+ \dt  10/Mar/2024
+ 
+-\lx  င︀ွံံ
++\lx  င︀ွံ
+ \le 
+ \ph  ŋɔm¹ ŋɔm¹
+ \so  phk_Nqm1Nqm1
+@@ -40191,7 +40191,7 @@ showing agreement, understanding or approval
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ုံင︀ွံံ
++\xv  က︀ုံင︀ွံ
+ \xr  kom³ ŋɔm¹ ŋɔm¹
+ \so  phk_kom3Nqm1Nqm1
+ \xe  intensely stooping 
+@@ -41625,7 +41625,7 @@ not smoothly round or normal
+ \xr  cāk⁴ wāi³ phā¹ 
+ \so  phk_caak4waai3phaa4
+ \xe  aeroplane
+-\xv  တ︀ီၸ︀ႃတ︀ိꩫ︀်ꩡ︀ွ်ၸ︀ြႃꩡ︀က︀််ယ︀င︀် 
++\xv  တ︀ီၸ︀ႃတ︀ိꩫ︀်ꩡ︀ွ်ၸ︀ြႃꩡ︀က︀်ယ︀င︀် 
+ \xr  tī⁵ phā¹ tin² cau³ phrā² 
+ \so  phk_tI5phaa1tin2cau3phraa2.wav 
+ \xe  there is symbol like wheel at the sole of Lord Buddha
+@@ -44335,7 +44335,7 @@ different they are
+ \xr  au² phā³ cā¹ tī⁵ to² mün²
+ \so  phk_au2phaa3caa1tI5to2mvn2.wav
+ \xe  to cover his body with a cloth
+-\xv  ꩡ︀ႃႃင︀ံံ 
++\xv  ꩡ︀ႃႃင︀ံ 
+ \xr  cā¹ cā¹ ŋam² ŋam²
+ \so  phk_caa1caa1Nam2Nam2.wav
+ \xe  in a covering state, to cover with something all over
+@@ -46887,7 +46887,7 @@ basket in which shredded bamboo is preserved
+ \notes  ailot
+ \dt  09/Jun/2022
+ 
+-\lx  ꩡ︀ိꩫ︀််
++\lx  ꩡ︀ိꩫ︀်
+ \le 
+ \ph  cin⁴
+ \so  phk_cin4
+@@ -47512,15 +47512,15 @@ used for blackening the teeth by Khamti and some group of Naga
+ \xr  cī⁶ kha¹ lai⁴ nüŋ⁵
+ \so  phk_cI6kha1lai4nvN5.wav
+ \xe  such a small one, expressed with gesture
+-\xv  ꩡ︀ီီ
++\xv  ꩡ︀ီ
+ \xr  cī⁶ cī⁶ 
+ \so  phk_cI6cI6.wav
+ \xe  very little or very small   
+-\xv  ꩡ︀ီီမ︀ႃꩭျိင︀်
++\xv  ꩡ︀ီမ︀ႃꩭျိင︀်
+ \xr  cī⁶ cī⁶ ma¹ haiŋ⁵
+ \so  phk_cI6cI6ma1haiN5.wav
+ \xe  very small egg fruit, brinjal very little (sparrow brinjal)
+-\xv  ꩡ︀ီီꩫ︀ိုင︀်မ︀ိတ︀်င︀ႃ   
++\xv  ꩡ︀ီꩫ︀ိုင︀်မ︀ိတ︀်င︀ႃ   
+ \xr  cī⁶ cī⁶ nüŋ¹ mit⁴ ŋā² 
+ \so  phk_cI6cI6nvN1mit4Naa2.wav  
+ \xe  as small as sesame seeds  
+@@ -47939,7 +47939,7 @@ esp. used when binding the holy thread to someone
+ \notes  ailot
+ \dt  10/Jun/2022
+ 
+-\lx  ꩡ︀ီီ
++\lx  ꩡ︀ီ
+ \le 
+ \ph  cī⁶ cī⁶  
+ \so  phk_cI6cI6.wav  
+@@ -47952,7 +47952,7 @@ esp. used when binding the holy thread to someone
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ွꩫ︀်ꩡ︀ီီ
++\xv  ဢ︀ွꩫ︀်ꩡ︀ီ
+ \xr  ɔn¹ cī⁶ cī⁶
+ \so  phk_qn1cI6cI6
+ \xe  intensely small
+@@ -47960,7 +47960,7 @@ esp. used when binding the holy thread to someone
+ \notes  ailot
+ \dt  13/May/2023
+ 
+-\lx  ꩡ︀ီီ
++\lx  ꩡ︀ီ
+ \le 
+ \ph  cī² cī²
+ \so  phk_cI2cI2
+@@ -47973,7 +47973,7 @@ esp. used when binding the holy thread to someone
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭက︀်ꩡ︀ီီ
++\xv  ꩭက︀်ꩡ︀ီ
+ \xr  hak⁴ cī² cī²
+ \so  phk_hak4cI2cI2
+ \xe  love intensely
+@@ -47981,7 +47981,7 @@ esp. used when binding the holy thread to someone
+ \notes 
+ \dt  13/May/2023
+ 
+-\lx  ꩡ︀ီီ
++\lx  ꩡ︀ီ
+ \le 
+ \ph  cī⁶ cī⁶
+ \so  phk_cI6cI6
+@@ -48051,7 +48051,7 @@ esp. used when binding the holy thread to someone
+ \so  phk_cok1thuN6sz3.wav
+ \xe  to put the hand into a shirt's pocket as when taking out things from it or when it
+ is cold
+-\xv  ꩡ︀ုက︀်ဢ︀ွက︀််
++\xv  ꩡ︀ုက︀်ဢ︀ွက︀်
+ \xr  cok¹ auk¹
+ \so  phk_cok1auk1.wav
+ \xe  to put one's hand into and take out (something)
+@@ -48381,7 +48381,7 @@ ceremony in line/row.'
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩬ︀င︀််က︀ꩫ︀်ꩬ︀ွင︀်ꩡ︀ုင︀်
++\xv  ꩬ︀င︀်က︀ꩫ︀်ꩬ︀ွင︀်ꩡ︀ုင︀်
+ \xr  sāŋ¹ kān² sauŋ⁶ cuŋ¹
+ \so  phk_saaN1kaan2sauN6cuN1
+ \xe  two complete set of Buddhist monk's garment 
+@@ -48796,7 +48796,7 @@ frustrated
+ \notes  ailot
+ \dt  07/Dec/2020
+ 
+-\lx  ꩡ︀ုꩫ︀်မ︀ုꩫ︀််
++\lx  ꩡ︀ုꩫ︀်မ︀ုꩫ︀်
+ \le 
+ \ph  cun¹ mun⁵
+ \so  phk_cun1mun5
+@@ -48922,7 +48922,7 @@ frustrated
+ \ps  v
+ \de  to urge or persuade (someone) as to do or go along or accompany
+ \ge  urge
+-\pl  ံႝ
++\pl  ႝံ
+ \pd 
+ \pde 
+ \pdn 
+@@ -49354,7 +49354,7 @@ joy
+ \xr  com² hɔ²
+ \so  phk_com2hq2
+ \xe  joyfull and praising
+-\xv  ၸ︀ီက︀ုꩫ︀်ꩡ︀ုံꩭေ︀ႃတ︀ွ်ꩡ︀ုံတ︀ံွုယ︀ိုင︀် မ︀ွက︀်
++\xv  ၸ︀ီက︀ုꩫ︀်ꩡ︀ုံꩭေ︀ႃတ︀ွ်ꩡ︀ုံတ︀ွုံယ︀ိုင︀် မ︀ွက︀်
+ \xr  phī⁶ kon² com² hɔ² tau³ tcom² tum² yəŋ⁵ mauk¹
+ \so  phk_phI6kon2com2hq2tau3com2tum2yzN5mauk1
+ \xe  The spirits and people were joyful and praising, swarming like flowers   
+@@ -51240,7 +51240,7 @@ the  true feelings,
+ \so  phk_cqm2cav2
+ \xe  to warm the cockles of someone's heart, or warm someone's heart, to give
+ someone warm and happy or pleasant feeling lit. follow others 
+-\xv  ꩡ︀ွံꩡ︀ၞ်လ︀ုက︀််ဢ︀ွꩫ︀်
++\xv  ꩡ︀ွံꩡ︀ၞ်လ︀ုက︀်ဢ︀ွꩫ︀်
+ \xr  cɔm² caü² luk⁴ ɔn¹
+ \so  phk_cqm2cav2luk4qn1
+ \xe  to warm children's heart, to give the children warm and happy or pleasant
+@@ -52472,11 +52472,11 @@ spend it usefully
+ \xr  cam² kün² het¹ sük²
+ \so  phk_cam2kvn2het1svk2
+ \xe  to fight face to face in the battle field
+-\xv  ꩡ︀ံံ
++\xv  ꩡ︀ံ
+ \xr  cam² cam²
+ \so  phk_cam2cam2
+ \xe  to be quite near
+-\xv  က︀ၞ်က︀ၞ်ꩡ︀ံံ
++\xv  က︀ၞ်က︀ၞ်ꩡ︀ံ
+ \xr  kaü³ kaü³ cam² cam²
+ \so  phk_kav3kav3cam2cam2
+ \xe  to be quite near
+@@ -52602,7 +52602,7 @@ is able to pass the  thread shuttle over and under the warp
+ \xr  hɔi² cam⁴ pən⁵ maŋ²
+ \so  ph_hqi2cam4pzn5maN2
+ \xe  the blue or bruised mark caused by being beaten
+-\xv  ꩡ︀ံံꩫ︀င︀ꩰ
++\xv  ꩡ︀ံꩫ︀င︀ꩰ
+ \xr  cam⁵ cam⁵ nāŋ¹ nāŋ¹
+ \so  phk_cam5cam5naaN1naaN1
+ \xe  having many spot of different varied colours   
+@@ -54553,7 +54553,7 @@ Will want that the Buddha speak when he entered the lifetime of Mahosatha, utter
+ \xr  mak¹ hok¹ ka¹ lai⁶ cə̄n⁵  
+ \so  phk_mak1hok1ka1lai6cZn5  
+ \xe  a ladder is slopping  
+-\xv  ꩡ︀ ႝႝꩡ︀ိုꩫ︀ꩰ
++\xv  ꩡ︀ ႝꩡ︀ိုꩫ︀ꩰ
+ \xr  cāi⁴ cāi⁴ cən² cən²
+ \so  phk_caai4caai4czn2czn2
+ \xe  in a slantwise and slopewise  
+@@ -55409,7 +55409,7 @@ or land
+ \xr  mauk¹ lat⁴ cau³ sa¹ the² haü³ caiŋ⁵
+ \so  phk_mauk1lat4cau3sa1the2hav3caiN5
+ \xe  to tell and make the rich man understand clearly
+-\xv  လ︀ံံ ꩡ︀ၞ် ꩬ︀ိၺ် ꩫ︀ေ︀ႃ ဢ︀ႃလ︀ွင︀် ꩡ︀ျိင︀် ꩬ︀ိင︀်
++\xv  လ︀ံ ꩡ︀ၞ် ꩬ︀ိၺ် ꩫ︀ေ︀ႃ ဢ︀ႃလ︀ွင︀် ꩡ︀ျိင︀် ꩬ︀ိင︀်
+ \xr  lam² lam² caü² sɛn³ nɔ¹ a¹ lauŋ² caiŋ⁵ siŋ³
+ \so  phk_lam2lam2cav2sjn3nq1a1lauN2caiN5siN3
+ \xe  And the beautiful hearted shoot, the Bodhisattva who knows all
+@@ -55562,11 +55562,11 @@ or land
+ \xr  cɛn⁶ nüŋ⁵
+ \so  phk_cjn6 nvN5
+ \xe  a little amount
+-\xv  ꩡ︀ျိꩫ︀်ꩫ︀ျိတ︀်ꩬ︀ျိတ︀််
++\xv  ꩡ︀ျိꩫ︀်ꩫ︀ျိတ︀်ꩬ︀ျိတ︀်
+ \xr  cɛ̄n⁶ nɛt¹ sɛt⁴
+ \so  phk_cJn6njt1sjt4
+ \xe  a little amount
+-\xv  ꩡ︀ျိꩫ︀်ꩫ︀ျိတ︀်ꩬ︀ျိတ︀််ꩫ︀ိုင︀်
++\xv  ꩡ︀ျိꩫ︀်ꩫ︀ျိတ︀်ꩬ︀ျိတ︀်ꩫ︀ိုင︀်
+ \xr  cɛ̄n⁶ nɛt¹ sɛt⁴ nüŋ⁵
+ \so  phk_cJn6njt1sjt4nvN5
+ \xe  a little amount
+@@ -55661,7 +55661,7 @@ or land
+ \notes  ailot
+ \dt  03/Feb/2023
+ 
+-\lx  ꩡ︀ံံ
++\lx  ꩡ︀ံ
+ \le  ꩡ︀မ︀ꩰ
+ \ph  cam⁴ cam⁴
+ \so  phk_cam4cam4
+@@ -55674,7 +55674,7 @@ or land
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ယ︀ိꩫ︀်ꩡ︀ံံ
++\xv  ယ︀ိꩫ︀်ꩡ︀ံ
+ \xr  yen² cam⁴ cam⁴
+ \so  phk_yen2cam4cam4
+ \xe  completely or dead silence 
+@@ -55682,7 +55682,7 @@ or land
+ \notes  ailot
+ \dt  13/Apr/2023
+ 
+-\lx  ꩡ︀ံံ
++\lx  ꩡ︀ံ
+ \le 
+ \ph  cam⁴ cam⁴ 
+ \so  phk_cam4cam4 
+@@ -55695,7 +55695,7 @@ or land
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩡ︀ံံꩬ︀ꩫ︀်တ︀င︀်ၵ︀ိင︀်
++\xv  ꩡ︀ံꩬ︀ꩫ︀်တ︀င︀်ၵ︀ိင︀်
+ \xr  cam⁴ cam⁴ san¹ tüŋ¹ khiŋ²
+ \so  phk_cam4cam4san1tvN1khiN2
+ \xe  intensly shake whole body
+@@ -55703,7 +55703,7 @@ or land
+ \notes 
+ \dt  05/Nov/2023
+ 
+-\lx  ꩡ︀ံံ
++\lx  ꩡ︀ံ
+ \le  ꩡ︀မ︀ꩰ
+ \ph  cam⁴ cam⁴
+ \so  phk_cam4cam4
+@@ -55716,7 +55716,7 @@ or land
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ုဝ︀်ꩡ︀ံံ
++\xv  မ︀ုဝ︀်ꩡ︀ံ
+ \xr  mo² cam⁴ cam⁴
+ \so  phk_mo2cam4cam4
+ \xe  intensely purple 
+@@ -57483,7 +57483,7 @@ the entrance upon the novitiate
+ \xr  sat⁴ saü¹ tauŋ⁴
+ \so  phk_sat4sav1tauN4
+ \xe  to eat greedily, (vulger) lit. to press down into the stomach 
+-\xv  ꩭိုꩫ︀်ꩫ︀ႝႝꩬ︀တ︀်ၸ︀ႃ
++\xv  ꩭိုꩫ︀်ꩫ︀ႝꩬ︀တ︀်ၸ︀ႃ
+ \xr  hən² nāi² sat⁴ phā⁴
+ \so  phk_hzn2naai2sat4phaa4
+ \xe  houses are densely clustered, houses are closely built
+@@ -63341,7 +63341,7 @@ of plantain tree  (on the occasion of festival of ending of rain retreat )
+ \notes  ailot
+ \dt  26/Jan/2022
+ 
+-\lx  ꩬ︀ီီ
++\lx  ꩬ︀ီ
+ \le 
+ \ph  sī⁵ sī⁵
+ \so  phk_sI5sI5
+@@ -63361,7 +63361,7 @@ of plantain tree  (on the occasion of festival of ending of rain retreat )
+ \notes 
+ \dt  14/May/2023
+ 
+-\lx  ꩬ︀ီီꩬ︀ေ︀ႃꩬ︀ေ︀ႃ
++\lx  ꩬ︀ီꩬ︀ေ︀ႃꩬ︀ေ︀ႃ
+ \le 
+ \ph  sī⁴ sī⁴ sɔ⁴ sɔ⁴
+ \so  phk_sI4sI4sq4sq4
+@@ -63374,11 +63374,11 @@ of plantain tree  (on the occasion of festival of ending of rain retreat )
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩬ︀ီီꩬ︀ေ︀ႃꩬ︀ေ︀ႃꩫ︀ႝင︀ိꩫ︀်
++\xv  ꩬ︀ီꩬ︀ေ︀ႃꩬ︀ေ︀ႃꩫ︀ႝင︀ိꩫ︀်
+ \xr  sī⁴ sī⁴ sɔ⁴ sɔ⁴ nai³ ŋin²
+ \so  phk_sI4sI4sq4sq4nai3Nin2
+ \xe  heard the hearsay or gossip
+-\xv  ပ︀ိုꩫ︀်ꩬ︀ီီꩬ︀ေ︀ႃꩬ︀ေ︀ႃက︀ိုꩫ︀်
++\xv  ပ︀ိုꩫ︀်ꩬ︀ီꩬ︀ေ︀ႃꩬ︀ေ︀ႃက︀ိုꩫ︀်
+ \xr  pən⁵ sī⁴ sī⁴ sɔ⁴ sɔ⁴ kün²
+ \so  phk_pzn5sI4sI4sq4sq4nai3kvn2
+ \xe  the other spread rumour
+@@ -63431,7 +63431,7 @@ of plantain tree  (on the occasion of festival of ending of rain retreat )
+ \xr  suk⁴ suk⁴ sāi¹ sāi¹
+ \so  phk_suk4suk4saai1saai1
+ \xe  to wash and rinse, to clean 
+-\xv  ꩬ︀ုက︀ꩰꩬ︀ီီ
++\xv  ꩬ︀ုက︀ꩰꩬ︀ီ
+ \xr  suk⁴ suk⁴ sī⁶ sī⁶
+ \so  phk_suk4suk4sI6sI6
+ \xe  to wash and rub to clean 
+@@ -63637,7 +63637,7 @@ field
+ \xr  kon² mā⁵ hū⁴ tī⁵ suŋ⁶ tī⁵ tam¹   
+ \so  phk_kon2maa5hU4tI5suN6tI5tam1  
+ \xe  one who does not know to behave properly, esp. to the high ranking or the elder one   
+-\xv  ꩬ︀ုင︀ꩰတ︀ံံ
++\xv  ꩬ︀ုင︀ꩰတ︀ံ
+ \xr  suŋ⁶ suŋ⁶ tam¹ tam¹
+ \so  phk_suN6suN6tam1tam
+ \xe  to be uneven,  not in same level. lit. to be tall and low, high and low
+@@ -64943,7 +64943,7 @@ open
+ \xr  sop¹ wāu²
+ \so  phk_sop1waau2.wav
+ \xe  empty talk, meaningless talk
+-\xv  ꩬ︀ုပ︀်ပ︀ျိꩫ︀်ဢ︀ွꩫ︀််
++\xv  ꩬ︀ုပ︀်ပ︀ျိꩫ︀်ဢ︀ွꩫ︀်
+ \xr  sop¹ pɛn² ɔn²
+ \so  phk_sop1pjn2qn2.wav
+ \xe  to speak before hand
+@@ -65196,7 +65196,7 @@ hundred man and when delivered a speech let it win ( impressed ) thousands
+ \xr  an² som³ an² wan⁶  
+ \so  phk_an2som3an2wan6  
+ \xe  a sourand sour thing
+-\xv  ꩬ︀ုံံဝ︀ꩫ︀ꩰ
++\xv  ꩬ︀ုံဝ︀ꩫ︀ꩰ
+ \xr  som³ som³ wān⁶ wān⁶
+ \so  phk_som3som3waan6wan6
+ \xe  sour and sweet taste
+@@ -65540,11 +65540,11 @@ other
+ \xr  sū⁶ pen² phaü⁶ nɔ²
+ \so  phk_sU6pen2phav6nq2
+ \xe  who you are and where from?
+-\xv  ꩭိုၺ််မ︀ေ︀ꩬ︀ူ
++\xv  ꩭိုၺ်မ︀ေ︀ꩬ︀ူ
+ \xr  həi² mɛ⁵ sū⁶  
+ \so  phk_hzi2mj5sU6   
+ \xe  hey! you the mother (while calling a wife )   
+-\xv  ꩭိုၺ််ဢ︀ူꩬ︀ူ
++\xv  ꩭိုၺ်ဢ︀ူꩬ︀ူ
+ \xr  həi² ū³ khau⁶
+ \so  phk_hzi2 U3 khau6
+ \xe  hey! you the father of our child, (while calling to a husband )
+@@ -68766,7 +68766,7 @@ hand-bellow
+ \xr  sau² hok¹
+ \so  phk_sau2hok1
+ \xe  twenty-six
+-\xv  ꩬ︀ွ်ꩡ︀ိတ︀််
++\xv  ꩬ︀ွ်ꩡ︀ိတ︀်
+ \xr  sau² cet¹
+ \so  phk_sau2cet1
+ \xe  twenty seven
+@@ -70437,7 +70437,7 @@ on the Buddhist Holy day
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ထ︀ီꩬ︀ိုတ︀််
++\xv  ထ︀ီꩬ︀ိုတ︀်
+ \xr  thī² süt⁴
+ \so  phk_thI2svt4
+ \xe  to push to shift as something
+@@ -70696,7 +70696,7 @@ on the Buddhist Holy day
+ \xr  süp⁴ süp⁴ tāp⁴ tāp⁴
+ \so  phk_svp4svp4taap4taap
+ \xe  successively, consecutively, immediately one after another
+-\xv  ꩬ︀ိုပ︀ꩰထ︀ံံ
++\xv  ꩬ︀ိုပ︀ꩰထ︀ံ
+ \xr  süp⁴ süp⁴ thām² thām²
+ \so  phk_svp4svp4thaam2thaam2
+ \xe  successively, immediately one after another
+@@ -72540,7 +72540,7 @@ innumerable, incalculable,
+ \xr  ŋyān¹ tā² phī⁶
+ \so  phk_Nyaan1taa2phI6
+ \xe  clairvoyance, celestial or divine eye
+-\xv  ၺꩫ︀်ၸ︀ႝႝ
++\xv  ၺꩫ︀်ၸ︀ႝ
+ \xr  ŋyān¹ ŋyān¹ phāi⁶ phāi⁶
+ \so  phk_Nyan1Nyaan1phaai6phaai6
+ \xe  be sharp intellect
+@@ -74167,7 +74167,7 @@ stove
+ \xr  taŋ³ tɛ¹ pɔi²
+ \so  phk_taN3tj1pqi2
+ \xe  to prepare/celebrate a festival
+-\xv  တ︀င︀််ꩫ︀ႃ
++\xv  တ︀င︀်ꩫ︀ႃ
+ \xr  taŋ³ nā³
+ \so  phk_taN3naa3
+ \xe  to raise up the head 
+@@ -74175,7 +74175,7 @@ stove
+ \xr  taŋ³ mǖ²
+ \so  phk_taN3mV2
+ \xe  to raise up the hands, to hand's up
+-\xv  တ︀င︀််ꩭုဝ︀်
++\xv  တ︀င︀်ꩭုဝ︀်
+ \xr  taŋ³ ho⁶
+ \so  phk_taN3ho6
+ \xe  to raise up the head   
+@@ -76445,7 +76445,7 @@ strongly fortified town
+ \dt  01/Jun/2023
+ 
+ \lx  တ︀မ︀ꩰ
+-\le  တ︀ံံ
++\le  တ︀ံ
+ \ph  tām⁵ tām⁵
+ \so  phk_taam5taam5
+ \ps  intensifier
+@@ -76457,7 +76457,7 @@ strongly fortified town
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ိတ︀်တ︀ံံ
++\xv  ၵ︀ိတ︀်တ︀ံ
+ \xr  khit¹ tām⁵ tām⁵
+ \so  phk_khit1taam5taam5
+ \xe  erect intense rigidly
+@@ -76466,7 +76466,7 @@ strongly fortified town
+ \dt  05/May/2023
+ 
+ \lx  တ︀မ︀ꩰ
+-\le  တ︀ံံ
++\le  တ︀ံ
+ \ph  tām² tām²
+ \so  phk_taam2taam2
+ \ps  intensifier.
+@@ -76478,7 +76478,7 @@ strongly fortified town
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩬ︀ိုဝ︀်တ︀ံံ
++\xv  ꩬ︀ိုဝ︀်တ︀ံ
+ \xr  sǖ⁵ tām² tām²
+ \so  phk_sV5taam2taam2
+ \xe  intensely straight 
+@@ -79309,7 +79309,7 @@ or near that are imperceptable to the physical eye
+ \notes  ailot
+ \dt  28/Jan/2022
+ 
+-\lx  တ︀ိမ︀ꩰတ︀ွံံ
++\lx  တ︀ိမ︀ꩰတ︀ွံ
+ \le 
+ \ph  tim¹ tim¹ tɔm¹ tɔm¹
+ \so  phk_tim1tim1tqm1tqm1
+@@ -79322,18 +79322,18 @@ or near that are imperceptable to the physical eye
+ \pdn 
+ \dn 
+ \rf 
+-\xv  တ︀ိမ︀ꩰတ︀ွံံယ︀င︀်တ︀်ံၸ︀ႃ
++\xv  တ︀ိမ︀ꩰတ︀ွံယ︀င︀်တ︀်ံၸ︀ႃ
+ \xr  tɔm¹ tɔm¹ tim¹ tim¹ yaŋ² tem² phā⁴
+ \so  phk_tqm1tqm1tim1tim1yaN2tem2phaa4
+ \xe  to have many toddlers or many young children
+-\xv  လ︀ုက︀်မ︀ိုꩫ︀်ယ︀င︀်တ︀ိမ︀ꩰတ︀ွံံ  
++\xv  လ︀ုက︀်မ︀ိုꩫ︀်ယ︀င︀်တ︀ိမ︀ꩰတ︀ွံ  
+ \xr  luk mün² yaŋ² tim¹ tim¹ tɔm¹ tɔm¹  
+ \so  phk_luk mvn2 yaN2 tim1 tim1 tqm1 tqm1  
+ \xe  he have many toddler, ie. have many young children  
+ \notes  ailot
+ \dt  19/Feb/2023
+ 
+-\lx  တ︀ိမ︀ꩰတ︀ွံံ
++\lx  တ︀ိမ︀ꩰတ︀ွံ
+ \le 
+ \ph  tim¹ tim¹ tɔm¹ tɔm¹
+ \so  phk_tim1tim1tqm1tqm1
+@@ -79346,11 +79346,11 @@ or near that are imperceptable to the physical eye
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ံပ︀ႝတ︀ိမ︀ꩰတ︀ွံံ
++\xv  ံပ︀ႝတ︀ိမ︀ꩰတ︀ွံ
+ \xr  pai² tim¹ tim¹ tɔm¹ tɔm¹
+ \so  phk_pai2tim1tim1tqm1tqm1
+ \xe  (of many young child) to toddling around
+-\xv  ံလ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ပ︀ႝတ︀ိမ︀ꩰတ︀ွံံ
++\xv  ံလ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ပ︀ႝတ︀ိမ︀ꩰတ︀ွံ
+ \xr  tī⁵ than³ luk⁴ ɔn¹ khau⁶ pai² tim¹ tim¹ tɔm¹ tɔm¹
+ \so  phk_tI5than3luk4qn1khau6pai2tim1tim1tqm1tqm1
+ \xe  many childrens are toddling  around
+@@ -79520,7 +79520,7 @@ the steaming pot over it, in order not to let the vapour escape
+ \xr  tī⁵ khup⁴ tī⁵ wai⁴
+ \so  phk_tI5khup4tI5wai4
+ \xe  a  place  of worship, holy place
+-\xv  တ︀ီၵ︀ျိꩫ︀််
++\xv  တ︀ီၵ︀ျိꩫ︀်
+ \xr  tī⁵ khɛn⁶
+ \so  phk_tI5khjn6
+ \xe  a place to hang or suspend, a spigot, a small peg for hanging
+@@ -79532,7 +79532,7 @@ the steaming pot over it, in order not to let the vapour escape
+ \xr  tī⁵ khau³
+ \so  phk_tI5khau3
+ \xe  a place to go inan entrace
+-\xv  တ︀ီၵ︀ျိꩫ︀််
++\xv  တ︀ီၵ︀ျိꩫ︀်
+ \xr  tī⁵ khɛn⁶
+ \so  phk_tI5khjn6
+ \xe  a place to hang or suspend, a spigot, a small peg for hanging
+@@ -80184,7 +80184,7 @@ yau⁵
+ \notes  ailot
+ \dt  13/Sep/2020
+ 
+-\lx  တ︀ီီ
++\lx  တ︀ီ
+ \le 
+ \ph  tī² tī²
+ \so  phk_tI2tI2
+@@ -80197,7 +80197,7 @@ yau⁵
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ႝ တ︀ီီ ဢ︀ိုၺ် ၸ︀ူ လ︀ုꩫ︀် ပ︀ꩫ︀် ꩫ︀ႃ ꩫ︀ွꩫ︀ꩰ 
++\xv  က︀ႝ တ︀ီ ဢ︀ိုၺ် ၸ︀ူ လ︀ုꩫ︀် ပ︀ꩫ︀် ꩫ︀ႃ ꩫ︀ွꩫ︀ꩰ 
+ \xr  kai¹ tī² tī² əi² phū³ lun² pān¹ nā² nɔn² nɔn²
+ \so  phk_kai1tI2tI2zi2 phU3lun2paan1naa2nqn2nqn2
+ \xe  Little rooster, tii tii, little soft boy, sleep, sleep!'
+@@ -80205,7 +80205,7 @@ yau⁵
+ \notes  ailot
+ \dt  28/Jan/2022
+ 
+-\lx  တ︀ီီတ︀ေ︀ႃတ︀ေ︀ႃ
++\lx  တ︀ီတ︀ေ︀ႃတ︀ေ︀ႃ
+ \le 
+ \ph  tī⁴ tī⁴ tɔ⁴ tɔ⁴
+ \so  phk_tI4tI4tq4tq4
+@@ -81676,7 +81676,7 @@ from the stomach through the mouth
+ \xr  ton³ ɔn¹
+ \so  phk_ton3qn1
+ \xe  a small tree or plant
+-\xv  တ︀ုꩫ︀််ꩫ︀င︀်
++\xv  တ︀ုꩫ︀်ꩫ︀င︀်
+ \xr  ton³ nāŋ⁵
+ \so  phk_ton3naaN5
+ \xe  a creeper plant
+@@ -82734,7 +82734,7 @@ pimply (in body), be with burl or burr or lump on the trunk of a tree
+ \so  phk_tum1hut1
+ \xe  a wart
+ 
+-\xv  တ︀ုံံတ︀ႃႃ
++\xv  တ︀ုံတ︀ႃႃ
+ \xr  tum¹ tum¹ tā² tā²
+ \so  phk_tum1tum1taa2taa2
+ \xe  (of human body or animal, plant) to have full of popules, bump
+@@ -83416,7 +83416,7 @@ camera
+ \xr  tauk¹ lak¹
+ \so  phk_tauk1lak1
+ \xe  to hammer a stake, as to drive down a stake in to the ground 
+-\xv  တ︀ွက︀်မ︀ႃက︀ွက︀်် 
++\xv  တ︀ွက︀်မ︀ႃက︀ွက︀် 
+ \xr  tauk¹ ma¹ kauk
+ \so  phk_tauk1ma1kauk1
+ \xe  to rap or knock with knuckle of the forefinger on (someone) head
+@@ -84035,7 +84035,7 @@ or hindered
+ \xr  tauŋ³ sop¹ tauŋ³ khām²
+ \so  phk_tauN3sop1tauN3khaam2
+ \xe  to enquire, to talk with 
+-\xv  တ︀ွင︀ꩰထ︀ံံ
++\xv  တ︀ွင︀ꩰထ︀ံ
+ \xr  tauŋ³ tauŋ³ thām⁶ thām⁶
+ \so  phk_tauN3tauN3thaam6thaam6
+ \xe  ask someone's opinion, to enquire 
+@@ -85602,7 +85602,7 @@ aware or get their attention as in order to speak secretly
+ \notes  ailot
+ \dt  02/May/2023
+ 
+-\lx  တ︀ွံံ
++\lx  တ︀ွံ
+ \le 
+ \ph  tɔm¹ tɔm¹
+ \so  phk_tqm1tqm1
+@@ -85615,7 +85615,7 @@ aware or get their attention as in order to speak secretly
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ပ︀ႝတ︀ွံံ
++\xv  ပ︀ႝတ︀ွံ
+ \xr  pai² tɔm¹ tɔm¹ 
+ \so  phk_pai2tqm1tqm1 
+ \xe  to toddle 
+@@ -85659,7 +85659,7 @@ does it is said or mean ? it is the moon ( a Tai phake riddle )
+ \notes  ailot
+ \dt  16/Jan/2022
+ 
+-\lx  တ︀ွံံတ︀ိမ︀ꩰ
++\lx  တ︀ွံတ︀ိမ︀ꩰ
+ \le 
+ \ph  tɔm¹ tɔm¹ tim¹ tim¹
+ \so  phk_tqm1tqm1tim1tim1
+@@ -85672,14 +85672,14 @@ does it is said or mean ? it is the moon ( a Tai phake riddle )
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ံလ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ပ︀ႝတ︀ွံံတ︀ိမ︀ꩰ 
++\xv  ံလ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ပ︀ႝတ︀ွံတ︀ိမ︀ꩰ 
+ \xr  tī⁵ than³ luk⁴ ɔn¹ khau⁶ pai² tɔm¹ tɔm¹ tim¹ tim¹
+ \so  phk_luk4qn1khau6pai2tqm1tqm1tim1tim1
+ \xe  the toddler are toddling around
+ \notes  ailot
+ \dt  19/Feb/2023
+ 
+-\lx  တ︀ွံံတ︀ိမ︀ꩰ
++\lx  တ︀ွံတ︀ိမ︀ꩰ
+ \le 
+ \ph  tɔm¹ tɔm¹ tim¹ tim¹
+ \so  phk_tqm1tqm1tim1tim1
+@@ -85692,11 +85692,11 @@ does it is said or mean ? it is the moon ( a Tai phake riddle )
+ \pdn 
+ \dn 
+ \rf 
+-\xv  တ︀ွံံတ︀ိမ︀ꩰယ︀င︀်တ︀်ံၸ︀ႃ
++\xv  တ︀ွံတ︀ိမ︀ꩰယ︀င︀်တ︀်ံၸ︀ႃ
+ \xr  tɔm¹ tɔm¹ tim¹ tim¹ yaŋ² tem² phā⁴
+ \so  phk_tqm1tqm1tim1tim1yaN2tem2phaa4
+ \xe  to have many toddlers
+-\xv  လ︀ုက︀်မ︀ိုꩫ︀်ယ︀င︀်တ︀ွံံတ︀ိမ︀ꩰ
++\xv  လ︀ုက︀်မ︀ိုꩫ︀်ယ︀င︀်တ︀ွံတ︀ိမ︀ꩰ
+ \xr  luk⁴ mün² yaŋ² tɔm¹ tɔm¹ tim¹ tim¹
+ \so  phk_luk4mvn2yaN2tqm1tqm1tim1tim1
+ \xe  he have many toddler 
+@@ -87311,7 +87311,7 @@ esp. in an area that has been subjected to friction
+ \xr  tla² nɛ⁴ tāi² kā¹
+ \so  phk_tla2nj4taai2kaa1
+ \xe  the case was setlled
+-\xv  တ︀ြြႃꩫ︀ေ︀ဢ︀ွ်တ︀ႝမ︀ႃပ︀ေ︀က︀ႃ
++\xv  တ︀ြႃꩫ︀ေ︀ဢ︀ွ်တ︀ႝမ︀ႃပ︀ေ︀က︀ႃ
+ \xr  tla² nɛ⁴ au² tāi² mā⁵ pɛ⁴ kā¹
+ \so  phk_tla2nj4au2taai2maa5pj4kaa1
+ \xe  he case was not able to settle
+@@ -87713,7 +87713,7 @@ bigger
+ \dt  09/Nov/2023
+ 
+ \lx  တ︀ိုက︀ꩰ
+-\le  တ︀ိုက︀်တ︀ိုက︀််
++\le  တ︀ိုက︀်တ︀ိုက︀်
+ \ph  tük⁴ tük⁴
+ \so  phk_tvk4tvk4
+ \ps  intensifier.
+@@ -89564,7 +89564,7 @@ a coconut (from a tree) etc. fall heavily upon
+ \xr  mā² tə̄² 
+ \so  phk_maa2tz2
+ \xe  please do comeout come out
+-\xv  ဢ︀ွက︀်တ︀ိုဝ︀်ဢ︀ွက︀်တ︀ိုဝ︀်််
++\xv  ဢ︀ွက︀်တ︀ိုဝ︀်ဢ︀ွက︀်တ︀ိုဝ︀်
+ \xr  auk¹ tə² auk¹ tə²
+ \so  phk_auk1tz2auk1tz2
+ \xe  please do comeout 
+@@ -89764,7 +89764,7 @@ normal, going beyond the limit)
+ \notes  ailot
+ \dt  21/Aug/2021
+ 
+-\lx  တ︀ိုဝ︀််
++\lx  တ︀ိုဝ︀်
+ \le 
+ \ph  tǖ⁴
+ \so  phk_tV4
+@@ -91446,7 +91446,7 @@ according to one's own mind or at one's pleasure,
+ \xr  thāt⁴ phrā² kɛn¹ cau³
+ \so  phk_thaat4phraa2kjn1cau3
+ \xe  the relics of the lord Buddha
+-\xv  ထ︀တ︀်ၸ︀ြႃပ︀ိꩫ︀််ꩡ︀ွ်
++\xv  ထ︀တ︀်ၸ︀ြႃပ︀ိꩫ︀်ꩡ︀ွ်
+ \xr  thāt⁴ phrā² pen² cau³
+ \so  phk_thaat4phraa2pen2cau3
+ \xe  the Lord Buddha's relic 
+@@ -92744,7 +92744,7 @@ with each other
+ \xr  thin⁶ caü²
+ \so  phk_thin6cav2
+ \xe  to control one's mind, to restrain the mind
+-\xv  ꩡ︀ွ်ပ︀ႃထ︀ိꩫ︀်မ︀ိုꩫ︀်် 
++\xv  ꩡ︀ွ်ပ︀ႃထ︀ိꩫ︀်မ︀ိုꩫ︀် 
+ \xr  cau³ pa¹ thin⁶ mün²
+ \so  phk_cau3 pa1 thin6mvn2
+ \xe  the incharge of
+@@ -93005,7 +93005,7 @@ or between two teeth
+ \xr  kon² thī¹ kon² neu⁶
+ \so  phk_kon2thI1kon2neu6
+ \xe  a stingy man
+-\xv  ထ︀ီီꩫ︀ိဝ︀ꩰ
++\xv  ထ︀ီꩫ︀ိဝ︀ꩰ
+ \xr  thī¹ thī¹ neu⁶ neu⁶
+ \so  phk_thI1 thI1 neu6 neu6
+ \xe  very miserly, very niggardly 
+@@ -93039,16 +93039,16 @@ or between two teeth
+ \xr  thī² nɛn² nā²
+ \so  phk_thI2njn2naa2
+ \xe  to encroah beyond own border of paddy field
+-\xv  ထ︀ီီထ︀ံံ
++\xv  ထ︀ီထ︀ံ
+ \xr  thī² thī² tham² tham²
+ \so  phk_thI2thI2tham2tham2
+ \xe  jostle (in a crowd), pressed closely and pushing and
+ shoving each other in a crowd 
+-\xv  ထ︀ီီဢ︀ီီ
++\xv  ထ︀ီဢ︀ီ
+ \xr  thī² thī² ī² ī²
+ \so  phk_thI2thI2I2I2
+ \xe  to jostle and leanining on each other 
+-\xv  ထ︀ီီဢ︀်ံဢ︀်ံ
++\xv  ထ︀ီဢ︀်ံဢ︀်ံ
+ \xr  thi² thi² ɛm² ɛm²
+ \so  phk_thi2thi2jm2jm2
+ \xe  pressed closely and pushing and shoving each other in a crowd 
+@@ -94822,7 +94822,7 @@ hand-bellow
+ \notes  ailot
+ \dt  20/Dec/2020
+ 
+-\lx  ထ︀ုံံ
++\lx  ထ︀ုံ
+ \le  ထ︀ုံထ︀ုံ
+ \ph  thum⁴ thum⁴
+ \so  phk_thum4thum4
+@@ -94835,7 +94835,7 @@ hand-bellow
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ႃထ︀ုံံ
++\xv  မ︀ႃထ︀ုံ
+ \xr  mā³ thum⁴ thum⁴
+ \so  phk_maa3thum4thum4
+ \xe  intensely to toss, to agitate, to wriggle, writhe twisting or roll over in agony or pain 
+@@ -94843,7 +94843,7 @@ hand-bellow
+ \notes  ailot
+ \dt  09/Apr/2021
+ 
+-\lx  ထ︀ုံံထ︀ံံ
++\lx  ထ︀ုံထ︀ံ
+ \le 
+ \ph  thum⁴ thum⁴ tham⁴ tham⁴
+ \so  phk_thum5thum5thaam4thaam4
+@@ -94856,7 +94856,7 @@ hand-bellow
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ွင︀်တ︀ျိက︀်တ︀ျိက︀်ထ︀ုံံထ︀ံံ
++\xv  က︀ွင︀်တ︀ျိက︀်တ︀ျိက︀်ထ︀ုံထ︀ံ
+ \xr  kauŋ³ taik¹ taik¹ thum⁴ thum⁴ thām⁴ thām⁴
+ \so  phk_kauN3taik1taik1thum5thum5thaam4thaam4
+ \xe  the crakers are bursting in such a sound
+@@ -95680,7 +95680,7 @@ birds
+ \xr  thɔn⁶ khun⁶ nok⁴
+ \so  phk_thqn6kaaN3paa2  
+ \xe  to pull off or remove the fish-bone 
+-\xv  ထ︀ွꩫ︀်ၵ︀ုꩫ︀်ꩫ︀ုက︀််
++\xv  ထ︀ွꩫ︀်ၵ︀ုꩫ︀်ꩫ︀ုက︀်
+ \xr  thɔn⁶ khun⁶ nok⁴
+ \so  phk_thqn6khun6nok4
+ \xe  to pull off or remove the bird's feathers 
+@@ -95841,7 +95841,7 @@ birds
+ \xr  thɔi⁶ kün² neŋ⁶ kün²
+ \so  phk_thqi6kvn2neN6kvn2
+ \xe  to deceive each other 
+-\xv  ထ︀ွႝ ႝထ︀ီီ
++\xv  ထ︀ွႝ ႝထ︀ီ
+ \xr  thɔi⁶ thɔi⁶ thī⁶ thī⁶
+ \so  phk_thqi6thqi6thI6thI6
+ \xe  cheatingly
+@@ -97510,7 +97510,7 @@ someone
+ \xr  thaik⁴ tān¹
+ \so  phk_thaik4taan1
+ \xe  to be worthy, fit, or suitable for some reward 
+-\xv  ထ︀ျိက︀်မ︀တ︀််တ︀ွင︀်က︀ိုမ︀်
++\xv  ထ︀ျိက︀်မ︀တ︀်တ︀ွင︀်က︀ိုမ︀်
+ \xr  thaik³ mat³ tauŋ² küm²
+ \so  phk_thaik3mat3tauN2kvm2
+ \xe  be it suit to remember well
+@@ -97819,7 +97819,7 @@ someone
+ \notes  ailot
+ \dt  01/Jun/2023
+ 
+-\lx  ထ︀ံံ
++\lx  ထ︀ံ
+ \le  ထ︀မ︀်ထ︀မ︀်
+ \ph  tham⁴ tham⁴
+ \ps  intensifier
+@@ -97832,7 +97832,7 @@ caused by angry, greatly infuriated
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်မ︀ႃထ︀ံံ
++\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်မ︀ႃထ︀ံ
+ \xr  caü² nət¹ mā³ tham⁴ tham⁴
+ \so  phk_cav2nzt1maa3tham4tham4
+ \xe  to be uncontrolled excitement caused by angry, greatly infuriated
+@@ -97840,7 +97840,7 @@ caused by angry, greatly infuriated
+ \notes  ailot
+ \dt  01/Jun/2023
+ 
+-\lx  ထ︀ံံ
++\lx  ထ︀ံ
+ \le  ထ︀မ︀်ထ︀မ︀်
+ \ph  tham⁴ tham⁴
+ \so  phk_tham4tham4
+@@ -97853,7 +97853,7 @@ caused by angry, greatly infuriated
+ \pdn 
+ \dn 
+ \rf 
+-\xv  င︀ိုဝ︀်ထ︀ံံ
++\xv  င︀ိုဝ︀်ထ︀ံ
+ \xr  ŋə³ tham⁵ tham⁵
+ \so  phk_Nz3tham5tham5
+ \xe  to be intensely stupefied 
+@@ -97861,7 +97861,7 @@ caused by angry, greatly infuriated
+ \notes  ailot
+ \dt  01/Jun/2023
+ 
+-\lx  ထ︀ံံ
++\lx  ထ︀ံ
+ \le  ထ︀မ︀်ထ︀မ︀်
+ \ph  tham⁴ tham⁴
+ \so  phk_tham4tham4
+@@ -97874,7 +97874,7 @@ caused by angry, greatly infuriated
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ယ︀ေ︀ႃထ︀ံံ
++\xv  ယ︀ေ︀ႃထ︀ံ
+ \xr  yɔ⁵ tham⁴ tham⁴
+ \so  phk_yq5tham4tham4
+ \xe  intesely slack or loose
+@@ -97882,7 +97882,7 @@ caused by angry, greatly infuriated
+ \notes  ailot
+ \dt  01/Jun/2023
+ 
+-\lx  ထ︀ံံ
++\lx  ထ︀ံ
+ \le 
+ \ph  tham⁴ tham⁴
+ \so  phk_tham4tham4
+@@ -97895,7 +97895,7 @@ caused by angry, greatly infuriated
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ပ︀ီထ︀ံံ
++\xv  ပ︀ီထ︀ံ
+ \xr  pī²tham⁵ tham⁵
+ \so  phk_pI2tham5tham5
+ \xe  to be intensely fat
+@@ -98674,7 +98674,7 @@ in which the legs are folded and kept under the thighs
+ \so  phk_No2naaN1
+ \xe  a cow with black and white spots
+ 
+-\xv  ꩡ︀ံံꩫ︀င︀ꩰ
++\xv  ꩡ︀ံꩫ︀င︀ꩰ
+ \xr  cam⁴ cam⁴ nāŋ¹ nāŋ¹
+ \so  phk_cam4cam4naaN1naaN1
+ \xe  in a state of stained with black and white spots
+@@ -99223,7 +99223,7 @@ exteded to buttock to cover the breast use as Tai Phake  married  woman traditio
+ \xr  nān² məŋ²
+ \so  phk_naan2mzN2
+ \xe  (of person) a very solw in nature
+-\xv  ꩫ︀ံလ︀ႝႝꩫ︀ꩫ︀်
++\xv  ꩫ︀ံလ︀ႝꩫ︀ꩫ︀်
+ \xr  nam⁴ lai⁶ nan²
+ \so  phk_nam4lai2nan2
+ \xe  the water flow slowly 
+@@ -99467,7 +99467,7 @@ exteded to buttock to cover the breast use as Tai Phake  married  woman traditio
+ \so  phk_nap4nap4khaan2khaan2
+ \so  phk_nap4nap4khaan2khaan2
+ \xe  respectfully, honourably 
+-\xv  ꩫ︀ပ︀ꩰယ︀ံံ 
++\xv  ꩫ︀ပ︀ꩰယ︀ံ 
+ \xr  nap⁴ nap⁴ yam² yam²
+ \so  phk_nap4nap4yam2yam2
+ \xe  respectfully, honourably 
+@@ -99812,7 +99812,7 @@ half pain and half itching,  after being touched
+ \xr  pī⁵ nauŋ⁴ him⁶ khüŋ⁵ nā¹ kün²
+ \so  phk_pI5nauN4him6khvN5naa1kvn2
+ \xe  the bothers quarrels about the possession of property 
+-\xv  ꩫ︀ႃက︀ိုꩫ︀်ꩡ︀င︀််က︀ိုꩫ︀်
++\xv  ꩫ︀ႃက︀ိုꩫ︀်ꩡ︀င︀်က︀ိုꩫ︀်
+ \xr  nā¹ kün² caŋ² kün²
+ \so  phk_naa1kvn2caN2kvn2
+ \xe  an angry dispute or altercation 
+@@ -99908,11 +99908,11 @@ time before something take place, a page,
+ \pd  nā³ kai¹
+ \so  phk_naa3kai1
+ \pde  the time when the cock crows, around 3.a.m.
+-\xv  ꩫ︀ႃက︀ျ ုꩫ︀်
++\xv  ꩫ︀ႃက︀ျုꩫ︀်
+ \xr  nā³ kyon² 
+ \so  phk_naa3kyon2 
+ \xe  on the land, the face of the earth 
+-\xv  ꩫ︀ႃက︀ျ ုꩫ︀်ꩭိုင︀်ꩡ︀ံပ︀ူ
++\xv  ꩫ︀ႃက︀ျုꩫ︀်ꩭိုင︀်ꩡ︀ံပ︀ူ
+ \xr  nā³ kyon² hüŋ² cam² pū¹
+ \so  phk_naa3kyon2hvN2cam2pU1
+ \xe  on the bright or holy land of Jambudipa
+@@ -102245,7 +102245,7 @@ finger )
+ \xr  kon² neu⁶
+ \so  phk_kon2neu6
+ \xe  a miser
+-\xv  ꩫ︀ိဝ︀ꩰထ︀ီီ
++\xv  ꩫ︀ိဝ︀ꩰထ︀ီ
+ \xr  neu⁶ neu⁶ thī¹ thī¹
+ \so  phk_neu6neu6thI1thI1
+ \xe  niggardly
+@@ -102536,49 +102536,49 @@ unanimously be agreed
+ \so  phk_nI2aam2qn1yvN5siN3
+ \xe  unending amage, truely amage, something is amazing, very suprising, feel
+ pleasure
+-\xv  ꩫ︀ီီ
++\xv  ꩫ︀ီ
+ \xr  nī² nī²
+ \so  phk_nI2nI2.wav
+ \xe  well, carefully, thoroughly, completely, properly, attentively, distinctly,
+ protectively, fully, totally, safely, exactly  
+-\xv  က︀ႃꩫ︀ီီ
++\xv  က︀ႃꩫ︀ီ
+ \xr  kā¹ nī² nī²
+ \so  phk_kaa1nI2nI2.wav
+ \xe  go carefully 
+-\xv  က︀ံꩫ︀ီီ
++\xv  က︀ံꩫ︀ီ
+ \xr  kam² nī² nī²
+ \so  phk_kam2nI2nI2.wav
+ \xe  handle carefully or hadle with care, hold properly
+ 
+-\xv  က︀ိꩫ︀်ꩫ︀ီီ
++\xv  က︀ိꩫ︀်ꩫ︀ီ
+ \xr  kin² nī² nī²
+ \so  phk_kin2nI2nI2.wav
+ \xe  eat properly
+-\xv  ၵ︀ၞ်ꩡ︀ၞ်ꩫ︀ီီ
++\xv  ၵ︀ၞ်ꩡ︀ၞ်ꩫ︀ီ
+ \xr  khaü³ caü² nī² nī² 
+ \so  phk_khav3cav2nI2nI2 
+ \xe  to think carefully or a lot about thing
+-\xv  ꩬ︀ုက︀်ꩫ︀ီီ 
++\xv  ꩬ︀ုက︀်ꩫ︀ီ 
+ \xr  suk¹ nī² nī²
+ \so  phk_suk1nI2nI2
+ \xe  fully ripe, done or matured and ready to be eaten or used
+-\xv  ထ︀ွံꩫ︀ီီ
++\xv  ထ︀ွံꩫ︀ီ
+ \xr  thɔm¹ ka¹ nī² nī²
+ \so  phk_thqm1ka1nI2nI2
+ \xe  do listen attentively or carefully or properly
+-\xv  ပ︀ုင︀်ꩫ︀ီီ
++\xv  ပ︀ုင︀်ꩫ︀ီ
+ \xr  poŋ² nī² nī²
+ \so  phk_poN2nI2nI2.wav
+ \xe  put (something) carefully
+-\xv  မ︀ုတ︀်က︀ႃꩫ︀ီီ
++\xv  မ︀ုတ︀်က︀ႃꩫ︀ီ
+ \xr  mot¹ kā¹ nī² nī²
+ \so  phk_mot1kaa1nI2nI2
+ \xe  toally finish
+-\xv  ယ︀ွ်က︀ႃꩫ︀ီီ
++\xv  ယ︀ွ်က︀ႃꩫ︀ီ
+ \xr  yau⁴ kā¹ nī² nī²
+ \so  phk_yau4kaa1nI2nI2
+ \xe  accomplish successfuly
+-\xv  ꩫ︀ႝင︀ိꩫ︀်ꩫ︀ီီ
++\xv  ꩫ︀ႝင︀ိꩫ︀်ꩫ︀ီ
+ \xr  nai³ ŋin² nī² nī²
+ \so  phk_nai3Nin2nI2nI2
+ \xe  to hear distinctly
+@@ -102586,43 +102586,43 @@ protectively, fully, totally, safely, exactly
+ \xr  nū² ka¹ nī² nī¹
+ \so  phk_nU2ka1nI2nI1
+ \xe  to look at attentively or carefully
+-\xv  ပ︀ႝꩫ︀ီီ
++\xv  ပ︀ႝꩫ︀ီ
+ \xr  pai² nī² nī¹
+ \so  phk_pai2nI2nI1
+ \xe  walk carefully
+-\xv  ꩭူꩫ︀ီီ
++\xv  ꩭူꩫ︀ီ
+ \xr  hū⁴  nī² nī¹
+ \so  phk_hU5nI2nI1
+ \xe  know well
+-\xv  ꩭူက︀ႃꩫ︀ီီ
++\xv  ꩭူက︀ႃꩫ︀ီ
+ \xr  hū⁴ kā¹ nī² nī²
+ \so  phk_hU4kaa1nI2nI2
+ \xe  to know thoroughly
+-\xv  ၵ︀ွင︀်လ︀ူမ︀ၞ်ꩡ︀ွ်က︀ွ်ꩫ︀ီီꩬ︀ီꩭပ︀်ဢ︀ွ်ယ︀ွ်
++\xv  ၵ︀ွင︀်လ︀ူမ︀ၞ်ꩡ︀ွ်က︀ွ်ꩫ︀ီꩬ︀ီꩭပ︀်ဢ︀ွ်ယ︀ွ်
+ \xr  khauŋ⁶ lū¹ maü² cau³ kau² nī² nī² sī⁶ hap³ au² yau⁴
+ \so  phk_khauN6lU1mav2cau3kau2nI2nI2sI6hap3au2yau4
+ \xe  I cordially accept your offering
+-\xv  ꩫ︀ိုꩫ︀်ꩫ︀ိုင︀်ꩫ︀ီီ
++\xv  ꩫ︀ိုꩫ︀်ꩫ︀ိုင︀်ꩫ︀ီ
+ \xr  nən² nüŋ⁵ nī² nī²
+ \so  phk_nzn2nvN5nI2nI2
+ \xe  exactly one month
+-\xv  မ︀ႃꩫ︀ႝင︀ိꩫ︀်ꩫ︀ီီ
++\xv  မ︀ႃꩫ︀ႝင︀ိꩫ︀်ꩫ︀ီ
+ \xr  mā⁵ nai³ ŋin² nī² nī²
+ \so  phk_maaa5nai3Nin2nI2nI2
+ \xe  not hear clearly or distinctly 
+-\xv  မ︀ႃꩭꩫ︀်ꩫ︀ီီ
++\xv  မ︀ႃꩭꩫ︀်ꩫ︀ီ
+ \xr  mā⁵ han⁶ nī² nī²
+ \so  phk_maa5han6nI2nI2
+ \xe  not see clearly or distinctly 
+-\xv  ꩫ︀ီီင︀ံံ
++\xv  ꩫ︀ီင︀ံ
+ \xr  nī² ni² ŋam² ŋam²
+ \so  phk_nI2ni2Naam2Naam2
+ \xe  safely, properly, nicely, excellently
+-\xv  ꩭၞ်က︀ိꩫ︀်မ︀ႃꩫ︀ီီင︀ံံ
++\xv  ꩭၞ်က︀ိꩫ︀်မ︀ႃꩫ︀ီင︀ံ
+ \xr  haü³ kin² mā² nī² nī² ŋām² ŋām²
+ \so  phk_hav3kinImaa2nI2Naam2Naam2
+ \xe  to give excellent food 
+-\xv  မ︀ႃထ︀ိုင︀်က︀ႃꩫ︀ီီင︀ံံ
++\xv  မ︀ႃထ︀ိုင︀်က︀ႃꩫ︀ီင︀ံ
+ \xr  mā² thüŋ⁶ kā¹ nī² nī² ŋām² ŋām²
+ \so  phk_maa2thvN6kaa1nI2nI2Naam2Naam2
+ \xe  to have reach safely
+@@ -104776,7 +104776,7 @@ part , what is that ?  ( a riddle ) It is a chicken's gizzard
+ \notes  ailot
+ \dt  31/Aug/2020
+ 
+-\lx  ꩫ︀ွက︀်ပ︀ွင︀်််
++\lx  ꩫ︀ွက︀်ပ︀ွင︀်
+ \le 
+ \ph  nauk¹ pauŋ¹
+ \so  phk_nauk1pauN1
+@@ -104864,7 +104864,7 @@ part , what is that ?  ( a riddle ) It is a chicken's gizzard
+ \pdn 
+ \dn 
+ \rf 
+-\xv  လ︀ုက︀််ꩫ︀ေ︀ꩫ︀ွင︀်
++\xv  လ︀ုက︀်ꩫ︀ေ︀ꩫ︀ွင︀်
+ \xr  luk⁴ nɛ⁴ nauŋ¹
+ \so  phk_luk4nj4nauN1
+ \xe  to feel heavy because of the baby (carried on the back)
+@@ -106088,7 +106088,7 @@ noi³ taü³ nam⁴ sip⁴ kuk⁴ te¹
+ \so  phk_tI5nav6
+ \xe  where ?
+ 
+-\xv  ံႝမ︀ိုဝ︀်ꩫ︀ၞ်
++\xv  ႝံမ︀ိုဝ︀်ꩫ︀ၞ်
+ \xr  mə̄⁵ naü⁶ naü⁶
+ \so  phk_mz5nav6
+ \xe  when?
+@@ -106282,7 +106282,7 @@ where to go, because of fright or anxiety
+ \xr  nam² ləm³
+ \so  phk_nam2lzm3
+ \xe  fine black, smooth black 
+-\xv  ꩫ︀ံံꩫ︀ျိင︀ꩰ
++\xv  ꩫ︀ံꩫ︀ျိင︀ꩰ
+ \xr  nam² nam² naiŋ² naiŋ²
+ \so  phk_nam2nam2naiN2naiN2
+ \xe  having mixture of many black and red colour
+@@ -106460,19 +106460,19 @@ to become more in a container
+ \xr  kon² nam⁶
+ \so  phk_kon2nam6
+ \xe  a great number of people 
+-\xv  ꩫ︀ံံ
++\xv  ꩫ︀ံ
+ \xr  nam⁶ nam⁶
+ \so  phk_nam6nam6
+ \xe  abundantly, many more, many, plenty
+-\xv  ၵ︀ႃꩫ︀ံံ
++\xv  ၵ︀ႃꩫ︀ံ
+ \xr  khā⁶ nam⁶ nam⁶
+ \so  phk_khaa6nam6nam6
+ \xe  lots of searching 
+-\xv  မ︀ီယ︀ေ︀ꩫ︀ံံမ︀ႃယ︀င︀်
++\xv  မ︀ီယ︀ေ︀ꩫ︀ံမ︀ႃယ︀င︀်
+ \xr  mī⁶ yɛ⁴ nam⁶ nam⁶ mā⁵ yaŋ⁶
+ \so  phk_mI6yj4nam6nam6maa5yaN6 
+ \xe  There were not many bears
+-\xv  ꩫ︀ံံလ︀ႝ ႝ
++\xv  ꩫ︀ံလ︀ႝ ႝ
+ \xr  nam⁶ nam⁶ lāi⁶ lāi⁶
+ \so  phk_nam6nam6laai6laai6
+ \xe  abundantly, abound with a large number or amount or quantity
+@@ -108634,7 +108634,7 @@ unfeeling
+ \xr  tak¹ het¹ nüŋ¹ hə⁶
+ \so  phk_ta1 het1 nvN1 hz6
+ \xe  how or what to do ?
+-\xv  ပ︀ိꩫ︀်ꩫ︀ိုင︀်ꩭိုဝ︀််ꩭင︀်မ︀ၞ်
++\xv  ပ︀ိꩫ︀်ꩫ︀ိုင︀်ꩭိုဝ︀်ꩭင︀်မ︀ၞ်
+ \xr  pen² nüŋ¹ hǖ⁶haŋ² maü²
+ \so  phk_pen2nvN1hV6haN2mav2
+ \xe  how do you feel 
+@@ -109111,7 +109111,7 @@ interest
+ \xr  wan² nət¹
+ \so  phk_wan2nzt1
+ \xe  it is a hot day
+-\xv  ꩫ︀ိုတ︀်ꩭွ််
++\xv  ꩫ︀ိုတ︀်ꩭွ်
+ \xr  nət¹ hāu⁴
+ \so  phk_nzt1hau4
+ \xe  feeling uncomfotable sensation of hot  
+@@ -112544,7 +112544,7 @@ and make a ball )
+ \xr  pan¹ koŋ²
+ \so  phk_pan1koN2
+ \xe  to spin the spinning wheel
+-\xv  ပ︀ꩫ︀်လ︀ွံံ
++\xv  ပ︀ꩫ︀်လ︀ွံ
+ \xr  pan¹ lɔ̄m² lɔ̄m²
+ \so  phk_pan1lqm2lqm2
+ \xe  to follow after someone
+@@ -112598,7 +112598,7 @@ causative expression
+ \xr  pan² khɔn⁶
+ \so  phk_pan2khqn6
+ \xe  a ceremony for calling the soul of a sick person, lit. to give a soul  
+-\xv  ပ︀ꩫ︀်င︀ိꩫ︀််
++\xv  ပ︀ꩫ︀်င︀ိꩫ︀်
+ \xr  pan² ŋin²
+ \so  phk_pan2Nin2
+ \xe  to make somebody to hear, to give to hear, to give discourse
+@@ -114981,7 +114981,7 @@ interest
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ပ︀ႃတ︀ိက︀််ꩬ︀ꩫ︀်ထ︀်ေ︀မ︀ႃၵ︀ွ်တ︀ွင︀်မ︀ေ︀
++\xv  ပ︀ႃတ︀ိက︀်ꩬ︀ꩫ︀်ထ︀်ေ︀မ︀ႃၵ︀ွ်တ︀ွင︀်မ︀ေ︀
+ \xr  pa¹ tik³ san² the¹ mā² khau³ tauŋ⁴ mɛ⁵
+ \so  phk_pa1tik3san2the1maa2khau3tauN4mj5
+ \xe  a new life come into existence in one mother's womb  
+@@ -116117,7 +116117,7 @@ edge of a roof, carving in the edge of a roof
+ \xr  piŋ¹ sop¹ nā⁶
+ \so  phk_piN1sop1naa6
+ \xe  thick-lippeds
+-\xv  ပ︀ိင︀်ꩬ︀ုပ︀်ၵ︀်ံ်     
++\xv  ပ︀ိင︀်ꩬ︀ုပ︀်ၵ︀်ံ     
+ \xr  piŋ¹ sop¹ khɛm³
+ \so  phk_piN1sop1khjm3  
+ \xe  dry lip
+@@ -117987,7 +117987,7 @@ from the west yonger relative  from the east
+ \xr  kon² pī², kon² yɔm⁶
+ \so  phk_kon2pI2, kon2yqm6
+ \xe  a fat man, a lean man 
+-\xv  ပ︀ီီမ︀ꩫ︀ꩰ
++\xv  ပ︀ီမ︀ꩫ︀ꩰ
+ \xr  pi² pi² man² man²
+ \so  phk_pi2pi2man2man2
+ \xe  (of body) healthy 
+@@ -118608,7 +118608,7 @@ but do not preach the way of deliverance to the world (p)  Pacceka Buddhathe Bud
+ \pdn 
+ \dn 
+ \rf 
+-\xv  လ︀ိက︀််ပ︀ုက︀်ꩫ︀ိုင︀်
++\xv  လ︀ိက︀်ပ︀ုက︀်ꩫ︀ိုင︀်
+ \xr  lik⁴ puk⁴ nüŋ⁵
+ \so  phk_lik4puk4nvN5
+ \xe  a pragraph
+@@ -123241,7 +123241,7 @@ bias toward
+ \xr  sə⁶ pɔm² yum² phə⁶
+ \so  phk_sz6pqm2yum2phz6
+ \xe  a tiger hide in bushes
+-\xv  တ︀ေ︀ႃက︀ွႝတ︀ုဝ︀်ꩫ︀ိဝ︀်မ︀ုက︀်ꩬ︀ိုဝ︀်လ︀ေ︀မ︀ျိပ︀်ပ︀ွံံထ︀ိုꩫ︀်က︀င︀် ႜ ဝ︀ွႃꩫ︀ႝတ︀ေ︀ယ︀ွ်
++\xv  တ︀ေ︀ႃက︀ွႝတ︀ုဝ︀်ꩫ︀ိဝ︀်မ︀ုက︀်ꩬ︀ိုဝ︀်လ︀ေ︀မ︀ျိပ︀်ပ︀ွံထ︀ိုꩫ︀်က︀င︀် ႜ ဝ︀ွႃꩫ︀ႝတ︀ေ︀ယ︀ွ်
+ \xr  tɔ¹ kɔi² to² neu² muk⁴ so² lɛ̄¹ mɛp¹ pɔm² thən¹ kāŋ³ wā⁵ nai⁴ tɛ⁴ yau⁴
+ \so  phk_tq1kqi2to2neu2muk4so2lJ1mjp1pqm2thzn1kaaN3waa5nai4tj4yau4
+ \xe  it is said, a hunter lonely wandering around the big forest hiddingly  
+@@ -123627,7 +123627,7 @@ generally fall in April 13-15 )
+ \notes 
+ \dt  06/Nov/2023
+ 
+-\lx  ပ︀ွံံ
++\lx  ပ︀ွံ
+ \le 
+ \ph  pɔm² pɔm²
+ \so  phk_pqm2pqm2
+@@ -123644,7 +123644,7 @@ generally fall in April 13-15 )
+ \xr  kho⁶ pɔm² pɔm²
+ \so  phk_kho6pqm2pqm2
+ \xe  to laugh such a sound repeatatively  
+-\xv  ꩫ︀ေ︀မ︀ွက︀်ပ︀ွံံ
++\xv  ꩫ︀ေ︀မ︀ွက︀်ပ︀ွံ
+ \xr  nɛ̄⁶ mauk¹ pɔm² pɔm²
+ \so  phk_nJ6mauk1pqm2pqm2
+ \xe  to advise repeatedly
+@@ -127694,7 +127694,7 @@ with the feet resting on the thighs
+ \pdn 
+ \dn 
+ \rf 
+-\xv  လ︀ျိꩫ︀်က︀ႃပ︀ျိဝ︀်ဢ︀ွ်် 
++\xv  လ︀ျိꩫ︀်က︀ႃပ︀ျိဝ︀်ဢ︀ွ် 
+ \xr  lɛn⁵ kā¹ pɛu² au²
+ \so  phk_ljn5kaa1pju2au2
+ \xe  to run in a fast pace
+@@ -132039,15 +132039,15 @@ phit1
+ \xr  phen³ phen³ 
+ \so  phk_phen3phen3
+ \xe  to do tidily and neatly
+-\xv  ၸ︀ိꩫ︀ꩰꩭီီ
++\xv  ၸ︀ိꩫ︀ꩰꩭီ
+ \xr  phen³ phen³ hī¹ hī¹
+ \so  phk_phen3phen3hI1hI1   
+ \xe  neatly and tidily, elegently 
+-\xv  ꩫ︀ူၸ︀ိꩫ︀ꩰꩭီီ
++\xv  ꩫ︀ူၸ︀ိꩫ︀ꩰꩭီ
+ \xr  nū² phen³ phen³ hī¹ hī¹
+ \so  phk_nU2phen3phen3hI1hI1   
+ \xe  to observe attentively, to look or watch carefully 
+-\xv  ꩫ︀ုင︀်မ︀ႃၸ︀ိꩫ︀ꩰꩭီီ
++\xv  ꩫ︀ုင︀်မ︀ႃၸ︀ိꩫ︀ꩰꩭီ
+ \xr  nuŋ⁵ mā² phen³ phen³ hī¹ hī¹ 
+ \so  phk_nuN5maa2het1phen3phen3hI1hI1  
+ \xe  to dress elegently  
+@@ -132210,7 +132210,7 @@ phit1
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ိုင︀်ꩭက︀ꩰꩭွံ#,  ဢ︀ꩫ︀်ꩭွံံꩭုၺꩰ
++\xv  ၵ︀ိုင︀်ꩭက︀ꩰꩭွံ#,  ဢ︀ꩫ︀်ꩭွံꩭုၺꩰ
+ \xr 
+ \xe 
+ \xn 
+@@ -132531,7 +132531,7 @@ also the eldest member of a house as father
+ \xr  phī⁶ hauŋ³ phā⁴
+ \so  phk_phI6 hauN3phaa4.wav
+ \xe  the celestial being of the heaven, 'spirits spanning the heaven', i.e.all the spirits  
+-\xv  ၸ︀ီီက︀ုꩫ︀ꩰ
++\xv  ၸ︀ီက︀ုꩫ︀ꩰ
+ \xr  phī⁶ phī⁶ kon² kon²
+ \so  phk_phI6phI6kon2kon2.wav
+ \xe  (of expressing, doing something) insincerely, haphazardly, mark by lack of plan or order, lit. spirits and human beings
+@@ -132623,7 +132623,7 @@ marvelous or beyond belief
+ \notes  ailot
+ \dt  03/Jun/2023
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le  ၸ︀ီၸ︀ီ
+ \ph  phī⁴ phi⁴
+ \so  phk_phI4phi4
+@@ -132636,7 +132636,7 @@ marvelous or beyond belief
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭိုဝ︀်ယ︀ွႝၸ︀ီီ
++\xv  ꩭိုဝ︀်ယ︀ွႝၸ︀ီ
+ \xr  hə¹ yɔi⁴ phī⁴ phī⁴
+ \so  phk_hz1yqi4phI4phI4
+ \xe  sweat is streaming intensely
+@@ -132644,7 +132644,7 @@ marvelous or beyond belief
+ \notes  ailot
+ \dt  04/Jan/2021
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le  ၸ︀ီၸ︀ီ
+ \ph  phī³ phī³
+ \so  phk_phI3phI3
+@@ -132657,7 +132657,7 @@ marvelous or beyond belief
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩫ︀ံၸ︀ီီ
++\xv  ꩫ︀ံၸ︀ီ
+ \xr  nam⁴ phī³ phī³
+ \so  phk_nam4phI3phI3
+ \xe  intensely black
+@@ -132665,7 +132665,7 @@ marvelous or beyond belief
+ \notes  ailot
+ \dt  20/Jun/2020
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le  ၸ︀ီၸ︀ီ
+ \ph  phī⁴ phī⁴
+ \so  phk_phI4phI4
+@@ -132679,7 +132679,7 @@ of the nose)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭူꩫ︀င︀်တ︀ꩫ︀်ၸ︀ီီ
++\xv  ꩭူꩫ︀င︀်တ︀ꩫ︀်ၸ︀ီ
+ \xr  hū² naŋ² tan² phī⁴ phī⁴
+ \so  phk_hU2naN2tan2phI4phI4
+ \xe  to have intensely stuffy nose,  plugged feeling
+@@ -132687,7 +132687,7 @@ of the nose)
+ \notes  ailot
+ \dt  24/Apr/2021
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le 
+ \ph  phī⁴ phī⁴
+ \so  phk_phI4phI4
+@@ -132700,7 +132700,7 @@ of the nose)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ႃꩡ︀ံၸ︀ီီ
++\xv  က︀ႃꩡ︀ံၸ︀ီ
+ \xr  ka cām⁶ phī⁴ phī⁴
+ \so  phk_ka1caam6phI4phI4
+ \xe  sneezing intensely 
+@@ -132708,7 +132708,7 @@ of the nose)
+ \notes  ailot
+ \dt  04/Jan/2021
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le  ၸ︀ီၸ︀ီ
+ \ph  phī⁴ phī⁴
+ \so  phk_phI4phI4
+@@ -132721,7 +132721,7 @@ of the nose)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်ၸ︀ီီ
++\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်ၸ︀ီ
+ \xr  caü² nət¹ phī⁴ phī⁴
+ \so  phk_cav2nzt1phI4phI4
+ \xe  intensely angry,
+@@ -132730,7 +132730,7 @@ of the nose)
+ \notes  ailot
+ \dt  08/Apr/2023
+ 
+-\lx  ၸ︀ီီ
++\lx  ၸ︀ီ
+ \le 
+ \ph  phī⁴ phī⁴
+ \so  phk_phI4phI4
+@@ -132744,7 +132744,7 @@ of the nose)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ၞ်ꩡ︀ႃၸ︀ီီ
++\xv  ၵ︀ၞ်ꩡ︀ႃၸ︀ီ
+ \xr  khaü³ cā⁵ phī⁴ phī⁴
+ \so  phk_khav3caa5phI4phI4
+ \xe  intensely angry/annoyed
+@@ -132766,7 +132766,7 @@ of the nose)
+ \notes 
+ \dt  08/Apr/2023
+ 
+-\lx  ၸ︀ီီက︀ုꩫ︀ꩰ
++\lx  ၸ︀ီက︀ုꩫ︀ꩰ
+ \le 
+ \ph  phī⁶ phī⁶ kon² kon²
+ \so  phk_phI6phI6kon2kon2
+@@ -132781,7 +132781,7 @@ of the nose)
+ 
+ \rf  
+ 
+-\xv  ꩭိတ︀်ဝ︀ႝၸ︀ီီက︀ုꩫ︀ꩰ
++\xv  ꩭိတ︀်ဝ︀ႝၸ︀ီက︀ုꩫ︀ꩰ
+ \xr  het¹ wai⁴ phī⁶ phī⁶ kon² kon²
+ \so  phk_het1 wai4 phI6 phI6 kon2 kon2  
+ \xe  had done  in a disorderly manner
+@@ -132980,7 +132980,7 @@ of the nose)
+ \xr  mɛ⁵ phuk³ yuk⁵
+ \so  phk_mj5phuk3yuk4
+ \xe  a shabby woman
+-\xv  မ︀ေ︀ꩫ︀ႝမ︀ေ︀ၸ︀ုက︀်ယ︀ုက︀်ဢ︀ုံလ︀ုက︀်ဢ︀ွꩫ︀်လ︀ုက︀်ဢ︀ွꩫ︀်မ︀ၞ်ꩫ︀ႝꩬ︀ွꩫ︀်ꩫ︀ီီၵ︀ိုꩫ︀်က︀ီတ︀ေ︀ႃလ︀ႝꩭၞ်ꩡ︀င︀ꩰ
++\xv  မ︀ေ︀ꩫ︀ႝမ︀ေ︀ၸ︀ုက︀်ယ︀ုက︀်ဢ︀ုံလ︀ုက︀်ဢ︀ွꩫ︀်လ︀ုက︀်ဢ︀ွꩫ︀်မ︀ၞ်ꩫ︀ႝꩬ︀ွꩫ︀်ꩫ︀ီၵ︀ိုꩫ︀်က︀ီတ︀ေ︀ႃလ︀ႝꩭၞ်ꩡ︀င︀ꩰ
+ \xr  mɛ⁵ nai⁴ mɛ⁵ phuk⁴ yuk⁴ um³ luk ɔn¹ luk⁴ ɔn¹ maü² nai⁴ sɔn⁶ nī² nī² khün³ kī¹ tɔ² lāi² haü³ cāŋ⁵ 
+ \so  phk_mj5nai4mj5phuk3yuk3um3luk4qn1luk4qn1mav2nai4sqn6nI2nI2khvn3kI1tq2laai2hav3caaN5 
+ \xe  this woman is shabby and carry a child, teach your your properly how to weave cloth
+@@ -133752,7 +133752,7 @@ sleeping as a patient
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ုဝ︀်မ︀််ေ︀
++\xv  ၸ︀ုဝ︀်မ︀်ေ︀
+ \xr  pho⁶ mē²
+ \so  phk_pho6mE2
+ \xe  husband and wife, married couple, a spouse 
+@@ -134192,7 +134192,7 @@ of Arahantship) is identical with sotapattiphala, in general: arahatta
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ူက︀်ံꩬ︀ိုင︀််
++\xv  ၸ︀ူက︀်ံꩬ︀ိုင︀်
+ \xr  phū³ kɛm² süŋ¹
+ \so  phk_phU3kjm2svN1
+ \xe  a king, a ruler
+@@ -134332,7 +134332,7 @@ of Arahantship) is identical with sotapattiphala, in general: arahatta
+ \xr  phū³ ho⁶ hān⁶
+ \so  phk_phU3ho6haan6
+ \xe  a brave leader
+-\xv  ၸ︀ူဢ︀ုပ︀်ၵ︀ျ ုက︀်
++\xv  ၸ︀ူဢ︀ုပ︀်ၵ︀ျုက︀်
+ \xr  phū³ up³ khyuk¹
+ \so  phk_phU3up4khyuk1
+ \xe  the ruler, the adminstrator
+@@ -137154,7 +137154,7 @@ to be trodden by cattle for threshing (of paddy, wheat, black gram, etc.)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ျတ︀််ၜတ︀ႃ
++\xv  ၸ︀ျတ︀်ၜတ︀ႃ
+ \xr  phyāt⁴ tra²
+ \so  phk_phyaat4tra2
+ \xe  to judge a legal case 
+@@ -138414,7 +138414,7 @@ nonverbal communication
+ \notes 
+ \dt  25/Feb/2024
+ 
+-\lx  ၸ︀ံံ
++\lx  ၸ︀ံ
+ \le  ၸ︀ံၸ︀ံ
+ \ph  pham⁴ pham⁴
+ \so  phk_pham4pham4
+@@ -138427,7 +138427,7 @@ nonverbal communication
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ပ︀ီၸ︀ံံ
++\xv  ပ︀ီၸ︀ံ
+ \xr  pī² pham⁴ pham⁴
+ \so  phk_pI2pham4pham4
+ \xe  in tensely fatty
+@@ -138435,7 +138435,7 @@ nonverbal communication
+ \notes  ailot
+ \dt  24/Jun/2020
+ 
+-\lx  ၸ︀ံံ
++\lx  ၸ︀ံ
+ \le  ၸ︀မ︀ꩰ
+ \ph  pham⁴ pham⁴
+ \so  phk_pham4pham4
+@@ -138448,7 +138448,7 @@ nonverbal communication
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ေ︀ဢ︀ူꩬ︀ီက︀ုံꩫ︀ံတ︀ႃမ︀ႃၸ︀ံံ
++\xv  မ︀ေ︀ဢ︀ူꩬ︀ီက︀ုံꩫ︀ံတ︀ႃမ︀ႃၸ︀ံ
+ \xr  mɛ⁵ ū³ sī⁶ kum⁴ nam⁴ tā² mā¹ pham⁴ pham⁴
+ \so  phk_mj5U3sI6kum4nam4taa2maa1pham4pham4
+ \xe  the parents were shedding tears intensely in sorrow
+@@ -139350,11 +139350,11 @@ with white flesh and thin rough skin
+ \xr  kon² māk⁴ kon² mī²
+ \so  phk_kon2maak4kon2mI2
+ \xe  a wealthy person 
+-\xv  မ︀က︀ꩰမ︀ီီ
++\xv  မ︀က︀ꩰမ︀ီ
+ \xr  māk⁴ māk⁴ mī² mī²
+ \so  phk_maak4maak4mI2mI2
+ \xe  wealthy, rich, marked by abundance
+-\xv  မ︀ီီမ︀က︀ꩰ
++\xv  မ︀ီမ︀က︀ꩰ
+ \xr  mī² mī² māk⁴ māk⁴ 
+ \so  phk_mI2mI2maak4maak4
+ \xe  wealthy, rich, marked by abundance
+@@ -141019,7 +141019,7 @@ position as because of wrong posture of the body
+ \ps  n.
+ \de  Burmese people, Burma, Myanmer, Myanmarese
+ \ge  Burmese
+-\pl  ံႝ
++\pl  ႝံ
+ \pd 
+ \pde 
+ \pdn 
+@@ -142327,7 +142327,7 @@ completely still during sleep
+ \xr  mā³ phī⁶ mot⁴
+ \so  phk_maa3phI6mot4
+ \xe  to possessed by spirit after reciting the incantation
+-\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်မ︀ႃထ︀ံံ
++\xv  ꩡ︀ၞ်ꩫ︀ိုတ︀်မ︀ႃထ︀ံ
+ \xr  caü² nüt¹ mā³ tham⁴ tham⁴
+ \so  phk_cav2nvt1maa3tham4tham4
+ \xe  to get so much angry and violently agitated 
+@@ -142610,7 +142610,7 @@ completely still during sleep
+ \xr  mā⁵ caiŋ⁵ 
+ \so  phk_maa5caiN5
+ \xe  not know,  not understand, not see clearly and distinctly see or hear 
+-\xv  မ︀ႃꩡ︀ျီင︀်ꩫ︀ီီီ
++\xv  မ︀ႃꩡ︀ျီင︀်ꩫ︀ီ
+ \xr  mā⁵ caiŋ⁵ nī² nī²
+ \so  phk_maa5caiN5nI2nI2
+ \xe  not clearly seen or hear or understand
+@@ -142944,7 +142944,7 @@ it is going to gain profit from it(Tai Phake saying)
+ \xr  mā⁵ hū⁴ loi³
+ \so  phk_maa5hU4loi3
+ \xe  not associate with, not involve with
+-\xv  မ︀ႃꩭူမ︀ႃꩭက︀််
++\xv  မ︀ႃꩭူမ︀ႃꩭက︀်
+ \xr  mā⁵ hū⁴ ma⁵ hak⁴
+ \so  phk_maa5hU4maa5hak4
+ \xe  not acqainted with
+@@ -143615,7 +143615,7 @@ a quantifier meaning greater in size amount, extent or degree,  see <vN5kaa2>
+ \pdn 
+ \dn 
+ \rf 
+-\xv  တ︀ွက︀်မ︀ႃက︀ွက︀်် 
++\xv  တ︀ွက︀်မ︀ႃက︀ွက︀် 
+ \xr  tauk¹ ma¹ kauk
+ \so  phk_tauk1ma1kauk1
+ \xe  to rap or knock with knuckle of the forefinger on (someone) head
+@@ -146073,11 +146073,11 @@ emotional trigger express emotion like anger or sadness
+ \xr  mün² cau³ mī² tüŋ luk⁴ khɔt¹ hak³ kɔ̄¹ ɔm³ sāu⁶ num¹ cet¹ nāŋ²
+ \so  phk_mvn2cau3mI2tvN1luk4khqt1hak4kQ1qm3saau6num1cet1naaN2
+ \xe  he have seven dearly loved young daughter
+-\xv  မ︀ီီမ︀က︀ꩰ
++\xv  မ︀ီမ︀က︀ꩰ
+ \xr  mī² mī² māk⁴ māk⁴
+ \so  phk_mI2mI2maak4maak4
+ \xe  wealthy
+-\xv  မ︀ီီယ︀င︀ꩰ
++\xv  မ︀ီယ︀င︀ꩰ
+ \xr  mī² mī² yāŋ² yaŋ²
+ \so  phk_mI2mI2yaN2yaN2
+ \xe  to have in abundance
+@@ -146122,7 +146122,7 @@ emotional trigger express emotion like anger or sadness
+ \xr  mī¹ mā⁵ hɔt⁴
+ \so  phk_mI1maa5hqt4
+ \xe  impenetrable, impossible to pass through or enter as in the dense forest, lit. impossible to part
+-\xv  မ︀ီီထ︀ွꩫ︀ꩰ
++\xv  မ︀ီထ︀ွꩫ︀ꩰ
+ \xr  mī¹ mī¹ thɔn⁶ thɔn⁶
+ \so  phk_mI1mI1thqn6thqn6
+ \xe  to pull apart and pluck or pick something repeatedly as while searching the grey hair and pull
+@@ -146494,7 +146494,7 @@ emotional trigger express emotion like anger or sadness
+ \notes  ailot
+ \dt  19/Aug/2021
+ 
+-\lx  မ︀ီီ
++\lx  မ︀ီ
+ \le 
+ \ph  mī³ mī³
+ \so  phk_mI3mI3
+@@ -146507,7 +146507,7 @@ emotional trigger express emotion like anger or sadness
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩫ︀ံမ︀ီီ
++\xv  ꩫ︀ံမ︀ီ
+ \xr  nam² mī³ mī³
+ \so  phk_nam2mI3mI3
+ \xe  intensely black
+@@ -146515,7 +146515,7 @@ emotional trigger express emotion like anger or sadness
+ \notes  ailot
+ \dt  19/Aug/2021
+ 
+-\lx  မ︀ီီ
++\lx  မ︀ီ
+ \le 
+ \ph  mī¹ mī¹
+ \so  phk_mI1mI1
+@@ -146528,11 +146528,11 @@ emotional trigger express emotion like anger or sadness
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ီီꩫ︀ံ
++\xv  မ︀ီꩫ︀ံ
+ \xr  mī¹ mī¹ nam²
+ \so  phk_mI1mI1nam2
+ \xe  a black cat 
+-\xv  မ︀ီီပ︀ုင︀်
++\xv  မ︀ီပ︀ုင︀်
+ \xr  mī¹ mī¹ poŋ¹
+ \so  phk_mI1mI1poN1
+ \xe  a tom cat
+@@ -147423,7 +147423,7 @@ females, to become wild for sexual intercourse
+ \xr  au² mon² khiŋ² saiŋ⁶ kham² phra² pen² cau³
+ \so  phk_au2mon2khiN2saiN6kham2phra2pen2cau3
+ \xe  by the glory of  the diamond bodied of  the glorious Buddha 
+-\xv  က︀ူꩬ︀ေ︀ႃတ︀ႃꩫ︀ႃꩭၞ်ꩫ︀ႝꩡ︀ိဝ︀််ꩭွတ︀်ꩡ︀ိဝ︀်ထ︀ိုင︀်တ︀ႃꩫ︀ႃမ︀ုꩫ︀်꩷
++\xv  က︀ူꩬ︀ေ︀ႃတ︀ႃꩫ︀ႃꩭၞ်ꩫ︀ႝꩡ︀ိဝ︀်ꩭွတ︀်ꩡ︀ိဝ︀်ထ︀ိုင︀်တ︀ႃꩫ︀ႃမ︀ုꩫ︀်꩷
+ \xr  kū⁵ so¹ ta¹ na¹ haü³ nai³ ceu¹ hɔt⁴ ceu² thüŋ⁶ ta¹ nā² mon² əi²
+ \so  phk_kU5so1ta1na1hav3nai3ceu1hqt4ceu2thvN6ta1naa2mon2zi2
+ \xe  let the merit of donation reach you as earliest, Oh glory!'
+@@ -152407,7 +152407,7 @@ mind
+ \xr  mai³ ho⁶ caü² yāk⁴ lɔn¹
+ \so  phk_mai3ho6cav2yaak4lqn1
+ \xe  to feel extremely distress and sorrow, feeling great sadness and dispair
+-\xv  မ︀ႝ ႝၵ︀ီီ
++\xv  မ︀ႝ ႝၵ︀ီ
+ \xr  mai³ mai³ khī³ khī³
+ \so  phk_mai3mai3khI3khI3
+ \xe  to be in a state of grief  and distress or burning anxiety
+@@ -152571,7 +152571,7 @@ used for polishing loom thread
+ \xr  mai⁴ khe¹ khī³ hū⁶
+ \so  phk_mai4khe1khI3hU6
+ \xe  ear pick (a small stick used to dig out ear wax) 
+-\xv  မ︀ႝင︀ꩫ︀််
++\xv  မ︀ႝင︀ꩫ︀်
+ \xr  mai⁴ ŋān¹ 
+ \so  phk_mai4Naan1 
+ \xe  a scale, a ruler
+@@ -152839,7 +152839,7 @@ word, symbol, line, pattern, texture on an object
+ \notes  ailot
+ \dt  05/Nov/2023
+ 
+-\lx  မ︀ျ ုံ
++\lx  မ︀ျုံ
+ \le  မ︀ျွုံ
+ \ph  myom⁵
+ \so  phk_myom5
+@@ -152852,15 +152852,15 @@ word, symbol, line, pattern, texture on an object
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ုꩫ︀်မ︀ျ ုံ
++\xv  က︀ုꩫ︀်မ︀ျုံ
+ \xr  kon² myom⁵
+ \so  phk_kon2myom5
+ \xe  a  mild person
+-\xv  မ︀ျ ုံမ︀ျ ုံ 
++\xv  မ︀ျုံမ︀ျုံ 
+ \xr  myom⁵ myom⁵
+ \so  phk_myom5 myom5 
+ \xe  mildly, amiably gentle 
+-\xv  မ︀ျ ုံမ︀ျ ုံ ꩬ︀ေ︀တ︀ꩫ︀်
++\xv  မ︀ျုံမ︀ျုံ ꩬ︀ေ︀တ︀ꩫ︀်
+ \xr  myom⁵ myom⁵ sɛ⁶ tān³
+ \so  phk_myom5 myom5sj6 taan3
+ \xe  to speak mildly 
+@@ -155260,7 +155260,7 @@ in different colour and shape also call < saiN6 nok4 >
+ 
+ \lx  မ︀ျိꩫ︀်
+ \le  မ︀ိꩫ︀်
+-\le  မ︀ိၺ််
++\le  မ︀ိၺ်
+ 
+ \ph  mɛn²
+ \so  phk_mjn2
+@@ -155298,7 +155298,7 @@ in different colour and shape also call < saiN6 nok4 >
+ 
+ \lx  မ︀ျိꩫ︀် 
+ \le  မ︀ိꩫ︀်
+-\le  မ︀ိၺ််
++\le  မ︀ိၺ်
+ \ph  mɛn³
+ \so  phk_mjn3
+ \ps  n.
+@@ -155318,9 +155318,9 @@ in different colour and shape also call < saiN6 nok4 >
+ \notes  ailot
+ \dt  05/Jun/2023
+ 
+-\lx  မ︀ျိꩫ︀််
++\lx  မ︀ျိꩫ︀်
+ \le  မ︀ိꩫ︀်
+-\le  မ︀ိၺ််
++\le  မ︀ိၺ်
+ \ph  mɛn³
+ \so  phk_mjn3
+ \ps  n
+@@ -156741,7 +156741,7 @@ well as<ye1>
+ \ps  v
+ \de  to snatch, to collect the things and pick up so quickly, as the thieves
+ \ge  snatch
+-\pl  ံႝ
++\pl  ႝံ
+ \pd 
+ \pde 
+ \pdn 
+@@ -157996,7 +157996,7 @@ flower is white and the other is yellow  ( yA3 khat1 loN6 and yA3 khat1 qn1 )
+ \xe  a kind of small plant
+ \pc1  1_phk_yA3paan3cauN3.jpg
+ \pc2  2_phk_yA3paan3cauN3.jpg
+-\xv  ယ︀ႃပ︀ွင︀်ထ︀ွတ︀််
++\xv  ယ︀ႃပ︀ွင︀်ထ︀ွတ︀်
+ \xr  yā³ pauŋ³ thɔt¹
+ \so  phk_yaa3pauN3thqt1
+ \xe  a kind of medicinal grass ( see yA thqt1 pauN3 )
+@@ -159798,7 +159798,7 @@ without human voice
+ \xr  yāŋ⁴yī²yāŋ⁴yāu²
+ \so  phk_yaaN4yI2yaaN4yaau2
+ \xe  to stride, to walk with long bounding step
+-\xv  ယ︀ီီယ︀ွ်ယ︀ွ်
++\xv  ယ︀ီယ︀ွ်ယ︀ွ်
+ \xr  yī²yī²yāu²yāu²
+ \so  phk_yI2 yI2 yaau2 yaau2
+ \xe  in a state of disorderly long
+@@ -159870,7 +159870,7 @@ about something unimportant or trivial
+ \xr  yuk⁴ hāi⁴ yuk⁴ cā⁴
+ \so  phk_yuk4haai4yuk4caa4
+ \xe  very wicked
+-\xv  ယ︀ုက︀ꩰယ︀ွံံ
++\xv  ယ︀ုက︀ꩰယ︀ွံ
+ \xr  yuk⁴ yuk⁴ yɔm² yɔm²
+ \so  phk_yuk4yuk4yqm2yqm2
+ \xe  very crooked, very wicked, worst and inferior
+@@ -160946,15 +160946,15 @@ esp. of keys;  a tuft, as of hair, beard
+ \xr  ceu² khan⁶ yā¹ yom² nān² haü³ lā³
+ \so  phk_ceu2khan6yaa1yom2naan2hav3laa3
+ \xe  be quick, don't delay and make late
+-\xv  ယ︀ုံံꩫ︀ꩫ︀ꩰ
++\xv  ယ︀ုံꩫ︀ꩫ︀ꩰ
+ \xr  yom² yom² nān² nān²
+ \so  phk_yom2yom2naan2naan2
+ \xe  slowly
+-\xv  ပ︀ႝယ︀ုံံꩫ︀ꩫ︀ꩰ
++\xv  ပ︀ႝယ︀ုံꩫ︀ꩫ︀ꩰ
+ \xr  pai² yom² yom² nān² nān²
+ \so  phk_pai2yom2yom2naan2naan2
+ \xe  to walk slowly
+-\xv  ꩭိတ︀်ယ︀ုံံꩫ︀ꩫ︀်ꩫ︀ꩫ︀်
++\xv  ꩭိတ︀်ယ︀ုံꩫ︀ꩫ︀်ꩫ︀ꩫ︀်
+ \xr  het¹ yom² yom² nān² nān²
+ \so  phk_het1yom2yom2naan2naan2
+ \xe  to do slowly or less actively
+@@ -161027,7 +161027,7 @@ esp. of keys;  a tuft, as of hair, beard
+ \notes 
+ \dt  09/Jun/2023
+ 
+-\lx  ယ︀ုံံယ︀ံံ
++\lx  ယ︀ုံယ︀ံ
+ \le 
+ \ph  yum⁵ yum⁵ yām⁵ yām⁵
+ \so  phk_yum5yum5yaam5yaam5
+@@ -161040,7 +161040,7 @@ esp. of keys;  a tuft, as of hair, beard
+ \pdn 
+ \dn 
+ \rf 
+-\xv  လ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ၵ︀ွ်မ︀ႃယ︀ုံံယ︀ံံꩬ︀ေ︀မ︀ႃႃ
++\xv  လ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ၵ︀ွ်မ︀ႃယ︀ုံယ︀ံꩬ︀ေ︀မ︀ႃႃ
+ \xr  luk⁴ ɔn¹ na¹ khau³ khau³ mā² yum⁵ yum⁵ yām⁵ yām⁵ sɛ⁶ mā² mā²
+ \so  phk_luk4qn1na1khau3khau3maa2yum5yum5yaam5yaam5sj6maa2maa2
+ \xe  the boy move towards in a lage groupswarm in to the room
+@@ -162112,7 +162112,7 @@ dance moving he posterior part of the knee up and down and shake body
+ \xr  yɔm⁶ kāk¹ yāk¹
+ \so  phk_yqm6kaak1yaak1  
+ \xe  intensely thin
+-\xv  ယ︀ွံံယ︀ိမ︀ꩰ
++\xv  ယ︀ွံယ︀ိမ︀ꩰ
+ \xr  yɔm⁶ yɔm⁶ yim⁶ yim⁶
+ \so  phk_yqm6yqm6yim6yim6
+ \xe  in a way of lean and thin body
+@@ -170090,7 +170090,7 @@ leave
+ \notes  ailot
+ \dt  15/Feb/2022
+ 
+-\lx  လ︀ီီ
++\lx  လ︀ီ
+ \le  လ︀ီလ︀ီ
+ \ph  lī⁵ lī⁵
+ \so  phk_lI5lI5
+@@ -170104,7 +170104,7 @@ flowing over stone
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩫ︀ံလ︀ႝလ︀ီီ
++\xv  ꩫ︀ံလ︀ႝလ︀ီ
+ \xr  nam⁴ lī⁴ lī⁴ 
+ \so  phk_nam4lI4lI4 
+ \xe  the water is flowing with such a sound 
+@@ -170112,11 +170112,11 @@ flowing over stone
+ \xr  nam⁴ lī⁴ lī⁴ kɔ̄¹ lai⁶
+ \so  phk_nam4lI4lI4kQ1lai6
+ \xe  the water begin to flow with a gentle ripling sound
+-\xv  လ︀ီီလ︀ေ︀ႃလ︀ေ︀ႃ
++\xv  လ︀ီလ︀ေ︀ႃလ︀ေ︀ႃ
+ \xr  lī⁴ lī⁴ lɔ̄⁴ lɔ̄⁴
+ \so  phk_lI4lI4lQ4lQ4
+ \xe  ONOM-( of water ) a gentle rippling sound of flowing water   
+-\xv  ꩫ︀ံလ︀ႝလ︀ီီလ︀ေ︀ႃလ︀ေ︀ႃ
++\xv  ꩫ︀ံလ︀ႝလ︀ီလ︀ေ︀ႃလ︀ေ︀ႃ
+ \xr  nam⁴ lai⁶ lī⁴ lī⁴ lɔ̄⁴ lɔ̄⁴
+ \so  phk_nam4lai6lI4lI4lQ4lQ4
+ \xe  the current of flowing water wash against with a gentle ripling sound
+@@ -170124,7 +170124,7 @@ flowing over stone
+ \notes  ailot
+ \dt  20/Apr/2023
+ 
+-\lx  လ︀ီီလ︀ႝ ႝ
++\lx  လ︀ီလ︀ႝ ႝ
+ \le  လ︀ီလ︀ီလ︀ႝလ︀ႝ
+ \ph  lī² lī² lāi² lāi²
+ \so  phk_lI2lI2laai2laai2
+@@ -171011,7 +171011,7 @@ and causing the mouth is to be filled with saliva
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ိုꩫ︀်ꩫ︀ႝပ︀ႃꩡ︀ွ််ꩡ︀ႃမ︀ိုꩫ︀်လ︀ုင︀်က︀ိꩫ︀်
++\xv  မ︀ိုꩫ︀်ꩫ︀ႝပ︀ႃꩡ︀ွ်ꩡ︀ႃမ︀ိုꩫ︀်လ︀ုင︀်က︀ိꩫ︀်
+ \xr  mün² nāi² pa¹ cau² cā⁵ mün² luŋ¹ kin²
+ \so  phk_mvn2naai2pa1cau2luN1kin2
+ \xe  he himself can manage it properly
+@@ -171744,7 +171744,7 @@ spells < k?? or kz >
+ \xr  lun³ tok¹
+ \so  phk_lun3tok1
+ \xe  to slip off from its place fall down from a high place
+-\xv  ဝ︀ျိꩫ︀်ꩫ︀ေ︀လ︀ုꩫ︀််က︀ႃ
++\xv  ဝ︀ျိꩫ︀်ꩫ︀ေ︀လ︀ုꩫ︀်က︀ႃ
+ \xr  wɛn⁶ nɛ⁴ lun³ kā¹
+ \so  phk_wjn6nj4lun3kaa1
+ \xe  the bangle has slip off (from the wrist)
+@@ -171789,7 +171789,7 @@ spells < k?? or kz >
+ \xr  pāi² hān⁶ khun⁶ məŋ² lon⁴ nə⁶ süŋ¹
+ \so  phk_paai2haan6khun6mzN2lon4nz6svN1
+ \xe  The number of brave elephants of the rich man exceeded the shelter available.
+-\xv  တ︀င︀်က︀ႃင︀ိုꩫ︀်ၵ︀ံံလ︀ုꩫ︀်ꩫ︀ိုဝ︀်ယ︀ေ︀က︀ွင︀်က︀ေ︀ႃ
++\xv  တ︀င︀်က︀ႃင︀ိုꩫ︀်ၵ︀ံလ︀ုꩫ︀်ꩫ︀ိုဝ︀်ယ︀ေ︀က︀ွင︀်က︀ေ︀ႃ
+ \xr  ŋün² kham² kɔi² nam⁶ lon⁴  nə⁶ ye² kauŋ² kɔ̄¹
+ \so  phk_Nvn2kham2kqi2nam6lon4 nz6ye2kauN2kQ1
+ \xe  in all money and gold are accumulated in excess to store room
+@@ -172128,7 +172128,7 @@ a number of 40 stick that fasten or to be fasten
+ \dt  07/May/2021
+ 
+ \lx  လ︀ုပ︀်
+-\le  လ︀ွုပ︀််
++\le  လ︀ွုပ︀်
+ \ph  lop¹ 
+ \so  phk_lop1 
+ \ps  adv.
+@@ -172440,7 +172440,7 @@ the soft marshy land  or a hole of floor board hole of a  stilt house
+ \xr  haü³ kin² lom² 
+ \so  phk_hav3kin2lom2
+ \xe  to breast feed 
+-\xv  လ︀ုံံꩬ︀ိုဝ︀်ꩭျိင︀်
++\xv  လ︀ုံꩬ︀ိုဝ︀်ꩭျိင︀်
+ \xr  lom² sə⁶ haiŋ³
+ \so  phk_lom2sz6haiN3
+ \xe  dried breast milk of a tigress 
+@@ -172989,7 +172989,7 @@ more satisfactory or comfortable
+ \notes  ailot
+ \dt  16/May/2020
+ 
+-\lx  လ︀ုံံလ︀ံံ
++\lx  လ︀ုံလ︀ံ
+ \le 
+ \ph  lum⁵ lum⁵ lām⁵ lām⁵
+ \so  phk_lum5lum5laam5laam5
+@@ -173002,7 +173002,7 @@ more satisfactory or comfortable
+ \pdn 
+ \dn 
+ \rf 
+-\xv  လ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ၵ︀ွ်မ︀ႃလ︀ုံံလ︀ံံတ︀ီၵ︀ွက︀်ꩫ︀ေ︀
++\xv  လ︀ုက︀်ဢ︀ွꩫ︀်ꩫ︀ႃၵ︀ွ်ၵ︀ွ်မ︀ႃလ︀ုံလ︀ံတ︀ီၵ︀ွက︀်ꩫ︀ေ︀
+ \xr  luk⁴ ɔn¹ na¹ khau⁶ khau³ mā² lum⁵ lum⁵ lām⁵ lām⁵ tī⁵ khauk³ nɛ⁴
+ \so  phk_luk4qn1na1khau6 khau3maa2lum5lum5laam51aam5tI5khauk3nj4
+ \xe  the boy swarm in to the room
+@@ -173010,7 +173010,7 @@ more satisfactory or comfortable
+ \notes  ailot
+ \dt  17/Aug/2021
+ 
+-\lx  လ︀ုံံလ︀ႝ ႝ 
++\lx  လ︀ုံလ︀ႝ ႝ 
+ \le 
+ \ph  lum⁵ lum⁵ lāi² lāi²
+ \so  phk_lum5lum5laai2laai2
+@@ -173680,7 +173680,7 @@ be a novice
+ \pdn 
+ \dn 
+ \rf 
+-\xv  က︀ိၺ်ꩡ︀ွ်ၵ︀ျွတ︀်ဢ︀ွ်ꩬ︀ႃတ︀ူဝ︀ႃွလ︀ုံၸ︀ႃလ︀ူလ︀ိုဝ︀်ပ︀ꩫ︀်င︀ိꩫ︀်တ︀ေ︀ယ︀ွ််
++\xv  က︀ိၺ်ꩡ︀ွ်ၵ︀ျွတ︀်ဢ︀ွ်ꩬ︀ႃတ︀ူဝ︀ႃွလ︀ုံၸ︀ႃလ︀ူလ︀ိုဝ︀်ပ︀ꩫ︀်င︀ိꩫ︀်တ︀ေ︀ယ︀ွ်
+ \xr  kɛn¹ cau³ khyaut¹ au²  saū¹ wa¹ lum⁵ phā⁴ lū⁵ lə⁵ pan² pan² ŋin²
+ tɛ⁴ yau⁴
+ \so  phk_kjn1cau3khyaut1au2sa1tU1wa1lum5phaa4lU5 lz5 pan2lU5lz5pan2Nin2
+@@ -175374,15 +175374,15 @@ good/beautiful/happy/joyful/ pure
+ \xr  lɔm² kün² sɛ⁶ kā¹
+ \so  phk_lqm2kvn2sj6kaa1
+ \xe  to go together
+-\xv  လ︀ွံံ
++\xv  လ︀ွံ
+ \xr  lɔm² lɔm²
+ \so  phk_lqm2lqm2
+ \xe  be together, all along    
+-\xv  ပ︀ꩫ︀်လ︀ွံံၵ︀ၞ်ꩫ︀ႝ
++\xv  ပ︀ꩫ︀်လ︀ွံၵ︀ၞ်ꩫ︀ႝ
+ \xr  pan¹ lɔm² lɔm² khaü⁵ nai³
+ \so  phk_pan1lqm2lqm2khav5nai3
+ \xe  to go along with intention to get 
+-\xv  လ︀ွံံလ︀ံံ
++\xv  လ︀ွံလ︀ံ
+ \xr  lɔm² lɔm² lām¹ lām¹
+ \so  phk_lqm2lqm2laam1laam1
+ \xe  surround, be all round, encircle, 
+@@ -175842,7 +175842,7 @@ an artificially contructed water channel
+ \xr  pai² pāŋ² kon² lāi⁶ haü³ mā² hən² kin² lau³
+ \so  phk_pai2paaN2kon2laai6hav3maa2hzn2kin2lau3
+ \xe  He went and invited many people to come to his house and drink liquor
+-\xv  ꩫ︀ံံလ︀ႝ ႝ
++\xv  ꩫ︀ံလ︀ႝ ႝ
+ \xr  nam⁶ nam⁶ lāi⁶ lāi⁶
+ \so  phk_nam6nam6laai6laai6
+ \xe  abundantly, abound with a large number or amount or quantity
+@@ -177460,7 +177460,7 @@ a1khiN1nvN5
+ \xr  lən⁴ khām² phɔi²
+ \so  phk_lzn4khaam2phqi2
+ \xe  to chant Tai Phake songs 
+-\xv  လ︀ိုꩫ︀်ၵ︀ွံပ︀ုင︀််
++\xv  လ︀ိုꩫ︀်ၵ︀ွံပ︀ုင︀်
+ \xr  lən⁴ khām² puŋ¹
+ \so  phk_lzn4khaam2puN1
+ \xe  to recite a story in a singing manner 
+@@ -179400,7 +179400,7 @@ get something
+ \notes  ailot
+ \dt  25/May/2023
+ 
+-\lx  လ︀ံံ
++\lx  လ︀ံ
+ \le  လ︀မ︀ꩰ
+ \ph  lam² lam²
+ \so  phk_lam2lam2
+@@ -179413,27 +179413,27 @@ get something
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ထ︀ွံလ︀ံံꩡ︀ျိင︀်ꩬ︀ိင︀်
++\xv  ထ︀ွံလ︀ံꩡ︀ျိင︀်ꩬ︀ိင︀်
+ \xr  thɔm¹ lam² lam² caiŋ⁵ siŋ³
+ \so  phk_thqm1lam2lam2caiN5siN3
+ \xe  to listen constantly to their speech and understood everything 
+-\xv  ꩫ︀ေ︀မ︀ွက︀်လ︀ံံ
++\xv  ꩫ︀ေ︀မ︀ွက︀်လ︀ံ
+ \xr  nɛ⁶ mauk¹ lam² lam²
+ \so  phk_nj6 mauk1 lam2 lam2
+ \xe  to tell continuously
+-\xv  ꩭုၺ်ꩬ︀ိင︀်က︀ႝလ︀ံံတ︀ꩫ︀်ၵ︀ေ︀ႃ
++\xv  ꩭုၺ်ꩬ︀ိင︀်က︀ႝလ︀ံတ︀ꩫ︀်ၵ︀ေ︀ႃ
+ \xr  hui² sēŋ⁶ kāi¹ lam² lam² tān³ khɔ³
+ \so  phk_hui2sEN6kaai1lam2lam2taan3khq3
+ \xe  to state continuously
+-\xv  ၵ︀ုꩫ︀်ꩭုင︀်ထ︀ွံလ︀ံံꩡ︀ိင︀်ၵ︀ေ︀ႃ
++\xv  ၵ︀ုꩫ︀်ꩭုင︀်ထ︀ွံလ︀ံꩡ︀ိင︀်ၵ︀ေ︀ႃ
+ \xr  khun⁶ hoŋ⁶ thɔm¹ lam² lam² caiŋ⁵ khɔ³
+ \so  phk_khun6hoN6thqm1lam2lam2caiN5khq3
+ \xe  the king listen constantly to their talk and understood the matter cleary
+-\xv  ၵ︀ုꩫ︀်လ︀ႝꩬ︀ွ်ၸ︀ိင︀်ယ︀ူလ︀ံံမ︀ွ်ၸ︀က︀်
++\xv  ၵ︀ုꩫ︀်လ︀ႝꩬ︀ွ်ၸ︀ိင︀်ယ︀ူလ︀ံမ︀ွ်ၸ︀က︀်
+ \xr  khun⁶ lāi⁶ sau² phaiŋ⁶ yū¹ lam² lam² mau¹ phāk³
+ \so  phk_khun6 laai6sau2phaiN6yU1lam2lam2mau1phaak3
+ \xe  many people stayed constantly along without leaving
+-\xv  ဝ︀င︀်ꩭုဝ︀်ၵ︀ုပ︀်လ︀ံံတ︀ိင︀်တ︀ꩫ︀်တ︀ေ︀ယ︀ွ်
++\xv  ဝ︀င︀်ꩭုဝ︀်ၵ︀ုပ︀်လ︀ံတ︀ိင︀်တ︀ꩫ︀်တ︀ေ︀ယ︀ွ်
+ \xr  wāŋ² ho⁶ khup³ lam² lam² teŋ⁵ tān³ tɛ⁴ yau⁴
+ \so  phk_waaN2ho6khup3lam2lam2teN5taan3tj4yau4
+ \xe  to kneel and bow the head constantly and began to speak
+@@ -182437,7 +182437,7 @@ in Vinayaka Pitika  it lays 227 rules of monastic life for Bhikkhus ( Buddhist m
+ \notes 
+ \dt  15/Mar/2023
+ 
+-\lx  ဝ︀ီီ
++\lx  ဝ︀ီ
+ \le  ဝ︀ီဝ︀ီ
+ \ph  wī⁵ wī⁵
+ \so  phk_wI5wI5
+@@ -182450,11 +182450,11 @@ in Vinayaka Pitika  it lays 227 rules of monastic life for Bhikkhus ( Buddhist m
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ႃလ︀ုံဝ︀ီီ
++\xv  ၸ︀ႃလ︀ုံဝ︀ီ
+ \xr  phā⁴ lom² wī⁵ wī⁵
+ \so  phk_phaa4lom2wI5wI5
+ \xe  the wind is blowing and making such a sound
+-\xv  ꩫ︀ုက︀်မ︀ိꩫ︀်ဝ︀ီီ
++\xv  ꩫ︀ုက︀်မ︀ိꩫ︀်ဝ︀ီ
+ \xr  nok⁴ men² wī⁵ wī⁵
+ \so  phk_nok4men2wI5wI5
+ \xe  the birds are flying and its wind making such a sound
+@@ -183142,7 +183142,7 @@ emperor, king
+ \xr  sāi caü² wɔt⁴
+ \so  phk_saai6cav2wqt4
+ \xe  died, lit. the cord of life disappeared
+-\xv  ꩬ︀ိင︀်ဝ︀ွတ︀််
++\xv  ꩬ︀ိင︀်ဝ︀ွတ︀်
+ \xr  sēŋ¹ wɔt⁴
+ \so  phk_sEN1wqt4
+ \xe  to become silent
+@@ -184393,11 +184393,11 @@ thing (of the sun) to be heading west
+ \xr  tī⁵ ta¹ wai⁴ nā³ mün² nāi² kə⁴ üŋ⁵ yaŋ²
+ \so  phk_tI5ta1wai4naa3mvn2naai2kz4vN5yaN2
+ \xe  there is no room to save one's place
+-\xv  ဝ︀ႝႝꩬ︀ီꩫ︀ꩫ︀်
++\xv  ဝ︀ႝꩬ︀ီꩫ︀ꩫ︀်
+ \xr  wai⁴ sī⁶ nan⁴
+ \so  phk_wai4sI6nan4
+ \xe  keeping apart from that, besides that, as well as that
+-\xv  ဝ︀ႝႝꩬ︀ေ︀ꩫ︀ꩫ︀်
++\xv  ဝ︀ႝꩬ︀ေ︀ꩫ︀ꩫ︀်
+ \xr  wai⁴ sɛ⁶ nan⁴
+ \so  phk_wai4sj6nan4
+ \xe  keeping apart from that, besides that, as well as that
+@@ -184442,7 +184442,7 @@ thing (of the sun) to be heading west
+ \xr  wai⁴ wai⁴ kɛm² wai⁴
+ \so  phk_wai4wai4kjm2wai4
+ \xe  to save, to keep something  safely
+-\xv  ဝ︀ႝဝ︀ႝꩫ︀ီီ
++\xv  ဝ︀ႝဝ︀ႝꩫ︀ီ
+ \xr  wai⁴ wai⁴ nī² nī² 
+ \so  phk_wai wai4nI2nI2 
+ \xe  to stash, to keep something safely or properly in a hidden or secret place
+@@ -186251,7 +186251,7 @@ dhamma
+ \xr  het¹ hak⁴ het¹ hɔm⁶
+ \so  phk_het1hak4het1hqm6
+ \xe  to treat with love or great care and harmony, to treat warmly and dearly
+-\xv  ꩭက︀ꩰꩭွံံ
++\xv  ꩭက︀ꩰꩭွံ
+ \xr  hak⁴ hak³ hɔm⁶ hɔm⁶
+ \so  phk_hak4hak3hqm6hqm6
+ \xe  showing love and care to others   
+@@ -187957,7 +187957,7 @@ shoulder
+ \xr  hap⁴ au² tuŋ² au²  
+ \so  phk_hap4au2tuN2au2    1
+ \xe  to receive or accept cordially
+-\xv  ꩭုံံꩡ︀ုံံꩬ︀ေ︀က︀ွ်ꩭပ︀်ဢ︀ွ်တ︀ုင︀်ဢ︀ွ်က︀ႃယ︀ွ်
++\xv  ꩭုံꩡ︀ုံꩬ︀ေ︀က︀ွ်ꩭပ︀်ဢ︀ွ်တ︀ုင︀်ဢ︀ွ်က︀ႃယ︀ွ်
+ \xr  hum¹ hum¹ com² com² sɛ⁶ kau² hap⁴ au² tuŋ² au² kā¹ yau⁴
+ \so  phk_hum1hum1com2com2sj6kau2hap4au2tuN2au2kaa1yau4
+ \xe  I gladly receive them in my hands
+@@ -188784,7 +188784,7 @@ wāi¹ mə² hən² kɔi⁴
+ \xr  hik⁴ wā⁵
+ \so  phk_hik4waa5
+ \xe  to say
+-\xv  လ︀ိက︀်တ︀ြႃၵ︀ံတ︀ေ︀ႃꩡ︀ွ်ၸ︀ိုꩫ︀်ꩫ︀ႝꩡ︀ံံ-ꩭိက︀်ꩡ︀ိုဝ︀်ꩡ︀ွ်ꩬ︀င︀်ၸ︀ႃက︀ုဝ︀်က︀ွႝꩫ︀ႃ
++\xv  လ︀ိက︀်တ︀ြႃၵ︀ံတ︀ေ︀ႃꩡ︀ွ်ၸ︀ိုꩫ︀်ꩫ︀ႝꩡ︀ံ-ꩭိက︀်ꩡ︀ိုဝ︀်ꩡ︀ွ်ꩬ︀င︀်ၸ︀ႃက︀ုဝ︀်က︀ွႝꩫ︀ႃ
+ \xr  lik⁴ trā² kham² tɔ̄¹ cau³ phün⁶ nai⁴ cam² hik⁴ cǖ⁵ cau³ sāŋ¹ phā¹ kō¹ kɔi⁴ nā²
+ \so  phk_lik4traa2kham2tQ1cau3phvn6nai4cam2hik4cV5cau3saaN1phaa1kO1kqi4naa2
+ \xe  this religious book is called saaN1phaa1ko1 by name
+@@ -190243,7 +190243,7 @@ and golden in the middle
+ \so  phk_hvN6 hI2
+ \xe  long time
+ 
+-\xv  ꩭိုင︀ꩰꩭီီ
++\xv  ꩭိုင︀ꩰꩭီ
+ \xr  hüŋ⁶ hüŋ⁶ hī² hī²
+ \so  phk_hvN6hvN6hI2hI2  
+ \xe  very long time
+@@ -190326,7 +190326,7 @@ and golden in the middle
+ \notes  ailot
+ \dt  16/Mar/2023
+ 
+-\lx  ꩭီီ
++\lx  ꩭီ
+ \le 
+ \ph  hī¹ hī¹
+ \so  phk_hI1hI1
+@@ -190339,7 +190339,7 @@ and golden in the middle
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ပ︀ိုꩫ︀်ၵ︀ုဝ︀်ꩭီီ
++\xv  ပ︀ိုꩫ︀်ၵ︀ုဝ︀်ꩭီ
+ \xr  pən⁵ kho⁶ hī¹ hī¹
+ \so  phk_pzn5kho6hI1hI1
+ \xe  they laugh with such a sound
+@@ -190347,7 +190347,7 @@ and golden in the middle
+ \notes  ailot
+ \dt  16/Mar/2023
+ 
+-\lx  ꩭီီ
++\lx  ꩭီ
+ \le 
+ \ph  hī¹ hī¹
+ \so  phk_hI1hI1
+@@ -190360,7 +190360,7 @@ and golden in the middle
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၸ︀ိꩫ︀ꩰꩭီီ
++\xv  ၸ︀ိꩫ︀ꩰꩭီ
+ \xr  phen³ phen³ hī¹ hī¹
+ \so  phk_phen3phen3hI1hI1
+ \xe  very finely, excellently, elegantly, proficiently
+@@ -191595,7 +191595,7 @@ flame and activated by the gas produce by illuminated lamp burn inside the chamb
+ \xr  hut⁴ kā¹ nī¹
+ \so  phk_hut4kaa1nI1
+ \xe  to smoke opium, to inhale the opium smoke
+-\xv  ꩭုတ︀််ꩬ︀်ေ︀လ︀ိက︀်
++\xv  ꩭုတ︀်ꩬ︀်ေ︀လ︀ိက︀်
+ \xr  hut⁴ sē¹ lik⁴
+ \so  phk_hut4sE1lik4
+ \xe  to smoke cigarette, to inhale the smoke of cigar
+@@ -192356,7 +192356,7 @@ lower garment )
+ \xr  ho⁶ pəŋ²
+ \so  phk_ho6pzN2
+ \xe  first, beginning
+-\xv  ꩭုဝ︀်ပ︀ိုင︀်ပ︀ႃလ︀ြႃမ︀ီꩬ︀ိပ︀်ယ︀ိုင︀််ꩡ︀ွ်ၸ︀ြႃ
++\xv  ꩭုဝ︀်ပ︀ိုင︀်ပ︀ႃလ︀ြႃမ︀ီꩬ︀ိပ︀်ယ︀ိုင︀်ꩡ︀ွ်ၸ︀ြႃ
+ \xr  ho⁶ pən² pa¹lā¹ mī¹sip¹ yəŋ⁵ cau³ phrā²
+ \so  phk_ho6pzn2pa1laa1mI1sip1yzN5cau3phraa2
+ \xe  the ten perfections of the Buddha
+@@ -192769,11 +192769,11 @@ because of being interested in the same thing to be in harmony
+ \xr  hum¹ kün² nū² laiŋ⁶ men²
+ \so  phk_hum1kvn2nU2laiN6men2
+ \xe  people are collected in a crowd in order to see the aeroplane 
+-\xv  ꩭုံံꩡ︀ုံံ
++\xv  ꩭုံꩡ︀ုံ
+ \xr  hum¹ hum¹ com² com¹
+ \so  phk_hum1hum1com2com2
+ \xe  gladly, happily, joyfully, delightfully, pleasurably, gratefully
+-\xv  က︀ွ်ꩭုံံꩡ︀ုံံꩬ︀ေ︀ꩭပ︀်ဢ︀ွ်တ︀ုင︀်ဢ︀ွ်ယ︀ွ်
++\xv  က︀ွ်ꩭုံꩡ︀ုံꩬ︀ေ︀ꩭပ︀်ဢ︀ွ်တ︀ုင︀်ဢ︀ွ်ယ︀ွ်
+ \xr  hum¹ hum¹ com² com² sɛ⁶ hao⁴ au² tuŋ² au² yau⁴
+ \so  phk_hum1hum1com2com2sj6hap4au2tuN2au2yau4
+ \xe  I gladly receive them in my hands, to gratefully acknowledged or accepted
+@@ -193336,7 +193336,7 @@ lit. to cover
+ \xr  kon² thau³ naŋ⁶ hū¹
+ \so  phk_kon2thau3naN6hU1
+ \xe  an aged person's skin is wrinkled
+-\xv  ꩭူꩭူꩭံံ
++\xv  ꩭူꩭူꩭံ
+ \xr  hū¹ hū¹ ham² ham² 
+ \so  phk_hU1 hU1ham2ham2 
+ \xe  (of clothes or paper etc.) in a state wrinkle and crinkle, lit. in a wrinkle and roll
+@@ -194459,7 +194459,7 @@ yok4taaN1nvm2Noi1maan1nam4pzn5hav3khvN5lU1taaN2taan2
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭွꩫ︀််က︀ႃ
++\xv  ꩭွꩫ︀်က︀ႃ
+ \xr  hɔn¹ kā²
+ \so  phk_hqn1 kaa2
+ \xe  more than that 
+@@ -195067,7 +195067,7 @@ to separte the unhusk from the husk
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭွံံꩭုၺꩰ
++\xv  ꩭွံꩭုၺꩰ
+ \xr  hɔm⁶ hɔm⁶ hui² hui²
+ \so  phk_hqm6hqm6hui2hui2
+ \xe  fragrant all around
+@@ -195372,7 +195372,7 @@ that water is meant for dyeing
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ꩭက︀ꩰꩭွံံ
++\xv  ꩭက︀ꩰꩭွံ
+ \xr  hak⁴ hak⁴ hɔm⁶ hɔm⁶
+ \so  phk_hak4hak4hqm6hqm6
+ \xe  lovingly and harmoniously
+@@ -195454,7 +195454,7 @@ that water is meant for dyeing
+ \notes  ailot
+ \dt  23/Apr/2020
+ 
+-\lx  ꩭွံံ
++\lx  ꩭွံ
+ \le 
+ \ph  hɔm¹ hɔm¹
+ \so  phk_hqm1hqm1
+@@ -195467,7 +195467,7 @@ that water is meant for dyeing
+ \pdn 
+ \dn 
+ \rf 
+-\xv  မ︀ွ်ꩭွံံ
++\xv  မ︀ွ်ꩭွံ
+ \xr  mau² hɔm¹ hɔm¹
+ \so  phk_mau2hqm1hqm
+ \xe  intensely light
+@@ -197100,7 +197100,7 @@ out of its pods and spreaded throught out the field  before reaping
+ \xr  hüŋ⁶ hüŋ⁶ nān² nān²
+ \so  phk_hvN6hvN6naan2naan2
+ \xe  very long time
+-\xv  ꩭိုင︀ꩰꩭီီ
++\xv  ꩭိုင︀ꩰꩭီ
+ \xr  hüŋ⁶ hüŋ⁶ hī² hī²
+ \so  phk_hvN6hvN6hI2hI2
+ \xe  very long time 
+@@ -197711,7 +197711,7 @@ offensive lit. head  is cloying
+ \xr  hüp⁴ pauk⁴ hüp⁴ pai²
+ \so  phk_hvp4pauk4hvp4pai2
+ \xe  to chase to and fro
+-\xv  ꩭိုပ︀််က︀ိုꩫ︀်လ︀ုၺ်က︀ိုꩫ︀်
++\xv  ꩭိုပ︀်က︀ိုꩫ︀်လ︀ုၺ်က︀ိုꩫ︀်
+ \xr  hüp⁴ kün² loi² kün²
+ \so  phk_hvp4kvn2loi2kvn2
+ \xe  to chase each other as to overtake 
+@@ -200976,7 +200976,7 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ႃက︀ျ ုဝ︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်ဢ︀ႃက︀ျွင︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်
++\xv  ဢ︀ႃက︀ျုဝ︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်ဢ︀ႃက︀ျွင︀်က︀ိုဝ︀်မ︀ႃယ︀င︀်
+ \xr  a¹ kyo² kə⁴ mā⁵ yaŋ⁶ a¹ kyauŋ² kə⁴ mā⁵ yaŋ⁶
+ \so  phk_a1kyo2kz4maa5yaN6a1kyauN2kz4maa5yaN6
+ \xe  to have no merit and also nothing appeared to be 
+@@ -201138,11 +201138,11 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဢ︀ႃက︀ျ ုဝ︀်မ︀က︀်
++\xv  ဢ︀ႃက︀ျုဝ︀်မ︀က︀်
+ \xr  ā¹ kyo² māk⁴
+ \so  phk_aa1kyo2maak4
+ \xe  much  merit, heap with  religious merit
+-\xv  ဢ︀ႃက︀ျ ုဝ︀်ဢ︀ႃမ︀ျႃ
++\xv  ဢ︀ႃက︀ျုဝ︀်ဢ︀ႃမ︀ျႃ
+ \xr  ā¹ kyo² ā¹ myā²
+ \so  phk_aa1kyo2aa1myaa2
+ \xe  religious merit and metta
+@@ -201363,7 +201363,7 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \notes  ailot
+ \dt  11/Jun/2023
+ 
+-\lx  ဢ︀ႃꩡ︀ꩡ︀ꩬ︀ီီ
++\lx  ဢ︀ႃꩡ︀ꩡ︀ꩬ︀ီ
+ \le 
+ \ph  a¹ cī² cī²
+ \so  phk_a1cI2cI2
+@@ -201443,7 +201443,7 @@ to bestow, to give for safe keeipng (either temporary or permanently)
+ \notes  ailot
+ \dt  25/Jul/2021
+ 
+-\lx  ဢ︀ႃꩡ︀ီီ
++\lx  ဢ︀ႃꩡ︀ီ
+ \le  ဢ︀ႃꩡ︀ီꩡ︀ီ
+ \ph  a¹ cī² cī²
+ \so  phk_a1cI2cI2
+@@ -201591,7 +201591,7 @@ asangkheyya
+ \notes 
+ \dt  17/Nov/2023
+ 
+-\lx  ဢ︀ႃꩬ︀ီꩬ︀ီီ
++\lx  ဢ︀ႃꩬ︀ီꩬ︀ီ
+ \le 
+ \ph  a¹ sī² sī²
+ \so  phk_a1sI2sI2
+@@ -204810,7 +204810,7 @@ enough to mind and throat
+ \xr  ī² kün² thī² kün¹
+ \so  phk_I2kvn2thI2kvn1
+ \xe  to be closely together and pushing each other 
+-\xv  ဢ︀ီီဢ︀်ံဢ︀်ံ
++\xv  ဢ︀ီဢ︀်ံဢ︀်ံ
+ \xr  ī² ī² ɛm² ɛm²
+ \so  phk_I2I2jm2jm2
+ \xe  to press closely each other as in a crowd
+@@ -206891,11 +206891,11 @@ lit. to carry in hand in both arms and shake and lift lightly
+ \xr  taiŋ² um³ pum³
+ \so  phk_taiN2um3pum3
+ \xe  melon is round in shape
+-\xv  မ︀ႃပ︀က︀်ဢ︀ုံပ︀ုုံံ
++\xv  မ︀ႃပ︀က︀်ဢ︀ုံပ︀ုုံ
+ \xr  ma¹ pak⁴ um³ pum³
+ \so  phk_ma1pak4um3pum3
+ \xe  a pumpkin is round in shape
+-\xv  ဢ︀ုံပ︀ုံပ︀က︀်ဢ︀ုံပ︀ုုံံတ︀ျိင︀်
++\xv  ဢ︀ုံပ︀ုံပ︀က︀်ဢ︀ုံပ︀ုုံတ︀ျိင︀်
+ \xr  um³ pum³ pak⁴ um³ pum³ taiŋ¹
+ \so  phk_um3pum3pak4um3pum3taiN1   
+ \xe  the round in cylinderical or spherical shape is pumpkin and  melon  
+@@ -208276,7 +208276,7 @@ a person
+ \xr  lauŋ⁵ kā⁵ ɔn¹
+ \so  phk_lauN5kaa5qn1
+ \xe  small business
+-\xv  ၵ︀ွံဢ︀ွꩫ︀်ꩡ︀ွꩫ︀်ꩫ︀ိုင︀််ယ︀င︀်လ︀ွုၺ်မ︀ၞ်
++\xv  ၵ︀ွံဢ︀ွꩫ︀်ꩡ︀ွꩫ︀်ꩫ︀ိုင︀်ယ︀င︀်လ︀ွုၺ်မ︀ၞ်
+ \xr  khām² ɔn¹ cɔn⁶ nüŋ⁵ yaŋ²
+ \so  phk_khaam2qn1cqn6nvN5yaN2
+ \xe  to have a few words with you
+@@ -208646,7 +208646,7 @@ world to be born, oh! glory (p) Anagami
+ \notes 
+ \dt  31/Jan/2024
+ 
+-\lx  ဢ︀ွံၵ︀ံွ
++\lx  ဢ︀ွံၵ︀ွံ
+ \le 
+ \ph  ɔm³ khɔm³
+ \so  phk_qm3khqm3
+@@ -208937,7 +208937,7 @@ world to be born, oh! glory (p) Anagami
+ \xr  ɔm¹ ta¹ lɔm¹ 
+ \so  phk_qm1ta1lqm1maak1nin1
+ \xe  to make a small mud ball 
+-\xv  ဢ︀ွံတ︀ြွံက︀ႃမ︀ေ︀ႃတ︀ွံက︀င︀်ၵ︀ိုꩫ︀်က︀င︀်ဝ︀ꩫ︀်ပ︀ႝတ︀ွံံဝ︀ွႃတ︀ီꩬ︀င︀် ꩡ︀ွ်ꩫ︀ိုꩫ︀်မ︀ၞ်
++\xv  ဢ︀ွံတ︀ြွံက︀ႃမ︀ေ︀ႃတ︀ွံက︀င︀်ၵ︀ိုꩫ︀်က︀င︀်ဝ︀ꩫ︀်ပ︀ႝတ︀ွံဝ︀ွႃတ︀ီꩬ︀င︀် ꩡ︀ွ်ꩫ︀ိုꩫ︀်မ︀ၞ်
+ \xr  ɔm¹ tlɔm¹ kā⁵ mɔ³ tɔm¹ kāŋ² khün² kāŋ² wan² pai² tɔm¹ tɔm¹ wā⁵ tī⁵ saŋ⁶ wā⁵ tī⁵ cau³ nən² maü¹
+ \so  phk_qm1ta1lqm1kaa5mq3tqm1kaaN2khvn2kaaN2wan2pai2tqm1tqm1waa5tI5saN6waa5tI5cau3nzn2mav1
+ \xe  a round object similar to a round pot moving day night what does it mean, it
+@@ -209787,7 +209787,7 @@ roll it into the hot ash of live fire to cook
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ထ︀ီီဢ︀်ံဢ︀်ံ
++\xv  ထ︀ီဢ︀်ံဢ︀်ံ
+ \xr  thī² thī² ɛm² ɛm²
+ \so  phk_thI2thI2jm2jm2
+ \xe  in a state of press closely together
+@@ -211942,7 +211942,7 @@ stomach noisily through the mouth
+ \notes  ailot
+ \dt  08/Jun/2023
+ 
+-\lx  ဢ︀ျိပ︀်က︀ျိပ︀််
++\lx  ဢ︀ျိပ︀်က︀ျိပ︀်
+ \le  ဢ︀ိပ︀်က︀ိပ︀်
+ \ph  ɛp³ kɛp³
+ \so  phk_jp3kjp3
+@@ -212101,7 +212101,7 @@ stomach noisily through the mouth
+ \notes  ailot
+ \dt  08/Jun/2023
+ 
+-\lx  ဢ︀ံွလ︀ွံ
++\lx  ဢ︀ွံလ︀ွံ
+ \le 
+ \ph  ɔm¹ lɔm⁵
+ \so  phk_qqm1lqm5
+@@ -212255,7 +212255,7 @@ stomach noisily through the mouth
+ \xr  tɔp¹ kɛ̄³
+ \so  phk_tqp1kj3
+ \xe  answer, to answer, in the sense of solving a question, to explain
+-\xv  က︀ေ︀ၵ︀ံွက︀ိုꩫ︀်
++\xv  က︀ေ︀ၵ︀ွံက︀ိုꩫ︀်
+ \xr  kɛ̄³ khām² kün²
+ \so  phk_kJ3khaam2kvn2.wav
+ \xe  to discuss and give reason for (solving a problem) 
+@@ -215352,7 +215352,7 @@ an epithet of  the Nirvana (p) khema +amata
+ \xr  ŋoi¹ mān¹
+ \so  phk_Noi1maan1.wav 
+ \xe  pure money
+-\xv  မ︀င︀်က︀ိင︀်ꩬ︀ုၺ်꩷တ︀ိျက︀်င︀ုၺ်ꩫ︀ၞ်ꩭိုꩫ︀် က︀ွႝက︀ိုꩫ︀်ဝ︀ႝက︀်ံမ︀ေ︀ပ︀ုက︀်ပ︀ꩫ︀်
++\xv  မ︀င︀်က︀ိင︀်ꩬ︀ုၺ်꩷တ︀ျိက︀်င︀ုၺ်ꩫ︀ၞ်ꩭိုꩫ︀် က︀ွႝက︀ိုꩫ︀်ဝ︀ႝက︀်ံမ︀ေ︀ပ︀ုက︀်ပ︀ꩫ︀်
+ \xr  māŋ² kiŋ¹ soi¹ əi² taik⁴ ŋoi¹ naü² hən² kɔi² kün² wai⁴ kɛm² mɛ² pok⁴ pan¹
+ \so  phk_maaN2kiN1soi1zi2taik4Noi1nav2hzn2kqi2kvn2wai4kjm2mj2pok4pan1.wav 
+ \xe  Like many leaves and branches, oh, there is a money box in the house, stored and wrapped
+@@ -217687,7 +217687,7 @@ about the person or thing seen, heard or already mention, known by the speaker
+ \xr  khāŋ⁶ kɔ⁴ yaŋ² sɛ¹ nɛ⁶
+ khāŋ⁶kɔ⁴yaŋ²sɛ¹nɛ⁶
+ \xe  there having the Nagas also
+-\xv  ပ︀ႃထ︀ိုꩫ︀််ယ︀င︀်ꩬ︀ေ︀ꩫ︀ေ︀  
++\xv  ပ︀ႃထ︀ိုꩫ︀်ယ︀င︀်ꩬ︀ေ︀ꩫ︀ေ︀  
+ \xr  pā¹ thən¹ yaŋ² sɛ¹ nɛ⁶  
+ \so  phk_paa1thzn1yaN2sj1nj6
+ \xe  there is having a forest 
+@@ -218201,7 +218201,7 @@ ostentatious person
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ယ︀ိꩫ︀််ꩬ︀ွေ︀ꩬ︀ွေ︀
++\xv  ယ︀ိꩫ︀်ꩬ︀ွေ︀ꩬ︀ွေ︀
+ \xr  yen² soi¹ soi¹
+ \so  phk_yen2soi1soi1
+ \xe  intensely cool
+@@ -219491,7 +219491,7 @@ lit. face to face eye to eye
+ \ps  adj.
+ \de  easy
+ \ge  easy
+-\pl  ႝႝ
++\pl  ႝ
+ \pd 
+ \pde 
+ \pdn 
+@@ -219653,7 +219653,7 @@ as one's toe against something while walking or each other head while crossing b
+ \xr  tɔ⁵ kɔi² 
+ \so  phk_tq5kqi2
+ \xe  only, alone, although, nevertheless 
+-\xv  တ︀ေ︀ႃက︀ွႝတ︀ုဝ︀်ꩫ︀ိဝ︀်မ︀ုက︀်ꩬ︀ိုဝ︀်လ︀ေ︀မ︀ျိပ︀်ပ︀ွံံထ︀ိုꩫ︀်က︀င︀် ႜ ဝ︀ွႃꩫ︀ႝတ︀ေ︀ယ︀ွ်
++\xv  တ︀ေ︀ႃက︀ွႝတ︀ုဝ︀်ꩫ︀ိဝ︀်မ︀ုက︀်ꩬ︀ိုဝ︀်လ︀ေ︀မ︀ျိပ︀်ပ︀ွံထ︀ိုꩫ︀်က︀င︀် ႜ ဝ︀ွႃꩫ︀ႝတ︀ေ︀ယ︀ွ်
+ \xr  tɔ⁵ kɔi² to² neu² muk⁴ so² lɛ¹ mɛp¹ pɔm² thən¹ kāŋ³ waa⁵ nai⁶ tɛ⁴ yau⁴
+ \so  phk_tq5kqi2to2neu2muk4so2lj1mjp1pqm2thzn1kaaN3waa5nai6tj4yau4
+ \xe  it is said, a hunter lonely wandering around the big forest hiddingly  
+@@ -220350,7 +220350,7 @@ something or do something again or more
+ \xr  mün² toi² me² mün²
+ \so  phk_mvn2toi2me2mvn2
+ \xe  he suspect his wife 
+-\xv  က︀ေ︀ႃꩫ︀ꩫ︀်တ︀ွေ︀ꩡ︀ႃက︀ွ််
++\xv  က︀ေ︀ႃꩫ︀ꩫ︀်တ︀ွေ︀ꩡ︀ႃက︀ွ်
+ \xr  kɔ⁴ nan⁴ toi² cā⁵ kau²
+ \so  phk_kq4nan4toi2caa5kau2
+ \xe  that man  suspects me 
+@@ -220953,7 +220953,7 @@ weak, wilt, lose one's energy
+ \xr  khɔ³ khai⁵ lāi⁶ thoi¹ tāŋ¹ tī⁵ khyā²
+ \so  phk_khq3 khai5 laai6 thoi1taaN1tI5khyaa2
+ \xe  to discuss about many 
+-\xv  က︀ွင︀်ယ︀ံတ︀ိုဝ︀်ၵ︀ုံံလ︀ႝထ︀ွေ︀
++\xv  က︀ွင︀်ယ︀ံတ︀ိုဝ︀်ၵ︀ုံလ︀ႝထ︀ွေ︀
+ \xr  kauŋ² yām² tə⁴ khum² khm³ lāi⁶ thoi¹
+ \so  phk_kauN2yaam2tz4khum2khm3laai6thoi1
+ \xe  the drum, gong are beaten sounding < khum khum > in different type of sound
+@@ -223769,7 +223769,7 @@ Phake women
+ \xr  hɔ² haü³ pyɔ² haü³
+ \so  phk_hq2hav3pyq2hav3
+ \xe  to blesss
+-\xv  ꩭေ︀ႃပ︀ျေ︀ႃꩬ︀တ︀််တ︀ွႃတ︀ုဝ︀်ꩡ︀ၞ်
++\xv  ꩭေ︀ႃပ︀ျေ︀ႃꩬ︀တ︀်တ︀ွႃတ︀ုဝ︀်ꩡ︀ၞ်
+ \xr  hɔ² pyɔ² sat⁴ twa¹ to² caü²
+ \so  phk_hq2pyq2sat4 twa1to2cav2
+ \xe  to blesss to all the living being
+@@ -225467,7 +225467,7 @@ exclaimed in sorrow,  disgust with disappointment, pain  lit. Oh! mother,
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ၵ︀ွ်ꩬ︀ွင︀််မ︀ေ︀ႃ
++\xv  ၵ︀ွ်ꩬ︀ွင︀်မ︀ေ︀ႃ
+ \xr  khau³ sauŋ⁶ mɔ³ 
+ \so  phk_khau3sauN6mq3 
+ \xe  two potfull  of rice 
+@@ -228087,7 +228087,7 @@ and other objects. (Coix lacryma-jobi ) also call < yoi2 >
+ \dt  07/Jun/2023
+ 
+ \lx  လ︀ွေ︀ထ︀ွေ︀
+-\le  လ︀ွုၺ် ထ︀ွၺု်
++\le  လ︀ွုၺ် ထ︀ွၺ်ု
+ \le  လ︀ုၺ်ထ︀ုၺ်
+ \ph  loi⁴ thoi⁴
+ \so  phk_loi4thoi4
+@@ -228319,7 +228319,7 @@ and wish in repeatative murmuring sound
+ \pdn 
+ \dn 
+ \rf 
+-\xv  ဝ︀ွေ︀ဢ︀ႃက︀ျ ုဝ︀်
++\xv  ဝ︀ွေ︀ဢ︀ႃက︀ျုဝ︀်
+ \xr  woi¹ a¹ kyo²
+ \so  phk_woi1a1kyo2
+ \xe  to bless, to share the religious merit
+@@ -229248,7 +229248,7 @@ began to flow out
+ \xr  hoi² sēŋ⁶
+ \so  phk_hoi2sEN6
+ \xe  to talk, to say, to speak, to tell
+-\xv  ꩭုၺ်ꩬ︀ိင︀်က︀ႝလ︀ံံတ︀ꩫ︀်လ︀တ︀
++\xv  ꩭုၺ်ꩬ︀ိင︀်က︀ႝလ︀ံတ︀ꩫ︀်လ︀တ︀
+ \xr  hoi² sēŋ⁶ kāi¹ lam² lam² tāŋ³ lāt⁴
+ \so  phk_hoi2sEN6kaai1lam2lam2taaN3laat4
+ \xe  to talk about many thing
+@@ -231130,3 +231130,385 @@ also <q ka>
+ \pde 
+ \pdn 
+ \dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  14/Aug/2020
++
++\lx  ၸ︀ြတ︀်
++\le  ၸ︀တ︀်
++\ph  phāt¹
++\so  phk_phaat1
++\ps  n.
++\de  evaluate, to evaluate
++\ge  evaluate
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\le  လ︀ိတ︀်ၸ︀ြတ︀်ၵ︀ွုꩫ︀်
++\xr  lit⁴ phāt¹ khon⁴
++\so  phk_lit4phaat1khon4
++\xe  to evaluate
++\xv  က︀ိၺꩡ︀ွ် လ︀ိတ︀ ၸ︀ြတ︀ ၵ︀ွုꩫ︀ ပ︀ꩫ︀ က︀ွꩫ︀ ꩫ︀်ေ︀ꩭွႃ်
++\xr  kɛ²¹ cau² lit⁴ phāt¹ khon⁴ pān² kɔn¹ nɛ⁶ hau² hɔ²
++\so  phk_kjn1cau2lit4phaat1khon4paan2kqn1nj6hau2haa2.wav
++\xe  The Buddha unfolds and evaluates his earlier life, showing us
++\xn 
++\notes  ailot
++\dt  25/Feb/2024
++
++\lx  ၜၸ︀ႃ 
++\le 
++\ph  |phrā²
++\so  phk_phraa2
++\ps  n.
++\de  Lord Buddha, a Buddha image 
++\ge  Lord Buddha
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv  ꩡ︀ွ်ၸ︀ြႃ
++\xr  cau³ phrā²
++\so  phk_cau3phraa2
++\xe  Lord Buddha 
++\xv  ၸ︀ြႃယ︀ွတ︀်ꩡ︀ွ်
++\xr  phrā² yɔt⁴ cau³
++\so  phk_phraa2yqt4cau3
++\xe  Lord  Buddha
++\xv  ၸ︀ြႃတ︀ြႃꩬ︀င︀်ၵ︀ႃ
++\xr  phrā² trā² sāŋ¹ khā¹
++\so  phk_phraa2traa2saaN1kha1
++\xe  the Budhha, Dhamma, Sangha
++\xv  ꩡ︀ွ်ၸ︀ြႃၵ︀ျွတ︀်က︀ွုꩫ︀်မ︀ိုင︀်က︀င︀်  
++\xr  cau³ phrā² khyɔt⁴ kon² məŋ² kāŋ²  
++\so  phk_cau3phraa2khyqt4kon2mzN2kaaN2  
++\xe  Lord Buddha released the beings in the world from miseries
++
++\xn 
++\se  ၸ︀ြႃတ︀ႃယ︀ႃက︀ႃ
++\le 
++\ph  phrā² ta¹ yā¹ kā¹
++\so  phk_phraa2ta1yaa1kaa1
++\ps  n.
++\de  the Buddhist 
++\ge  Buddhist
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ꩭင︀်ၸ︀ြႃ
++\le 
++\ph  hāŋ⁵ phrā²
++\ps  n.
++\de  a Buddha image 
++\ge  Buddha image 
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၸ︀ြႃꩬ︀ျိင︀်ꩫ︀ွ်
++\le 
++\ph  |phrā² saiŋ⁶ nāu²
++\so  phk_phraa2saiN6naau2
++\ps  n.
++\de  a Buddha statue made of white stone
++\ge  Buddha statue of white stone 
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၸ︀ြႃတ︀ႃက︀ႃ
++\le 
++\ph  pha² ta¹ kā
++\so  phk_pha2ta1kaa1
++\ps  n.
++\de  the Buddhist 
++\ge  Buddhist
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၜၸ︀ႃပ︀ိꩫ︀်ꩡ︀ွ်
++\le 
++\ph  phrā² pen² cau³
++\so  phk_phraa2pen2cau3
++\ps  n.
++\de  Lord Buddha
++\ge  Lord Buddha
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၸ︀ြႃꩭုꩫ︀်တ︀ွင︀်
++\le 
++\ph  phrā² hun² tauŋ²
++\so  phk_phraa2hun2tauN2
++\ps  n.
++\de  Lord Buddha image made of brasss
++\ge  Buddha.image
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၸ︀ြႃဢ︀ိုၺ်
++\le 
++\ph  phrā² əi²
++\so  phk_phaa2 Zi2
++\ps  exclam.
++\de  Oh! Lord Buddha
++\ge  Oh! Buddha
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\se  ၸ︀ြႃၸ︀ြႃ
++\le 
++\ph  phrā² phrā²
++\so  phk_phraa2phraa2
++\ps  exclam.
++\de  oh! Lord, oh! Lord,  used in exclamation expressing surprise, worry, 
++\ge  EXCLAM
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  11/Jan/2022
++
++\lx  ၸ︀ြုင︀်ꩬ︀ုင︀်ၸ︀်ြင︀်ꩬ︀င︀်
++\le 
++\ph  phluŋ¹ suŋ⁵ phlaŋ⁴ sāŋ⁴ 
++\so  phk_phluN1suN5phlaN4saaN4 
++\ps  adv.
++\de  to do roughly, carelessly
++\ge  roughly
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  17/Aug/2021
++
++\lx  ၸ︀ြူ
++\le 
++\ph  phrū⁴
++\so  phk_phrU4
++\ps  onom
++\de  Onom- the sound of many birds, being scattered and flying away
++\ge  Onom
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv  ၸ︀ြူꩡ︀ိက︀်ꩡ︀ွက︀်
++\xr  phrū⁴ cik¹ cauk¹
++\so  phk_phrU4cik1cauk1
++\xe  flew away and disperse in different direction
++\xn 
++\notes  ailot
++\dt  30/Jun/2020
++
++\lx  မ︀ြꩡ︀ွႃ
++\le  မ︀တ︀်ꩡ︀ွႃ
++\ph  met⁴ cwā¹
++\so  phk_met4cwaa1
++\ps  adj.
++\de  metta, compassionate, feeling or showing compassion or affection
++\ge  affectionate
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  03/Aug/2021
++
++\lx  မ︀ြတ︀်
++\le 
++\ph  mat⁴
++\so  phk_mat4
++\ps  adj.
++\de  excellent, outstanding, sacred
++\ge  sacred
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes 
++\dt  09/Mar/2024
++
++\lx  ၂လ︀ႃ (တ︀ႃꩫ︀င︀်က︀ႃလ︀ႃ)
++\le 
++\ph  sauŋ⁶ lā¹ (ta¹ naŋ¹ ka¹ lā¹)
++\so  phk_sauN6laa1
++\ps  n.
++\de  2 is monday, abbreviations for the names of monday, based on their position in the week ( bookish )
++\ge  monday
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  16/May/2021
++
++\lx  ၄ꩭူ (ပ︀ုက︀်တ︀ႃꩭူ)
++\le 
++\ph  sī¹ hū² ( puk⁴ ta¹ hū² )
++\so  phk_sI1hU2
++\ps  n.
++\de  4 is wednesday, abbreviations for the names of wednesday, based on their position in the week ( bookish )
++\ge  wednesday
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  16/May/2021
++
++\lx  ၅တ︀ေ︀ (က︀ျႃꩬ︀ပ︀်ပ︀ႃတ︀ေ︀)
++\le 
++\ph  hā³ te² (kyā¹ sap¹ pa¹ tē²)
++\so  phk_haa3te2
++\ps  n.
++\de  5 is thursday, abbreviations for the names of thursday, based on their position in the week ( bookish )
++\ge  thursday
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  16/May/2021
++
++\lx  ၁ꩫ︀ွေ︀ (တ︀ႃꩫ︀င︀်က︀ႃꩫ︀ွေ︀)
++\le 
++\ph  nüŋ⁵ noi¹ (ta¹ naŋ¹ ka¹ noi¹)
++\so  phk_nvN5noi¹
++\ps  n.
++\de  1 is sunday, abbreviations for the names of sunday, based on their position in the week ( bookish )
++\ge  sunday
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  16/May/2021
++
++\lx  ၇ꩫ︀်ေ︀ (ꩡ︀ႃꩫ︀်ေ︀)
++\le 
++\ph  cet¹ nē¹ (ca¹ nē¹)
++\so  phk_cet1 nE1
++\ps  n.
++\de  7 is saturday, abbreviations for the names of saturday, based on their position in the week ( bookish 
++\ge  saturday
++\pl 
++\pd 
++\pde 
++\pdn 
++\dn 
++\rf 
++\xv 
++\xr 
++\xe 
++\xn 
++\notes  ailot
++\dt  11/Mar/2022
