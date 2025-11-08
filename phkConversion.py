@@ -8,6 +8,9 @@ import re
 import sys
 
 from docx.oxml.ns import qn
+from docx.oxml.shared import OxmlElement, qn
+
+from docx.shared import Pt
 
 from converterBase import ConverterBase
 
@@ -16,9 +19,8 @@ VARIANT_SELECTOR = '\uFE00'
 # This font as an output does not use 0x00A0 to connect doubled vowels
 FONT_WITHOUT_NBSP = 'Phake Ramayana Unicode'
 
+
 # Reverse characters
-
-
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
 
@@ -27,24 +29,25 @@ def sub321(m):
 def sub21(m):
     return m.group(2) + m.group(1)
 
+
 # Swap order of ra and consonant
 
 
 def sub_ra(m):
     return m.group(3) + m.group(2)
 
-# For moving e-vowel, and dropping unreordered flag
 
+# For moving e-vowel, and dropping un-reordered flag
 def sub9cc(m):
     # When 9c7 is just before 9cc, change the second to 9d7
-    return  '\u09c7' + m.group(2)
+    return '\u09c7' + m.group(2)
+
 
 def fix_e_consonant(m):
     return m.group(3) + m.group(2)
 
-# For moving e-vowel, and dropping unreordered flag
 
-
+# For moving e-vowel, and dropping un-reordered flag
 def fix_e_r_consonant(m):
     return m.group(5) + m.group(4) + m.group(2)
 
@@ -53,7 +56,7 @@ def sub3dfor2c2c(m):
     return '\U0001173d'
 
 
-def remdup(m):
+def remove_dup(m):
     return m.group(1)
 
 
@@ -62,11 +65,15 @@ def insert200d(m):
 
 
 def insert200b(m):
-    return m.group(1) + '\u200d' + m.group(2)
+    return m.group(1) + '\u200b' + m.group(2)
+
+
+def remove_break(m):
+    return m.group(1)
 
 
 # Very special case to fix typo with duplicated 'uM'
-def remdup_u_m(m):
+def remove_dup_u_m(m):
     return '\u102f\u1036'
 
 
@@ -99,16 +106,29 @@ def remove_space_before(m):
     return m.group(1)
 
 
-def vs_replacer(matchobj):
-    return matchobj.group(0) + VARIANT_SELECTOR
+def vs_replacer(match_obj):
+    return match_obj.group(0) + VARIANT_SELECTOR
+
 
 # Character constants for conversion
+
+
+def insert_break_fn(match_obj):
+    new_text = '\u200b' + match_obj.group(0)
+    return new_text
 
 
 class PhakeConverter(ConverterBase):
     private_use_map = {
         'Phake Script': {
-            "...": '\u2026',
+            ':': '\u1038',  # ???
+            '½': '\u104b',  # ???
+            '=': '=',
+            '\u2018': '\u2018', # ???
+            "\u2026": '\u2026',
+            ',': ',',
+            '.': '.',
+            '!': '!',  # ???
             "A": "ဢ",
             "B": "ꩰ",
             "C": "\u108a",
@@ -151,7 +171,7 @@ class PhakeConverter(ConverterBase):
             "n": "ꩫ",
             "o": "ွ",
             "p": "ပ",
-            "q": "်",
+            "q": "\u103a",  # ?? u103a
             "r": "\uAA7A",
             "s": "\uaa6c",
             "t": "တ",
@@ -169,7 +189,7 @@ class PhakeConverter(ConverterBase):
             "[": "\u200c\u103c",
             "|": "\u1039\u101c",
             "]": "\u200c\u103c",
-            "{": "ၜ",
+            "{": "\u200c\u103c",
             "}": "\u103a\u103d",
             "~": "",
             "1": "၁",
@@ -190,8 +210,7 @@ class PhakeConverter(ConverterBase):
             "&": "\u00a0\u109d",
             "`": "`",
             " ": " ",
-            ".": ".",
-            "\t": "\t"
+            "\t": "\t",
         },
         'Phake Ramayana': {
             "\t": '\t',
@@ -238,7 +257,7 @@ class PhakeConverter(ConverterBase):
             "n": "ꩫ",
             "o": "ွ",
             "p": "ပ",
-            "q": "်",
+            "q": "\u103a",
             "r": "\uAA7A",
             "s": "\uaa6c",
             "t": "တ",
@@ -256,7 +275,7 @@ class PhakeConverter(ConverterBase):
             "[": "\u200c\u103c",
             "|": "\u1039\u101c",
             "]": "\u200c\u103c",
-            "{": "ၜ",
+            "{": "\u200c\u103c",
             "}": "\u103a\u103d",
             "~": "",
             "1": "၁",
@@ -278,8 +297,11 @@ class PhakeConverter(ConverterBase):
             "`": "`",
             " ": " ",
             ".": ".",
+            "…": "…"
         },
         'Aiton Script': {
+            '\u00a0': '\u00a0',
+            ',': ',',
             "A": "ဢ",
             "B": "ꩰ",
             "C": "\u108a",
@@ -343,6 +365,7 @@ class PhakeConverter(ConverterBase):
             "{": "\u200c\u103c",
             "}": "\u105c",
             "~": "\u1039\u101a",
+            "_": "꩹",
             "1": "၁",
             "2": "၂",
             "3": "၃",
@@ -352,15 +375,19 @@ class PhakeConverter(ConverterBase):
             "7": "၇",
             "8": "၈",
             "9": "၉",
-            "0": "၀",           
+            "0": "၀",
             "%": "\u00a0\u103a",
             "&": "\u00a0\u109d",
-            "`":  "\u1039ꩡ",
+            "`": "\u1039ꩡ",
             ".": ".",
             " ": " ",
-            "\t": "\t"
+            "\t": "\t",
+            "…": "…",
+            '¥': '¥',
+
         },
         'Banchob': {
+            ' ': ' ',
             'N': 'ŋ',
             'M': 'ñ',
             'j': 'ɛ',
@@ -385,8 +412,16 @@ class PhakeConverter(ConverterBase):
             '7': '⁷',
             '8': '⁸',
             '9': '⁹',
+            "…": "…"
         },
         'Assam New': {
+            #'»¶': '»¶',  # ???
+            '\t': '\t',
+            #'»¶': '»¶',  # ???
+            #'¡¶': '¡¶',  # ???
+            #'¥': '¥',    # ???
+            ' ': ' ',
+            '¶': '\u09aa',  ## Update
             "¡": 'ক',
             "¢": 'খ',
             "¤": 'গ',
@@ -396,7 +431,7 @@ class PhakeConverter(ConverterBase):
             "©": 'ছ',
             "ª": 'জ',
             "¬": 'ঝ',
-            "\u00AD": 'ঞ',  # Soft hyphen
+            "\u00ad": 'ঞ',  # Soft hyphen
             '¯': 'ট',
             '°': 'ঠ',
             '±': 'ড',
@@ -404,13 +439,13 @@ class PhakeConverter(ConverterBase):
             '³': 'ণ',
             '´': 'ৎ',
             'µ': 'ত',
-            '¶': 'থ',
             '·': 'দ',
             '¸': 'ধ',
             '¹': 'ন',
             '»': 'প',
             '¼': 'ফ',
             '¾': 'ব',
+            'A': '\u2019',
             'À': 'ভ',
             'Á': 'ম',
             'Â': 'য',
@@ -439,7 +474,6 @@ class PhakeConverter(ConverterBase):
             'c': 'ঐ',
             'F': 'ও',
             'w': 'ঔ',
-
             'Ò': 'া',
             'Ô': 'ি',
             'å': 'ি',
@@ -453,7 +487,14 @@ class PhakeConverter(ConverterBase):
             'ì': '\u09cd',
             'p': '\u09cd\u09af',
             'x': '\u09aa',
-            'V': '\u0995\u09cd\u09b7'
+            'V': '\u0995\u09cd\u09b7',
+            "…": "…",
+            ",": ',',
+            '(': '(',
+            ')': ')',
+            '/': '/',
+            '#': '/#',
+            '\"': '\"',
         }
     }
 
@@ -489,10 +530,20 @@ class PhakeConverter(ConverterBase):
 
     def __init__(self, old_font_list=None, new_font=None,
                  default_output_font='Phake Ramayana Unicode'):
+        self.font_index = None
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
-        self.FONFONTS_TO_CONVERTTS_TO_CONVERT = list(self.private_use_map.keys())
+        super().__init__(self.FONTS_TO_CONVERT, new_font, default_output_font)  # Call the parent class's __init__
 
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.ONE_POINT_FACTOR = 12700  # for each "point" of the font size
+        self.current_table = None
+        self.add_grapheme_boundary_char = True
         self.old_font_name = self.FONTS_TO_CONVERT[0]
+        self.reset_font_size = True
+
+        self.grapheme_boundary_char = '\u200b'
+        self.add_grapheme_boundary_char = True
 
         # Initialize splitting by regex based on each script's keys
         self.split_by_script = {}
@@ -506,7 +557,15 @@ class PhakeConverter(ConverterBase):
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
-            '([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60-\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])')
+            '([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60'
+            '-\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])')
+
+        # Matches characters that can have a break \u200b before
+        self.break_before_old = re.compile(
+            '[^\u102b-\u1035\u1040-\u104b\u1056-\u1059\u1062-\u106d\u1072-\u1074\u1082-\u108d\u1090-\u1099\u109a'
+            '-\u109d\uaa7b-\uaa7d]')
+        self.insert_break_char = '\u200b'
+        self.break_before = re.compile('([\u1000-\u102a\u1075-\u1081\u1087-\u108a\uaa61-\uaa6d])')
 
         self.add_variant_selectors = True
         self.handle_sentences = False
@@ -514,12 +573,14 @@ class PhakeConverter(ConverterBase):
         # Special flag for including ZW
         self.encoding = 0  # Default
         self.encodingScripts = self.FONTS_TO_CONVERT  # If given, tells the Script of incoming characters
-        if old_font_list:
+        if not old_font_list:
             self.oldFonts = self.FONTS_TO_CONVERT
         else:
             self.oldFonts = old_font_list
 
-        # For Phake Script to Phake Ramayana
+        # print('!!! PHAKE: oldFonts: ', self.oldFonts)
+
+        # For Phake Script to Phake Ramayana Unicode
         self.font_resize_factor = 0.8
 
         self.token_splitter = None
@@ -529,9 +590,9 @@ class PhakeConverter(ConverterBase):
         self.scriptIndex = 0
 
         self.font_substitution = {
-            'Phake Script': 'Ramayana Unicode',
-            'Phake Ramayana': 'Ramayana Unicode',
-            'Aiton Script': 'Ramayana Unicode',
+            'Phake Script': 'PhakeRamayanaUnicode',
+            'Phake Ramayana': 'PhakeRamayanaUnicode',
+            'Aiton Script': 'PhakeRamayanaUnicode',
             'Assam New': 'Noto Serif Bengali'
         }
         if new_font:
@@ -559,7 +620,7 @@ class PhakeConverter(ConverterBase):
         self.setLowerMode(True)
         self.setSentenceMode(True)
 
-        self.end_of_sentence_pattern = re.compile(r'([\.\?!⸮؟$])')
+        self.end_of_sentence_pattern = re.compile(r'([.?!⸮؟$])')
 
         # For inserting question and exclamation before sentences.
         self.pre_punctuation = {
@@ -620,25 +681,28 @@ class PhakeConverter(ConverterBase):
             [r'([\u103b\u103c\u103d])(\u105e)', sub21],
 
             # Remove duplicate of uMuM
-            [r'(\u102f\u102f)(\u1036\u1036)', remdup_u_m],
+            [r'(\u102f\u102f)(\u1036\u1036)', remove_dup_u_m],
 
             # Special case to handle II$ and III
             [r'(\u102e)(\u102e)(\u102e)', fix_triples],
 
             # Handle duplicates
-            [r'(\u103b)(\u103b)', remdup],
-            [r'(\u103c)(\u103c)', remdup],
-            [r'(\u105e)(\u105e)', remdup],
+            [r'(\u103b)(\u103b)', remove_dup],
+            [r'(\u103c)(\u103c)', remove_dup],
+            [r'(\u105e)(\u105e)', remove_dup],
 
             # Assamese reordering
             [r'([\u09bf\u09c7-\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub21],
 
             # Change second one to a different character
             [r'([\u09cc])([\u0985-\u09b9\u09dc-\u09fd])', sub9cc],
-            [r'([\u09cc])([\u09cc])', remdup],
+            [r'([\u09cc])([\u09cc])', remove_dup],
 
-            # Reprder
+            # Reorder
             [r'([\u0981])([\u09be])', sub21],
+            [r'([1038])([\u109d])', sub21],
+
+            [r'(\u200b)([1038])', remove_break],
 
             # Insert between
             [r'([\u09cd])([\u09be])', insert200d],
@@ -647,7 +711,7 @@ class PhakeConverter(ConverterBase):
             [r'([\u09cd])([[\u09a1-\u09a5\u0997\u09b2])', insert200b],
         ]
 
-        # How to replace this doubled form. It appear to be font-specific.
+        # How to replace this doubled form. It appears to be font-specific.
         self.pattern_replace_list.append([r'(\u103a)(\u103a)', convert_double_sat])
 
         if self.thisDefaultOutputFont != FONT_WITHOUT_NBSP:
@@ -664,7 +728,7 @@ class PhakeConverter(ConverterBase):
 
     def reorderText(self, in_text):
         # Next, move some code points in context to get proper Unicode ordering.
-        # e.g, vowel sign to right of consonants,.
+        # e.g, vowel sign to right of consonants.
         new_text = in_text
         for pair in self.pattern_replace_list:
             new_text = re.sub(pair[0], pair[1], new_text)
@@ -683,7 +747,7 @@ class PhakeConverter(ConverterBase):
     # def tokenizeText(self, text_in):
     #     # ASCII and whitespace characters
     #     if self.scriptIndex == 0:
-    #         return [i for i in re.split(r'([\w\s\.])', text_in) if i]
+    #         return [i for i in re.split(r'([\w\s.])', text_in) if i]
     #     elif self.scriptIndex == 4:
     #         return text_in
 
@@ -691,28 +755,25 @@ class PhakeConverter(ConverterBase):
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
     def convertText(self, text_in, fontTextInfo=None,
-                    font_index=0, inputFont=None):
+                    font_index=0, input_font=None):
         # For passing these values along as needed
         # self.encoding = self.encodingScripts[font_index]
         self.font_index = font_index
-        # print('fontIndex %s, encoding = %s' % (font_index, self.encoding))
-        encoding_index = font_index
-        encoding_map = {}
 
-        if inputFont:
+        if input_font:
             try:
-                font_index = self.FONTS_TO_CONVERT.index(inputFont)
+                font_index = self.FONTS_TO_CONVERT.index(input_font)
             except BaseException:
                 # Font not found. Return the text
                 return text_in
         else:
-            inputFont = self.FONTS_TO_CONVERT[font_index]
+            input_font = self.FONTS_TO_CONVERT[font_index]
 
         if font_index < len(self.FONTS_TO_CONVERT):
-            self.encoding = inputFont
+            self.encoding = input_font
             # Compute the encoding map for the encoding font
-            encoding_map = self.private_use_map[inputFont]
-            self.token_splitter = re.compile('(\s)')
+            encoding_map = self.private_use_map[input_font]
+            self.token_splitter = re.compile(r'(\s)')
         else:
             # UnknownConversion - just return unchanged text
             self.token_splitter = None
@@ -720,11 +781,14 @@ class PhakeConverter(ConverterBase):
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
-            result = self.convertString(text_in, None, encoding_map)
+            result = self.convertString(text_in, input_font, encoding_map)
 
             # result = self.reorderText(result)
             if self.add_variant_selectors:
                 result = self.add_variation_modifiers(result)
+
+            if self.add_grapheme_boundary_char:
+                result = self.insert_grapheme_boundaries(result)
             return result
 
         # Take the data from the fontTextInfo field.
@@ -739,17 +803,25 @@ class PhakeConverter(ConverterBase):
                 self.convertString(item[0], tags, encoding_map))
 
         result = self.reorderText(''.join(convert_list))
+        # Post-processing of the converted text
         if self.add_variant_selectors:
             result = self.add_variation_modifiers(result)
 
+        if self.add_grapheme_boundary_char:
+            result = self.insert_grapheme_boundaries(result)
+
         return result
+
+    def insert_grapheme_boundaries(self, text):
+        # use self.break_before to insert \u200b before
+        new_text = self.break_before.sub(insert_break_fn, text)
+        return new_text
 
     # Handles details of converting the text, including case conversion.
     def convert_string(self, text_in, font_info,
                        conversion_map):
         # type: (object, object, object) -> object
         converted_list = []
-        convert_result = ''
 
         tokens = self.tokenizeText(text_in)
         if not tokens:
@@ -765,9 +837,9 @@ class PhakeConverter(ConverterBase):
                 key = '%s-%s' % (self.encoding, c)
                 if key not in self.not_converted:
                     self.not_converted[key] = 1
-                    #for i in range(len(c)):
+                    # for i in range(len(c)):
                     #    print('** Code point %s' % hex(ord(c[i])))
-                    #print('Cannot convert %s in %s' % (c, self.encoding))
+                    # print('Cannot convert %s in %s' % (c, self.encoding))
                 else:
                     self.not_converted[key] += 1
 
@@ -777,7 +849,7 @@ class PhakeConverter(ConverterBase):
         convert_result = self.reorderText(''.join(converted_list))
 
         if self.lower_mode:
-          convert_result = self.toLower(convert_result)
+            convert_result = self.toLower(convert_result)
 
         return convert_result
 
@@ -786,32 +858,32 @@ class PhakeConverter(ConverterBase):
         all_sentence_ends = self.end_of_sentence_pattern.finditer(text)
         text_len = len(text)
         if not all_sentence_ends:
-         # No sentence endings. Should first be capitalized?
-         return None
+            # No sentence endings. Should first be capitalized?
+            return None
         sentence_starts = [0]
         ignore_match = self.ignore_start_of_sentence.match(text)
         if ignore_match:
-         sentence_starts[0] = ignore_match.end()
+            sentence_starts[0] = ignore_match.end()
         sentence_ends = []
         for sentence_end in all_sentence_ends:
-         # Position and character of this sentence ending
-         sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
-         end_pos = sentence_end.end()
-         while end_pos < text_len and (
-             text[end_pos] == ' ' or text[end_pos] == '\r'
-             or text[end_pos] == '\t' or text[end_pos] == '\n'):
-             end_pos += 1
-         # Move the letter content
-         #         self.ignore_start_of_sentence = re.compile(
-         # r'([\U0001E950\U0001E959\u0020()]+)')
-         start_pos = end_pos
-         if start_pos < text_len:
-             ignore_match = self.ignore_start_of_sentence.match(text[start_pos:])
-             if ignore_match:
-                 start_pos += ignore_match.end() - 1
-         sentence_starts.append(start_pos)
+            # Position and character of this sentence ending
+            sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
+            end_pos = sentence_end.end()
+            while end_pos < text_len and (
+                    text[end_pos] == ' ' or text[end_pos] == '\r'
+                    or text[end_pos] == '\t' or text[end_pos] == '\n'):
+                end_pos += 1
+            # Move the letter content
+            #         self.ignore_start_of_sentence = re.compile(
+            # r'([\U0001E950\U0001E959\u0020()]+)')
+            start_pos = end_pos
+            if start_pos < text_len:
+                ignore_match = self.ignore_start_of_sentence.match(text[start_pos:])
+                if ignore_match:
+                    start_pos += ignore_match.end() - 1
+            sentence_starts.append(start_pos)
         # The paragraph text ends a sentence
-        sentence_ends.append((len(text)-1, '$'))
+        sentence_ends.append((len(text) - 1, '$'))
         return sentence_ends, sentence_starts
 
     def findDefinitionEnds(self, p):
@@ -820,8 +892,7 @@ class PhakeConverter(ConverterBase):
         end_indices = []
         index = 0
         for r in p.runs:
-            pos =  r.text.find('\n')
-            if  r.text.find('\n') >= 0:
+            if r.text.find('\n') >= 0:
                 end_indices.append(index)
             index += 1
         # one after the last item
@@ -835,45 +906,69 @@ class PhakeConverter(ConverterBase):
         #     # Nothing to process
         #     return
 
+        #if p.text:
+        #    print('!! processParagraphRuns %d: %s' % (len(p.runs), p.text))
+
         # Check on the language of the paragraph. May not convert.
         if self.detectLang:
             detected = self.detectLang.classify(p.text.strip())
-            # print('%s in %s' % (detected, p.text))
+
             if detected[0] in self.ignoreLangs:
                 return
 
         for run in p.runs:
-            old_font_size = run.font.size
-            if isinstance(old_font_size, list):
+            old_text = run.text
+
+            if isinstance(run.font.size, list):
                 pass  # This is a list!
             try:
                 old_font_name = run.font.name
+                # print('!!! old font: %s' % (old_font_name))
                 if not old_font_name:
                     continue
-                scriptIndex = self.FONTS_TO_CONVERT.index(old_font_name)
+                try:
+                    script_index = self.FONTS_TO_CONVERT.index(old_font_name)
+                except ValueError:
+                    # Not a font to convert
+                    continue
+
                 # Save for deeper calls
                 self.old_font_name = old_font_name
-                self.font_index = scriptIndex
-
-                old_text = run.text
+                self.font_index = script_index
 
                 new_font_name = self.unicodeFont
                 try:
                     new_font_name = self.font_substitution[old_font_name]
                 except:
                     pass  # Use a default
-                run.text = self.convertText(old_text, None, scriptIndex)
+
+                # Will this make the information for the font to work correctly?
+                # Nope, not good enough.
+                # https://python-docx.readthedocs.io/en/latest/_modules/docx/text/font.html
+                run.font.complex_script = True
+
+                run.text = self.convertText(old_text, None, script_index)
                 run.font.name = new_font_name
 
-                # Suggested by https://stackoverflow.com/questions/78829461/python-docx-change-name-of-font-in-wcs-converting-font-encoding-to-unicode
+                # Suggested by https://stackoverflow.com/questions/78829461/python-docx-change-name-of-font-in-wcs
+                # -converting-font-encoding-to-unicode
                 run.element.rPr.rFonts.set(qn('w:cs'), self.unicodeFont)
                 run.element.rPr.rFonts.set(qn('w:eastAsia'), self.unicodeFont)
                 try:
-                    new_font_size = int(run.font.size * self.font_resize_factor)
-                    run.font.size = new_font_size
-                except TypeError as error:
+                    if self.reset_font_size:
+                        if self.current_table:
+                            # smaller in the table
+                            # new_font_size = 20 * self.ONE_POINT_FACTOR
+                            new_font_size = Pt(20)
+                        else:
+                            #
+                            # new_font_size = 35 * self.ONE_POINT_FACTOR
+                            new_font_size = Pt(35)
+                        run.font.size = new_font_size
+                        run.font.cs_size = new_font_size
+                except TypeError:
                     pass
-            except ValueError as error:
+            except ValueError:
                 continue
 
         # Check on the font for the full paragraph
@@ -892,63 +987,62 @@ class PhakeConverter(ConverterBase):
         if self.collectConvertedWordFrequency:
             self.updateWordsFrequencies(p)
         return
-    
+
     def processSentences(self, p):
         # Deal with questions and exclamations, inserting
         # initial marks at the start of sentences.
-        
+
         # Get all the positions of sentence endings
         sentence_ends, sentence_starts = \
             self.computeSentenceStartsEnds(p.text)
 
-        startRuns = []
-        rIndex = 0
+        start_runs = []
+        r_index = 0
         for sIndex in range(0, len(sentence_starts)):
-            startPos = sentence_starts[sIndex]
-            if rIndex >= len(run_map):
-                x = 10
-            while rIndex < len(run_map) and run_map[rIndex][1] < startPos:
-                rIndex += 1
-                if rIndex >= len(run_map):
+            start_pos = sentence_starts[sIndex]
+
+            while r_index < len(run_map) and run_map[r_index][1] < start_pos:
+                r_index += 1
+                if r_index >= len(run_map):
                     break
-            startRuns.append(rIndex)
+            start_runs.append(r_index)
 
         # Patch for capitals and punctuation at sentence starts.
-        for sIndex in range(0, len(startRuns)):
-            runId = startRuns[sIndex]
-            if runId >= len(run_map):
+        for sIndex in range(0, len(start_runs)):
+            run_id = start_runs[sIndex]
+            if run_id >= len(run_map):
                 break
-            run = run_map[runId][2]
+            run = run_map[run_id][2]
             # This is the run.
             text = run.text
-            offset = sentence_starts[sIndex] - run_map[runId][0]  # Where the text actually starts
+            offset = sentence_starts[sIndex] - run_map[run_id][0]  # Where the text actually starts
             capped = text[offset:].capitalize()  # Capitalized portion
-            firstPart = text[0:offset] # Before the capitalized section
+            first_part = text[0:offset]  # Before the capitalized section
             # Check for end character to prepend
-            charEnd = sentence_ends[sIndex][1]
-            if charEnd in self.pre_punctuation:
-               newStart = self.pre_punctuation[charEnd]
+            char_end = sentence_ends[sIndex][1]
+            if char_end in self.pre_punctuation:
+                new_start = self.pre_punctuation[char_end]
             else:
-                newStart = ''
+                new_start = ''
             # Put text back in run
             try:
-                run.text = firstPart + newStart + capped
+                run.text = first_part + new_start + capped
             except:
                 run.text = '*BROKEN* *Broken*'
         return
 
-  # Given a start position in the paragraph text, return run and place there.
+    # Given a start position in the paragraph text, return run and place there.
     def textPositionInRun(self, run_map, start):
         # TODO: Ignore some characters at start, e.g., digits, space, punctuation
-        for map in run_map:
-             if start >= map[0] and start <= map[1]:
-                return (map[2], start - map[0])
-        return (None, None)
+        for rmap in run_map:
+            if rmap[0] <= start <= rmap[1]:
+                return rmap[2], start - rmap[0]
+        return None, None
 
     # Frequency processing for a paragraph's text
     def updateWordsFrequencies(self, para):
-        pText = para.text
-        words = self.wordSplitRegEx.split(pText)
+        p_text = para.text
+        words = self.wordSplitRegEx.split(p_text)
         for word in words:
             # Should ignore empty non-word items
             if word and word != ' ':
@@ -956,7 +1050,7 @@ class PhakeConverter(ConverterBase):
 
 
 def convertDocx(files):
-    converter = PhakeConverter()      
+    converter = PhakeConverter()
 
     try:
         converter.setScriptIndex(scriptIndex)
@@ -964,23 +1058,22 @@ def convertDocx(files):
         converter.setSentenceMode(True)
         paragraphs = doc.paragraphs
         count = len(paragraphs)
-        msgToSend = '%d paragraphs in %s\n' % (count, fileName)
-        countSent = 0
+        msg_to_send = '%d paragraphs in %s\n' % (count, fileName)
 
     except BaseException as err:
         return 'Bad Phake converter. Err = %s' % err
 
     try:
-        docConverter = ConvertDocx(converter, documentIn=doc,
-                                   reportProgressFn=progressFn)
+        doc_converter = ConvertDocx(converter, documentIn=doc,
+                                    reportProgressFn=progressFn)
 
-        if docConverter:
-            result = docConverter.processDocx()
+        if doc_converter:
+            result = doc_converter.processDocx()
     except BaseException as err:
         return 'Error in docConverter. Err = %s' % err
 
 
-def testPhakeStrings():
+def testPhakeStrings(converter):
     t = ["cJwq AJwq",
          'vukqvWmgqmigqAaepaetecawoaeya',
          'ttqtikqmj',
@@ -988,6 +1081,8 @@ def testPhakeStrings():
          'xigqsigqRfa',
          'muthjwganEcugq',
          'cgqhnqetayW',
+         'ko ugq',
+         '[pamattq'
          ]
     expected = ['ꩡ︀ိုဝ︀် ဢ︀ိုဝ︀်',
                 'ထ︀ုက︀်ထ︀ွ်မ︀င︀်မ︀ိင︀်ဢ︀ႃပ︀ေ︀ႃတ︀ေ︀ꩡ︀ေ︀ႃဝ︀ွႃယ︀ေ︀ႃ',
@@ -995,30 +1090,33 @@ def testPhakeStrings():
                 'ꩭိုဝ︀်ꩡ︀ိုင︀်ꩭိုင︀်',
                 'ၵ︀ိင︀်ꩬ︀ိင︀်ၸ︀ြႃ',
                 'မ︀ုတ︀ꩭႝဝ︀င︀ႃꩫ︀ၞ်ꩡ︀ုင︀်',
-                'ꩡ︀င︀်ꩭꩫ︀်တ︀ေ︀ႃယ︀ွ်'
+                'ꩡ︀င︀်ꩭꩫ︀်တ︀ေ︀ႃယ︀ွ်',
+                'က︀ွု​ ​င︀်​',
+                'ပ︀ြႃ​မ︀ႃ​တ︀​တ︀်​',
+
                 ]
 
-    converter = PhakeConverter()
+    converter.add_variant_selectors = True
     index = 0
     for text in t:
         result = converter.convertText(text, font_index=0)
-                
-        # print("%s --> %s" % (text, result))
+
+        print("%s --> %s" % (text, result))
         if expected[index] != result:
             print('!!! Expected %s but got %s' % (expected[index], result))
         index += 1
 
     return
-   
+
+
 def keyLen(x):
     return len(x)
 
 
 def main(argv):
     converter = PhakeConverter()
-    testPhakeStrings()
-
+    testPhakeStrings(converter)
 
 
 if __name__ == '__main__':
-  main(sys.argv)
+    main(sys.argv)

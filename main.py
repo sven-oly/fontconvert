@@ -1,20 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2018 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # [START gae_python37_app]
 from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
@@ -64,6 +50,14 @@ converters['ff'] = adlamConversion.AdlamConverter()
 # converters['aho'] = ahomConversion.AhomConverter()
 converters['phk'] = phkConversion.PhakeConverter()
 converters['men'] = mendeConverter.MendeConverter()
+
+lang_names_from_codes = {
+    'ff': 'Poular',
+    'aho': 'Tai Ahom',
+    'phk': 'Tai Phake',
+    'men': 'Mende Kikakui',
+    'und': 'Unknown'
+    }
 
 # Datastore
 #datastore_client = datastore.Client()
@@ -130,12 +124,21 @@ def uploadLang():
     lang = request.args.get('lang', 'und')
     script_index = request.args.get('script_index', 0)
     taskId = random.randint(0, 7777)
+    try:
+        lang_name = lang_names_from_codes[lang]
+    except:
+        lang_name = '??'
+        
+    unicode_font_list = ['Noto Sans', 'Noto Serif']
     if lang == 'aho':
-        unicode_font_list = ['Noto Serif Ahom', 'Ahom Manuscript Unicode']
-        lang_name = 'Tai Ahom'
+        unicode_font_list = ['Noto Serif Ahom',
+                             'Ahom Manuscript Unicode']
     elif lang == 'phk':
-        unicode_font_list = ['Ramayana Unicode', 'Noto Sans Myanmar Light', 'Noto Serif Myanmar Thin', 'Noto Serif Myanmar Regular', 'Noto Serif Myanmar Thin']
-        lang_name = 'Tai Phake'
+        unicode_font_list = ['Ramayana Unicode',
+                             'Noto Sans Myanmar Light',
+                             'Noto Serif Myanmar Thin',
+                             'Noto Serif Myanmar Regular',
+                             'Noto Serif Myanmar Thin']
 
     return render_template('upload_lang.html',
                            base=who,
@@ -177,6 +180,10 @@ class ProgressClass():
         self.status = message
         self.thread.setStatus(message)
         queue.put(message)
+
+    def stop_updates(self, final_msg):
+        # !!! TODO: Finish this
+        return
         
 
 # Simple output function for tracking processing
@@ -402,6 +409,7 @@ def upload_file():
 
             result = docConverter.processDocx()
 
+            # TODO: Show "saving"
             target_stream = BytesIO()
             result = doc.save(target_stream)
 
@@ -458,6 +466,9 @@ def upload_file():
         else:
             logger.error('!!! Not processing file %s !', inputFileName)
             return None
+
+        # Done processing.
+        # TODO!!! Update progressObj with "complete" message and stop updates
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     # Try zip file...
@@ -636,6 +647,7 @@ def event_stream():
 # def stream():
 #     return Response(event_stream(), mimetype="text/event-stream")
 
+
 # Set up a thread to allow status updates.
 # https://codehunter.cc/a/flask/flask-app-update-progress-bar-while-function-runs
 class ExportingThread(threading.Thread):
@@ -702,3 +714,4 @@ if __name__ == '__main__':
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
 # [END gae_python37_app]
+

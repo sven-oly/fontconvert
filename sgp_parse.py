@@ -48,26 +48,34 @@ conversion_dict = assamese_convert_dictionary()
 
 
 def new_entry():
-    return {'heading': [],
-             'sgp_word': '',
-             'definition': [],
-             'def_list': [],  # a list of [part_of_speech, definition]
-             'part_of_speech': [],
-             'assamese1': [],
-             'assamese2': []
-             }
+    return {
+        'heading': [],
+        'sgp_word': '',
+        'definition': [],
+        'def_list': [],  # a list of definitions
+        'part_of_speech': [],
+        'pos_list': [],  # Parts of speech corresponding to definitions
+        'assamese1': [],
+        'assamese2': [],
+        'phrases': [],
+    }
 
-def process_assamese1(r_text, entry, entries, previous):
+def process_assamese1(r_text, entry, _entries, previous):
     entry[previous].append(r_text)
     return entry, previous
 
 
-def process_assamese2(r_text, entry, entries, previous):
+def process_assamese2(r_text, entry, _entries, previous):
     entry[previous].append(r_text)
     return entry, previous
 
 
-def process_definition(r_text, entry, entries, previous):
+def add_usage_phrase(r_text, entry):
+    entry['phrases'].append(r_text)
+    return entry, 'phrase'
+
+
+def process_definition(r_text, entry, _entries, previous):
     # Looks like a definition
     if previous == 'part_of_speech' and r_text.strip() == '.':
         return entry, previous
@@ -78,20 +86,21 @@ def process_definition(r_text, entry, entries, previous):
         else:
             entry['definition'].append(r_text)
     else:
+        if r_text[0:2] == '. ':
+            r_text = r_text[2:]
         entry['definition'].append(r_text)
+    entry['def_list'].append(r_text)
     # Update the latest
-    if entry['def_list']:
-        latest_pos = entry['def_list'][-1][0]
-        last_def = entry['def_list'][-1][1]
-        if last_def:
-            last_def.append(r_text)
-            entry['def_list'][-1][1] = last_def
-        else:
-            entry['def_list'][-1] = [latest_pos, [r_text]]
-    else:
-        # There should be something here!
-        pass
-    previous == 'definition'
+   # if entry['def_list']:
+        # latest_pos = entry['def_list'][-1][0]
+        # last_def = entry['def_list'][-1][1]
+        # if last_def:
+        #     last_def.append(r_text)
+        #     entry['def_list'][-1][1] = last_def
+        #else:
+        #    entry['def_list'][-1] = [latest_pos, [r_text]]
+
+    previous = 'definition'
     return entry, previous
 
 
@@ -114,11 +123,12 @@ def process_sgp_word(r_text, entry, entries, previous):
     return entry, previous
 
 
-def process_part_of_speech(r_text, entry, entries, previous):
+def process_part_of_speech(r_text, entry, _entries, _previous):
     # Part of speech or definition?
     entry['part_of_speech'].append(r_text + '.')
+    entry['pos_list'].append(r_text)
+
     previous = 'part_of_speech'
-    entry['def_list'].append([r_text + '.', []])
     return entry, previous
 
 
@@ -128,15 +138,7 @@ def process_paragraphs(paragraphs):
     index = 0
     main_dictionary = True
     entries = []
-    entry = new_entry()
-    # Set up headings
-    entry['heading'] = ['Heading']
-    entry['sgp_word'] = 'Word'
-    entry['definition'] = ['Definitions']
-    entry['part_of_speech'] = ["Part of Speech"]
-    entry['assamese1'] = ["Assamese1"]
-    entry['assamese2'] = ["Assamese2"]
-    entries.append(entry)
+
     entry = new_entry()
 
     sections = []
@@ -180,7 +182,7 @@ def process_paragraphs(paragraphs):
                 continue
 
             if run_index == 0 and r.font.bold and r.font.name == tnr:
-                # New sgp entry
+                # New sgp word entry
                 entry, previous = process_sgp_word(r_text, entry, entries, previous)
                 continue
 
@@ -196,13 +198,14 @@ def process_paragraphs(paragraphs):
 
             if r.font.italic and r.font.name == tnr and previous == 'definition':
                 # Add to the current definition
-                if entry['def_list']:
-                    latest_pos = entry['def_list'][-1][0]
-                    last_def = entry['def_list'][-1][1] + r_text
-                    entry['def_list'][-1] = [latest_pos, ['def_list'][-1][1].append(r_text)]
-                else:
-                    # ???
-                    pass
+                entry['def_list'].append(r_text)
+                # if entry['def_list']:
+                #     latest_pos = entry['def_list'][-1][0]
+                #     last_def = entry['def_list'][-1][1] + r_text
+                #     entry['def_list'][-1] = [latest_pos, ['def_list'][-1][1].append(r_text)]
+                # else:
+                #     # ???
+                #     pass
                 continue
 
             if r.font.name == tnr and in_assamese_section:
@@ -222,6 +225,12 @@ def process_paragraphs(paragraphs):
                 # TODO: CONVERT!!
                 entry, previous = process_assamese1(r_text, entry, entries, previous)
                 continue
+            if r.font.name == tnr:
+                # It must be more info such as a phrase showing use
+                in_assamese_section = False
+                entry, previous = add_usage_phrase(r_text, entry)
+                continue
+
             # What's this?
             pass
         index += 1
@@ -277,7 +286,7 @@ def combine_runs(p):
 
 
 
-def save_entries(entries, folder):
+def save_entries(entries, folder, headings):
     fname = 'SingPho_entries.tsv'
     path = os.path.join(folder, fname)
     count = 0
@@ -285,9 +294,15 @@ def save_entries(entries, folder):
 
     preconverted_assames_encoding = []
     with open(path, 'w') as out:
+        # First, handle headings
+        outline_items = headings.values()
+        out_line = '\t'.join(outline_items)
+        out.write(out_line + '\n')
+
         for entry in entries:
             def_list = entry['def_list']
             def_strings = []
+
             for d in def_list:
                 try:
                     def_joined = d[0] + ' '.join(d[1])
@@ -309,7 +324,8 @@ def save_entries(entries, folder):
                         converted_assamese = '* ' + converted_assamese + ' *'
                 else:
                     expected = None
-                    converted_assamese = 'NO EXPECTED VALUE'
+                    if assamese2_encoded:
+                        converted_assamese = 'NO EXPECTED VALUE'
 
                 # TODO: flag unconverted things
                 if unconverted:
@@ -323,6 +339,7 @@ def save_entries(entries, folder):
                 definitions_out,
                 ', '.join(entry['assamese1']),
                 converted_assamese,
+                ' '.join(entry['phrases']),
             ]
             try:
                 out_line = '%s\n' % '\t'.join(items)
@@ -391,7 +408,16 @@ def main(argv):
     entries, headings, sections = process_paragraphs(doc.paragraphs)
 
     input_folder = os.path.dirname(input_file)
-    num_entries = save_entries(entries, input_folder)
+    headings = {
+        'heading': 'Heading',
+        'sgp_word': 'Singpho Word',
+        'part_of_speech': 'Part of Speech',
+        'definition': 'Definitions',
+        'assamese1': "Assamese",
+        'assamese2': 'Assamese',
+        'phrases': 'Phrases'
+    }
+    num_entries = save_entries(entries, input_folder, headings)
     return
 
 if __name__ == "__main__":

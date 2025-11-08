@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import logging
 import os
 import re
 import sys
@@ -12,6 +13,8 @@ import convertWord
 
 from docx import Document
 from docx.enum.style import WD_STYLE_TYPE
+from docx.oxml.shared import OxmlElement, qn
+
 import docx
 
 # The version using docx
@@ -66,6 +69,7 @@ class ConvertDocx():
     self.output_dir = output_dir
     self.converter = converter
     self.old_fonts = converter.oldFonts  # List of font names
+    
     self.unicode_font = converter.unicodeFont
     self.debug = debug
 
@@ -98,6 +102,21 @@ class ConvertDocx():
             return None
     else:
         self.document = documentIn
+        # Using complex test style including size
+        # https://stackoverflow.com/questions/45627652/python-docx-add-style-with-ctl-complex-text-layout-language
+        self.my_style = documentIn.styles['Normal']
+
+        # Specific to Tai Phake conversion
+        user_cs_font_size = 10
+        self.user_cs_font_name = 'Phake Ramayana'
+        self.rpr = self.my_style.element.get_or_add_rPr()
+        self.rFonts = self.rpr.get_or_add_rFonts()
+        self.rpr.get_or_add_sz()
+        self.szCs = OxmlElement('w:szCs')
+        self.lang = OxmlElement('w:lang')
+        self.szCs.set(qn('w:val'), str(int(user_cs_font_size * 2)))
+        self.lang.set(qn('w:bidi'), 'fa-IR')
+        self.rFonts.set(qn('w:cs'), self.user_cs_font_name)
 
     self.outpath= None
     
@@ -125,13 +144,16 @@ class ConvertDocx():
         self.input_path, self.output_dir))
     # Try simple things.
     paragraphs = self.document.paragraphs
-
     paragraphId = 0
+
     paragraphCount = len(paragraphs)
+    print('!!! PROCESSDocx finds %d paragraphs' % (paragraphCount))
+
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
     for para in paragraphs:
+      # print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
       paragraphId += 1
       if self.progressObj:
         msg = 'para %d of %d' % (paragraphId, paragraphCount)
@@ -147,7 +169,7 @@ class ConvertDocx():
         pass  # Not a problem
 
     sections = self.document.sections
-    print("Document has %s sections" % len(sections))
+    # print("Document has %s sections" % len(sections))
     if self.progressObj:
       msg = 'Document has %d sections' % len(sections)
       self.progressObj.send(msg)
@@ -176,6 +198,8 @@ class ConvertDocx():
     tables = self.document.tables
     tableId = 0
     for table in tables:
+      self.converter.current_table = table  # To help with setting font sizes.
+      # print('!!! TABLE %d' % (tableId))
       tableId += 1
       if self.progressObj:
         self.progressObj.send('Table %d, %d rows' % (tableId, len(table.rows)))
@@ -195,6 +219,7 @@ class ConvertDocx():
 
     if self.progressObj:
       self.progressObj.send('## Conversion complete ##')
+      self.progressObj.stop('DONE MESSAGE')
     return
 
   def install_new_style(self, font):
@@ -241,10 +266,10 @@ class ConvertDocx():
             if node.text:
               textBoxText.append(node)
 
-    print('@@@@@@ %d draw text' % len(drawingContentText))
-    print('@@@@@@ %d text box text' % len(textBoxText))
-    print('@@@@@@ %d paragraphs' % len(self.paragraphs))
-    print('@@@@@@ docfile_name = %s' % docfile_name)
+    # print('@@@@@@ %d draw text' % len(drawingContentText))
+    # print('@@@@@@ %d text box text' % len(textBoxText))
+    # print('@@@@@@ %d paragraphs' % len(self.paragraphs))
+    # print('@@@@@@ docfile_name = %s' % docfile_name)
 
     if not drawingContentText and not textBoxText and docfile_name == 'word/document.xml':
       # Handle this with only DocX functions.

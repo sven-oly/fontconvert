@@ -6,20 +6,26 @@ from __future__ import absolute_import, division, print_function
 
 from collections import defaultdict
 
+import logging
 import os
 import re
 import sys
 
-
 thisDefaultOutputFont = 'NotoSansRegular'
+
 
 # Swap order of two items
 def sub21(m):
     return m.group(2) + m.group(1)
 
+
 class ConverterBase:
     def __init__(self, old_font_list=None, new_font=None,
                  default_output_font=thisDefaultOutputFont):
+
+        # Remember what's being converted
+        self.lang_converter_filename = None
+
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
         self.encodingScripts = []  # If given, tells the Script of incoming characters
@@ -40,6 +46,8 @@ class ConverterBase:
             self.unicodeFont = new_font
         else:
             self.unicodeFont = default_output_font
+
+        self.current_table = None
 
         # The fonts detected for conversion
         for item in old_font_list:
@@ -86,11 +94,10 @@ class ConverterBase:
         self.output_u_mode = False
         self.not_converted_context = defaultdict(list)
 
-
-    def preprocess(self, textIn, current_tag):
+    def preprocess(self, text_in, current_tag):
         # Possibly do some preprocessing on each line, maybe dependent on a tab
         # or a regular expression
-        return textIn
+        return text_in
 
     def get_outfile_name(self, infile_name):
         name_split = os.path.splitext(infile_name)
@@ -135,16 +142,18 @@ class ConverterBase:
                 pass
         return new_text
 
-    def tokenizeText(self, textIn):
+    def tokenizeText(self, text_in):
+        # New: split into Unicode characters. Simple.
+        return list(text_in)
         # ASCII and whitespace characters
         if self.old_font_name and self.split_by_script and self.old_font_name in self.split_by_script:
             token_regex = self.split_by_script[self.old_font_name]
-            return token_regex.split(textIn)
+            return token_regex.split(text_in)
 
         if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s;.])', textIn) if i]
+            return [i for i in re.split(r'([\w\s;.])', text_in) if i]
         else:
-            return textIn
+            return text_in
 
     def setScriptIndex(self, newIndex=0):
         # 0 = '', 1 = 'latn'
@@ -152,15 +161,15 @@ class ConverterBase:
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
     # Handles details of converting the text, including case conversion.
-    def convertString(self, textIn, fontInfo,
+    def convertString(self, text_in, font_info,
                       conversion_map):
         # type: (object, object, object) -> object
         convertedList = []
         convertResult = ''
 
-        tokens = self.tokenizeText(textIn)
+        tokens = self.tokenizeText(text_in)
         if not tokens:
-            # print('????? WHY NO TOKENS in %s' % textIn)
+            # print('????? WHY NO TOKENS in %s' % text_in)
             pass
 
         for c in tokens:
@@ -172,15 +181,21 @@ class ConverterBase:
                 out = conversion_map[c]
             else:
                 out = ''
-                key = '%s %s %s' % (self.encoding, c, hex(ord(c)))
-                if not key in self.not_converted:
+                try:
+                    key = '%s %s %s' % (self.encoding, c, hex(ord(c)))
+                except:
+                    logging.error('Cannot convert sequence >>%s<< in font %s. File = %s',
+                                  c, font_info, self.lang_converter_filename)
+                    out = c
+                    continue
+                if key not in self.not_converted:
                     self.not_converted[key] = 1
                     #for i in range(len(c)):
                     #    print('** Code point %s' % hex(ord(c[i])))
                     #print('Cannot convert %s in %s' % (c, self.encoding))
                 else:
                     self.not_converted[key] += 1
-                self.not_converted_context[key].append(textIn)
+                self.not_converted_context[key].append(text_in)
 
             # Special case for handling underlined text
             convertedList.append(out)
@@ -309,9 +324,9 @@ class ConverterBase:
     def getSortedWordList(self):
         if self.convertedWordFrequency:
             return sorted(
-              self.convertedWordFrequency.items(),
-              key=lambda x: x[1],
-              reverse=True
+                self.convertedWordFrequency.items(),
+                key=lambda x: x[1],
+                reverse=True
             )
         else:
             return None
@@ -319,9 +334,9 @@ class ConverterBase:
     def getWordListByAlpha(self):
         if self.convertedWordFrequency:
             return sorted(
-              self.convertedWordFrequency.items(),
-              key=lambda x: x[0],
-              reverse=True
+                self.convertedWordFrequency.items(),
+                key=lambda x: x[0],
+                reverse=True
             )
         else:
             return None
@@ -345,8 +360,8 @@ class ConverterBase:
         end_indices = []
         index = 0
         for r in p.runs:
-            pos =  r.text.find('\n')
-            if  r.text.find('\n') >= 0:
+            pos = r.text.find('\n')
+            if r.text.find('\n') >= 0:
                 end_indices.append(index)
             index += 1
         # one after the last item
