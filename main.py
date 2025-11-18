@@ -296,11 +296,15 @@ def upload_file():
         except:
             lang_code = 'ff'
             lang = 'ff'
+        logger.debug('FORMDATA = %s', formData)
 
-        file = request.files['file']  # FileStorage object
-        logger.debug('FILE = %s', file)
-        
-        inputFileName = file.filename
+        if 'file_path' in formData:
+            inputFileName = formData['file_path']
+        else:
+            file = request.files['file']  # Filestorage object
+            logger.debug('FILE = %s', file)
+            inputFileName = file.filename
+
         logger.debug('inputFileName = %s' % inputFileName)
         if not inputFileName:
             return render_template('nofileselected.html', who=who)

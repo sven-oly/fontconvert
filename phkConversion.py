@@ -14,6 +14,8 @@ from docx.shared import Pt
 
 from converterBase import ConverterBase
 
+from check_complex_script import fix_cs_formatting_run
+
 VARIANT_SELECTOR = '\uFE00'
 
 # This font as an output does not use 0x00A0 to connect doubled vowels
@@ -578,8 +580,6 @@ class PhakeConverter(ConverterBase):
         else:
             self.oldFonts = old_font_list
 
-        # print('!!! PHAKE: oldFonts: ', self.oldFonts)
-
         # For Phake Script to Phake Ramayana Unicode
         self.font_resize_factor = 0.8
 
@@ -602,8 +602,8 @@ class PhakeConverter(ConverterBase):
 
         self.set_complex_font = True
 
-        self.setScriptRange(0x1000, 0x106f)
-        self.setUpperCaseRange(0x1000, 0x106f)
+        self.set_script_range(0x1000, 0x106f)
+        self.set_upper_case_range(0x1000, 0x106f)
         self.description = 'Converts Phake font encoding to Unicode'
 
         self.forceFont = True  # May be used to set all font fields to the Unicode font
@@ -657,7 +657,7 @@ class PhakeConverter(ConverterBase):
             # Swap R and e
             [r'(\u1031)(\u103c)', sub21],
 
-            # Move e-vowel right over other vowels
+            # Move e-vowel right to after other vowels
             [r'(\u1031)([\u103D\u103b\u103c\u103A\u105E]+)',
              sub21],
 
@@ -825,7 +825,6 @@ class PhakeConverter(ConverterBase):
 
         tokens = self.tokenizeText(text_in)
         if not tokens:
-            # print('????? WHY NO TOKENS in %s' % text_in)
             pass
 
         for c in tokens:
@@ -906,24 +905,22 @@ class PhakeConverter(ConverterBase):
         #     # Nothing to process
         #     return
 
-        #if p.text:
-        #    print('!! processParagraphRuns %d: %s' % (len(p.runs), p.text))
 
         # Check on the language of the paragraph. May not convert.
-        if self.detectLang:
-            detected = self.detectLang.classify(p.text.strip())
 
+        # TODO: Fix this later?
+        if False and self.detectLang:
+            detected = self.detectLang.classify(p.text.strip())
             if detected[0] in self.ignoreLangs:
                 return
 
+            
         for run in p.runs:
             old_text = run.text
-
             if isinstance(run.font.size, list):
                 pass  # This is a list!
             try:
                 old_font_name = run.font.name
-                # print('!!! old font: %s' % (old_font_name))
                 if not old_font_name:
                     continue
                 try:
@@ -949,11 +946,11 @@ class PhakeConverter(ConverterBase):
 
                 run.text = self.convertText(old_text, None, script_index)
                 run.font.name = new_font_name
+                # TODO: Fix this
+                if new_font_name == 'PhakeRamayanaUnicode':
+                    user_cs_font_size = 12
+                    fix_cs_formatting_run(run, user_cs_font_size, new_font_name)
 
-                # Suggested by https://stackoverflow.com/questions/78829461/python-docx-change-name-of-font-in-wcs
-                # -converting-font-encoding-to-unicode
-                run.element.rPr.rFonts.set(qn('w:cs'), self.unicodeFont)
-                run.element.rPr.rFonts.set(qn('w:eastAsia'), self.unicodeFont)
                 try:
                     if self.reset_font_size:
                         if self.current_table:
@@ -1073,7 +1070,7 @@ def convertDocx(files):
         return 'Error in docConverter. Err = %s' % err
 
 
-def testPhakeStrings(converter):
+def test_phake_strings(converter):
     t = ["cJwq AJwq",
          'vukqvWmgqmigqAaepaetecawoaeya',
          'ttqtikqmj',
@@ -1101,16 +1098,11 @@ def testPhakeStrings(converter):
     for text in t:
         result = converter.convertText(text, font_index=0)
 
-        print("%s --> %s" % (text, result))
         if expected[index] != result:
             print('!!! Expected %s but got %s' % (expected[index], result))
         index += 1
 
     return
-
-
-def keyLen(x):
-    return len(x)
 
 
 def main(argv):

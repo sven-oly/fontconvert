@@ -9,7 +9,6 @@ from collections import defaultdict
 import logging
 import os
 import re
-import sys
 
 thisDefaultOutputFont = 'NotoSansRegular'
 
@@ -104,24 +103,24 @@ class ConverterBase:
         out_file_name = name_split[0] + '_Unicode' + name_split[-1]
         return out_file_name
 
-    def setScriptRange(self, first, last):
+    def set_script_range(self, first, last):
         self.first = chr(first)
         self.last = chr(last)
 
-    def setUpperCaseRange(self, first_upper, last_upper):
+    def set_upper_case_range(self, first_upper, last_upper):
         self.first_upper = chr(first_upper)
         self.last_upper = chr(last_upper)
 
-    def setLowerCaseRange(self, first, last):
+    def set_lower_case_range(self, first, last):
         self.first_lower = chr(first)
         self.last_lower = chr(last)
         self.lowerOffset = ord(self.first_lower) - ord(self.first_upper)
 
-    def isRtl(self):
+    def is_rtl(self):
         # Override for RTL language
         return False
 
-    def unicode_to_u_plus(char):
+    def unicode_to_u_plus(self, char):
         # Gives the string version of a Unicode code point
         return "U+" + hex(ord(char))[2:].upper().zfill(4)
 
@@ -145,15 +144,6 @@ class ConverterBase:
     def tokenizeText(self, text_in):
         # New: split into Unicode characters. Simple.
         return list(text_in)
-        # ASCII and whitespace characters
-        if self.old_font_name and self.split_by_script and self.old_font_name in self.split_by_script:
-            token_regex = self.split_by_script[self.old_font_name]
-            return token_regex.split(text_in)
-
-        if self.scriptIndex == 0:
-            return [i for i in re.split(r'([\w\s;.])', text_in) if i]
-        else:
-            return text_in
 
     def setScriptIndex(self, newIndex=0):
         # 0 = '', 1 = 'latn'
@@ -242,7 +232,6 @@ class ConverterBase:
         for run in p.runs:
             try:
                 text_to_convert = run.text
-                font_name = None
                 scriptIndex = 0
                 font_name = run.font.name
                 # TODO: Check if unknown font regions should be converted.
@@ -360,7 +349,6 @@ class ConverterBase:
         end_indices = []
         index = 0
         for r in p.runs:
-            pos = r.text.find('\n')
             if r.text.find('\n') >= 0:
                 end_indices.append(index)
             index += 1

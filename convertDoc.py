@@ -83,6 +83,8 @@ class convertDocx():
     self.superscriptNode = None
 
   def processDocx(self):
+    logging.warning('processDocx convertDoc')
+    print('processDocx convertDoc')
     if self.debug:
       print('processDocx path = %s, output_dir = %s\n' % (
         self.input_path, self.output_dir))

@@ -7,15 +7,39 @@
   </head>
 
   <body>
-    <h1>File {{filename}}</h1>
+    <h1>File:  {{filename}}</h1>
     <p>Size of the file: {{size}} bytes
+    <p>Language code: {{langcode}}
     <p>Number of sections: {{sections}}
     <p>Number of paragraphs: {{paragraphs}}
     <p>Number of tables: {{tables}}
     <p>Fonts in document: {{fontDict}}
     <p>Paragraph langs detected in original text: {{para_langs}}
+
+
+      <form action = "/uploader/?lang={{langcode}}" method = "POST"
+      onSubmit="JavaScript:startPollStatus()"
+      enctype = "multipart/form-data">
+  <br/><br/>
+<!-- 
+  <input type="submit" name="ConvertToUnicode" value="Convert this file to Unicode"/>
+  -->
+  <input type='text' id='lang' value='{{langcode}}' readonly hidden></input>
+  <input type="text" name='langName' value="{{lang_name}}" hidden>
+  <input type="text" name='lang' value="{{lang}}" hidden>
+  <input type="text" name='taskId' value={{taskId}} readonly hidden>
+  <input type="text" name='file_path' value="{{filename}}" readonly hidden>
+  <ul>
+    {% for each in fonts %}
+    <!-- Fill in fonts for the conversion -->
+    <input type='radio' id='{{each}}' name='UnicodeFont'
+           value='{{each}}' checked>
+    <label for '{{each}}'>{{each}}</label>
+    {% endfor %}
+  </ul>
+</form>
+      <p1>Credits</p1>
       <br/>* Language detection via <a href="https://github.com/saffsd/langid.py">langid.py</a>
-    <p>
-    <
+      
   </body>
 </html>

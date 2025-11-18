@@ -419,8 +419,8 @@ class AhomConverter(ConverterBase):
             self.unicodeFont = newFont
         else:
             self.unicodeFont = defaultOutputFont
-        self.setScriptRange(0x11700, 0x1173f)
-        self.setUpperCaseRange(0x11700, 0x1174f)
+        self.set_script_range(0x11700, 0x1173f)
+        self.set_upper_case_range(0x11700, 0x1174f)
         self.description = 'Converts Ahom font encoding to Unicode'
 
         self.defaultOutputFont = defaultOutputFont
@@ -489,7 +489,6 @@ class AhomConverter(ConverterBase):
         # Information on language detection
         self.detectLang = False
         self.ignoreLangs = []  # Language codes for not conversion
-        print('AHOM CONVERTER CREATED')
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 

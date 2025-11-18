@@ -138,6 +138,8 @@ class ConvertDocx():
 
   
   def processDocx(self):
+    logging.warning('processDocx convertDoc2')
+    # print('processDocx convertDoc2')
     # Script index could select Adlam arab or latn.
     if self.debug:
       print('Convert2 processDocx path = %s, output_dir = %s\n' % (
@@ -147,13 +149,13 @@ class ConvertDocx():
     paragraphId = 0
 
     paragraphCount = len(paragraphs)
-    print('!!! PROCESSDocx finds %d paragraphs' % (paragraphCount))
+    # print('!!! PROCESSDocx2 finds %d paragraphs' % (paragraphCount))
 
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
     for para in paragraphs:
-      # print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
+      #print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
       paragraphId += 1
       if self.progressObj:
         msg = 'para %d of %d' % (paragraphId, paragraphCount)
@@ -210,7 +212,11 @@ class ConvertDocx():
         for cell in row.cells:
           paragraphs = cell.paragraphs
           for para in paragraphs:
+            # print('processDocx (2) PARAGRAPH input:  %s', para.text)
+            #logging.info('PARAGRAPH input:  %s', para.text)
             self.converter.processParagraphRuns(para)
+            #print('processDocx (2) PARAGRAPH output: %s', para.text)
+            #logging.info('PARAGRAPH output: %s', para.text)
 
     if self.progressObj:
       self.progressObj.send('Saving document')
@@ -219,7 +225,7 @@ class ConvertDocx():
 
     if self.progressObj:
       self.progressObj.send('## Conversion complete ##')
-      self.progressObj.stop('DONE MESSAGE')
+      self.progressObj.stop_updates('DONE MESSAGE')
     return
 
   def install_new_style(self, font):
@@ -266,11 +272,6 @@ class ConvertDocx():
             if node.text:
               textBoxText.append(node)
 
-    # print('@@@@@@ %d draw text' % len(drawingContentText))
-    # print('@@@@@@ %d text box text' % len(textBoxText))
-    # print('@@@@@@ %d paragraphs' % len(self.paragraphs))
-    # print('@@@@@@ docfile_name = %s' % docfile_name)
-
     if not drawingContentText and not textBoxText and docfile_name == 'word/document.xml':
       # Handle this with only DocX functions.
       doc = convertWord.convertOneDoc(self.input_path, self.converter)
@@ -313,7 +314,7 @@ class ConvertDocx():
 
       convertCount += newConvertedCount
       allEmptiedTextElements.append(emptiedElements)
-      print('@P@P@P Paragraph %d text = %s' % (paragraphCount, paragraph_text))
+      # print('@P@P@P Paragraph %d text = %s' % (paragraphCount, paragraph_text))
       paragraphCount += 1
 
     return allEmptiedTextElements, convertCount
@@ -322,7 +323,7 @@ class ConvertDocx():
   def handleXmlParagraph(self, para):
     allEmptiedTextElements = []
     if para in self.paragraphs_converted:
-      print('Paragraph already done: %s' % para)
+      # print('Paragraph already done: %s' % para)
       return 0, allEmptiedTextElements, ''
     paragraphText = ''
     paragraphTextStarts = []
@@ -424,9 +425,10 @@ class ConvertDocx():
             else:
               notEncoded = rchild.text
               if notEncoded and False and debug_output:
-                print(' &&& fontFound = %s, self.inEncodedFont = %s, actual = %s' %
-                      (fontFound, self.inEncodedFont, actualFont))
-                print('notEncoded = >%s<' % notEncoded)
+                # print(' &&& fontFound = %s, self.inEncodedFont = %s, actual = %s' %
+                # (fontFound, self.inEncodedFont, actualFont))
+                #print('notEncoded = >%s<' % notEncoded)
+                continue
 
     # End of the paragraph
     if paragraphText and self.accumulate_text:

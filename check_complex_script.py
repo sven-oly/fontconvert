@@ -5,8 +5,6 @@
 
 import glob
 from io import BytesIO
-from io import StringIO
-import logging
 import os
 import sys
 
@@ -36,7 +34,7 @@ def createDocFromFile(file_path):
         return None, -1
 
 
-def fix_cs_formatting_runs(run_to_fix, user_cs_font_size, user_cs_font_name, user_is_bold):
+def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name, user_is_bold=None):
     # Start solving the font size and name problem
     # https://stackoverflow.com/questions/45627652/python-docx-add-style-with-ctl-complex-text-layout-language
     #cs: complex script, ex, arabic
@@ -67,35 +65,30 @@ def fix_cs_formatting_runs(run_to_fix, user_cs_font_size, user_cs_font_name, use
     rFonts.set(qn('w:ascii'), user_cs_font_name) #you can change the font for the other language
     rFonts.set(qn('w:hAnsi'), user_cs_font_name) #you can change the font for the ot
 
-def fixParagraphRuns(para, user_cs_font_name='PhakeRamayanaUnicode', user_cs_font_size=12):
+def fix_paragraph_runs(para, user_cs_font_name=None, user_cs_font_size=12):
     runs = para.runs
-    para_text = para.text
-
     user_is_bold = False
 
     for run in runs:
         font_name = run.font.name
         if font_name == user_cs_font_name:
-            fix_cs_formatting_runs(run, user_cs_font_size, user_cs_font_name,
+            fix_cs_formatting_run(run, user_cs_font_size, user_cs_font_name,
                                    user_is_bold)  # cs: complex script, ex, arabic
 
         continue
 
-def checkComplex(lang, input_path, document=None, saveDoc=False):
+def checkComplex(lang, input_path, document=None, save_doc=False):
     if not Document:
         document, count = createDocFromFile(input_path)
-    my_style = document.styles['Normal']
     user_cs_font_size = 12
-    user_cs_font_name = 'PhakeRamayanaUnicode'
-    user_is_bold = False
+    user_cs_font_name = 'Arial'  # Default
 
-    user_en_font_size = 12
-    user_en_font_name = 'Times New Roman'
+    if lang == 'phk':
+        user_cs_font_size = 12
+        user_cs_font_name = 'PhakeRamayanaUnicode'
 
     # get the paragraphs
     paragraphs = document.paragraphs
-    paragraphCount = len(paragraphs)
-
     paragraphId = 0
     for para in paragraphs:
         # print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
@@ -121,7 +114,7 @@ def checkComplex(lang, input_path, document=None, saveDoc=False):
           for para in paragraphs:
               fixParagraphRuns(para)
 
-    if saveDoc:
+    if save_doc:
         new_doc_name  = input_path.replace('_Unicode', '_UnicodeFixed')
         document.save(new_doc_name)
 
@@ -150,7 +143,7 @@ def main(argv):
             # Only look at Unicode converted files
             continue
         print('Checking complex scripts %s in document %s' % (lang, file_path))
-        result = checkComplex(lang, file_path, saveDoc=True)
+        checkComplex(lang, file_path, save_doc=True)
 
 
 if __name__ == '__main__':

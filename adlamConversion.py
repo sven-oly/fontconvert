@@ -423,9 +423,9 @@ class AdlamConverter(ConverterBase):
             self.unicodeFont = newFont
         else:
             self.unicodeFont = defaultOutputFont
-        self.setScriptRange(0x1e900, 0x1e95f)
-        self.setUpperCaseRange(0x1e900, 0x1e921)
-        self.setLowerCaseRange(0x1e922, 0x1e943)
+        self.set_script_range(0x1e900, 0x1e95f)
+        self.set_upper_case_range(0x1e900, 0x1e921)
+        self.set_lower_case_range(0x1e922, 0x1e943)
         self.description = 'Converts Adlam font encoding to Unicode'
 
         self.defaultOutputFont = "Noto Sans Adlam New"

@@ -49,7 +49,7 @@ def convertThisDoc(lang, input_file_name):
     elif lang == 'aho':
         lang_converter = ahomConversion.AhomConverter()
     elif lang == 'phk' or lang == 'aio':
-        check_complex_script = True
+        check_complex_script = False
         lang_converter = phkConversion.PhakeConverter()
     elif lang == 'men':
         lang_converter = MendeConverter()
