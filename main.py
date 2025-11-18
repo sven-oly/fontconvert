@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# [START gae_python37_app]
+# [START gae_python312_app]
 from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
@@ -43,6 +43,11 @@ import mendeConverter
 from convertDoc2 import ConvertDocx
 
 import convertXls
+
+# Global logger
+logger = logging.getLogger('uploader')
+logger.setLevel(logging.INFO)
+
 
 # Dictionary of the converters by language code
 converters = {}
@@ -182,7 +187,11 @@ class ProgressClass():
         queue.put(message)
 
     def stop_updates(self, final_msg):
-        # !!! TODO: Finish this
+        self.status = final_msg
+        self.thread.setStatus(final_msg)
+        queue.put(final_msg)
+        queue.put('## STOP ##')
+        queue.task_done()
         return
         
 
@@ -266,22 +275,21 @@ def getFontsInParagraphs(paragraphs, fonts):
 #https://tedboy.github.io/flask/generated/flask.stream_with_context.html@
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
-    logger = logging.getLogger('uploader')
 
-    logger.setLevel(logging.DEBUG)
-
+    # True if conversion is requested, otherwise just doc info
     convertDoc = False
+    get_doc_info = True
 
     lang = request.args.get('lang', 'und')
 
     who = '/uploader/%s' % lang
-    logger.debug('WHO = %s', who)
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
         if 'ConvertToUnicode' in formData:
             logger.debug('ConvertToUnicode')
             convertDoc = True
+            get_doc_info = False
         logger.debug('DEBUG: %s', request.method)
         try:
             taskId = int(formData['taskId'])
@@ -289,6 +297,7 @@ def upload_file():
             taskId = 117
 
         logger.debug('*** taskId = %d', taskId)
+        # Get the information on the language 
         try:
             lang = formData['lang']
             lang_code = lang
@@ -313,7 +322,7 @@ def upload_file():
         baseName = split_name[0]
         extension = split_name[1]
         outFileName = baseName + '_Unicode' + extension
-        print('XXXX %s, %s, %s', baseName, extension, split_name)
+
         if extension == '.xlsx':
             cell_ranges = request.args.get('spreadsheet_region', None)
             converter = converters[lang]
@@ -326,8 +335,6 @@ def upload_file():
             processor.workbook.save(out_file_name)
         elif extension == '.docx':
             # New thread for this id
-            print('YYY: ', baseName, extension, )
-
             this_thread = exporting_threads[taskId] = ExportingThread()
             this_thread.start()
             this_thread.status = 'Creating doc %s from upload' % inputFileName
@@ -345,8 +352,6 @@ def upload_file():
             fontsFound, para_langs, lang_paragraphs = findDocFonts(doc)
             if not convertDoc:
                 # Just show information.
-                print('PARA LANGS = %s' % para_langs)
-
                 return render_template(
                     'docinfo.html',
                     size="{:,}".format(fileSize),
@@ -367,16 +372,16 @@ def upload_file():
             logger.debug('LANG = %s', lang_code)
             if lang_code == 'ff':
                 langConverter = adlamConversion.AdlamConverter()
-                print('ADLAM CONVERTER CREATED')
+                logger.debug('ADLAM CONVERTER CREATED')
             elif lang_code =='aho':
                  langConverter = ahomConversion.AhomConverter()
-                 print('AHOM CONVERTER CREATED')
+                 logger.debug('AHOM CONVERTER CREATED')
             elif lang_code =='phk':
                  langConverter = phkConversion.PhakeConverter()
-                 print('PHK CONVERTER CREATED')
+                 logger.debug('PHK CONVERTER CREATED')
             elif lang_code =='men':
                  langConverter = medeConverter.MendeConverter()
-                 print('MEN CONVERTER CREATED')
+                 logger.debug('MEN CONVERTER CREATED')
 
             langConverter.detectLang = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
@@ -473,6 +478,7 @@ def upload_file():
 
         # Done processing.
         # TODO!!! Update progressObj with "complete" message and stop updates
+        newProgressObj.stop_updates('HALTING')
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     # Try zip file...
@@ -663,7 +669,7 @@ class ExportingThread(threading.Thread):
     def run(self):
         # Your exporting stuff goes here ...
         while True:  # Wait for something in the queue.
-            message = queue.get()
+            message = queue.get(block=True)
             self.progress += 10
             #print('THREAD QUEUE MESSAGE = %s' % message)
             #print('THREAD STATUS: %s' % (self.status))

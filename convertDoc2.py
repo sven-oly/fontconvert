@@ -155,11 +155,11 @@ class ConvertDocx():
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
     for para in paragraphs:
-      #print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
       paragraphId += 1
       if self.progressObj:
-        msg = 'para %d of %d' % (paragraphId, paragraphCount)
-        if paragraphId % 100 == 0:
+        msg = 'Paragraph %d of %d' % (paragraphId, paragraphCount)
+        # Control how much to send
+        if paragraphId % 10 == 0:
           self.progressObj.send(msg)
       self.converter.processParagraphRuns(para)
 
@@ -201,10 +201,9 @@ class ConvertDocx():
     tableId = 0
     for table in tables:
       self.converter.current_table = table  # To help with setting font sizes.
-      # print('!!! TABLE %d' % (tableId))
       tableId += 1
       if self.progressObj:
-        self.progressObj.send('Table %d, %d rows' % (tableId, len(table.rows)))
+        self.progressObj.send('Processed table %d, %d rows' % (tableId, len(table.rows)))
       row_id = 0
       rows = table.rows
       for row in rows:
@@ -225,7 +224,7 @@ class ConvertDocx():
 
     if self.progressObj:
       self.progressObj.send('## Conversion complete ##')
-      self.progressObj.stop_updates('DONE MESSAGE')
+      self.progressObj.stop_updates('## STOP ##')
     return
 
   def install_new_style(self, font):

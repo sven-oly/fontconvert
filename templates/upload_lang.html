@@ -27,6 +27,7 @@
 
       function check_progress(statusArea) {
           // Send AJAX to get the status
+          let stopping = false;
           let output = document.getElementById(statusArea);
           if (window.XMLHttpRequest) {
               // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -42,9 +43,11 @@
                   // The callback.
                   const returned_json = xmlhttp.responseText;
                   output.value += returned_json + '\n';
+                  output.scrollTop = output.scrollHeight;
                   output.focus();  // Scroll to the end
                   if (returned_json === '## STOP ##') {
                       killPollStatus();
+                      stopping = true;
                   }
                   return;
               }
