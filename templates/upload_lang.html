@@ -80,22 +80,35 @@
 <form action = "{{base}}uploader/?lang={{lang}}" method = "POST"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
+    Language: <input type='text' id='lang' value='{{lang_name}}' readonly></input>
   <input type = "file" name = "file" id="name"/>
   <br/><br/>
   <input type="submit" value="Get document information" name="DocInfo" />
   <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
+  <br />
+  <input type="checkbox" id="folder_output" name="folder_output"  />
+    <label for="folder_output">Download result with additional information?</label>
+  <input type="checkbox" id="remove_returns" name="remove_returns"  checked />
+    <label for="remove_returns">Remove carriage returns in text blocks?</label>
   <input type="text" name='langName' value="{{lang_name}}" hidden>
   <input type="text" name='lang' value="{{lang}}" hidden>
   <input type="text" name='taskId' value={{taskId}} hidden>
+  <br />
+  <br />
+  <label>Preferred output font:</label>
   <ul>
     {% for each in fonts %}
     <!-- Fill in fonts for the conversion -->
+    {% if loop.first %}    
     <input type='radio' id='{{each}}' name='UnicodeFont'
            value='{{each}}' checked>
+    {% else %}
+    <input type='radio' id='{{each}}' name='UnicodeFont'
+           value='{{each}}'>
+    {% endif %}    
     <label for '{{each}}'>{{each}}</label>
     {% endfor %}
   </ul>
-    Language: <input type='text' id='lang' value='{{lang_name}}' readonly></input>
 </form>   
 
 <input type="button" value="Check progress"

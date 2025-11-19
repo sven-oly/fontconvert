@@ -93,6 +93,11 @@ class ConverterBase:
         self.output_u_mode = False
         self.not_converted_context = defaultdict(list)
 
+        # Other options
+        self.remove_returns_in_block = False
+        self.download_as_zip = False
+        
+
     def preprocess(self, text_in, current_tag):
         # Possibly do some preprocessing on each line, maybe dependent on a tab
         # or a regular expression

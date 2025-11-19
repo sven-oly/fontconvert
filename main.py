@@ -140,10 +140,10 @@ def uploadLang():
                              'Ahom Manuscript Unicode']
     elif lang == 'phk':
         unicode_font_list = ['Ramayana Unicode',
-                             'Noto Sans Myanmar Light',
-                             'Noto Serif Myanmar Thin',
+                             'Myanmar Text',
+                             'Noto Sans Myanmar Regular',
                              'Noto Serif Myanmar Regular',
-                             'Noto Serif Myanmar Thin']
+                             ]
 
     return render_template('upload_lang.html',
                            base=who,
@@ -296,6 +296,20 @@ def upload_file():
         except:
             taskId = 117
 
+        # Other options for conversion:
+        if 'remove_returns' in formData:
+            remove_returns_in_block = formData['remove_returns']
+        else:
+            remove_returns_in_block = False
+            
+        if 'folder_output' in formData:
+            download_as_zip = formData['folder_output']
+        else:
+            download_as_zip = False
+        
+        logger.info('*** remove_returns_in_block = %s', remove_returns_in_block)
+        logger.info('*** download_as_zip = %s', download_as_zip)
+
         logger.debug('*** taskId = %d', taskId)
         # Get the information on the language 
         try:
@@ -386,6 +400,10 @@ def upload_file():
             langConverter.detectLang = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
+            # Other settings
+            langConverter.remove_returns_in_block = remove_returns_in_block
+            langConverter.download_as_zip = download_as_zip
+
             langConverter.taskId = taskId
 
             newProgressObj = ProgressClass(langConverter, this_thread)
@@ -418,6 +436,7 @@ def upload_file():
 
             result = docConverter.processDocx()
 
+            # This is the output .docx file
             # TODO: Show "saving"
             target_stream = BytesIO()
             result = doc.save(target_stream)
@@ -430,55 +449,63 @@ def upload_file():
             # outFileName = fixNonAsciiFilename(outFileName)
             headerFileName = "attachment;filename=%s" % outFileName
 
-            # Check if there is word list info.
-            wordFrequencies = langConverter.getSortedWordList()
+            if download_as_zip:
+                # Create zip file of .docx, word list, and info files.
+                
+                # Word list file
+                wordFrequencies = langConverter.getSortedWordList()
+                # Try to make this with a zip archive
+                # Create a .tsv file of the word frequencies
+                text_stream = StringIO()
+                if wordFrequencies:
+                    text_stream.write('%s\t%s\n' % ('Word', 'Times in file'))
+                    for item in wordFrequencies:
+                        outline = '%s\t%s\n' % (item[0], item[1])
+                        text_stream.write(outline)
+                text_stream.seek(0)
+                wordsFileName = baseName + "_words.tsv"
 
+                # Create an info file
+                info_stream = StringIO()
+                now = datetime.datetime.now()
+                info_stream.write('Source filename = %s\n' % inputFileName)
+                info_stream.write('Output filename = %s\n' % outFileName)
+                info_stream.write('Converted to Unicode at %s\n' %
+                                  now.strftime('%Y-%m-%d %H:%M:%S'))
+                info_stream.write('File size:  {:,} bytes\n'.format(fileSize))
+                info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
+                info_stream.write(' %d sections\n' % len(doc.sections))
+                info_stream.write(' %d tables\n' % len(doc.tables))
+                info_stream.write(' fonts found = %s\n' % fontsFound)
+                info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
+                info_stream.seek(0)
 
-            # Try to make this with a zip archive
-            # Create a .tsv file of the word frequencies
-            text_stream = StringIO()
-            if wordFrequencies:
-                text_stream.write('%s\t%s\n' % ('Word', 'Times in file'))
-                for item in wordFrequencies:
-                    outline = '%s\t%s\n' % (item[0], item[1])
-                    text_stream.write(outline)
-            text_stream.seek(0)
-            wordsFileName = baseName + "_words.tsv"
+                # The zipfile contents
+                zipStream = BytesIO()
+                with ZipFile(zipStream, 'w') as zf:
+                    zf.writestr(outFileName, target_stream.read())
+                    zf.writestr(wordsFileName, text_stream.read())
+                    zf.writestr('%s_info.txt' % baseName, info_stream.read())
 
-            # Create an info file
-            info_stream = StringIO()
+                zipStream.seek(0)
+                zipName = baseName + '_Unicode.zip'
+                result_download = send_file(zipStream,
+                                            as_attachment=True,
+                                   download_name=zipName)
+            else:
+                # Just save the Unicode .docx file
+                result_download = send_file(target_stream,
+                                            as_attachment=True,
+                                            download_name = outFileName)
 
-            now = datetime.datetime.now()
-            info_stream.write('Source filename = %s\n' % inputFileName)
-            info_stream.write('Output filename = %s\n' % outFileName)
-            info_stream.write('Converted to Unicode at %s\n' %
-                              now.strftime('%Y-%m-%d %H:%M:%S'))
-            info_stream.write('File size:  {:,} bytes\n'.format(fileSize))
-            info_stream.write('{:,} paragraphs\n'.format(len(doc.paragraphs)))
-            info_stream.write(' %d sections\n' % len(doc.sections))
-            info_stream.write(' %d tables\n' % len(doc.tables))
-            info_stream.write(' fonts found = %s\n' % fontsFound)
-            info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
-            info_stream.seek(0)
-
-            # The zipfile contents
-            zipStream = BytesIO()
-            with ZipFile(zipStream, 'w') as zf:
-                zf.writestr(outFileName, target_stream.read())
-                zf.writestr(wordsFileName, text_stream.read())
-                zf.writestr('%s_info.txt' % baseName, info_stream.read())
-
-            zipStream.seek(0)
-            zipName = baseName + '_Unicode.zip'
-            return send_file(zipStream, as_attachment=True,
-                             download_name=zipName)
+            return result_download
         else:
             logger.error('!!! Not processing file %s !', inputFileName)
             return None
 
         # Done processing.
-        # TODO!!! Update progressObj with "complete" message and stop updates
         newProgressObj.stop_updates('HALTING')
+
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     # Try zip file...
