@@ -46,13 +46,13 @@ import convertXls
 
 # Global logger
 logger = logging.getLogger('uploader')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 # Dictionary of the converters by language code
 converters = {}
 converters['ff'] = adlamConversion.AdlamConverter()
-# converters['aho'] = ahomConversion.AhomConverter()
+converters['aho'] = ahomConversion.AhomConverter()
 converters['phk'] = phkConversion.PhakeConverter()
 converters['men'] = mendeConverter.MendeConverter()
 
@@ -297,18 +297,18 @@ def upload_file():
             taskId = 117
 
         # Other options for conversion:
+        remove_returns_in_block = False
         if 'remove_returns' in formData:
             remove_returns_in_block = formData['remove_returns']
-        else:
-            remove_returns_in_block = False
-            
+
+        download_as_zip = False
         if 'folder_output' in formData:
             download_as_zip = formData['folder_output']
-        else:
-            download_as_zip = False
-        
-        logger.info('*** remove_returns_in_block = %s', remove_returns_in_block)
-        logger.info('*** download_as_zip = %s', download_as_zip)
+
+        use_vs = False
+        if 'use_variation_selectors' in formData:
+            use_vs = formData['use_variation_selectors']
+        logger.debug('USE_VS = %s', use_vs)
 
         logger.debug('*** taskId = %d', taskId)
         # Get the information on the language 
@@ -384,18 +384,14 @@ def upload_file():
             # Call conversions on the document.
             langConverter = None
             logger.debug('LANG = %s', lang_code)
-            if lang_code == 'ff':
-                langConverter = adlamConversion.AdlamConverter()
-                logger.debug('ADLAM CONVERTER CREATED')
-            elif lang_code =='aho':
-                 langConverter = ahomConversion.AhomConverter()
-                 logger.debug('AHOM CONVERTER CREATED')
-            elif lang_code =='phk':
-                 langConverter = phkConversion.PhakeConverter()
-                 logger.debug('PHK CONVERTER CREATED')
-            elif lang_code =='men':
-                 langConverter = medeConverter.MendeConverter()
-                 logger.debug('MEN CONVERTER CREATED')
+            try:
+                langConverter = converters[lang_code]
+            except KeyError:
+                langConverter = None
+                return render_template('unsupported_lang_code.html',
+                                       lang_code=lang_code,
+                                       supported_lang_codes= converts.keys()
+                                       )
 
             langConverter.detectLang = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
@@ -403,6 +399,7 @@ def upload_file():
             # Other settings
             langConverter.remove_returns_in_block = remove_returns_in_block
             langConverter.download_as_zip = download_as_zip
+            langConverter.add_variant_selectors = use_vs
 
             langConverter.taskId = taskId
 
@@ -451,7 +448,6 @@ def upload_file():
 
             if download_as_zip:
                 # Create zip file of .docx, word list, and info files.
-                
                 # Word list file
                 wordFrequencies = langConverter.getSortedWordList()
                 # Try to make this with a zip archive

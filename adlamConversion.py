@@ -4,12 +4,15 @@
 # Convert Adlam encoded text to Unicode.
 from __future__ import absolute_import, division, print_function
 
+from operator import truediv
+
 import adlamToLatin
 
 import re
 import sys
 
 from converterBase import ConverterBase
+from check_complex_script import fix_cs_formatting_run
 
 # from convertDoc2 import ConvertDocx
 
@@ -24,6 +27,10 @@ FONTS_TO_CONVERT = [
   ['Times New Roman', 'latn'],
   ['Adlam2Latn', 'adlam2latn']  # Special for Adlam to Latin transliteration
 ]
+
+# Searches for the font of a complex script
+# in run.element.rPr.rFons.xml
+cs_regex = re.compile(r'w:cs="([^"]*)')
 
 thisDefaultOutputFont = 'Noto Sans Adlam'
 
@@ -407,7 +414,17 @@ class AdlamConverter(ConverterBase):
 
         self.encodingScripts = []  # If given, tells the Script of incoming characters
         self.oldFonts = []
+        self.thisDefaultOutputFont = thisDefaultOutputFont
+        self.FONTS_TO_CONVERT = [x[0] for x in FONTS_TO_CONVERT]
+        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
+        self.font_to_mapping = {
+            'Fulfulde - Aissata': 'arab',
+            'Fulfulde - Fuuta': 'arab',
+            'Fulfulde - Pulaar': 'arab',
+            'Times New Roman': 'latn',
+            'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
+        }
         for item in oldFontList:
             if isinstance(item, list):
                 self.oldFonts.append(item[0])
@@ -429,10 +446,7 @@ class AdlamConverter(ConverterBase):
         self.description = 'Converts Adlam font encoding to Unicode'
 
         self.defaultOutputFont = "Noto Sans Adlam New"
-
-
         self.forceFont = True  # May be used to set all font fields to the Unicode font
-
         self.isRtl = True
 
         self.description = 'Converts Adlam font encoding to Unicode'
@@ -479,8 +493,7 @@ class AdlamConverter(ConverterBase):
     def tokenizeText(self, textIn):
         if self.scriptIndex <= 2:
             # Split into Arabic characters
-            return [i for i in textIn if i]
-           # return [textIn]
+            return list(textIn)
         elif self.scriptIndex == 3:
             # Latin - break into tokens using a regular expression
             # Remove empty strings
@@ -489,53 +502,57 @@ class AdlamConverter(ConverterBase):
             # Adlam to Latin
             return [i for i in self.token_splitter.split(textIn) if i]
 
+
+    def check_font_match(self, run):
+        if run.font.name in self.font_to_mapping:
+            # the simple case
+            return run.font.name, run.font.size
+        try:
+            size = run.element.rPr.sz_val
+            cs_font_found = cs_regex.search(run.element.rPr.rFonts.xml)
+            if cs_font_found.group(1) in self.font_to_mapping:
+                return cs_font_found.group(1), size
+        except (NameError, AttributeError):
+            # The complex script is not available in this data structure
+            pass
+        return None, None
+
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
-    def convertText(self, textIn, fontTextInfo=None, fontIndex=0):
-        if self.debug:
-            print('convertText index= %s, text = %s' % (fontIndex, textIn))
+    def convertText(self, run, fontIndex=0):
+        font_matched, new_size = self.check_font_match(run)
+        font_size = new_size
 
-        self.encoding = self.encodingScripts[fontIndex]
+        if not font_matched:
+            font = run.font.name
+            text = run.text
+            # No change
+            return
+
+        encoding_input = self.font_to_mapping[font_matched]
+        encoding_map = self.private_use_map[encoding_input]
         if fontIndex < 4:
-            encoding_map = self.private_use_map[self.encoding]
             self.token_splitter = self.latn_regex
         else:
             # Conversion from Adlam to Latin
             convertData = adlamToLatin.adlamToLatinConvert()
-            encoding_map = convertData.adlam_to_latin_map
             self.token_splitter = convertData.adlam_split_regex
-
-        self.scriptIndex = fontIndex
-        if not fontTextInfo:
-            # Only raw text, without formatting or structure information.
-
-            if self.debug:
-                print('****** TEXT = %s' % textIn)
-            result = self.convertString(textIn, None, encoding_map)
-            if self.debug:
-                print('   convertText result= %s' % (result))
-            return result
 
         # Take the data from the fontTextInfo field.
         convertList = []
-        for item in fontTextInfo:
-            tags = []
-            for fmt in item[1]:
-                loc = fmt.tag.find('}')
-                tags.append(fmt.tag[loc + 1:])
-
-            convertList.append(
-                self.convertString(item[0], tags, encoding_map))
-        if self.debug:
-            print('  --> out  = %s' % ''.join(convertList))
-
-        return ''.join(convertList)
+        new_text = self.convertString(run.text, encoding_map)
+        run.text = new_text
+        # This should be parameterized
+        run.font.name = thisDefaultOutputFont
+        # Consider if this needs to be handled as  a complex script
+        if not font_size:
+            font_size = 18
+        fix_cs_formatting_run(run, font_size, thisDefaultOutputFont, langCode='ff',
+                              is_bidi=True)
 
     # Handles details of converting the text, including case conversion.
-    def convertString(self, textIn, fontInfo,
-                      conversion_map):
-        # type: (object, object, object) -> object
+    def convertString(self, textIn, conversion_map):
         convertedList = []
         convertResult = ''
 
@@ -543,23 +560,12 @@ class AdlamConverter(ConverterBase):
         if not tokens:
             return convertResult
 
-        if self.debug:
-            print('------- Tokens %s' % tokens)
-        
-        if self.debug:
-          print('$$$$$ text = %s, fontInfo = %s' %
-                (textIn, fontInfo))  #fontInfo))
         for c in tokens:
           # Special handling if needed
           out = c
           if c in conversion_map:
             out = conversion_map[c]
-          else:
-            if self.debug:
-              print('----- input %s not found' %
-                    (c))
 
-          # Special case for handling underlined text
           convertedList.append(out)
 
         convertResult = ''.join(convertedList)
@@ -602,7 +608,7 @@ class AdlamConverter(ConverterBase):
          sentence_ends.append((len(text)-1, '$'))
          return sentence_ends, sentence_starts
 
-    def mapRunsToParagraphTextPosisions(self, runs):
+    def mapRunsToParagraphTextPositions(self, runs):
         # Mapping of run starts & ends to text positions
         run_map = []
         pos = 0
@@ -627,10 +633,10 @@ class AdlamConverter(ConverterBase):
             # print('%s in %s' % (detected, p.text))
             if detected[0] in self.ignoreLangs:
                 return
-            
-        for run in p.runs:
-            run.text = self.convertText(run.text, None, self.scriptIndex)
-            run.font.name = self.unicodeFont
+
+        # Consider the font name in the conversion
+        for this_run in p.runs:
+            self.convertText(this_run, self.scriptIndex)
 
         self.processSentences(p)
 
@@ -645,7 +651,7 @@ class AdlamConverter(ConverterBase):
         # Get all the positions of sentence endings
         sentence_ends, sentence_starts = \
             self.computeSentenceStartsEnds(p.text)
-        run_map = self.mapRunsToParagraphTextPosisions(p.runs)
+        run_map = self.mapRunsToParagraphTextPositions(p.runs)
 
         startRuns = []
         rIndex = 0
@@ -784,6 +790,8 @@ def convertDocx(files):
         msgToSend = '%d paragraphs in %s\n' % (count, fileName)
         countSent = 0
 
+        # Try adding a new style
+        styles = doc
     except BaseException as err:
         return 'Bad Adlam converter. Err = %s' % err
         

@@ -14,6 +14,7 @@ import convertWord
 from docx import Document
 from docx.enum.style import WD_STYLE_TYPE
 from docx.oxml.shared import OxmlElement, qn
+from docx.shared import Pt
 
 import docx
 
@@ -106,9 +107,21 @@ class ConvertDocx():
         # https://stackoverflow.com/questions/45627652/python-docx-add-style-with-ctl-complex-text-layout-language
         self.my_style = documentIn.styles['Normal']
 
-        # Specific to Tai Phake conversion
-        user_cs_font_size = 10
-        self.user_cs_font_name = 'Phake Ramayana'
+        # Add a new style for the font(s)
+        styles = self.document.styles
+        self.fonts = {}
+        for font in converter.OUTPUT_FONTS:
+            new_style = styles.add_style(font, WD_STYLE_TYPE.CHARACTER)
+            new_style.font.name = converter.defaultOutputFont
+            try:
+                new_style.font.size = Pt(converter.defaultFontSize)
+            except:
+                new_style.font.size = Pt(12)
+            self.fonts[new_style.font.name] = new_style.font
+
+        # For complex scripts
+        user_cs_font_size = new_style.font.size
+        self.user_cs_font_name = converter.defaultOutputFont
         self.rpr = self.my_style.element.get_or_add_rPr()
         self.rFonts = self.rpr.get_or_add_rFonts()
         self.rpr.get_or_add_sz()
@@ -138,8 +151,11 @@ class ConvertDocx():
 
   
   def processDocx(self):
-    logging.warning('processDocx convertDoc2')
-    # print('processDocx convertDoc2')
+    # Set the default font
+    style = self.document.styles['Normal']
+    font = style.font
+    # font.name =  self.converter.thisDefaultOutputFont
+
     # Script index could select Adlam arab or latn.
     if self.debug:
       print('Convert2 processDocx path = %s, output_dir = %s\n' % (
@@ -149,7 +165,6 @@ class ConvertDocx():
     paragraphId = 0
 
     paragraphCount = len(paragraphs)
-    # print('!!! PROCESSDocx2 finds %d paragraphs' % (paragraphCount))
 
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))

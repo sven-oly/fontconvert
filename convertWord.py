@@ -85,7 +85,7 @@ class copyConverter():
 
     self.converter = None
     # TODO FIX THIS
-    self.unicode_font_out = 'Noto Sans Adlan New'
+    self.unicode_font_out = 'Noto Sans Adlam New'
 
   def deleteParagraph(self, paragraph):
     p = paragraph._element
@@ -586,4 +586,4 @@ def main(argv):
 
 
 if __name__ == "__main__":
-  main(sys.argv)
+    main(sys.argv)

@@ -21,6 +21,11 @@ from convertDoc2 import ConvertDocx
 
 from check_complex_script import checkComplex
 
+converters = {}
+converters['ff'] = adlamConversion.AdlamConverter()
+converters['aho'] = ahomConversion.AhomConverter()
+converters['phk'] = phkConversion.PhakeConverter()
+converters['men'] = MendeConverter()
 
 # get uploaded file into document form
 def createDocFromFile(file_path):
@@ -43,17 +48,15 @@ def convertThisDoc(lang, input_file_name):
     lang_converter = None
 
     check_complex_script = False
+    lang_converter = converters[lang]
+    sentence_mode = False
+
+    # Special settings
     if lang == 'ff':
-        lang_converter = adlamConversion.AdlamConverter()
         sentence_mode = True
-    elif lang == 'aho':
-        lang_converter = ahomConversion.AhomConverter()
-    elif lang == 'phk' or lang == 'aio':
-        check_complex_script = False
-        lang_converter = phkConversion.PhakeConverter()
-    elif lang == 'men':
-        lang_converter = MendeConverter()
+
     if not lang_converter:
+        logging.error('Unknown language code: %s', lang)
         return None
 
     # Now get the .docx file
@@ -78,8 +81,6 @@ def convertThisDoc(lang, input_file_name):
     lang_converter.setLowerMode(True)
     lang_converter.setSentenceMode(sentence_mode)
     lang_converter.lang_converter_filename = input_file_name
-
-    # msgToSend = '%d paragraphs in %s\n' % (count, input_file_name)
 
     new_progress_obj = None
     doc_converter = ConvertDocx(lang_converter, documentIn=doc,

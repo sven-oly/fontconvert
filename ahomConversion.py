@@ -9,6 +9,7 @@ import re
 import sys
 
 from converterBase import ConverterBase
+from check_complex_script import fix_cs_formatting_run
 
 # Script index
 
@@ -399,6 +400,7 @@ class AhomConverter(ConverterBase):
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
         self.thisDefaultOutputFont = 'Noto Serif Ahom'
+        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
         self.handle_sentences = False
         self.encoding = 0  # Default
@@ -687,6 +689,9 @@ class AhomConverter(ConverterBase):
                     run.font.name = self.unicodeFont
                     new_font_size = int(run.font.size * self.font_resize_factors[font_index])
                     run.font.size = new_font_size
+
+                    fix_cs_formatting_run(run, new_font_size, self.unicodeFont)
+
                 except ValueError as error:
                     pass
         if self.handle_sentences:

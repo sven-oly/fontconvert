@@ -254,12 +254,12 @@ class MendeConverter(ConverterBase):
         if defaultOutputFont:
                 self.thisDefaultOutputFont = defaultOutputFont
         else:
-            self.thisDefaultOutputFont = 'Noto Serif Mende Kikakui'
+            self.thisDefaultOutputFont = 'Noto Sans Mende Kikakui'
 
         # If true, the converter will also look for strings representing
         # code points, without "\"
         self.convert_hex_codes = True
-        self.re_unicode = re.compile('[uU]\+([0-9a-fA-F]+)')
+        self.re_unicode = re.compile(r'[uU]\+([0-9a-fA-F]+)')
 
         self.handle_sentences = False
         self.detectLang = False

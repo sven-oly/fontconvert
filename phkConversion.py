@@ -4,6 +4,7 @@
 # Convert Tai Phake encoded text to Unicode.
 from __future__ import absolute_import, division, print_function
 
+import logging
 import re
 import sys
 
@@ -360,7 +361,7 @@ class PhakeConverter(ConverterBase):
             "(": "(",
             ")": ")",
             "/": "\u104b",
-            "\\": "\u103a\u105e",
+            "\\": "\u104a",
             "[": "\u200c\u103c",
             "|": "\u1039\u101c",
             "]": "\u200c\u103c",
@@ -497,6 +498,322 @@ class PhakeConverter(ConverterBase):
             '/': '/',
             '#': '/#',
             '\"': '\"',
+        },
+        # Include Ahom texts, too.
+        'Ahom': {
+            'a': '\U00011721',
+            'b': '\U00011708',
+            'c': '\U0001170B',
+            'd': '\U00011713',
+            'e': '\U00011726',
+            'f': '\U00011707',
+            'g': '\U00011715',
+            'h': '\U00011711',
+            'i': '\U00011722',
+            'j': '\U00011729',
+            'k': '\U00011700',
+            'l': '\U0001170E',
+            'm': '\U00011709',
+            'n': '\U00011703',
+            'o': '\U00011728',
+            'p': '\U00011706',
+            'q': '\U0001172B',
+            'r': '\U0001170D',
+            's': '\U0001170F',
+            't': '\U00011704',
+            'u': '\U00011724',
+            'v': '\U0001170C',
+            'w': '\U00011730\U0001172B',
+            'x': '\U00011701',
+            'y': '\U0001170A',
+            'z': '\U00011731',
+
+            '@': '\U0001173e',
+            'A': '\U00011712',
+            'B': '\U00011718',
+            'D': '\U00011714',
+            'E': '\U00011722\U00011724',
+            'F': 'F',
+            'G': '\U00011717',
+            'H': '\U00011729',
+            'I': '\U00011723',
+            'J': '\U00011719',
+            'K': '\U00011715',
+            'M': '\U0001172A',
+            'N': '\U00011710',
+            'O': '\U0001172a',
+            'P': 'P',
+            'Q': '\U0001172b',
+
+            # Medials
+            'R': '\U0001171D',
+            'S': '\U0001171E',
+            'U': '\U00011725',
+            'W': '\U00011729',
+            'Y': '\U0001171d',
+
+            # Punctuation
+            ',': ',',
+            '.': '\U0001173D',
+            ';': '\U00011720',
+            '[': '\U00011702',
+            ']': '\U00011727',
+            '/': '\U0001173D',
+
+            '\u0020': ' ',
+
+            '\"': '\"',
+            '#': '\u1046',
+            '$': '\U00011739',
+            '%': '\U00011736',
+            '&': '&',
+            '\'': '\'',
+            '(': '(',
+            ')': ')',
+            '*': '*',
+            '+': '+',
+
+            '0': '\U00011730',
+            '1': '\U00011731',
+            '2': '\U00011732',
+            '3': '\U00011733',
+            '4': '\U00011734',
+            '5': '\U00011735',
+            '6': '\U00011736',
+            '7': '\U00011737',
+            '8': '\U00011738',
+            '9': '\U00011739',
+            ':': ':',
+            '<': '\U00011701\U0001171F',
+            '=': '\u003d',
+            '>': '\U00011724\U00011728',
+            '?': '\U00011707\U0001171F',
+
+            '\\': '\\',
+
+            '{': '{',
+            '|': '|',
+            '}': '}',
+            '~': '~',
+
+            '\u00a1': '\U00011700',
+            '\u00a2': '\U00011701',
+            '\u00a4': '\U00011715',
+            '\u00a5': '\U00011729',
+            '\u00a6': '\U00011717',
+            '\u00a7': '\U00011702',
+            '\u00a8': '\U0001170b',
+            '\u00ac': '\U00011719',
+
+            '\u00b4': '\U00011713',
+            '\u00b5': '\U00011704',
+            '\u00b6': '\U0001170c',
+            '\u00b7': '·',
+            '\u00b8': '\U00011714',
+            '\u00b9': '\U00011703',
+            '\u00ba': '\U00011708',
+            '\u00bb': '\U00011706',
+            '\u00bc': '\U00011707',
+            '\u00bd': '\u00bd',
+            '\u00be': '\u00be',
+            '\u00bf': '\U0001171d',
+
+            '\u00c0': '\U00011718',
+            '\u00c1': '\U00011709',
+            '\u00c2': '\U0001170e',
+            '\u00c3': '\U0001170d',
+            '\u00c4': '\U0001171e',
+            '\u00c5': '\U0001170e',
+            '\u00c6': 'Æ',
+            '\u00c7': '\U00011730',
+            '\u00c8': '\U0001172a',
+            '\u00ca': '\U0001170f',
+            '\u00cb': '\U00011711',
+            '\u00cd': '\U00011712',
+            '\u00ce': '\U0001172b',
+
+            '\u00d0': '\U00011720',
+            '\u00d2': '\U00011721',
+            '\u00d4': '\U00011722',
+            '\u00d5': '\U00011723',
+            '\u00d6': '\U00011729',
+            '\u00d7': '\U00011722',
+            '\u00d8': '\U00011724',
+            '\u00d9': '\U00011725',
+
+            '\u00e0': '\U00011726',
+            '\u00e1': '\U0001172b',
+            '\u00e2': '\U00011728',
+            '\u00e3': '\U00011727',
+            '\u00e4': '\U00011729',
+
+            '\u00f1': '\U00011731',
+
+            '\u0112': '.',
+            '\u0160': '\u030c',
+            '\u0161': '\U0001170f',
+            '\u02c6': '\u030c',
+            '\u02c7': '\u0302',
+            '\u2022': '\u2022',
+            '\u2122': '\u2122',
+        },
+        'Ahom Manuscript': {
+            'a': '\U00011721',
+            'b': '\U00011708',
+            'c': '\U0001170B',
+            'd': '\U00011713',
+            'e': '\U00011726',
+            'f': '\U00011707',
+            'g': '\U00011716',
+            'h': '\U00011711',
+            'i': '\U00011722',
+            'j': '\U00011729',
+            'k': '\U00011700',
+            'l': '\U0001170E',
+            'm': '\U00011709',
+            'n': '\U00011703',
+            'o': '\U00011728',
+            'p': '\U00011706',
+            'q': '\U0001172B',
+            'r': '\U0001170D',
+            's': '\U0001170F',
+            't': '\U00011704',
+            'u': '\U00011724',
+            'v': '\U0001170C',
+            'w': '\U00011730\u0001172B',
+            'x': '\U00011701',
+            'y': '\U0001170A',
+            'z': '\U00011731',
+
+            # Punctuation
+            ',': ',',
+            '.': '\U0001173C',
+            ';': '\U00011720',
+            '[': '\U00011702',
+            ']': '\U00011727',
+            '/': '\U0001173D',
+
+            # Specified by hex values.
+            '\u0020': ' ',
+            '\u0021': '!',
+            '\u0022': '\"',
+            '\u0023': '\U00011719',
+            '\u0024': '\U00011739',
+            '\u0025': '\U00011736',
+            '\u0026': '&',
+            '\u0027': '\'',
+            '\u0028': '(',
+            '\u0029': ')',
+            '\u002a': '*',
+            '\u002b': '+',
+
+            '0': '\U00011730',
+            '1': '\U00011731',
+            '2': '\U00011732',
+            '3': '\U00011733',
+            '4': '\U00011734',
+            '5': '\U00011735',
+            '6': '\U00011736',
+            '7': '\U00011737',
+            '8': '\U00011738',
+            '9': '\U00011739',
+
+            ':': '\U00011734',
+            '<': '\U00011701\U0001171F',
+            '=': '\u003d',
+            '>': '\U00011724\U00011728',
+            '?': '\U00011707\U0001171f',
+
+            '\u0040': '\U0001173e',
+            'A': '\U00011712',
+            '\u0042': '\U00011718',
+            '\u0044': '\U00011714',
+            'E': '\U00011722\U00011724',
+            '\u0046': '\U00011730',
+            '\u0047': '\U00011717',
+            '\u0048': '\U00011729',
+            '\u0049': '\U00011723',
+            '\u004a': '\U00011719',
+            '\u004b': '\U00011715',
+            '\u004d': '\U0001172a',
+            '\u004e': '\U00011710',
+            '\u004f': '\u004f',
+
+            '\u0051': '\U0001172b',
+            '\u0052': '\U0001171d',
+            '\u0053': '\U0001171e',
+            'U': '\U00011725',
+            'W': '\U00011728',
+            'Y': '\U0001171d',
+            '\\': '\\',
+
+            '`': '\U0001173c',
+
+            '\u007b': '{',
+            '\u007c': '|',
+            '\u007d': '}',
+            '\u007e': '~',
+
+            '\u00a1': '\U00011705\U0001170a',
+            '\u00a2': '\U00011701',
+            '\u00a4': '¤',
+            '\u00a5': '\U00011729',
+            '\u00a6': '\U00011717',
+            '\u00a7': '\U00011702',
+            '\u00a8': '\U0001170b',
+            '\u00ac': '\U00011719',
+
+            '\u00b4': '\U00011713',
+            '\u00b5': '\U00011704',
+            '\u00b6': '\U0001170c',
+            '\u00b7': '\U0001170c\U00011727',
+            '\u00b8': '\U00011714',
+            '\u00b9': '\U00011703',
+            '\u00ba': '\U00011708',
+            '\u00bb': '\U00011706',
+            '\u00bc': '\U00011707',
+            '\u00bd': '\U00011712',
+            '\u00be': '\U0001171f',
+            '\u00bf': '\U0001171d',
+
+            '\u00c0': '\U00011718',
+            '\u00c1': '\U00011709',
+            '\u00c2': '\U0001170e',
+            '\u00c3': '\U0001170d',
+            '\u00c4': '\U0001171e',
+            '\u00c5': '\U0001170e',
+            '\u00c6': '\U0001170e',
+            '\u00c7': '\U00011708\U0001171f',
+            '\u00c8': '\U0001172a',
+            '\u00ca': '\U0001170f',
+            '\u00cb': '\U00011711',
+            '\u00cd': '\U00011712',
+            '\u00ce': '\U0001172b',
+
+            '\u00d0': '\U00011720',
+            '\u00d2': '\U00011721',
+            '\u00d4': '\U00011722',
+            '\u00d5': '\U00011723',
+            '\u00d6': '\U00011729\U00011728',
+            '\u00d7': '\U00011722\U00011724',
+            '\u00d8': '\U00011724',
+            '\u00d9': '\U00011725',
+
+            '\u00e0': '\U00011726',
+            '\u00e1': '\U0001172b',
+            '\u00e2': '\U00011728',
+            '\u00e3': '\U00011727',
+            '\u00e4': '\U00011729',
+
+            '\u00f1': '\U00011731',
+
+            '\u0112': '.',
+            '\u0160': '\u030c',
+            '\u0161': '\U0001170f\u030c',
+            '\u02c6': '\u030c',
+            '\u02c7': '\u0302',
+            '\u2022': '\u2022',
+            '\u2122': '\U0001171e'
         }
     }
 
@@ -531,12 +848,15 @@ class PhakeConverter(ConverterBase):
     # re.ASCII
 
     def __init__(self, old_font_list=None, new_font=None,
-                 default_output_font='Phake Ramayana Unicode'):
+        default_output_font='Phake Ramayana Unicode'):
         self.font_index = None
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
         super().__init__(self.FONTS_TO_CONVERT, new_font, default_output_font)  # Call the parent class's __init__
-
+        self.thisDefaultOutputFont = default_output_font
+        self.defaultOutputFont = default_output_font
+        self.defaultFontSize = Pt(12)
+        self.grapheme_boundary_char = '\u200b'
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
         self.ONE_POINT_FACTOR = 12700  # for each "point" of the font size
         self.current_table = None
@@ -552,8 +872,6 @@ class PhakeConverter(ConverterBase):
         for font in self.FONTS_TO_CONVERT:
             font_keys = sorted(
                 self.private_use_map[font].keys(), key=len, reverse=True)
-            re_string = r'(' + '|'.join(font_keys) + ')'
-            self.split_by_script[font] = re.compile(re_string)
 
         self.thisDefaultOutputFont = default_output_font
 
@@ -593,8 +911,12 @@ class PhakeConverter(ConverterBase):
             'Phake Script': 'PhakeRamayanaUnicode',
             'Phake Ramayana': 'PhakeRamayanaUnicode',
             'Aiton Script': 'PhakeRamayanaUnicode',
-            'Assam New': 'Noto Serif Bengali'
+            'Assam New': 'Noto Serif Bengali',
+            'Ahom': 'Noto Serif Ahom',
+            'Ahom Manuscript': 'Noto Serif Ahom',
         }
+        self.OUTPUT_FONTS = ['PhakeRamayanaUnicode', 'Noto Serif Bengali', 'Noto Serif Ahom']
+
         if new_font:
             self.unicodeFont = new_font
         else:
@@ -708,7 +1030,7 @@ class PhakeConverter(ConverterBase):
             [r'([\u09cd])([\u09be])', insert200d],
             [r'([\u0985])([\u09be])', insert200d],
             [r'([\u0997])([\u09c1])', insert200d],
-            [r'([\u09cd])([[\u09a1-\u09a5\u0997\u09b2])', insert200b],
+            [r'([\u09cd])([\u09a1-\u09a5\u0997\u09b2])', insert200b],
         ]
 
         # How to replace this doubled form. It appears to be font-specific.
@@ -781,6 +1103,11 @@ class PhakeConverter(ConverterBase):
 
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
+            if self.remove_returns_in_block:
+                text_in = text_in.replace('\n', '')
+                # TODO: remove later
+                logging.info('Removing return in block: %s', text_in)
+
             result = self.convertString(text_in, input_font, encoding_map)
 
             # result = self.reorderText(result)
@@ -947,7 +1274,7 @@ class PhakeConverter(ConverterBase):
                 run.text = self.convertText(old_text, None, script_index)
                 run.font.name = new_font_name
                 # TODO: Fix this
-                if new_font_name == 'PhakeRamayanaUnicode':
+                if new_font_name:  # == 'PhakeRamayanaUnicode':
                     user_cs_font_size = 12
                     fix_cs_formatting_run(run, user_cs_font_size, new_font_name)
 
@@ -967,16 +1294,6 @@ class PhakeConverter(ConverterBase):
                     pass
             except ValueError:
                 continue
-
-        # Check on the font for the full paragraph
-        # try:
-        #     font_name = p.style.font.name
-        #     if font_name:
-        #         self.FONTS_TO_CONVERT.index(font_name)
-        #         p.style.font.complex_script = self.set_complex_font
-        #         p.style.font.name = self.unicodeFont
-        # except ValueError:
-        #     pass
 
         if self.handle_sentences:
             self.processSentences(p)

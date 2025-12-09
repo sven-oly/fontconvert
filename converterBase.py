@@ -22,6 +22,7 @@ class ConverterBase:
     def __init__(self, old_font_list=None, new_font=None,
                  default_output_font=thisDefaultOutputFont):
 
+        self.defaultOutputFont = default_output_font
         # Remember what's being converted
         self.lang_converter_filename = None
 
@@ -35,6 +36,8 @@ class ConverterBase:
         self.old_font_name = None
         self.font_index = -1
 
+        #
+        self.add_variant_selectors = False
         # This may be set up by the individual converter
         self.split_by_script = {}
 
