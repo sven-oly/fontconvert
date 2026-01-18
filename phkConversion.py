@@ -910,7 +910,7 @@ class PhakeConverter(ConverterBase):
         self.font_substitution = {
             'Phake Script': 'PhakeRamayanaUnicode',
             'Phake Ramayana': 'PhakeRamayanaUnicode',
-            'Aiton Script': 'PhakeRamayanaUnicode',
+            'Aiton Script': 'Noto Sans Myanmar', # 'PhakeRamayanaUnicode',
             'Assam New': 'Noto Serif Bengali',
             'Ahom': 'Noto Serif Ahom',
             'Ahom Manuscript': 'Noto Serif Ahom',
@@ -1271,7 +1271,7 @@ class PhakeConverter(ConverterBase):
                 # https://python-docx.readthedocs.io/en/latest/_modules/docx/text/font.html
                 run.font.complex_script = True
 
-                run.text = self.convertText(old_text, None, script_index)
+                run.text = self.convertText(old_text, None, script_index, input_font=old_font_name)
                 run.font.name = new_font_name
                 # TODO: Fix this
                 if new_font_name:  # == 'PhakeRamayanaUnicode':

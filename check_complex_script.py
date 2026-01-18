@@ -12,12 +12,10 @@ import docx
 from docx import Document
 from docx.oxml.shared import OxmlElement, qn
 
-import phkConversion
-
 from convertDoc2 import ConvertDocx
 
 # CONSTANT
-langCode = 'phk'
+default_langCode = 'phk'
 
 # get uploaded file into document form
 def createDocFromFile(file_path):
@@ -34,7 +32,8 @@ def createDocFromFile(file_path):
         return None, -1
 
 
-def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name, user_is_bold=None):
+def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name,
+                          user_is_bold=None, langCode='phk', is_bidi=False):
     # Start solving the font size and name problem
     # https://stackoverflow.com/questions/45627652/python-docx-add-style-with-ctl-complex-text-layout-language
     #cs: complex script, ex, arabic
@@ -60,10 +59,14 @@ def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name, user
         b.set(qn('w:val'), "True")
     sz.set(qn('w:val'), str(int(user_cs_font_size * 2)))
     szCs.set(qn('w:val'), str(int(user_cs_font_size * 2)))
+
+    lang.set(qn("w:val"), langCode)
     lang.set(qn('w:bidi'), langCode)  # This depends on the language code
+
     rFonts.set(qn('w:cs'), user_cs_font_name)
-    rFonts.set(qn('w:ascii'), user_cs_font_name) #you can change the font for the other language
-    rFonts.set(qn('w:hAnsi'), user_cs_font_name) #you can change the font for the ot
+    rFonts.set(qn('w:ascii'), user_cs_font_name)
+    rFonts.set(qn('w:hAnsi'), user_cs_font_name)
+    rFonts.set(qn('w:eastAsia'), user_cs_font_name)
 
 def fix_paragraph_runs(para, user_cs_font_name=None, user_cs_font_size=12):
     runs = para.runs

@@ -353,13 +353,18 @@ def upload_file():
             this_thread.start()
             this_thread.status = 'Creating doc %s from upload' % inputFileName
 
-            doc, fileSize = createDocFromFile(file)
-
-            if not doc:
-                return render_template(
-                    'error.html',
-                    who=who,
-                    error='%s %s' % ('Problem creating file', inputFileName))
+            try:
+                doc, fileSize = createDocFromFile(file)
+                logger.info('OPEN file= %s, doc = %s', inputFileName, doc)
+            except BaseException as err:
+                # TODO: show error info to user
+                logger.error('PROBLEM file= %s, err=%s', inputFileName, err)
+                return render_template('error.html',
+                                       who=who,
+                                       error=err,
+                                       file=inputFileName,
+                                       message=message_from_error(err)
+                                       )
 
             this_thread.status = 'Doc ready to process'
 
@@ -422,6 +427,7 @@ def upload_file():
             except BaseException as err:
                 return render_template('error.html',
                                        who=who,
+                                       file=inputFileName,
                                        error='Bad langConverter: %s' % err)
 
             try:
@@ -429,7 +435,9 @@ def upload_file():
                                            reportProgressObj=newProgressObj)
             except BaseException as error:
                 print('Cannot create doc converter: %s' % error)
-                return render_template('error.html', who=who, error=error)
+                return render_template('error.html', who=who, error=error,
+                                       file=inputFileName,
+                                       )
 
             result = docConverter.processDocx()
 
@@ -583,10 +591,22 @@ def createDocFromFile(file):
         count = len(text)
         doc = Document(data)
         data.close()
+        logger.info('createDocFromFile: file=%s, count=%s', file, count)
+
         return doc, count
     except BaseException as err:
+        logger.error('createDocFromFile: file=%s, err=%s', file, err)
         print('Cannot create Docx for %s. Err = %s' % (file, err))
-        return None, -1
+        raise err
+
+def message_from_error(err):
+    error_string = str(err)
+    message = ''
+    if (error_string.find('no relationship of type') >= 0 and
+        error_string.find('officeDocument/2006') >= 0):
+        message = "DOCX file should be saved as 'Word 2007 (.docx)'. Use LibreOffice."
+    return message
+
 
 @app.route('/convertAdlam', methods = ['GET', 'POST'])
 def convertAdlam():
@@ -597,7 +617,15 @@ def convertAdlam():
         fileName = file.filename
         outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
 
-        doc, count = createDocFromFile(file)
+        try:
+            doc, count = createDocFromFile(file)
+        except BaseException as err:
+            return render_template('error.html',
+                                   who=who,
+                                   error=err,
+                                   file=fileName,
+                                   message=message_from_error(err)
+                                   )
 
         try:
             langConverter = adlamConversion.AdlamConverter()      

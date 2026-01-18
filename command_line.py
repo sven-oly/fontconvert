@@ -30,16 +30,22 @@ converters['men'] = MendeConverter()
 # get uploaded file into document form
 def createDocFromFile(file_path):
     try:
-        file = open(file_path, 'rb')
-        text = file.read()
-        data = BytesIO(text)
-        count = len(text)
-        doc = Document(data)
-        file.close()
-        return doc, count
+        with open(file_path, 'rb') as file:
+            text = file.read()
+            data = BytesIO(text)
+            count = len(text)
     except BaseException as err:
-        print('Cannot create Docx for %s. Err = %s' % (file_path, err))
-        return None, -1
+        print('Cannot open file %s. Err = %s' % (file_path, err))
+        raise err
+
+    try:
+        doc = Document(data)
+    except (KeyError, TypeError, RuntimeError) as err:
+            logging.warning('%s. Cannot process file: %s',
+                            err, file_path)
+            raise err
+    return doc, count, None
+
 
 
 def convertThisDoc(lang, input_file_name):
@@ -69,10 +75,15 @@ def convertThisDoc(lang, input_file_name):
     if base_name.find('Unicode') > 0:
         return None
 
-    doc, file_size = createDocFromFile(input_file_name)
+    try:
+        doc, file_size, err = createDocFromFile(input_file_name)
+    except KeyError as err:
+        logging.warning('%s for file: %s',
+                        err, input_file_name)
+        raise err
 
     if not doc:
-        logging.warning('No document %s opened: %s', input_file_name, docx)
+        logging.warning('Document %s does not open:\n . Err =%s', input_file_name, err)
         return None
     else:
         logging.info('Doc created from %s', input_file_name)
@@ -184,6 +195,7 @@ def main(argv):
         else:
             files.append(doc_path)
 
+    all_errors = []
     for file_path in files:
         # Skip anything already converted to Unicode
         unicode_in_name = file_path.find('_Unicode.')
@@ -191,8 +203,16 @@ def main(argv):
             # Only look at Unicode converted files
             continue
         print('Converting %s in document %s' % (lang, file_path))
-        result = convertThisDoc(lang, file_path)
+        try:
+            result = convertThisDoc(lang, file_path)
+        except BaseException as err:
+            logging.warning('KeyError: %s. Cannot process file: %s', err, file_path)
+            all_errors.append(err)
 
+    if len(all_errors) > 0:
+        logging.error(all_errors)
+    else:
+        logging.info('No top level errors found')
 
 if __name__ == '__main__':
     main(sys.argv)
