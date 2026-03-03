@@ -21,6 +21,8 @@ from convertDoc2 import ConvertDocx
 
 from check_complex_script import checkComplex
 
+logger = logging.getLogger(__name__)
+
 converters = {}
 converters['ff'] = adlamConversion.AdlamConverter()
 converters['aho'] = ahomConversion.AhomConverter()
@@ -71,9 +73,6 @@ def convertThisDoc(lang, input_file_name):
         return None
 
     out_file_name = base_name + '_Unicode.docx'
-
-    if base_name.find('Unicode') > 0:
-        return None
 
     try:
         doc, file_size, err = createDocFromFile(input_file_name)
@@ -207,10 +206,10 @@ def main(argv):
             result = convertThisDoc(lang, file_path)
         except BaseException as err:
             logging.warning('KeyError: %s. Cannot process file: %s', err, file_path)
-            all_errors.append(err)
+            all_errors.append((err, file_path))
 
     if len(all_errors) > 0:
-        logging.error(all_errors)
+        logging.error('Total of %s errors. %s', len(all_errors), all_errors)
     else:
         logging.info('No top level errors found')
 

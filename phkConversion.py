@@ -908,14 +908,14 @@ class PhakeConverter(ConverterBase):
         self.scriptIndex = 0
 
         self.font_substitution = {
-            'Phake Script': 'PhakeRamayanaUnicode',
-            'Phake Ramayana': 'PhakeRamayanaUnicode',
-            'Aiton Script': 'Noto Sans Myanmar', # 'PhakeRamayanaUnicode',
+            'Phake Script': 'Phake Ramayana Unicode',
+            'Phake Ramayana': 'Phake Ramayana Unicode',
+            'Aiton Script': 'Noto Sans Myanmar', # 'Phake Ramayana Unicode',
             'Assam New': 'Noto Serif Bengali',
             'Ahom': 'Noto Serif Ahom',
             'Ahom Manuscript': 'Noto Serif Ahom',
         }
-        self.OUTPUT_FONTS = ['PhakeRamayanaUnicode', 'Noto Serif Bengali', 'Noto Serif Ahom']
+        self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom']
 
         if new_font:
             self.unicodeFont = new_font
@@ -1271,10 +1271,15 @@ class PhakeConverter(ConverterBase):
                 # https://python-docx.readthedocs.io/en/latest/_modules/docx/text/font.html
                 run.font.complex_script = True
 
-                run.text = self.convertText(old_text, None, script_index, input_font=old_font_name)
+                new_text =  self.convertText(old_text, None, script_index, input_font=old_font_name)
+                #run.text = new_text
+                run.text = ''
+                run.add_text(new_text)
+                if run.element.rPr.text == None:
+                    run.element.rPr.text = new_text
                 run.font.name = new_font_name
                 # TODO: Fix this
-                if new_font_name:  # == 'PhakeRamayanaUnicode':
+                if new_font_name:  # == 'Phake Ramayana Unicode':
                     user_cs_font_size = 12
                     fix_cs_formatting_run(run, user_cs_font_size, new_font_name)
 

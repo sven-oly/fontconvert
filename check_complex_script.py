@@ -43,10 +43,11 @@ def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name,
     rpr.get_or_add_sz()
     szCs = OxmlElement('w:szCs')  # size
     sz= OxmlElement('w:sz')  # size
-    rtl = OxmlElement('w:rtl')  # If this is a right-to-left
+    if is_bidi:
+        rtl = OxmlElement('w:rtl')  # If this is a right-to-left
+        rpr.append(rtl)
     rpr.append(szCs)
     rpr.append(sz)
-    rpr.append(rtl)
     lang = OxmlElement('w:lang')  #language
     rpr.append(lang)
     if user_is_bold:
