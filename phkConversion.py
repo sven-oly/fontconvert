@@ -1065,6 +1065,9 @@ class PhakeConverter(ConverterBase):
         self.scriptIndex = newIndex
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
+    def set_substitute_font(self, old_font, new_font):
+        self.font_substitution[old_font] = new_font
+
     # Split input into tokens for script conversion
     # def tokenizeText(self, text_in):
     #     # ASCII and whitespace characters

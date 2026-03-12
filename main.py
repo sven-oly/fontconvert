@@ -91,7 +91,8 @@ app.debug = True
 def hello():
     """Top of the conversion application."""
     who = request.url
-    return render_template('main.html', base=who)
+    version_info = '3-Mar-2026'
+    return render_template('main.html', base=who, version_info=version_info)
 
 
 # https://pythonbasics.org/flask-upload-files
@@ -139,7 +140,7 @@ def uploadLang():
         unicode_font_list = ['Noto Serif Ahom',
                              'Ahom Manuscript Unicode']
     elif lang == 'phk':
-        unicode_font_list = ['Ramayana Unicode',
+        unicode_font_list = ['Phake Ramayana Unicode',
                              'Myanmar Text',
                              'Noto Sans Myanmar Regular',
                              'Noto Serif Myanmar Regular',
@@ -301,6 +302,12 @@ def upload_file():
         if 'remove_returns' in formData:
             remove_returns_in_block = formData['remove_returns']
 
+        selected_unicode_font = None
+        if 'UnicodeFont' in formData:
+            selected_unicode_font = formData['UnicodeFont']
+
+        logger.debug("UNICODE FONT: %s", selected_unicode_font)
+
         download_as_zip = False
         if 'folder_output' in formData:
             download_as_zip = formData['folder_output']
@@ -429,6 +436,13 @@ def upload_file():
                                        who=who,
                                        file=inputFileName,
                                        error='Bad langConverter: %s' % err)
+
+            # special case for Phake, etc.
+            logger.debug('lang_code: %s, selected_unicode_font: %s' % (lang_code, selected_unicode_font))
+            if lang_code == 'phk' and selected_unicode_font:
+                print('PHK fonts set to %s' % selected_unicode_font)
+                langConverter.set_substitute_font('Phake Script', selected_unicode_font)
+                langConverter.set_substitute_font('Aiton Script', selected_unicode_font)
 
             try:
                 docConverter = ConvertDocx(langConverter, documentIn=doc,
