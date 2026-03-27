@@ -178,7 +178,7 @@ class ConverterBase:
             if c in conversion_map:
                 out = conversion_map[c]
             else:
-                out = ''
+                out = c  # Don't remove things that are not defined.
                 try:
                     key = '%s %s %s' % (self.encoding, c, hex(ord(c)))
                 except:

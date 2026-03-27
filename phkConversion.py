@@ -390,22 +390,8 @@ class PhakeConverter(ConverterBase):
 
         },
         'Banchob': {
+            "…": "…",
             ' ': ' ',
-            'N': 'ŋ',
-            'M': 'ñ',
-            'j': 'ɛ',
-            'v': 'ü',
-            'z': 'ə',
-            'q': 'ɔ',
-            'I': 'ī',
-            'E': 'ē',
-            'J': 'ɛ̄',
-            'V': 'ǖ',
-            'Z': 'ə̄',
-            'A': 'ā',
-            'U': 'ū',
-            'O': 'ō',
-            'Q': 'ɔ̄',
             '1': '¹',
             '2': '²',
             '3': '³',
@@ -415,7 +401,25 @@ class PhakeConverter(ConverterBase):
             '7': '⁷',
             '8': '⁸',
             '9': '⁹',
-            "…": "…"
+            'A': 'ā',
+            'E': 'ē',
+            'I': 'ī',
+            'J': 'ɛ̄',
+            'K': '\u0142',
+            'M': 'ñ',
+            'N': 'ŋ',
+            'O': 'ō',
+            'Q': 'ɔ\u0304',
+            'U': 'ū',
+            'V': 'ǖ',
+            'Y': '\u01B7',
+            'Z': 'ə̄',
+            'j': 'ɛ',
+            'm': 'm',
+            'p': 'p',
+            'q': 'ɔ',
+            'v': 'ü',
+            'z': 'ə',
         },
         'Assam New': {
             #'»¶': '»¶',  # ???
@@ -913,6 +917,7 @@ class PhakeConverter(ConverterBase):
             'Aiton Script': 'Noto Sans Myanmar', # 'Phake Ramayana Unicode',
             'Assam New': 'Noto Serif Bengali',
             'Ahom': 'Noto Serif Ahom',
+            'Banchob': 'Times New Roman',
             'Ahom Manuscript': 'Noto Serif Ahom',
         }
         self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom']
@@ -1281,6 +1286,13 @@ class PhakeConverter(ConverterBase):
                 if run.element.rPr.text == None:
                     run.element.rPr.text = new_text
                 run.font.name = new_font_name
+                
+                # Handle things with tabs
+                if new_text.find('\t') >= 0:
+                    r = run._r
+                    t = r.xpath('./w:t')[0]
+                    t.set(qn('xml:space'), 'preserve')
+                
                 # TODO: Fix this
                 if new_font_name:  # == 'Phake Ramayana Unicode':
                     user_cs_font_size = 12
