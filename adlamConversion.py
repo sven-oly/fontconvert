@@ -425,6 +425,22 @@ class AdlamConverter(ConverterBase):
             'Times New Roman': 'latn',
             'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
         }
+        adlam_unicode_fonts = ['Noto Sans Adlam', 'Kigelia', 'Ebrima',]
+        self.font_substitution_options = {
+            'Fulfulde - Aissata': adlam_unicode_fonts,
+            'Fulfulde - Fuuta': adlam_unicode_fonts,
+            'Fulfulde - Pulaar': adlam_unicode_fonts,
+            'Times New Roman': ['Times New Roman'],
+            'Adlam2Latn': ['adlam2latn'],  # Special for Adlam to Latin transliteration
+        }
+        self.font_substitution = {
+            'Fulfulde - Aissata': adlam_unicode_fonts[0],
+            'Fulfulde - Fuuta': adlam_unicode_fonts[0],
+            'Fulfulde - Pulaar': adlam_unicode_fonts[0],
+            'Times New Roman': 'latn',
+            'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
+        }
+
         for item in oldFontList:
             if isinstance(item, list):
                 self.oldFonts.append(item[0])
@@ -530,7 +546,11 @@ class AdlamConverter(ConverterBase):
             # No change
             return
 
-        encoding_input = self.font_to_mapping[font_matched]
+        try:
+            encoding_input = self.font_to_mapping[font_matched]
+        except:
+            encoding_input = self.oldFonts[0]
+
         encoding_map = self.private_use_map[encoding_input]
         if fontIndex < 4:
             self.token_splitter = self.latn_regex
@@ -543,12 +563,17 @@ class AdlamConverter(ConverterBase):
         convertList = []
         new_text = self.convertString(run.text, encoding_map)
         run.text = new_text
-        # This should be parameterized
-        run.font.name = thisDefaultOutputFont
+        try:
+            # This may come from the online user interface
+            run.font.name = self.font_substitution[font_matched]
+        except:
+            # OK, not a match.
+            run.font.name = thisDefaultOutputFont
+
         # Consider if this needs to be handled as  a complex script
         if not font_size:
             font_size = 18
-        fix_cs_formatting_run(run, font_size, thisDefaultOutputFont, langCode='ff',
+        fix_cs_formatting_run(run, font_size, run.font.name, langCode='ff',
                               is_bidi=True)
 
     # Handles details of converting the text, including case conversion.
@@ -627,7 +652,7 @@ class AdlamConverter(ConverterBase):
             # Nothing to process
             return
 
-        # Check on the language of the paragraph. May don't convert.
+        # Check on the language of the paragraph. May not convert.
         if self.detectLang:
             detected = self.detectLang.classify(p.text.strip())
             # print('%s in %s' % (detected, p.text))

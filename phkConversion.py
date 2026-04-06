@@ -818,7 +818,72 @@ class PhakeConverter(ConverterBase):
             '\u02c7': '\u0302',
             '\u2022': '\u2022',
             '\u2122': '\U0001171e'
-        }
+        },
+        'Shan': {
+            ":": "\u1038",
+            "A": "ဢ",
+            "B": "\u1062",
+            "C": "ႊ",
+            "D": "\u103c",
+            "E": "\u103a\u1082",
+            "F": "\u107a",
+            "G": "\u1087",
+            "H": "\u1088",
+            "I": "\u102e",
+            "J": "ို",
+            "K": "\u1075",
+            "L": "\u1038",
+            "M": "ံ",
+            "N": "\u107a",
+            "O": "\u1089",
+            "P": "\u1080",
+            "Q": "\u102f",
+            "R": "\u103c",
+            "S": "\u103B",
+            "T": "\u1082",
+            "U": "\u1030",
+            "V": "\u1035",
+            "W": "\u1084",
+            "X": "\u103A\u1083",
+            "Y": "\u1085",
+            "Z": "ၞ",   # ???
+            "a": "\u1083",
+            "b": "\u1017",
+            "c": "\u1078",
+            "d": "ဒ",
+            "e": "\u200c\u1031",  # ??
+            "f": "\u107d",
+            "g": "င",
+            "h": "\uaa6d",  # ???
+            "i": "\u102d",
+            "j": "\u109d",
+            "k": "\u1075",
+            "l": "\u102e",
+            "m": "\u1019",
+            "n": "ꩫ",
+            "o": "ွ",
+            "p": "\u1015",
+            "q": "\u103a",
+            "r": "\uAA7A",
+            "s": "\uaa6c",
+            "t": "\u1010",
+            "u": "ု",
+            "v": "ထ",
+            "w": "ဝ",
+            "x": "ၵ",
+            "y": "ယ",
+            "z": "\uAA78",
+            "0": "\u1090",
+            "1": "\u1091",
+            "2": "\u1092",
+            "3": "\u1093",
+            "4": "\u1094",
+            "5": "\u1095",
+            "6": "\u1096",
+            "7": "\u1097",
+            "8": "\u1099",
+            "9": "\u1099",
+        },
     }
 
     dictionary_to_font = {
@@ -889,7 +954,7 @@ class PhakeConverter(ConverterBase):
             '[^\u102b-\u1035\u1040-\u104b\u1056-\u1059\u1062-\u106d\u1072-\u1074\u1082-\u108d\u1090-\u1099\u109a'
             '-\u109d\uaa7b-\uaa7d]')
         self.insert_break_char = '\u200b'
-        self.break_before = re.compile('([\u1000-\u102a\u1075-\u1081\u1087-\u108a\uaa61-\uaa6d])')
+        self.break_before = re.compile('([\u1000-\u102a\u1075-\u1081\u1088-\u108a\uaa61-\uaa6d])')
 
         self.add_variant_selectors = True
         self.handle_sentences = False
@@ -911,16 +976,30 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
+        myanmar_fonts = ['Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar']
+        # Note that the first one in each list is the default replacement
+        self.font_substitution_options = {
+            'Phake Script': myanmar_fonts,
+            'Phake Ramayana': myanmar_fonts,
+            'Aiton Script': myanmar_fonts,
+            'Assam New': ['Noto Serif Bengali', "Noto Serif Bengali"],
+            'Ahom': ['Noto Serif Ahom'],
+            'Ahom Manuscript': ['Noto Serif Ahom'],
+            'Banchob': ['Times New Roman'],
+            'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+        }
         self.font_substitution = {
             'Phake Script': 'Phake Ramayana Unicode',
             'Phake Ramayana': 'Phake Ramayana Unicode',
-            'Aiton Script': 'Noto Sans Myanmar', # 'Phake Ramayana Unicode',
+            'Aiton Script': 'Phake Ramayana Unicode',
             'Assam New': 'Noto Serif Bengali',
             'Ahom': 'Noto Serif Ahom',
             'Banchob': 'Times New Roman',
             'Ahom Manuscript': 'Noto Serif Ahom',
+            'Shan': 'Noto Sans Myanmar'
         }
-        self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom']
+        self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom', 'Noto Sans Myanmar',
+                             'Times New Roman']
 
         if new_font:
             self.unicodeFont = new_font
@@ -1062,16 +1141,23 @@ class PhakeConverter(ConverterBase):
         return new_text
 
     def add_variation_modifiers(self, text):
-        out_text = re.sub(self.variation_sequence_code_points, vs_replacer, text)
-        return out_text
+        if self.encoding == 'Shan':
+            return text
+        else:
+            return re.sub(self.variation_sequence_code_points, vs_replacer, text)
 
     def setScriptIndex(self, newIndex=0):
         # 0 = '', 1 = 'latn'
         self.scriptIndex = newIndex
         self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
-    def set_substitute_font(self, old_font, new_font):
-        self.font_substitution[old_font] = new_font
+    # From base class
+    # def get_substitute_fonts(self):
+    #     # Returns all the fonts that are available for conversion / substitution
+    #     return self.font_substitution_options
+    #
+    # def set_substitute_font(self, old_font, new_font):
+    #     self.font_substitution[old_font] = new_font
 
     # Split input into tokens for script conversion
     # def tokenizeText(self, text_in):

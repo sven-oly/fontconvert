@@ -34,7 +34,6 @@ import os
 from docx import Document
 from docx.enum.style import WD_STYLE_TYPE
 
-
 import adlamConversion
 import ahomConversion
 import phkConversion
@@ -102,7 +101,8 @@ def upload():
    scriptIndex = request.args.get('scriptIndex', 0)
    # For indexing a thread
    taskId = random.randint(0, 7777)
-   return render_template('upload.html',
+   template_name = 'upload_lang.html'  # 'upload.html'
+   return render_template(template_name,
                           base=who,
                           lang='ff',
                           scriptIndex=scriptIndex,
@@ -144,7 +144,17 @@ def uploadLang():
                              'Myanmar Text',
                              'Noto Sans Myanmar Regular',
                              'Noto Serif Myanmar Regular',
+                             'Noto Serif Bengali Regular',
+                             'Noto Serif Ahom',
                              ]
+
+    converter = converters[lang]
+    font_substitutions = None
+    try:
+        font_substitutions = converter.get_substitute_fonts()
+    except:
+        # The converter does not yet support this.
+        pass
 
     return render_template('upload_lang.html',
                            base=who,
@@ -152,7 +162,8 @@ def uploadLang():
                            lang_name=lang_name,
                            taskId=taskId,
                            script_index=script_index,
-                           fonts=unicode_font_list
+                           fonts=unicode_font_list,
+                           font_substitutions=font_substitutions
     )
 
 
@@ -282,20 +293,29 @@ def upload_file():
     get_doc_info = True
 
     lang = request.args.get('lang', 'und')
+    file_path = request.args.get('path', None)
 
     who = '/uploader/%s' % lang
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
+        print('FORM DATA": %s' % formData)
+
+        unicode_font = None
         if 'ConvertToUnicode' in formData:
             logger.debug('ConvertToUnicode')
             convertDoc = True
             get_doc_info = False
-        logger.debug('DEBUG: %s', request.method)
+        logger.debug('ADLAM DEBUG: unicode_font= %s', unicode_font)
         try:
             taskId = int(formData['taskId'])
         except:
             taskId = 117
+        font_sub_data = {}
+        for key, value in formData.items():
+            if key.startswith('font_selected_'):
+                font_sub_data[key.replace('font_selected_', '')] = value
+        logger.debug('FONT SUB DATA: %s' % font_sub_data)
 
         # Other options for conversion:
         remove_returns_in_block = False
@@ -306,8 +326,6 @@ def upload_file():
         if 'UnicodeFont' in formData:
             selected_unicode_font = formData['UnicodeFont']
 
-        logger.debug("UNICODE FONT: %s", selected_unicode_font)
-
         download_as_zip = False
         if 'folder_output' in formData:
             download_as_zip = formData['folder_output']
@@ -315,18 +333,13 @@ def upload_file():
         use_vs = False
         if 'use_variation_selectors' in formData:
             use_vs = formData['use_variation_selectors']
-        logger.debug('USE_VS = %s', use_vs)
 
-        logger.debug('*** taskId = %d', taskId)
-        # Get the information on the language 
+        # Get the information on the language
         try:
             lang = formData['lang']
-            lang_code = lang
-            logger.debug('lang = %s', formData['lang'])
         except:
-            lang_code = 'ff'
-            lang = 'ff'
-        logger.debug('FORMDATA = %s', formData)
+            lang ='ff'
+        lang_code = lang
 
         if 'file_path' in formData:
             inputFileName = formData['file_path']
@@ -335,7 +348,7 @@ def upload_file():
             logger.debug('FILE = %s', file)
             inputFileName = file.filename
 
-        logger.debug('inputFileName = %s' % inputFileName)
+        logger.debug('inputFileName = %s', inputFileName)
         if not inputFileName:
             return render_template('nofileselected.html', who=who)
             
@@ -382,12 +395,14 @@ def upload_file():
                     'docinfo.html',
                     size="{:,}".format(fileSize),
                     filename=inputFileName,
+                    font_sub_data=font_sub_data,
                     paragraphs="{:,}".format(len(doc.paragraphs)),
                     sections=len(doc.sections),
                     tables=len(doc.tables),
                     fontDict=fontsFound,
                     para_langs=json.dumps(para_langs),
-                    unicodeFont=formData['UnicodeFont']
+                    file_path=file_path,
+                    unicodeFont=selected_unicode_font
                 )
 
             this_thread.status = ('Paragraphs found: %d' % len(doc.paragraphs))
@@ -396,8 +411,11 @@ def upload_file():
             # Call conversions on the document.
             langConverter = None
             logger.debug('LANG = %s', lang_code)
+            font_substitutions = None
             try:
                 langConverter = converters[lang_code]
+                font_substitutions = langConverter.get_substitute_fonts()
+                logger.debug('ADLAM FONT SUBSTITUTIONS: %s', font_substitutions)
             except KeyError:
                 langConverter = None
                 return render_template('unsupported_lang_code.html',
@@ -407,6 +425,10 @@ def upload_file():
 
             langConverter.detectLang = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
+
+            for key in font_substitutions:
+                logger.debug('ADLAM Set substitute font %s --> %s', key, unicode_font)
+                langConverter.set_substitute_font(key, unicode_font)
 
             # Other settings
             langConverter.remove_returns_in_block = remove_returns_in_block
@@ -439,6 +461,11 @@ def upload_file():
 
             # special case for Phake, etc.
             logger.debug('lang_code: %s, selected_unicode_font: %s' % (lang_code, selected_unicode_font))
+            for old_font in font_sub_data:
+                new_font = font_sub_data[old_font]
+                logger.debug('Setting substitute_font for %s -> %s', old_font, new_font)
+                langConverter.set_substitute_font(old_font, new_font)
+
             if lang_code == 'phk' and selected_unicode_font:
                 print('PHK fonts set to %s' % selected_unicode_font)
                 langConverter.set_substitute_font('Phake Script', selected_unicode_font)
@@ -626,7 +653,7 @@ def message_from_error(err):
 def convertAdlam():
     if request.method == 'POST':
         formData = request.form.to_dict()
-
+        logging.debug('ADLAM FORM DATA = %s', formData)
         file = request.files['file']  # FileStorage object
         fileName = file.filename
         outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'

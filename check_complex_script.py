@@ -69,6 +69,9 @@ def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name,
     rFonts.set(qn('w:hAnsi'), user_cs_font_name)
     rFonts.set(qn('w:eastAsia'), user_cs_font_name)
 
+    # Set script as complex
+    run_to_fix.font.complex_script = True
+
 def fix_paragraph_runs(para, user_cs_font_name=None, user_cs_font_size=12):
     runs = para.runs
     user_is_bold = False

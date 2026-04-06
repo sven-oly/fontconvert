@@ -56,10 +56,18 @@
           xmlhttp.open("GET", target, true);
           xmlhttp.send();
       }
+
+    // Global
+    const font_substitutions = {
+      {% for key, value in font_substitutions.items() %}
+       '{{key}}': '{{value}}',
+      {% endfor %}
+    };
     </script>
   </head>
+
   <body>
-    <h1>{{lang_name}} font conversion</h2>
+    <h1>{{lang_name}} font conversion</h1>
 <p>Instructions:</p>
 <ul>
   <li>Please select a .docx file to convert.
@@ -77,43 +85,47 @@
     </ul>
   </li>
 </ul>
-<form action = "{{base}}uploader/?lang={{lang}}" method = "POST"
+<form action = "{{base}}uploader/?lang={{lang}}" method = "POST" id="main_form"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
     Language: <input type='text' id='lang' value='{{lang_name}}' readonly></input>
-  <input type = "file" name = "file" id="name"/>
+  <input type = "file" name = "file" id="name" {%if file_path%}value={{file_path}}{%endif%}/>
   <br/><br/>
   <input type="submit" value="Get document information" name="DocInfo" />
   <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>
   <br />
-  <input type="checkbox" id="folder_output" name="folder_output"  />
-    <label for="folder_output">Download result with additional information?</label>
-  <br />
   <input type="checkbox" id="remove_returns" name="remove_returns" checked />
   <label for="remove_returns">Remove carriage returns in text blocks?</label>
-  <br />
   <input type="checkbox" id="use_variation_selectors" name="use_variation_selectors" checked />
   <label for="use_variation_selectors">Use variation selectors </label>
+  <input type="checkbox" id="folder_output" name="folder_output"  />
+  <label for="folder_output">Download result with additional information?</label>
   <input type="text" name='langName' value="{{lang_name}}" hidden>
   <input type="text" name='lang' value="{{lang}}" hidden>
   <input type="text" name='taskId' value={{taskId}} hidden>
-  <br />
-  <br />
-  <label>Preferred output font:</label>
-  <ul>
-    {% for each in fonts %}
-    <!-- Fill in fonts for the conversion -->
-    {% if loop.first %}    
-    <input type='radio' id='{{each}}' name='UnicodeFont'
-           value='{{each}}' checked>
-    {% else %}
-    <input type='radio' id='{{each}}' name='UnicodeFont'
-           value='{{each}}'>
-    {% endif %}    
-    <label for '{{each}}'>{{each}}</label>
-    {% endfor %}
+
+  <h4>Preferred replacement for each font:</h4>
+  <ul id="font_substitutions">
+      {% for key, value in font_substitutions|items %}
+      <li id="li_fonts_for_{{key}}">{{key}}:
+        <select id="fonts_for_{{key}}" form="main_form" name="font_selected_{{key}}">
+        {% if value != none %}
+          {% for possible_font in value|list %}
+            <option id="sub_fonts_{{key}}_{{possible_font}}"
+              {% if possible_font != key %}selected{% endif %}value="{{possible_font}}">{{possible_font}}
+        </option>
+          {% endfor %}
+        {% else %}
+          NONE for {{key}}
+        {%endif%}
+          </select>
+      <br />
+      </li>
+      {% endfor %}
   </ul>
-</form>   
+      <br />
+
+</form>
 
 <input type="button" value="Check progress"
        onclick="startPollStatus('statusUpdate');">

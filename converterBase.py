@@ -59,6 +59,13 @@ class ConverterBase:
             else:
                 self.oldFonts.append(item)
 
+        # A list of the fonts that can be substituted for the keys in this item
+        self.font_substitution_options = {
+        }
+        # The chosen substitutions for font to be converted
+        self.font_substitution = {
+        }
+        
         # If set, sets output font to be a complex script
         # This is needed for a number of Unicode scripts
         self.set_complex_font = False
@@ -363,3 +370,16 @@ class ConverterBase:
         # one after the last item
         end_indices.append(len(p.runs))
         return end_indices
+
+    def get_substitute_fonts(self):
+        # Returns dictionary of fonts that are available for conversion / substitution
+        return self.font_substitution_options
+
+    def get_substitute_font_for(self, old_font):
+        if old_font in self.font_substitution:
+            return self.font_substitution[old_font]
+        else:
+            return None
+
+    def set_substitute_font(self, old_font, new_font):
+            self.font_substitution[old_font] = new_font
