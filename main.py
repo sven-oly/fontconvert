@@ -45,7 +45,7 @@ import convertXls
 
 # Global logger
 logger = logging.getLogger('uploader')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 # Dictionary of the converters by language code
@@ -60,6 +60,7 @@ lang_names_from_codes = {
     'aho': 'Tai Ahom',
     'phk': 'Tai Phake',
     'men': 'Mende Kikakui',
+    'shn': 'Shan',
     'und': 'Unknown'
     }
 
@@ -212,7 +213,7 @@ def progressFn(msg):
     global msgToSend
     global countSent
     if app.debug:
-        print('PROGRESS: %s' % msg)
+        logger.debug('PROGRESS: %s' % msg)
     msgToSend = msg
     countSent = 1
     
@@ -299,7 +300,6 @@ def upload_file():
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
-        print('FORM DATA": %s' % formData)
 
         unicode_font = None
         if 'ConvertToUnicode' in formData:
@@ -450,7 +450,6 @@ def upload_file():
                 langConverter.setLowerMode(True)
                 langConverter.setSentenceMode(True)
                 paragraphs = doc.paragraphs
-                print(' %s PARAGRAPHS' % len(paragraphs))
                 msgToSend = '%d paragraphs in %s\n' % (len(paragraphs), inputFileName)
                 countSent = 0
             except BaseException as err:
@@ -466,16 +465,11 @@ def upload_file():
                 logger.debug('Setting substitute_font for %s -> %s', old_font, new_font)
                 langConverter.set_substitute_font(old_font, new_font)
 
-            if lang_code == 'phk' and selected_unicode_font:
-                print('PHK fonts set to %s' % selected_unicode_font)
-                langConverter.set_substitute_font('Phake Script', selected_unicode_font)
-                langConverter.set_substitute_font('Aiton Script', selected_unicode_font)
-
             try:
                 docConverter = ConvertDocx(langConverter, documentIn=doc,
                                            reportProgressObj=newProgressObj)
             except BaseException as error:
-                print('Cannot create doc converter: %s' % error)
+                logger.error('Cannot create doc converter: %s' % error)
                 return render_template('error.html', who=who, error=error,
                                        file=inputFileName,
                                        )
@@ -559,7 +553,7 @@ def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     try:
         zf.writestr(headerFileName, target_stream.read())
     except BaseException as err:
-        print('*** Cannot put doc into zip file %s' % (err))
+        logger.error('*** Cannot put doc into zip file %s' % (err))
         return False
 
     text_stream = StringIO()
@@ -637,7 +631,6 @@ def createDocFromFile(file):
         return doc, count
     except BaseException as err:
         logger.error('createDocFromFile: file=%s, err=%s', file, err)
-        print('Cannot create Docx for %s. Err = %s' % (file, err))
         raise err
 
 def message_from_error(err):
@@ -653,7 +646,7 @@ def message_from_error(err):
 def convertAdlam():
     if request.method == 'POST':
         formData = request.form.to_dict()
-        logging.debug('ADLAM FORM DATA = %s', formData)
+        loggerdebug('ADLAM FORM DATA = %s', formData)
         file = request.files['file']  # FileStorage object
         fileName = file.filename
         outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
@@ -701,7 +694,7 @@ def convertAdlam():
                         for item in words:
                             print(word)
                 except:
-                    print('FAILED TO GET WORD LIST')
+                    logger.warning('FAILED TO GET WORD LIST')
                     words = None
                 
                 # Download resulting converted document
@@ -726,7 +719,7 @@ def convertAdlam():
                         headers=headers
                     )
                 except BaseException as err:
-                    print('**** Response download failure. Err = %s' % err)
+                    logger.error('**** Response download failure. Err = %s' % err)
                 
         except BaseeException as err:
             return 'Conversion failed. with err %s' % err
@@ -737,9 +730,8 @@ def convertAdlam():
 def event_stream():
     global msgToSend
     global countSent
-    print('STREAM count = %d, msg=%s' % (countSent, msgToSend))
     if countSent < 1:
-        print('STREAM msg:%s' % msgToSend)
+        logger.info('STREAM msg:%s' % msgToSend)
         yield "data: {}\n\n".format(msgToSend);
         msgToSend = msgToSend + '.'
         countSent += 1
@@ -778,7 +770,7 @@ def index():
     exporting_threads[thread_id] = ExportingThread()
     exporting_threads[thread_id].start()
 
-    print('THREAD ID = %d' % thread_id)
+    logger.info('THREAD ID = %d' % thread_id)
     return 'task id: #%s' % thread_id
 
 @app.route('/progress/<int:thread_id>')
@@ -805,7 +797,7 @@ def testLangId():
 def example_task_handler():
     """Log the request payload."""
     payload = request.get_data(as_text=True) or '(empty payload)'
-    print('Received task with payload: {}'.format(payload))
+    logger.info('Received task with payload: {}'.format(payload))
     return 'Printed task payload: {}'.format(payload)
 # [END cloud_tasks_appengine_quickstart]
 
