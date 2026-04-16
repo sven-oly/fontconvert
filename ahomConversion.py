@@ -220,7 +220,7 @@ class AhomConverter(ConverterBase):
             't': '\U00011704',
             'u': '\U00011724',
             'v': '\U0001170C',
-            'w': '\U00011730\u0001172B',
+            'w': '\U00011730\U0001172B',
             'x': '\U00011701',
             'y': '\U0001170A',
             'z': '\U00011731',
@@ -832,8 +832,8 @@ def simpleTests(converter):
     if actual != expected:
         logging.error('Failed:\n  expected %s\n  actual  %s', expected, actual)
 
-    test = '` ~ ! @ # $ % ^ & * ( ) _ - + = [ { ] } \ | ; : \' \" , < . > / ?'
-    expected = '𑜼 ~ ! 𑜾 𑜙 𑜹 𑜶 ^ & * ( ) _ - + = 𑜂 { 𑜧 } \ | 𑜠 𑜺 \' \" , 𑜁𑜟 𑜼 𑜨𑜡 𑜽 𑜐𑜟'
+    test = '` ~ ! @ # $ % ^ & * ( ) _ - + = [ { ] } \\ | ; : \' \" , < . > / ?'
+    expected = '𑜼 ~ ! 𑜾 𑜙 𑜹 𑜶 ^ & * ( ) _ - + = 𑜂 { 𑜧 } \\ | 𑜠 𑜺 \' \" , 𑜁𑜟 𑜼 𑜨𑜡 𑜽 𑜐𑜟'
     actual = converter.convertText(test)
     if actual != expected:
         logging.error('Failed:\n  expected %s\n  actual  %s', expected, actual)
