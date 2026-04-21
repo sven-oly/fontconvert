@@ -509,7 +509,7 @@ class PhakeConverter(ConverterBase):
             'b': '\U00011708',
             'c': '\U0001170B',
             'd': '\U00011713',
-            'e': '\U00011726',
+            'e': '\u200c\U00011726',
             'f': '\U00011707',
             'g': '\U00011715',
             'h': '\U00011711',
@@ -645,7 +645,7 @@ class PhakeConverter(ConverterBase):
             '\u00d8': '\U00011724',
             '\u00d9': '\U00011725',
 
-            '\u00e0': '\U00011726',
+            '\u00e0': '\u200c\U00011726',
             '\u00e1': '\U0001172b',
             '\u00e2': '\U00011728',
             '\u00e3': '\U00011727',
@@ -666,7 +666,7 @@ class PhakeConverter(ConverterBase):
             'b': '\U00011708',
             'c': '\U0001170B',
             'd': '\U00011713',
-            'e': '\U00011726',
+            'e': '\u200c\U00011726',
             'f': '\U00011707',
             'g': '\U00011716',
             'h': '\U00011711',
@@ -684,7 +684,7 @@ class PhakeConverter(ConverterBase):
             't': '\U00011704',
             'u': '\U00011724',
             'v': '\U0001170C',
-            'w': '\U00011730\u0001172B',
+            'w': '\U00011730\U0001172B',
             'x': '\U00011701',
             'y': '\U0001170A',
             'z': '\U00011731',
@@ -803,7 +803,7 @@ class PhakeConverter(ConverterBase):
             '\u00d8': '\U00011724',
             '\u00d9': '\U00011725',
 
-            '\u00e0': '\U00011726',
+            '\u00e0': '\u200c\U00011726',
             '\u00e1': '\U0001172b',
             '\u00e2': '\U00011728',
             '\u00e3': '\U00011727',
@@ -1060,6 +1060,15 @@ class PhakeConverter(ConverterBase):
             [r'(\u200c)([\u1031\u1084])([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_e_consonant],
 
+            # Ahom vowel sign E
+            [r'(\u200c)(\U00011726)([\U00011700-\U0001171A])',
+             fix_e_consonant],
+            # Ahom vowel reordering
+            [r'(\U00011728)([\U00011727\U00011729-\U0001172B]+)',
+             sub21],
+            [r'(\U00011724)([\U00011727\U00011729-\U0001172A]+)',
+             sub21],
+
             # Swap R and e
             [r'(\u1031)(\u103c)', sub21],
 
@@ -1149,7 +1158,10 @@ class PhakeConverter(ConverterBase):
     def setScriptIndex(self, newIndex=0):
         # 0 = '', 1 = 'latn'
         self.scriptIndex = newIndex
-        self.scriptToConvert = self.encodingScripts[self.scriptIndex]
+        try:
+            self.scriptToConvert = self.encodingScripts[self.scriptIndex]
+        except BaseException as e:
+            pass
 
     # From base class
     # def get_substitute_fonts(self):
@@ -1183,7 +1195,10 @@ class PhakeConverter(ConverterBase):
                 # Font not found. Return the text
                 return text_in
         else:
-            input_font = self.FONTS_TO_CONVERT[font_index]
+            try:
+                input_font = self.FONTS_TO_CONVERT[font_index]
+            except BaseException as e:
+                pass
 
         if font_index < len(self.FONTS_TO_CONVERT):
             self.encoding = input_font
@@ -1346,7 +1361,7 @@ class PhakeConverter(ConverterBase):
                     continue
                 try:
                     script_index = self.FONTS_TO_CONVERT.index(old_font_name)
-                except ValueError:
+                except ValueError as e:
                     # Not a font to convert
                     continue
 
@@ -1366,9 +1381,8 @@ class PhakeConverter(ConverterBase):
                 run.font.complex_script = True
 
                 new_text =  self.convertText(old_text, None, script_index, input_font=old_font_name)
-                #run.text = new_text
-                run.text = ''
-                run.add_text(new_text)
+                run.text = new_text
+                #run.add_text(new_text)
                 if run.element.rPr.text == None:
                     run.element.rPr.text = new_text
                 run.font.name = new_font_name
@@ -1376,8 +1390,11 @@ class PhakeConverter(ConverterBase):
                 # Handle things with tabs
                 if new_text.find('\t') >= 0:
                     r = run._r
-                    t = r.xpath('./w:t')[0]
-                    t.set(qn('xml:space'), 'preserve')
+                    try:
+                        t = r.xpath('./w:t')[0]
+                        t.set(qn('xml:space'), 'preserve')
+                    except BaseException as e:
+                        continue
                 
                 # TODO: Fix this
                 if new_font_name:  # == 'Phake Ramayana Unicode':
@@ -1398,7 +1415,7 @@ class PhakeConverter(ConverterBase):
                         run.font.cs_size = new_font_size
                 except TypeError:
                     pass
-            except ValueError:
+            except ValueError as e:
                 continue
 
         if self.handle_sentences:

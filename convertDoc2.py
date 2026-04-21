@@ -176,7 +176,10 @@ class ConvertDocx():
         # Control how much to send
         if paragraphId % 10 == 0:
           self.progressObj.send(msg)
-      self.converter.processParagraphRuns(para)
+      try:
+        self.converter.processParagraphRuns(para)
+      except BaseException as e:
+        continue
 
     try:
         # More computing
