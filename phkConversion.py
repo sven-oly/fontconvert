@@ -830,7 +830,7 @@ class PhakeConverter(ConverterBase):
             "G": "\u1087",
             "H": "\u1088",
             "I": "\u102e",
-            "J": "ိ\u102D\u102F",
+            "J": "\u102D\u102F",
             "K": "\u1075",
             "L": "\u1038",
             "M": "\u1036",
@@ -850,7 +850,7 @@ class PhakeConverter(ConverterBase):
             "a": "\u1083",
             "b": "\u1017",
             "c": "\u1078",
-            "d": "ဒ",
+            "d": "\u1012",
             "e": "\u200c\u1031",  # ??
             "f": "\u107d",
             "g": "\u1004",
@@ -861,14 +861,14 @@ class PhakeConverter(ConverterBase):
             "l": "\u101c",
             "m": "\u1019",
             "n": "\u107c",
-            "o": "ွ",
+            "o": "\u103d",
             "p": "\u1015",
             "q": "\u103a",
             "r": "\u101b",  # "\uAA7A",
             "s": "\u101e",  # "\uaa6c",
             "t": "\u1010",
             "u": "\u1030",
-            "v": "ထ",
+            "v": "\u1011",
             "w": "\u101d",
             "x": "\u1076",
             "y": "\u101a",
@@ -883,6 +883,38 @@ class PhakeConverter(ConverterBase):
             "7": "\u1047",
             "8": "\u1048",
             "9": "\u1049",
+        },
+        'IndicNewDiacritics': {
+            "¿": "ā",
+            "¡": "ḍ",
+            "À": "ḥ",
+            "Ã": "ī",
+            "Ê": "ḷ",
+            "\u2219": "ṁ",
+            "¶": "ṇ",
+            "Ò": "ṅ",
+            "á": "ñ",
+            "¾": "ṛ",
+            "¤": "ṝ",
+            "Ë": "ṣ",
+            "µ": "ś",
+            "Ð": "ṭ",
+            "¨": "ū",
+            "Ä": "Ā",
+            "\u009D": "Ḍ",
+            "ó": "Ḥ",
+            "³": "Ī",
+            "È": "Ḷ",
+            "£": "Ṁ",
+            "ô": "Ṇ",
+            "É": "Ṅ",
+            "©": "Ñ",
+            "±": "Ṛ",
+            "õ": "Ṝ",
+            "¦": "Ṣ",
+            "ö": "Ś",
+            "¸": "Ṭ",
+            "÷": "Ū",
         },
     }
 
@@ -987,6 +1019,7 @@ class PhakeConverter(ConverterBase):
             'Ahom Manuscript': ['Noto Serif Ahom'],
             'Banchob': ['Times New Roman'],
             'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'IndicNewDiacritics': ['Times New Roman'],
         }
         self.font_substitution = {
             'Phake Script': 'Phake Ramayana Unicode',
@@ -996,7 +1029,8 @@ class PhakeConverter(ConverterBase):
             'Ahom': 'Noto Serif Ahom',
             'Banchob': 'Times New Roman',
             'Ahom Manuscript': 'Noto Serif Ahom',
-            'Shan': 'Noto Sans Myanmar'
+            'Shan': 'Noto Sans Myanmar',
+            'IndicNewDiacritics': 'Times New Roman',
         }
         self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom', 'Noto Sans Myanmar',
                              'Times New Roman']
@@ -1220,10 +1254,10 @@ class PhakeConverter(ConverterBase):
             result = self.convertString(text_in, input_font, encoding_map)
 
             # result = self.reorderText(result)
-            if self.add_variant_selectors:
+            if self.old_font_name != 'Shan' and self.add_variant_selectors:
                 result = self.add_variation_modifiers(result)
 
-            if self.add_grapheme_boundary_char:
+            if self.old_font_name != 'Shan' and self.add_grapheme_boundary_char:
                 result = self.insert_grapheme_boundaries(result)
             return result
 
@@ -1359,6 +1393,10 @@ class PhakeConverter(ConverterBase):
                 old_font_name = run.font.name
                 if not old_font_name:
                     continue
+                if old_font_name:
+                    pos = old_font_name.find(';')
+                    if pos > 0:
+                        old_font_name = old_font_name[0:pos]
                 try:
                     script_index = self.FONTS_TO_CONVERT.index(old_font_name)
                 except ValueError as e:
