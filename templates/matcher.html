@@ -190,12 +190,12 @@
             td.addEventListener("click", function() {
               hacked_cell_click_fn(td);
             });
-            td.fontFamily = '{{hacked_font_name}}';
+            td.style.fontFamily = '{{hacked_font_name}}';
         } else {
             td.addEventListener("click", function() {
               unicode_cell_click_fn(td);
             });
-            td.fontFamily = '{{unicode_font_name}}';
+            td.style.fontFamily = '{{unicode_font_name}}';
         }
       });
 
@@ -213,12 +213,15 @@
       cell1.textContent = rule_count;
       const cell2 = newRow.insertCell(1);
       cell2.textContent = hacked_cell_selected.textContent;
+      cell2.style.fontFamily = '{{hacked_font_name}}';
       const cell3 = newRow.insertCell(2);
       // Assemble the text from c
       let rule_output = '';
       for (cell of unicode_cells_selected) {
         rule_output += cell.textContent;
       }
+      cell3.style.fontFamily = '{{unicode_font_name}}';
+
       const cell4 = newRow.insertCell(3);
       const reorder_item = document.getElementById('reorder_flag');
       if (reorder_item.checked) {
