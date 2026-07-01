@@ -4,18 +4,18 @@
 </head>
 
 <style>
-    .hacked_font {
+    @font-face {
       font-family: SHAN;
-      src:url('/static/fonts/Shan/hacked/SHAN.ttf')format('truetype');
+      src:url('{{hacked_font}}')format('truetype');
       font-weight:normal;
       font-style:normal;
-  }
-  @font-face{
+    }
+    @font-face {
       font-family:"Noto Myanmar Regular";
-      src:url('/static/fonts/Shan/unicode/NotoSerifMyanmar-Regular.ttf')format('truetype');
+      src:url('{{unicode_font}}')format('truetype');
       font-weight:normal;
       font-style:normal;
-  }
+    }
 
   .selected-cell {
     background-color: green;
@@ -190,10 +190,12 @@
             td.addEventListener("click", function() {
               hacked_cell_click_fn(td);
             });
+            td.fontFamily = '{{hacked_font_name}}';
         } else {
             td.addEventListener("click", function() {
               unicode_cell_click_fn(td);
             });
+            td.fontFamily = '{{unicode_font_name}}';
         }
       });
 
