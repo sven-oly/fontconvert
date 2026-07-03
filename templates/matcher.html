@@ -111,6 +111,14 @@
       const unicode_start = parseInt(document.getElementById('unicode_start').value, 16);
       const unicode_end = parseInt(document.getElementById('unicode_end').value, 16);
 
+      // TODO: Start parsing for ranges and single values
+      // e.g., '40-7f,131,2219' --> a range plus two single values
+      // 1. Split by comma and space
+      // 2. For each split, if not empty, check for '-'.
+      //   a. Yes --> split by '-', then add code points from start and end, converted from hex
+      //   b. No --> add single code point, converting from hex
+      // NOTE: accept 0x or U+ or \u at the start of hex value
+
       load_table_with_font('hacked_font', hacked_start, hacked_end);
       load_table_with_font('unicode_font', unicode_start, unicode_end);
     }
@@ -173,30 +181,30 @@
         let currentRow = null;
 
         itemsArray.forEach((itemText, index) => {
-        // Create a new row at the start, or whenever we hit a multiple of M
-        if (index % itemsPerRow === 0) {
-            currentRow = document.createElement('tr');
-            tableBody.appendChild(currentRow);
-        }
+            // Create a new row at the start, or whenever we hit a multiple of M
+            if (index % itemsPerRow === 0) {
+                currentRow = document.createElement('tr');
+                tableBody.appendChild(currentRow);
+            }
 
-        // Create the cell (td) and append it to the current row
-        const td = document.createElement('td');
-        td.textContent = String.fromCodePoint(itemText);
-        td.title = '0x' + itemText.toString(16);
-        currentRow.appendChild(td);
+            // Create the cell (td) and append it to the current row
+            const td = document.createElement('td');
+            td.textContent = String.fromCodePoint(itemText);
+            td.title = td.textContent + '==  (0x' + itemText.toString(16) + ')';
+            currentRow.appendChild(td);
 
-        // Set up onclick functions
-        if (table_id == 'hacked_font') {
-            td.addEventListener("click", function() {
-              hacked_cell_click_fn(td);
-            });
-            td.style.fontFamily = '{{hacked_font_name}}';
-        } else {
-            td.addEventListener("click", function() {
-              unicode_cell_click_fn(td);
-            });
-            td.style.fontFamily = '{{unicode_font_name}}';
-        }
+            // Set up onclick functions
+            if (table_id == 'hacked_font') {
+                td.addEventListener("click", function() {
+                  hacked_cell_click_fn(td);
+                });
+                td.style.fontFamily = '{{hacked_font_name}}';
+            } else {
+                td.addEventListener("click", function() {
+                  unicode_cell_click_fn(td);
+                });
+                td.style.fontFamily = '{{unicode_font_name}}';
+            }
       });
 
       // Set text to be the character with the code, and
@@ -213,13 +221,11 @@
       cell1.textContent = rule_count;
       const cell2 = newRow.insertCell(1);
       cell2.textContent = hacked_cell_selected.textContent;
+      const code_point = cell2.textContent.codePointAt(0)
+      cell2.title = cell2.textContent + ' ==  (0x' + code_point.toString(16) + ')';
       cell2.style.fontFamily = '{{hacked_font_name}}';
       const cell3 = newRow.insertCell(2);
       // Assemble the text from c
-      let rule_output = '';
-      for (cell of unicode_cells_selected) {
-        rule_output += cell.textContent;
-      }
       cell3.style.fontFamily = '{{unicode_font_name}}';
 
       const cell4 = newRow.insertCell(3);
@@ -229,16 +235,25 @@
         cell4.textContent = "yes";
         cell4.style.backgroundColor = 'lightsalmon';
       }
-      cell3.textContent = rule_output;
 
       // Clear the selections
       // Mark the hacked code visibly as defined already.
       hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
       hacked_cell_selected = null;
+
+      // compute the hex for each code point and concatenate
+      let rule_output = '';
+      let hex_output = '';
       for (cell of unicode_cells_selected) {
         rule_output += cell.textContent;
         cell.style.backgroundColor = 'white';
+        const code_point = cell.textContent.codePointAt(0)
+        hex_output += '0x' + code_point.toString(16) + ' ';
       }
+      cell3.textContent = rule_output;
+      cell3.title = hex_output;
+
+
       unicode_cells_selected = [];
       add_rule_button.disabled = true;
     }
