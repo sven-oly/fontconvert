@@ -69,7 +69,7 @@
     let add_button = null;  // initialized on page load
     let rule_count = 0;
     // Append when a value needs to be reordered on conversion, e.g., U+1031
-    reorder_code = '\u200c';
+    const reorder_code = '\u200c';
 
     // From Gemini
     const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
@@ -106,6 +106,7 @@
     }
 
     function set_font_ranges() {
+      // Note that these values may have '0x' before them - OK for hex!
       const hacked_start = parseInt(document.getElementById('hacked_start').value, 16);
       const hacked_end = parseInt(document.getElementById('hacked_end').value, 16);
       const unicode_start = parseInt(document.getElementById('unicode_start').value, 16);
@@ -258,6 +259,8 @@
       add_rule_button.disabled = true;
     }
 
+    // TODOs:
+    // 1. click on rule # to delete?
 </script>
 
 <body onload="initializePage()">
@@ -270,9 +273,9 @@
 <input type="text" id="hacked_end" name="hacked_end" value="007f">
 <br />
 <label for="unicode_start">Unicode Start hex:</label>
-<input type="text" id="unicode_start" name="unicode_start" value="0030">
+<input type="text" id="unicode_start" name="unicode_start" value="1000">
 <label for="unicode_end">End hex:</label>
-<input type="text" id="unicode_end" name="unicode_end" value="007f">
+<input type="text" id="unicode_end" name="unicode_end" value="107f">
 
 <br />
 
