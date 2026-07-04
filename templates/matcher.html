@@ -229,19 +229,6 @@
       // Assemble the text from c
       cell3.style.fontFamily = '{{unicode_font_name}}';
 
-      const cell4 = newRow.insertCell(3);
-      const reorder_item = document.getElementById('reorder_flag');
-      if (reorder_item.checked) {
-        rule_output += reorder_code;
-        cell4.textContent = "yes";
-        cell4.style.backgroundColor = 'lightsalmon';
-      }
-
-      // Clear the selections
-      // Mark the hacked code visibly as defined already.
-      hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
-      hacked_cell_selected = null;
-
       // compute the hex for each code point and concatenate
       let rule_output = '';
       let hex_output = '';
@@ -251,6 +238,23 @@
         const code_point = cell.textContent.codePointAt(0)
         hex_output += '0x' + code_point.toString(16) + ' ';
       }
+
+      const cell4 = newRow.insertCell(3);
+      const reorder_item = document.getElementById('reorder_flag');
+      if (reorder_item.checked) {
+        const reorder_code = '\u200c';
+        rule_output += reorder_code;
+        hex_output += '0x' + 0x200c.toString(16) + ' ';
+
+        cell4.textContent = "yes";
+        cell4.style.backgroundColor = 'lightsalmon';
+      }
+
+      // Clear the selections
+      // Mark the hacked code visibly as defined already.
+      hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
+      hacked_cell_selected = null;
+
       cell3.textContent = rule_output;
       cell3.title = hex_output;
 
@@ -261,6 +265,21 @@
 
     // TODOs:
     // 1. click on rule # to delete?
+
+    function rule_table_to_text() {
+      const rule_table = document.getElementById('rule_table');
+
+      let rules_text = '';
+      // TODO: Construct
+      for (const row of rule_table.rows) {
+        let row_text = '';
+        const cells = row.cells;
+        rules_text += cells[0].textContent + ': ' + cells[1].textContent + ' --> ' +
+          cells[2].textContent + '\n';
+      }
+
+      alert('Rules output\n' + rules_text);
+    }
 </script>
 
 <body onload="initializePage()">
@@ -333,6 +352,8 @@
 <input type="button" id="add_rule_button" onclick="write_selection_to_rules();"
        disabled="true" value="Add to rule list">
 </div>
-
+<input type="button" id="rule_to_text_button" onclick="rule_table_to_text();"
+        value="Rules as text">
+</div>
 </body>
 </html>
