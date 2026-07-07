@@ -821,68 +821,104 @@ class PhakeConverter(ConverterBase):
         },
         'Shan': {
             ":": "\u1038",
-            "A": "ဢ",
+            "A": "\u1022",
             "B": "\u1062",
-            "C": "ႊ",
-            "D": "\u103c",
-            "E": "\u103a\u1082",
-            "F": "\u107a",
+            "C": "\u108A",
+            "D": "\u200c\u103c",
+            "E": "\u1082\u1072",
+            "F": "\u107e",
             "G": "\u1087",
             "H": "\u1088",
             "I": "\u102e",
-            "J": "ို",
+            "J": "\u102D\u102F",
             "K": "\u1075",
             "L": "\u1038",
-            "M": "ံ",
+            "M": "\u1036",
             "N": "\u107a",
             "O": "\u1089",
             "P": "\u1080",
             "Q": "\u102f",
-            "R": "\u103c",
+            "R": "\u200c\u103c",
             "S": "\u103B",
             "T": "\u1082",
             "U": "\u1030",
             "V": "\u1035",
-            "W": "\u1084",
+            "W": "\u200c\u1084",
             "X": "\u103A\u1083",
             "Y": "\u1085",
-            "Z": "ၞ",   # ???
+            "Z": "\u103a\u1036",
+
             "a": "\u1083",
             "b": "\u1017",
             "c": "\u1078",
-            "d": "ဒ",
+            "d": "\u1012",
             "e": "\u200c\u1031",  # ??
             "f": "\u107d",
-            "g": "င",
-            "h": "\uaa6d",  # ???
+            "g": "\u1004",
+            "h": "\u1081",  # "\uaa6d",  # ???
             "i": "\u102d",
-            "j": "\u109d",
+            "j": "\u1086",  # "\u109d",
             "k": "\u1075",
-            "l": "\u102e",
+            "l": "\u101c",
             "m": "\u1019",
-            "n": "ꩫ",
-            "o": "ွ",
+            "n": "\u107c",
+            "o": "\u103d",
             "p": "\u1015",
             "q": "\u103a",
-            "r": "\uAA7A",
-            "s": "\uaa6c",
+            "r": "\u101b",  # "\uAA7A",
+            "s": "\u101e",  # "\uaa6c",
             "t": "\u1010",
-            "u": "ု",
-            "v": "ထ",
-            "w": "ဝ",
-            "x": "ၵ",
-            "y": "ယ",
-            "z": "\uAA78",
-            "0": "\u1090",
-            "1": "\u1091",
-            "2": "\u1092",
-            "3": "\u1093",
-            "4": "\u1094",
-            "5": "\u1095",
-            "6": "\u1096",
-            "7": "\u1097",
-            "8": "\u1099",
-            "9": "\u1099",
+            "u": "\u102f",
+            "v": "\u1011",
+            "w": "\u101d",
+            "x": "\u1076",
+            "y": "\u101a",
+            "z": "\u102D\u1030",  # "\uAA78",
+            "0": "\u1040",
+            "1": "\u1041",
+            "2": "\u1042",
+            "3": "\u1043",
+            "4": "\u1044",
+            "5": "\u1045",
+            "6": "\u1046",
+            "7": "\u1047",
+            "8": "\u1048",
+            "9": "\u1049",
+        },
+        'ST_Metta' : {
+
+        },
+        'IndicNewDiacritics': {
+            "¿": "ā",
+            "¡": "ḍ",
+            "À": "ḥ",
+            "Ã": "ī",
+            "Ê": "ḷ",
+            "\u2219": "ṁ",
+            "¶": "ṇ",
+            "Ò": "ṅ",
+            "á": "ñ",
+            "¾": "ṛ",
+            "¤": "ṝ",
+            "Ë": "ṣ",
+            "µ": "ś",
+            "Ð": "ṭ",
+            "¨": "ū",
+            "Ä": "Ā",
+            "\u009D": "Ḍ",
+            "ó": "Ḥ",
+            "³": "Ī",
+            "È": "Ḷ",
+            "£": "Ṁ",
+            "ô": "Ṇ",
+            "É": "Ṅ",
+            "©": "Ñ",
+            "±": "Ṛ",
+            "õ": "Ṝ",
+            "¦": "Ṣ",
+            "ö": "Ś",
+            "¸": "Ṭ",
+            "÷": "Ū",
         },
     }
 
@@ -987,6 +1023,8 @@ class PhakeConverter(ConverterBase):
             'Ahom Manuscript': ['Noto Serif Ahom'],
             'Banchob': ['Times New Roman'],
             'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'ST_Metta': ['Myanmar Text', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'IndicNewDiacritics': ['Times New Roman'],
         }
         self.font_substitution = {
             'Phake Script': 'Phake Ramayana Unicode',
@@ -996,7 +1034,9 @@ class PhakeConverter(ConverterBase):
             'Ahom': 'Noto Serif Ahom',
             'Banchob': 'Times New Roman',
             'Ahom Manuscript': 'Noto Serif Ahom',
-            'Shan': 'Noto Sans Myanmar'
+            'Shan': 'Noto Sans Myanmar',
+            'ST_Metta': 'Noto Sans Myanmar',
+            'IndicNewDiacritics': 'Times New Roman',
         }
         self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom', 'Noto Sans Myanmar',
                              'Times New Roman']
@@ -1054,10 +1094,10 @@ class PhakeConverter(ConverterBase):
             [r'\u0020([\u109c])', remove_space_before],
 
             # e and R before a consonant
-            [r'(\u200c)(\u1031)(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
+            [r'(\u200c)([\u1031\u1084])(\u200c)(\u103c)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_e_r_consonant],
             # Migrate e-vowel over consonant
-            [r'(\u200c)(\u1031)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
+            [r'(\u200c)([\u1031\u1084])([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a])',
              fix_e_consonant],
 
             # Ahom vowel sign E
@@ -1220,10 +1260,10 @@ class PhakeConverter(ConverterBase):
             result = self.convertString(text_in, input_font, encoding_map)
 
             # result = self.reorderText(result)
-            if self.add_variant_selectors:
+            if self.old_font_name != 'Shan' and self.add_variant_selectors:
                 result = self.add_variation_modifiers(result)
 
-            if self.add_grapheme_boundary_char:
+            if self.old_font_name != 'Shan' and self.add_grapheme_boundary_char:
                 result = self.insert_grapheme_boundaries(result)
             return result
 
@@ -1359,6 +1399,10 @@ class PhakeConverter(ConverterBase):
                 old_font_name = run.font.name
                 if not old_font_name:
                     continue
+                if old_font_name:
+                    pos = old_font_name.find(';')
+                    if pos > 0:
+                        old_font_name = old_font_name[0:pos]
                 try:
                     script_index = self.FONTS_TO_CONVERT.index(old_font_name)
                 except ValueError as e:
