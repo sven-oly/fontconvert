@@ -7,3 +7,6 @@ appengine-generated/
 venv*
 *_Unicode.docx
 test_data/phk_docx/*Unicode.docx
+*.png
+*.docx
+
