@@ -801,6 +801,27 @@ def example_task_handler():
     return 'Printed task payload: {}'.format(payload)
 # [END cloud_tasks_appengine_quickstart]
 
+@app.route('/matcher')
+def matcher():
+    # Interactive conversion creator from hacked font to Unicode.
+    # IN PROCESS:
+    return render_template(
+        'matcher.html',
+        lang='shn',
+        hacked_font = '/static/fonts/Shan/hacked/SHAN.TTF',
+        hacked_font_name = 'SHAN',
+        unicode_font='/static/fonts/Shan/unicode/NotoSansMyanmar-Regular.ttf',
+        unicode_font_name='NotoSansMyanmar-Regular',
+        )
+
+def testLangId():
+    args = request.args
+    text = args['text']
+    if text:
+        result = langid.classify(text)
+        return str(result)
+    else:
+        return str("No text")
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

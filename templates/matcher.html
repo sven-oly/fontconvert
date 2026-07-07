@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head title="Font matching prototype">
+</head>
+
+<style>
+    @font-face {
+      font-family: SHAN;
+      src:url('{{hacked_font}}')format('truetype');
+      font-weight:normal;
+      font-style:normal;
+    }
+    @font-face {
+      font-family:"Noto Myanmar Regular";
+      src:url('{{unicode_font}}')format('truetype');
+      font-weight:normal;
+      font-style:normal;
+    }
+
+  .selected-cell {
+    background-color: green;
+  }
+  .yellow-cell {
+    background-color: yellow;
+  }
+  .unselected-cell {
+    background-color: white;
+  }
+
+</style>
+
+<style>
+    .word-matrix {
+      border-collapse: collapse;
+      font-family: sans-serif;
+      margin: 20px 0;
+      margin-right: 20px;
+
+    }
+    .word-matrix td {
+      border: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+    }
+
+    caption {
+      font-size: 24px;
+    }
+
+    table {
+      float: left;
+      padding: 15px;
+      }
+</style>
+
+<script>
+    // GLOBALS
+
+    // Number of elements in each row of the table
+    let itemsPerRow = 8;
+    // The results of the selections so far.
+    let conversion_rules = [];
+
+    let hacked_cell_selected = null;
+    let unicode_cells_selected = [];
+
+    const hacked_code_defined_color = 'lightgray';
+
+    let add_button = null;  // initialized on page load
+    let rule_count = 0;
+    // Append when a value needs to be reordered on conversion, e.g., U+1031
+    const reorder_code = '\u200c';
+
+    // From Gemini
+    const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+
+    function initializePage() {
+      let hacked_tds;
+      let unicode_tds;
+      hacked_tds = document.querySelectorAll('#hacked_font td');
+      unicode_tds = document.querySelectorAll('#unicode_font td');
+      setListener(hacked_tds, hacked_listener);
+      setListener(unicode_tds, unicode_listener);
+
+      set_font_ranges();
+
+      add_button = document.getElementById('add_rule_button');
+
+    }
+
+    function setListener(cells, handler) {
+      cells.forEach(cell => {
+        cell.addEventListener('click', (event) => {
+          // Access the internal text of the specific clicked cell
+          handler(cell);
+        });
+      });
+  }
+
+    // Handle the clicks on table entries
+    function hacked_listener(item) {
+      alert('hacked =' + item.textContent);
+    }
+    function unicode_listener(item) {
+      alert('unicode =' + item.textContent);
+    }
+
+    function set_font_ranges() {
+      // Note that these values may have '0x' before them - OK for hex!
+      const hacked_start = parseInt(document.getElementById('hacked_start').value, 16);
+      const hacked_end = parseInt(document.getElementById('hacked_end').value, 16);
+      const unicode_start = parseInt(document.getElementById('unicode_start').value, 16);
+      const unicode_end = parseInt(document.getElementById('unicode_end').value, 16);
+
+      // TODO: Start parsing for ranges and single values
+      // e.g., '40-7f,131,2219' --> a range plus two single values
+      // 1. Split by comma and space
+      // 2. For each split, if not empty, check for '-'.
+      //   a. Yes --> split by '-', then add code points from start and end, converted from hex
+      //   b. No --> add single code point, converting from hex
+      // NOTE: accept 0x or U+ or \u at the start of hex value
+
+      load_table_with_font('hacked_font', hacked_start, hacked_end);
+      load_table_with_font('unicode_font', unicode_start, unicode_end);
+    }
+
+    function hacked_cell_click_fn(cell) {
+      if (cell.style.backgroundColor == 'lightgreen') {
+        // Deselect
+        cell.style.backgroundColor = 'white';
+        hacked_cell_selected = null;
+      } else {
+        if (hacked_cell_selected) {
+          // Deselect other one
+          hacked_cell_selected.style.backgroundColor = 'white';
+        }
+        cell.style.backgroundColor = 'lightgreen';
+        hacked_cell_selected = cell;
+      }
+    }
+
+    function unicode_cell_click_fn(cell) {
+      if (cell.style.backgroundColor == 'lightblue') {
+        // Deselect
+        cell.style.backgroundColor = 'white';
+        // Remove from list of unicode conversions
+        const index = unicode_cells_selected.indexOf(cell);
+        if (index > -1) {
+          unicode_cells_selected.splice(index, 1); // Modifies the original array, removing 1 item at 'index'
+        }
+      } else {
+        cell.style.backgroundColor = 'lightblue';
+        unicode_cells_selected.push(cell);
+      }
+
+      if (hacked_cell_selected && unicode_cells_selected.length > 0) {
+        add_button.disabled = false;
+      } else {
+        add_button.disabled = true;
+      }
+    }
+
+
+    function load_table_with_font(table_id, start, end) {
+      // Get the font
+      // Remove current table contents
+      let tableBody = document.querySelector('#' + table_id + ' tbody');
+      if (tableBody) {
+        tableBody.innerHTML = ''; // Wipes out all rows and cells inside the tbody
+      }
+
+      // Create an array from start to end
+      const itemsArray = range(start, end);
+
+      // Code from Gemini
+      // Loop over start to end, creating new tds with
+      // new row every row_size items
+        const table = document.getElementById(table_id);
+        // Use tbody if it exists, otherwise fallback to the table itself
+        tableBody = table.querySelector('tbody') || table;
+
+        let currentRow = null;
+
+        itemsArray.forEach((itemText, index) => {
+            // Create a new row at the start, or whenever we hit a multiple of M
+            if (index % itemsPerRow === 0) {
+                currentRow = document.createElement('tr');
+                tableBody.appendChild(currentRow);
+            }
+
+            // Create the cell (td) and append it to the current row
+            const td = document.createElement('td');
+            td.textContent = String.fromCodePoint(itemText);
+            td.title = td.textContent + '==  (0x' + itemText.toString(16) + ')';
+            currentRow.appendChild(td);
+
+            // Set up onclick functions
+            if (table_id == 'hacked_font') {
+                td.addEventListener("click", function() {
+                  hacked_cell_click_fn(td);
+                });
+                td.style.fontFamily = '{{hacked_font_name}}';
+            } else {
+                td.addEventListener("click", function() {
+                  unicode_cell_click_fn(td);
+                });
+                td.style.fontFamily = '{{unicode_font_name}}';
+            }
+      });
+
+      // Set text to be the character with the code, and
+      // and add the code point in hex too.
+    }
+
+    function write_selection_to_rules() {
+      const rule_table = document.getElementById('rule_table');
+
+      // Add a row to the table
+      rule_count += 1;
+      const newRow = rule_table.insertRow(-1);
+      const cell1 = newRow.insertCell(0);
+      cell1.textContent = rule_count;
+      const cell2 = newRow.insertCell(1);
+      cell2.textContent = hacked_cell_selected.textContent;
+      const code_point = cell2.textContent.codePointAt(0)
+      cell2.title = cell2.textContent + ' ==  (0x' + code_point.toString(16) + ')';
+      cell2.style.fontFamily = '{{hacked_font_name}}';
+      const cell3 = newRow.insertCell(2);
+      // Assemble the text from c
+      cell3.style.fontFamily = '{{unicode_font_name}}';
+
+      // compute the hex for each code point and concatenate
+      let rule_output = '';
+      let hex_output = '';
+      for (cell of unicode_cells_selected) {
+        rule_output += cell.textContent;
+        cell.style.backgroundColor = 'white';
+        const code_point = cell.textContent.codePointAt(0)
+        hex_output += '0x' + code_point.toString(16) + ' ';
+      }
+
+      const cell4 = newRow.insertCell(3);
+      const reorder_item = document.getElementById('reorder_flag');
+      if (reorder_item.checked) {
+        const reorder_code = '\u200c';
+        rule_output += reorder_code;
+        hex_output += '0x' + 0x200c.toString(16) + ' ';
+
+        cell4.textContent = "yes";
+        cell4.style.backgroundColor = 'lightsalmon';
+      }
+
+      // Clear the selections
+      // Mark the hacked code visibly as defined already.
+      hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
+      hacked_cell_selected = null;
+
+      cell3.textContent = rule_output;
+      cell3.title = hex_output;
+
+
+      unicode_cells_selected = [];
+      add_rule_button.disabled = true;
+    }
+
+    // TODOs:
+    // 1. click on rule # to delete?
+
+    function rule_table_to_text() {
+      const rule_table = document.getElementById('rule_table');
+
+      let rules_text = '';
+      // TODO: Construct
+      for (const row of rule_table.rows) {
+        let row_text = '';
+        const cells = row.cells;
+        rules_text += cells[0].textContent + ': ' + cells[1].textContent + ' --> ' +
+          cells[2].textContent + '\n';
+      }
+
+      alert('Rules output\n' + rules_text);
+    }
+</script>
+
+<body onload="initializePage()">
+
+<h1>Hacked to Unicode</h1>
+
+<label for="hacked_start">Hacked Start hex: </label>
+<input type="text" id="hacked_start" name="hacked_start"value="0030">
+<label for="hacked_end">End hex:</label>
+<input type="text" id="hacked_end" name="hacked_end" value="007f">
+<br />
+<label for="unicode_start">Unicode Start hex:</label>
+<input type="text" id="unicode_start" name="unicode_start" value="1000">
+<label for="unicode_end">End hex:</label>
+<input type="text" id="unicode_end" name="unicode_end" value="107f">
+
+<br />
+
+<input type="button" id="update_range" onclick="set_font_ranges();"
+       value="Update font ranges">
+
+<br />
+<input type="checkbox" id="reorder_flag">Reorder?</input>
+
+<table class="word-matrix" id="hacked_font">
+    <caption>Hacked font</caption>
+
+    <tr>
+        <td><span class="hacked_font">A</span>
+            <br />
+        U+0041</td>
+        <td>Banana</td>
+        <td>Cherry</td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td>Elderberry</td>
+        <td>Fig</td>
+    </tr>
+</table>
+
+<table class="word-matrix" id="unicode_font">
+    <caption>Unicode font</caption>
+
+    <tr>
+        <td>U apple</td>
+        <td>U Banana</td>
+        <td>U Cherry</td>
+    </tr>
+    <tr>
+        <td>U Date</td>
+        <td>U Elderberry</td>
+        <td>U Fig</td>
+    </tr>
+</table>
+
+<table class="word-matrix" id="rule_table">
+    <caption>Convert rules</caption>
+    <thead>
+        <td>rule #</td>
+        <td>old char</td>
+        <td>new chars</td>
+        <td>reorder?</td>
+    </thead>
+
+</table>
+
+<br />
+<div>
+<input type="button" id="add_rule_button" onclick="write_selection_to_rules();"
+       disabled="true" value="Add to rule list">
+</div>
+<input type="button" id="rule_to_text_button" onclick="rule_table_to_text();"
+        value="Rules as text">
+</div>
+</body>
+</html>
