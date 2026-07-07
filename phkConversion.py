@@ -885,6 +885,9 @@ class PhakeConverter(ConverterBase):
             "8": "\u1048",
             "9": "\u1049",
         },
+        'ST_Metta' : {
+
+        },
         'IndicNewDiacritics': {
             "¿": "ā",
             "¡": "ḍ",
@@ -1020,6 +1023,7 @@ class PhakeConverter(ConverterBase):
             'Ahom Manuscript': ['Noto Serif Ahom'],
             'Banchob': ['Times New Roman'],
             'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'ST_Metta': ['Myanmar Text', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
             'IndicNewDiacritics': ['Times New Roman'],
         }
         self.font_substitution = {
@@ -1031,6 +1035,7 @@ class PhakeConverter(ConverterBase):
             'Banchob': 'Times New Roman',
             'Ahom Manuscript': 'Noto Serif Ahom',
             'Shan': 'Noto Sans Myanmar',
+            'ST_Metta': 'Noto Sans Myanmar',
             'IndicNewDiacritics': 'Times New Roman',
         }
         self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom', 'Noto Sans Myanmar',
