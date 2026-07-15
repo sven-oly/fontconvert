@@ -19,7 +19,7 @@
 
     {% for font in unicode_font_list%}
     @font-face {
-      font-family:"{{font}}";
+      font-family:"{{font | replace('.ttf', '') }}";
       src:url('{{font_base}}/unicode/{{font}}';
     }
     {% endfor %}
@@ -482,6 +482,24 @@
         });
       conversion_rules_updated = false;
     }
+
+  function setFontFamily(newFontFamily, table_id, resetKeyboard=true) {
+      const table_element = document.getElementById(table_id);
+      for (const row of table_element.rows) {
+        for (const cell of row.cells) {
+          cell.style.fontFamily = newFontFamily;
+        }
+      }
+    const table_caption = table_element.caption;
+    table_caption.textContent = newFontFamily;
+
+    const rules_table = document.getElementById('rule_table');
+      for (const row of rules_table.rows) {
+          row.cells[2].style.fontFamily = newFontFamily;
+      }
+
+  }
+
 </script>
 
 <body onload="initializePage()">
@@ -523,6 +541,12 @@
     </tr>
 </table>
 
+  Font: <select onchange="setFontFamily(this.value, 'unicode_font')" id="fontSelector">
+    {% for font in unicode_font_list %}
+    <option value="{{font | replace('.ttf', '')}}"{% if loop.index == 1 %} selected{%endif%}>{{font | replace('.ttf', '')}}</option>
+    {% endfor %}
+    <option value="Arial">Arial</option>
+  </select>
 <table class="word-matrix" id="unicode_font">
     <caption>{{unicode_font_name}}</caption>
 
