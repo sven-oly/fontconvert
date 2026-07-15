@@ -11,8 +11,10 @@ import datetime
 from io import BytesIO
 from io import StringIO
 
+import html
 import json
 import logging
+import time
 
 # https://github.com/saffsd/langid.py
 import langid  # For identifying language of text
@@ -45,7 +47,7 @@ import convertXls
 
 # Global logger
 logger = logging.getLogger('uploader')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 # Dictionary of the converters by language code
@@ -755,8 +757,8 @@ class ExportingThread(threading.Thread):
         while True:  # Wait for something in the queue.
             message = queue.get(block=True)
             self.progress += 10
-            #print('THREAD QUEUE MESSAGE = %s' % message)
-            #print('THREAD STATUS: %s' % (self.status))
+            logger.debug('THREAD QUEUE MESSAGE = %s' % message)
+            logger.debug('THREAD STATUS: %s' % (self.status))
 
     def setStatus(self, newMessage):
         self.status = newMessage
@@ -805,14 +807,87 @@ def example_task_handler():
 def matcher():
     # Interactive conversion creator from hacked font to Unicode.
     # IN PROCESS:
+    lang_code = 'shn'
+    lang_name = 'Shan'
+    font_base = 'static/fonts/%s' % lang_name
+    conversion_base = 'conversion_files/%s' % lang_code
+
+    unicode_font_list = os.listdir('%s/unicode' % font_base)
+    print('UNICODE FONTS AVAILABLE: %s' % unicode_font_list)
+
+    logger.debug('UNICODE FONT LIST: %s' % unicode_font_list)
+
+    best_match_file_path = '%s/best_matches.json' % font_base
+    logger.info('BEST MATCH FILE: %s' % best_match_file_path)
+
+    best_matches_json = None
+    try:
+        with open(best_match_file_path) as best_matches_file:
+            best_matches_json = json.load(best_matches_file)
+            logger.debug(best_matches_json['best_matches'])
+    except FileNotFoundError:
+        best_matches_json = None
+
+    # TODO: Get existing matcher conversion file if present
+    conversion_data = None
+    conversion_file_path = '%s/conversion_data.json' % conversion_base
+    try:
+        with open(conversion_file_path) as conversion_file:
+            conversion_data = json.load(conversion_file)
+            logger.info('CONVERSION DATA: %s' % conversion_data)
+    except FileNotFoundError:
+        logger.error('CONVERSION DATA not found at: %s' % conversion_data)
+        conversion_data = None
+
+    timestamp = conversion_data['timestamp']
+
     return render_template(
         'matcher.html',
-        lang='shn',
-        hacked_font = '/static/fonts/Shan/hacked/SHAN.TTF',
+        lang_code=lang_code,
+        lang_name=lang_name,
+        saved_timestamp=timestamp,
+        conversion_data=conversion_data,
+        hacked_font = '%s/%s' % (font_base, 'hacked/SHAN.TTF'),
         hacked_font_name = 'SHAN',
-        unicode_font='/static/fonts/Shan/unicode/NotoSansMyanmar-Regular.ttf',
-        unicode_font_name='NotoSansMyanmar-Regular',
+        hacked_ranges = list(best_matches_json['best_matches'].keys()),
+        font_base=font_base,
+        unicode_font= '%s/%s' % (font_base, 'unicode/NotoSansMyanmar-Light.ttf'),
+        unicode_font_name='NotoSansMyanmar-Light',
+        unicode_font_list=unicode_font_list,
+        best_matches_json=best_matches_json,
+        conversion_base=conversion_base
         )
+
+
+@app.route('/save_matcher_conversion', methods = ['GET', 'POST'])
+def save_matcher_conversion():
+    # Save the conversion data in a file under static/font/<langcode>/conversions
+    # get the language code and name
+    # get the JSON
+    data = request.get_json()
+    lang_code = data['lang_code']
+    # font_base = '/static/fonts/%s' % lang_code
+    font_base = 'conversion_files/shn/'
+
+    data['timestamp'] = time.time()
+
+    # Send a JSON response back to the frontend
+    response_data = {
+        "status": "success",
+        "message": f"Data received for matcher"
+    }
+
+    # TODO Save data to the file
+    output_file_path = '%sconversion_data.json' % font_base
+    logger.debug("CONVERSION FILE PATH: %s" % output_file_path)
+    try:
+        with open(output_file_path, 'w') as output_file:
+           json.dump(data, output_file)
+    except BaseException as err:
+        print('ERROR %s with path %s' % (err, output_file_path))
+
+    return json.dumps(response_data)
+
 
 def testLangId():
     args = request.args

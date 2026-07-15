@@ -17,6 +17,13 @@
       font-style:normal;
     }
 
+    {% for font in unicode_font_list%}
+    @font-face {
+      font-family:"{{font}}";
+      src:url('{{font_base}}/unicode/{{font}}';
+    }
+    {% endfor %}
+
   .selected-cell {
     background-color: green;
   }
@@ -33,13 +40,13 @@
     .word-matrix {
       border-collapse: collapse;
       font-family: sans-serif;
-      margin: 20px 0;
-      margin-right: 20px;
-
+      margin: 10px 0;
+      margin-right: 10px;
+      font-size:30px;
     }
     .word-matrix td {
       border: 1px solid #ccc;
-      padding: 15px;
+      padding: 10px;
       text-align: center;
     }
 
@@ -56,15 +63,39 @@
 <script>
     // GLOBALS
 
+    const lang_code = '{{lang_code}}';
+    const lang_name = '{{lang_name}}';
+
+    const conversion_data = {{conversion_data | tojson}};
+    const latest_time_stamp = conversion_data['timestamp'];
+    const date_of_last_save = new Date(latest_time_stamp);
+
+    const unicode_font_list = {{unicode_font_list | tojson}};
     // Number of elements in each row of the table
     let itemsPerRow = 8;
     // The results of the selections so far.
     let conversion_rules = [];
 
+    let conversion_rules_updated = false;
+
     let hacked_cell_selected = null;
     let unicode_cells_selected = [];
 
+    const hacked_ranges = {{hacked_ranges | tojson}};
+    const best_match_data = {{best_matches_json.best_matches | tojson}};
+
+    let hacked_char_to_cell = {};
+    let conversions_by_hack_code = {};
+
+    const font_a = '{{best_matches_json.font_a}}';
+    const font_b = '{{best_matches_json.font_b}}';
+
     const hacked_code_defined_color = 'lightgray';
+
+    let text_to_cell = {
+      'hacked_font': {},
+      'unicode_font': {}
+    };
 
     let add_button = null;  // initialized on page load
     let rule_count = 0;
@@ -85,7 +116,7 @@
       set_font_ranges();
 
       add_button = document.getElementById('add_rule_button');
-
+      load_rule_table(conversion_data);  // Initialize from previous rules.
     }
 
     function setListener(cells, handler) {
@@ -93,8 +124,18 @@
         cell.addEventListener('click', (event) => {
           // Access the internal text of the specific clicked cell
           handler(cell);
-        });
       });
+
+     window.addEventListener('beforeunload', (event) => {
+        // Cancel the event as stated by the standard.
+        if (conversion_rules_updated) {
+            event.preventDefault();
+        }
+
+        // Older browsers require a returnValue to be set.
+       event.returnValue = '';
+       });
+});
   }
 
     // Handle the clicks on table entries
@@ -120,8 +161,21 @@
       //   b. No --> add single code point, converting from hex
       // NOTE: accept 0x or U+ or \u at the start of hex value
 
-      load_table_with_font('hacked_font', hacked_start, hacked_end);
+      if (hacked_ranges) {
+        load_table_with_font_from_list('hacked_font', hacked_ranges);
+      } else {
+        load_table_with_font('hacked_font', hacked_start, hacked_end);
+      }
       load_table_with_font('unicode_font', unicode_start, unicode_end);
+    }
+
+    let possible_cells = [];
+
+    function clear_possible_colors() {
+      for (const cell of possible_cells) {
+        cell.style.backgroundColor = 'white';
+      }
+      possible_cells = [];
     }
 
     function hacked_cell_click_fn(cell) {
@@ -136,11 +190,32 @@
         }
         cell.style.backgroundColor = 'lightgreen';
         hacked_cell_selected = cell;
+        const code = cell.textContent;
+        // Clear all those with 'lavender' background
+        clear_possible_colors();
+
+        // Show the possible ones.
+        const possibles = best_match_data[code];
+        let count = 0;
+        for (const item of possibles) {
+          let possible_code = item[0].codePointAt(0);
+          let cell = text_to_cell['unicode_font'][possible_code];
+          let color = 'lavender';
+          if (count == 0) { color = 'plum'; }
+          if (cell) {
+            cell.style.backgroundColor = color;
+            possible_cells.push(cell);
+          }
+          count ++;
+        };
       }
     }
 
     function unicode_cell_click_fn(cell) {
-      if (cell.style.backgroundColor == 'lightblue') {
+        // Clear all those with 'lavender' background
+        clear_possible_colors();
+
+        if (cell.style.backgroundColor == 'lightblue') {
         // Deselect
         cell.style.backgroundColor = 'white';
         // Remove from list of unicode conversions
@@ -158,19 +233,37 @@
       } else {
         add_button.disabled = true;
       }
+
+      // Clear all those with 'lavender' background
+      clear_possible_colors()
     }
 
+    function load_table_with_font_from_list(table_id, codepoint_list) {
+      load_table_with_font(table_id, codepoint_list);
+    }
 
     function load_table_with_font(table_id, start, end) {
       // Get the font
       // Remove current table contents
       let tableBody = document.querySelector('#' + table_id + ' tbody');
       if (tableBody) {
-        tableBody.innerHTML = ''; // Wipes out all rows and cells inside the tbody
+        let row_count = tableBody.rows.length;
+        for (let row in tableBody.rows) {
+          if (row_count >= 1) {
+            tableBody.deleteRow(-1);
+          }
+          row_count -= 1;
+       }
       }
 
-      // Create an array from start to end
-      const itemsArray = range(start, end);
+      // Create an array from input values
+      let itemsArray;
+      if (Array.isArray(start)) {
+          // Create an array from start to end
+          itemsArray = start.map(code => code.codePointAt(0));
+      } else {
+         itemsArray = range(start, end);
+      }
 
       // Code from Gemini
       // Loop over start to end, creating new tds with
@@ -200,48 +293,99 @@
                   hacked_cell_click_fn(td);
                 });
                 td.style.fontFamily = '{{hacked_font_name}}';
+                // Remember the cells that are set
+                hacked_char_to_cell[td.textContent] = td;
             } else {
                 td.addEventListener("click", function() {
                   unicode_cell_click_fn(td);
                 });
                 td.style.fontFamily = '{{unicode_font_name}}';
             }
+            // Record where the code is stored for quick access.
+            text_to_cell[table_id][itemText] = td;
       });
 
       // Set text to be the character with the code, and
       // and add the code point in hex too.
     }
 
+    function load_rule_table(loaded_conversion_data) {
+      // Load with the pre-loaded conversion rules.
+      rule_count = 0;  // Don't overwrite the headers.
+      const rule_table = document.getElementById('rule_table');
+      // Clear current contents.
+      // rule_table.innerHTML = '';
+
+      const loaded_rules = loaded_conversion_data['conversion_rules'];
+      for (const [key, value] of Object.entries(loaded_rules))  {
+        add_conversion_rule_to_table(key, value);
+
+        // Highlight the data in the hacked font table for those that
+        // are already defined.
+      }
+    }
+
     function write_selection_to_rules() {
       const rule_table = document.getElementById('rule_table');
+      let values = [];
+      for (cell of unicode_cells_selected) {
+        values.push(cell.textContent);
+        cell.style.backgroundColor = 'white';
+      }
+      const reorder_item = document.getElementById('reorder_flag');
+      add_conversion_rule_to_table(hacked_cell_selected.textContent, values,
+        reorder_item.checked);
+      // Clear the selections
+      // Mark the hacked code visibly as defined already.
+      hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
+      hacked_cell_selected = null;
+
+      unicode_cells_selected = [];
+      add_rule_button.disabled = true;
+
+      // Remember that there's something new.
+      conversion_rules_updated = true;
+    }
+
+    function add_conversion_rule_to_table(key, values, reorder_flag) {
+      const rule_table = document.getElementById('rule_table');
+
+      if (Object.hasOwn(conversions_by_hack_code, key)) {
+        const text = 'There is already a rule for ' + key + ' : ' +
+            conversions_by_hack_code[key] + '\nAdd new?';
+        if (! confirm(text)) {
+          alert('Cancelled');
+        }
+      }
 
       // Add a row to the table
       rule_count += 1;
       const newRow = rule_table.insertRow(-1);
       const cell1 = newRow.insertCell(0);
       cell1.textContent = rule_count;
+
       const cell2 = newRow.insertCell(1);
-      cell2.textContent = hacked_cell_selected.textContent;
+      cell2.textContent = key;
       const code_point = cell2.textContent.codePointAt(0)
       cell2.title = cell2.textContent + ' ==  (0x' + code_point.toString(16) + ')';
       cell2.style.fontFamily = '{{hacked_font_name}}';
+
       const cell3 = newRow.insertCell(2);
-      // Assemble the text from c
+      // Assemble the text from the output cells selected
       cell3.style.fontFamily = '{{unicode_font_name}}';
 
       // compute the hex for each code point and concatenate
       let rule_output = '';
       let hex_output = '';
-      for (cell of unicode_cells_selected) {
-        rule_output += cell.textContent;
-        cell.style.backgroundColor = 'white';
-        const code_point = cell.textContent.codePointAt(0)
-        hex_output += '0x' + code_point.toString(16) + ' ';
+      for (const value of values) {
+        rule_output += value;
+        const code_point = value.codePointAt(0)
+        hex_output += '0x' + value.toString(16) + ' ';
       }
+      cell3.title = hex_output;
 
       const cell4 = newRow.insertCell(3);
-      const reorder_item = document.getElementById('reorder_flag');
-      if (reorder_item.checked) {
+      if (reorder_flag) {
         const reorder_code = '\u200c';
         rule_output += reorder_code;
         hex_output += '0x' + 0x200c.toString(16) + ' ';
@@ -250,35 +394,93 @@
         cell4.style.backgroundColor = 'lightsalmon';
       }
 
-      // Clear the selections
-      // Mark the hacked code visibly as defined already.
-      hacked_cell_selected.style.backgroundColor = hacked_code_defined_color;
-      hacked_cell_selected = null;
-
       cell3.textContent = rule_output;
-      cell3.title = hex_output;
+      conversions_by_hack_code[key] = rule_output;
 
+      clear_possible_colors();
 
-      unicode_cells_selected = [];
-      add_rule_button.disabled = true;
+      // Add way to delete this one.
+      const cell5 = newRow.insertCell(4);
+      let button = document.createElement('button');
+      button.type = 'button';
+      button.innerText = 'Delete';
+      button.className = 'btn-danger';
+      button.onclick = (function(entry) { delete_rule(rule_table, newRow); } );
+      // Append the delete button to the td cell
+      cell5.appendChild(button);
+
+      // Reset the color of the item to defined.
+      hacked_cell = hacked_char_to_cell[key];
+      if (hacked_cell) {
+        hacked_cell.style.backgroundColor = hacked_code_defined_color;
+      }
     }
 
-    // TODOs:
-    // 1. click on rule # to delete?
+    // Click on rule # to delete
+    function delete_rule(rule_table, row_object) {
+      let text = "Delete this row?";
+      let index_to_remove = row_object.rowIndex;
+      const hacked_code = row_object.cells[0].textContent
+      if (confirm(text)) {
+        let row_number = parseInt(row_object.cells[0].textContent);
+        rule_table.deleteRow(index_to_remove);
+        // rule_count -= 1;
+      } else {
+        // alert("No change made");
+      }
 
-    function rule_table_to_text() {
+      // Reset the color of the item to defined.
+      hacked_cell = hacked_char_to_cell[hacked_code];
+      if (hacked_cell) {
+        hacked_cell.style.backgroundColor = white;
+      }
+    }
+
+    function save_rules_to_server() {
       const rule_table = document.getElementById('rule_table');
 
       let rules_text = '';
-      // TODO: Construct
+      let rules_dictionary = {};
+      let row_count = 0;
       for (const row of rule_table.rows) {
         let row_text = '';
         const cells = row.cells;
+        if (row_count > 0) {
         rules_text += cells[0].textContent + ': ' + cells[1].textContent + ' --> ' +
           cells[2].textContent + '\n';
+
+          rules_dictionary[cells[1].textContent] = cells[2].textContent;
+          // TODO: keep information about reordering.
+        }
+        row_count += 1;
       }
 
-      alert('Rules output\n' + rules_text);
+      // Save the rules and write to a JSON structure
+      const data_to_server = {
+        'lang_code': lang_code,
+        'lang_name': lang_name,
+        'data_type': 'conversion_rules',
+        'conversion_rules': rules_dictionary,
+      };
+      const number_of_rules = Object.keys(rules_dictionary).length;
+
+      // Send the POST request to the Flask server
+      const json_to_send = JSON.stringify(data_to_server);
+        fetch('/save_matcher_conversion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Tells Flask that JSON is coming
+            },
+            body: json_to_send // Converts JS object to JSON string
+        })
+        .then(response => response.json()) // Parses the JSON response from Flask
+        .then(data => {
+            alert('Success storing ' + number_of_rules + ' conversion rules');
+        })
+        .catch(error => {
+            alert('Error storing conversions:', error);
+        });
+      conversion_rules_updated = false;
     }
 </script>
 
@@ -287,14 +489,14 @@
 <h1>Hacked to Unicode</h1>
 
 <label for="hacked_start">Hacked Start hex: </label>
-<input type="text" id="hacked_start" name="hacked_start"value="0030">
+<input type="text" id="hacked_start" name="hacked_start"value="0020">
 <label for="hacked_end">End hex:</label>
 <input type="text" id="hacked_end" name="hacked_end" value="007f">
 <br />
 <label for="unicode_start">Unicode Start hex:</label>
 <input type="text" id="unicode_start" name="unicode_start" value="1000">
 <label for="unicode_end">End hex:</label>
-<input type="text" id="unicode_end" name="unicode_end" value="107f">
+<input type="text" id="unicode_end" name="unicode_end" value="109f">
 
 <br />
 
@@ -305,7 +507,7 @@
 <input type="checkbox" id="reorder_flag">Reorder?</input>
 
 <table class="word-matrix" id="hacked_font">
-    <caption>Hacked font</caption>
+    <caption>{{hacked_font_name}}</caption>
 
     <tr>
         <td><span class="hacked_font">A</span>
@@ -322,7 +524,7 @@
 </table>
 
 <table class="word-matrix" id="unicode_font">
-    <caption>Unicode font</caption>
+    <caption>{{unicode_font_name}}</caption>
 
     <tr>
         <td>U apple</td>
@@ -336,6 +538,13 @@
     </tr>
 </table>
 
+<div>
+<input type="button" id="add_rule_button" onclick="write_selection_to_rules();"
+       disabled="true" value="Add to rule list">
+</div>
+<input type="button" id="rule_to_text_button" onclick="save_rules_to_server();"
+        value="Save rules">
+</div>
 <table class="word-matrix" id="rule_table">
     <caption>Convert rules</caption>
     <thead>
@@ -348,12 +557,5 @@
 </table>
 
 <br />
-<div>
-<input type="button" id="add_rule_button" onclick="write_selection_to_rules();"
-       disabled="true" value="Add to rule list">
-</div>
-<input type="button" id="rule_to_text_button" onclick="rule_table_to_text();"
-        value="Rules as text">
-</div>
 </body>
 </html>
