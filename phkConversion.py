@@ -1179,6 +1179,15 @@ class PhakeConverter(ConverterBase):
                     [r'(\u109d)(\u109d)', connect_double_vowels]
                 ])
 
+        # For special case of keeping paragraphs together
+        self.check_to_keep_paragraphs_with_next = True
+        # Status of paragraph finding. Are we in a keep_with_next state?
+        # That is, have we seen "<int>)" and have we not yet seen two empty lines
+        self.in_keep_with_next_group = False
+        self.count_of_lines_together = 0
+        self.count_of_empty_lines_seen = 0
+        self.start_group_matcher = pattern = r"\d+\)"
+
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
     def reorderText(self, in_text):
@@ -1381,9 +1390,33 @@ class PhakeConverter(ConverterBase):
         #     # Nothing to process
         #     return
 
+        # Special case of keeping paragraphs with next under special
+        # circumstances.  Added 16-Jul-2026
+        if self.check_to_keep_paragraphs_with_next:
+            if re.match(self.start_group_matcher, p.text):
+                self.in_keep_with_next_group = True
+                self.count_of_lines_together = 0
+
+            if self.in_keep_with_next_group and p.text != "":
+                # Reset the empty line count when it's not blank
+                self.count_of_empty_lines_seen = 0
+
+            # Are we done?
+            if self.in_keep_with_next_group and p.text == "":
+                self.count_of_empty_lines_seen += 1
+                if self.count_of_empty_lines_seen >= 2:
+                    # Cancel this setting
+                    self.in_keep_with_next_group = False
+                    if self.last_empty_paragraph:
+                        self.last_empty_paragraph.style.paragraph_format.keep_with_next = False
+                self.last_empty_paragraph = p
+
+            if self.in_keep_with_next_group:
+                # Set the paragraph to keep_with_next
+                p.style.paragraph_format.keep_with_next = True
+                self.count_of_lines_together += 1
 
         # Check on the language of the paragraph. May not convert.
-
         # TODO: Fix this later?
         if False and self.detectLang:
             detected = self.detectLang.classify(p.text.strip())
