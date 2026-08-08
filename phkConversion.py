@@ -1181,12 +1181,18 @@ class PhakeConverter(ConverterBase):
 
         # For special case of keeping paragraphs together
         self.check_to_keep_paragraphs_with_next = True
+
+        self.paragraphs_to_update_with_keep = []
+
         # Status of paragraph finding. Are we in a keep_with_next state?
         # That is, have we seen "<int>)" and have we not yet seen two empty lines
         self.in_keep_with_next_group = False
         self.count_of_lines_together = 0
         self.count_of_empty_lines_seen = 0
-        self.start_group_matcher = pattern = r"\d+\)"
+
+        self.last_empty_paragraph = None
+        self.last_empty_paragraph_style = None
+        self.start_group_matcher = pattern = r"[ivxl]+|\d+\)"
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
@@ -1390,10 +1396,48 @@ class PhakeConverter(ConverterBase):
         #     # Nothing to process
         #     return
 
+        # EXPERIMENT: to get the w:sym chars
+        chars = []
+        runs_with_sym = []
+        tab_count = 0  # For adding in the tabs stored as w:tab
+        runs_with_tab = []
+        for run in p.runs:
+            w_tab = run._r.xpath("./w:tab")
+            if w_tab:
+                tab_count += 1
+            runs_with_tab.append(run)
+            syms = run._r.xpath("./w:sym")
+            for sym in syms:
+                font = sym.get(qn("w:font"))
+                char_hex = sym.get(qn("w:char"))
+                chars.append(chr(int(char_hex, 16)))
+            if syms:
+                runs_with_sym.append(run)
+
+        # Trying to replace text
+        fix_run = None  # The run where we stick the data found in w:sym
+        if runs_with_sym:
+            sym_string = ''.join(chars)
+            fix_run = runs_with_sym[-1]
+            # Remove tabs and sym data in these runs ?
+            for old_run in runs_with_sym:
+                sym = old_run._r.xpath("./w:sym")
+                # ??? old_run._r.remove(sym)
+
+        if fix_run:
+            # fix_run.text = fix_run.text + tab_count * '\t' + sym_string
+            fix_run.text = fix_run.text + sym_string
+
         # Special case of keeping paragraphs with next under special
         # circumstances.  Added 16-Jul-2026
         if self.check_to_keep_paragraphs_with_next:
             if re.match(self.start_group_matcher, p.text):
+                # Don't have keep with next for the empty lines and previous non-empty line
+                while self.paragraphs_to_update_with_keep and self.paragraphs_to_update_with_keep[-1].text == "":
+                    self.paragraphs_to_update_with_keep.pop()
+                if self.paragraphs_to_update_with_keep:
+                    self.paragraphs_to_update_with_keep.pop()
+
                 self.in_keep_with_next_group = True
                 self.count_of_lines_together = 0
 
@@ -1404,17 +1448,20 @@ class PhakeConverter(ConverterBase):
             # Are we done?
             if self.in_keep_with_next_group and p.text == "":
                 self.count_of_empty_lines_seen += 1
-                if self.count_of_empty_lines_seen >= 2:
+                if self.count_of_empty_lines_seen < 2:
+                    self.paragraphs_to_update_with_keep.append(p)
+                else:
                     # Cancel this setting
                     self.in_keep_with_next_group = False
-                    if self.last_empty_paragraph:
-                        self.last_empty_paragraph.style.paragraph_format.keep_with_next = False
                 self.last_empty_paragraph = p
 
             if self.in_keep_with_next_group:
                 # Set the paragraph to keep_with_next
-                p.style.paragraph_format.keep_with_next = True
+                self.paragraphs_to_update_with_keep.append(p)
                 self.count_of_lines_together += 1
+
+                # Do this later.
+                # p.style.paragraph_format.keep_with_next = True
 
         # Check on the language of the paragraph. May not convert.
         # TODO: Fix this later?
