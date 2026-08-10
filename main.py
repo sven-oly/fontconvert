@@ -888,6 +888,39 @@ def save_matcher_conversion():
 
     return json.dumps(response_data)
 
+# load file with explicit language and encoding
+@app.route('/multi_uploadlang')
+def multi_uploadlang():
+    # For testing tasks and how to handle them.
+    # TODO: include status on each
+    lang = request.args.get('lang', 'und')
+    # Retrieve all files from the multipart request
+    uploaded_files = request.files.getlist('files')
+
+    for file in uploaded_files:
+        filename = file.filename
+        file_content = file.read()
+
+        # Enqueue the task, passing the payload to the worker endpoint
+        taskqueue.add(
+            url='/worker',
+            params={'filename': filename,
+                    'content': file_content,
+                    'lang': lang,
+                    },
+            queue_name='file-processing-queue'
+        )
+
+    return f"Enqueued {len(uploaded_files)} files successfully", 200
+
+@app.route('/worker')
+def worker():
+    filename = request.form['filename']
+    content = request.form['content']
+    lang_code = request.form['lang']
+    # For starters, just print info
+    print('### %s (%s) size = %s' % (filename, lang_code, len(content)))
+    return "Task completed", 200
 
 def testLangId():
     args = request.args
