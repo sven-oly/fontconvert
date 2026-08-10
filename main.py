@@ -6,6 +6,8 @@ from flask import Flask, render_template, stream_with_context, request, Response
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 
+from google.appengine.api import taskqueue
+
 import datetime
 
 from io import BytesIO
@@ -900,6 +902,7 @@ def multi_uploadlang():
     for file in uploaded_files:
         filename = file.filename
         file_content = file.read()
+        print('multi_uploadlang: %s (%s)' % (filename, file_content))
 
         # Enqueue the task, passing the payload to the worker endpoint
         taskqueue.add(
