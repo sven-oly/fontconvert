@@ -10,3 +10,4 @@ test_data/phk_docx/*Unicode.docx
 *.png
 *.docx
 
+/test_data/phk_docx
