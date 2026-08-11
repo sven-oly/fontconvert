@@ -149,7 +149,37 @@ class ConvertDocx():
     # TRY THIS
     self.install_new_style(self.unicode_font)
 
-  
+  def create_keep_with_next_paragraph_style(self):
+      # Add custom style that uses "keep_with_next", derived from Normal style
+      # 1. Get the base 'Normal' style
+      default_style = self.document.styles['Normal']
+
+      # 2. Extract its properties
+      font_name = default_style.font.name
+      font_size = default_style.font.size
+      font_color = default_style.font.color.rgb
+      line_spacing = default_style.paragraph_format.line_spacing
+      space_after = default_style.paragraph_format.space_after
+
+      # 3. Create a new custom style cloned from the defaults
+      custom_style = self.document.styles.add_style(
+          'Normal_KeepWithNextParagraphStyle',
+          WD_STYLE_TYPE.PARAGRAPH)
+      # And make it available through the converter
+      self.converter.custom_paragraph_style = custom_style
+
+      # 4. Apply the cloned properties to the new style
+      custom_style.font.name = font_name
+      custom_style.font.size = font_size
+      custom_style.font.color.rgb = font_color
+      custom_style.paragraph_format.line_spacing = line_spacing
+      custom_style.paragraph_format.space_after = space_after
+      # This is the new setting.
+      custom_style.paragraph_format.keep_with_next = True
+
+      # Optional: Set the new style to 'Normal' for the next paragraph
+      custom_style.next_paragraph_style = self.document.styles['Normal']
+
   def processDocx(self):
     # Set the default font
     style = self.document.styles['Normal']
@@ -180,6 +210,11 @@ class ConvertDocx():
         self.converter.processParagraphRuns(para)
       except BaseException as e:
         continue
+
+    # Set keep_with_text for each paragraph flagged for that.
+    # Setting this is specific to the.
+    for p in self.converter.paragraphs_to_update_with_keep:
+        p.paragraph_format.keep_with_next = True
 
     try:
         # More computing
@@ -565,6 +600,7 @@ class ConvertDocx():
   def processRtF(self, rchild, paragraph_info, rprFormatData):
     # Deal with the font and text data for the paragraph.
     # Keep track of all the data for each chunk and
+    # TODO: complete this
     self.inEncodedFont = False
     if re.search('}rPr', rchild.tag):
       fontFound = False

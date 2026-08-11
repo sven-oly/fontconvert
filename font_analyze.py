@@ -1,24 +1,33 @@
 # -*- coding: utf-8 -*-
 from fontTools.ttLib import TTFont
+import fontTools.unicodedata as ut
 
 import sys
-# Load the TTF file
-font_path = 'static/fonts/Shan/hacked/SHAN.TTF'
-font = TTFont(font_path)
 
 
 def get_supported_characters(font_path):
     font = TTFont(font_path)
     # Fetch the best character map platform table automatically
     cmap = font.getBestCmap()
-
+    htmx = font['hmtx']
     # cmap returns a dict where key = decimal unicode, value = glyph name
     supported_chars = []
     for code, glyph_name in cmap.items():
+        char = chr(code)
+        hex_char = hex(code)
+        combining = False
+        if ut.combining(char) > 0:
+            combining = True
+        advance_width, lsb = htmx[glyph_name]
+        if advance_width <= 0 or lsb < 0:
+            combining = True  # It may be a code point for a combiner
         supported_chars.append({
             "hex": hex(code),
             "char": chr(code) if code <= 0x10ffff else "",  # Prevent overflow
-            "glyph_name": glyph_name
+            "glyph_name": glyph_name,
+            "combining": combining, # True is we think this is a combiner
+            "advance_width": advance_width,
+            'lsb':  lsb,
         })
 
     return supported_chars

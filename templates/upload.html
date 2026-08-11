@@ -3,6 +3,8 @@
     <title>Adlam online Docx font convert</title>
 
     <script>
+      // Handle file conversion for Fulfulde language, converting to Unicode Adlam
+
       // Handle messages from the server
       // const evSource = new EventSource('/stream');
       
@@ -77,7 +79,7 @@
 <form action = "{{base}}uploader/?lang=ff" method = "POST"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
-  <input type = "file" name = "file" id="name" accept=".docx"/>
+  <input type = "file" name="files" multiple="multiple" id="name" accept=".docx"/>
   <br/><br/>
   <input type="submit" value="Get document information" name="DocInfo" />
   <input type="submit" name="ConvertToUnicode" value="Convert to Unicode"/>

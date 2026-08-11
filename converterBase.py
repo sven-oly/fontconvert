@@ -36,6 +36,8 @@ class ConverterBase:
         self.old_font_name = None
         self.font_index = -1
 
+        # This may be used for special formatting, e.g., keep a paragraph with next
+        self.custom_paragraph_style = None
         #
         self.add_variant_selectors = False
         # This may be set up by the individual converter
@@ -106,6 +108,11 @@ class ConverterBase:
         # Other options
         self.remove_returns_in_block = False
         self.download_as_zip = False
+
+        # Special case for handling paragraphs to be kept on the same page
+        self.check_to_keep_paragraphs_with_next = False  # TEMPORARY True
+        self.paragraphs_to_update_with_keep = []
+        self.in_keep_with_next_group = False
         
 
     def preprocess(self, text_in, current_tag):
