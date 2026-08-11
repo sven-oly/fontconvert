@@ -387,7 +387,6 @@ class PhakeConverter(ConverterBase):
             "\t": "\t",
             "…": "…",
             '¥': '¥',
-
         },
         'Banchob': {
             "…": "…",
@@ -1454,6 +1453,7 @@ class PhakeConverter(ConverterBase):
                     # Cancel this setting
                     self.in_keep_with_next_group = False
                 self.last_empty_paragraph = p
+                self.last_empty_paragraph_style = p.style
 
             if self.in_keep_with_next_group:
                 # Set the paragraph to keep_with_next
@@ -1470,7 +1470,6 @@ class PhakeConverter(ConverterBase):
             if detected[0] in self.ignoreLangs:
                 return
 
-            
         for run in p.runs:
             old_text = run.text
             if isinstance(run.font.size, list):
