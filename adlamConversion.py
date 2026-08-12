@@ -28,6 +28,7 @@ FONTS_TO_CONVERT = [
   ['Adlam2Latn', 'adlam2latn']  # Special for Adlam to Latin transliteration
 ]
 
+
 # Searches for the font of a complex script
 # in run.element.rPr.rFons.xml
 cs_regex = re.compile(r'w:cs="([^"]*)')
@@ -409,14 +410,16 @@ class AdlamConverter(ConverterBase):
         r'(BBH|Bbh|bbh|DDH|Ddh|ddh|GGB|Ggb|ggb|KKH|Kkh|kkh|NNH|Nnh|nnh|NNY|Nny|nny|KKP|Kkp|kkp|GGH|Ggh|ggh|SSH|Ssh|ssh|YYH|Yyh|yyh|nnd|mmb|nnj|nng|AA|Aa|aa|BB|Bb|bb|ƁƁ|Ɓɓ|ɓƁ|ɓɓ|BH|Bh|bh|CC|Cc|cc|DD|Dd|dd|ƊƊ|Ɗɗ|ɗɗ|DH|Dh|dH|dh|DY|Dy|dY|dy|EE|Ee|ee|FF|Ff|ff|GG|Gg|gg|GB|gb|HH|Hh|hh|II|Ii|ii|JJ|Jj|jj|KK|Kk|kk|KH|kh|XX|Xx|xx|LL|Ll|ll|MM|Mm|mm|NN|Nn|nn|ŊŊ|Ŋŋ|ŋŋ|NH|Nh|nH|nh|ÑÑ|Ññ|ññ|NY|ny|OO|Oo|oo|PP|Pp|pp|KP|kp|QQ|Qq|qq|GH|gh|RR|Rr|rr|SS|Ss|ss|SH|Sh|sh|sH|TT|Tt|tt|TY|Ty|tY|ty|UU|Uu|uu|VV|Vv|vv|WW|Ww|ww|YY|Yy|yy|ƳƳ|Ƴƴ|ƴƴ|YH|yh|ZZ|Zz|zz|ND|Nd|nd|MB|Mb|mb|NJ|Nj|nj|NG|Ng|ng|[a-zñɓ]|[A-ZƁÑ]|[0-9]|«[\u2008\u0020]?|[\u2008\u0020]?»|\.|\u0020)')
 
 
-    def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None,
-                 defaultOutputFont=thisDefaultOutputFont):
+    def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None, defaultOutputFont=thisDefaultOutputFont):
 
+        super().__init__(old_font_list=oldFontList)
         self.encodingScripts = []  # If given, tells the Script of incoming characters
         self.oldFonts = []
         self.thisDefaultOutputFont = thisDefaultOutputFont
         self.FONTS_TO_CONVERT = [x[0] for x in FONTS_TO_CONVERT]
         self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
+
+        self.paragraphs_to_update_with_keep = []
 
         self.font_to_mapping = {
             'Fulfulde - Aissata': 'arab',
@@ -426,6 +429,9 @@ class AdlamConverter(ConverterBase):
             'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
         }
         adlam_unicode_fonts = ['Noto Sans Adlam', 'Kigelia', 'Ebrima',]
+
+        self.unicode_fonts = adlam_unicode_fonts
+
         self.font_substitution_options = {
             'Fulfulde - Aissata': adlam_unicode_fonts,
             'Fulfulde - Fuuta': adlam_unicode_fonts,
@@ -440,6 +446,7 @@ class AdlamConverter(ConverterBase):
             'Times New Roman': 'latn',
             'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
         }
+
 
         for item in oldFontList:
             if isinstance(item, list):

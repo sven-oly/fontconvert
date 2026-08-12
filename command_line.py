@@ -134,7 +134,6 @@ def convertThisDoc(lang, input_file_name):
 
     for item in missing_english:
         logging.debug('  %s' % item)
-    print('-----------------')
 
     word_frequencies = None
     try:

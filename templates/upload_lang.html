@@ -85,11 +85,11 @@
     </ul>
   </li>
 </ul>
-<form action = "{{base}}uploadlang/?lang={{lang}}" method = "POST" id="main_form"
+<form action = "{{base}}uploader/?lang={{lang}}" method = "POST" id="main_form"
       onSubmit="JavaScript:startPollStatus()"
       enctype = "multipart/form-data">
     Language: <input type='text' id='lang' value='{{lang_name}}' readonly>
-  <input type = "file" name = "file" id="name" multiple="multiple"
+  <input type = "file" name = "file" id="name"
          {%if file_path%}value={{file_path}}{%endif%}/>
   <br/><br/>
   <input type="submit" value="Get document information" name="DocInfo" />

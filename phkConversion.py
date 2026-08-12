@@ -1011,7 +1011,15 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
-        myanmar_fonts = ['Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar']
+        myanmar_fonts = ['Phake Ramayana Unicode',
+                                 'Myanmar Text',
+                                 'Noto Sans Myanmar Regular',
+                                 'Noto Serif Myanmar Regular',
+                                 'Noto Serif Bengali Regular',
+                                 'Noto Serif Ahom',
+                                 ]
+        self.unicode_fonts = myanmar_fonts
+
         # Note that the first one in each list is the default replacement
         self.font_substitution_options = {
             'Phake Script': myanmar_fonts,
@@ -1190,7 +1198,7 @@ class PhakeConverter(ConverterBase):
         self.count_of_empty_lines_seen = 0
         self.last_empty_paragraph = None
         self.last_empty_paragraph_style = None
-        self.start_group_matcher = pattern = r"[ivxl]+|\d+\)"
+        self.start_group_matcher = pattern = r'[ivxl]+|(\d+(?:\.\d*)?)'
 
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
