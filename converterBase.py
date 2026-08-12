@@ -36,6 +36,8 @@ class ConverterBase:
         self.old_font_name = None
         self.font_index = -1
 
+        self.unicode_fonts = []  # These must be set by the converter
+
         # This may be used for special formatting, e.g., keep a paragraph with next
         self.custom_paragraph_style = None
         #
@@ -113,7 +115,7 @@ class ConverterBase:
         self.check_to_keep_paragraphs_with_next = False  # TEMPORARY True
         self.paragraphs_to_update_with_keep = []
         self.in_keep_with_next_group = False
-        
+        self.paragraphs_to_update_with_keep = []
 
     def preprocess(self, text_in, current_tag):
         # Possibly do some preprocessing on each line, maybe dependent on a tab

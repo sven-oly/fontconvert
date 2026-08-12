@@ -134,7 +134,6 @@ def convertThisDoc(lang, input_file_name):
 
     for item in missing_english:
         logging.debug('  %s' % item)
-    print('-----------------')
 
     word_frequencies = None
     try:
@@ -195,11 +194,14 @@ def main(argv):
             files.append(doc_path)
 
     all_errors = []
+    skipped_files = []
     for file_path in files:
         # Skip anything already converted to Unicode
         unicode_in_name = file_path.find('_Unicode.')
         if unicode_in_name >= 0:
             # Only look at Unicode converted files
+            print('Skipping unicode file %s' % file_path)
+            skipped_files.append(file_path)
             continue
         print('Converting %s in document %s' % (lang, file_path))
         try:
@@ -212,6 +214,8 @@ def main(argv):
         logging.error('Total of %s errors. %s', len(all_errors), all_errors)
     else:
         logging.info('No top level errors found')
+    if len(skipped_files) > 0:
+        logging.info('Skipped %d files: %s', len(skipped_files), skipped_files)
 
 if __name__ == '__main__':
     main(sys.argv)

@@ -1011,7 +1011,15 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
-        myanmar_fonts = ['Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar']
+        myanmar_fonts = ['Phake Ramayana Unicode',
+                                 'Myanmar Text',
+                                 'Noto Sans Myanmar Regular',
+                                 'Noto Serif Myanmar Regular',
+                                 'Noto Serif Bengali Regular',
+                                 'Noto Serif Ahom',
+                                 ]
+        self.unicode_fonts = myanmar_fonts
+
         # Note that the first one in each list is the default replacement
         self.font_substitution_options = {
             'Phake Script': myanmar_fonts,
@@ -1188,10 +1196,10 @@ class PhakeConverter(ConverterBase):
         self.in_keep_with_next_group = False
         self.count_of_lines_together = 0
         self.count_of_empty_lines_seen = 0
-
         self.last_empty_paragraph = None
         self.last_empty_paragraph_style = None
-        self.start_group_matcher = pattern = r"[ivxl]+|\d+\)"
+        self.start_group_matcher = pattern = r'[ivxl]+|(\d+(?:\.\d*)?)'
+
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
@@ -1415,6 +1423,7 @@ class PhakeConverter(ConverterBase):
 
         # Trying to replace text
         fix_run = None  # The run where we stick the data found in w:sym
+        sym_string = ''
         if runs_with_sym:
             sym_string = ''.join(chars)
             fix_run = runs_with_sym[-1]
@@ -1424,7 +1433,6 @@ class PhakeConverter(ConverterBase):
                 # ??? old_run._r.remove(sym)
 
         if fix_run:
-            # fix_run.text = fix_run.text + tab_count * '\t' + sym_string
             fix_run.text = fix_run.text + sym_string
 
         # Special case of keeping paragraphs with next under special
@@ -1452,8 +1460,6 @@ class PhakeConverter(ConverterBase):
                 else:
                     # Cancel this setting
                     self.in_keep_with_next_group = False
-                self.last_empty_paragraph = p
-                self.last_empty_paragraph_style = p.style
 
             if self.in_keep_with_next_group:
                 # Set the paragraph to keep_with_next

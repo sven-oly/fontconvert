@@ -399,9 +399,18 @@ class AhomConverter(ConverterBase):
         # ]
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
 
+        self.font_substitution = self.font_substitution_options = {
+            'Ahom': 'Noto Serif Ahom',
+            'Ahom Manuscript': 'Noto Serif Ahom',
+        }
+
         self.thisDefaultOutputFont = 'Noto Serif Ahom'
         self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
+        self.unicode_fonts = [self.thisDefaultOutputFont]
+
+        self.paragraphs_to_update_with_keep = []
+        
         self.handle_sentences = False
         self.encoding = 0  # Default
         if old_font_list:

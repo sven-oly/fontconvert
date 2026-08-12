@@ -6,6 +6,8 @@ from flask import Flask, render_template, stream_with_context, request, Response
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 
+# from google.appengine.api import taskqueue
+
 import datetime
 
 from io import BytesIO
@@ -127,7 +129,7 @@ def upload_xslx():
    )
 
 # load file with explicit language and encoding
-@app.route('/uploadlang')
+@app.route('/uploadlang/',  methods = ['GET', 'POST'])
 def uploadLang():
     who = request.host_url
     lang = request.args.get('lang', 'und')
@@ -137,21 +139,16 @@ def uploadLang():
         lang_name = lang_names_from_codes[lang]
     except:
         lang_name = '??'
-        
-    unicode_font_list = ['Noto Sans', 'Noto Serif']
-    if lang == 'aho':
-        unicode_font_list = ['Noto Serif Ahom',
-                             'Ahom Manuscript Unicode']
-    elif lang == 'phk':
-        unicode_font_list = ['Phake Ramayana Unicode',
-                             'Myanmar Text',
-                             'Noto Sans Myanmar Regular',
-                             'Noto Serif Myanmar Regular',
-                             'Noto Serif Bengali Regular',
-                             'Noto Serif Ahom',
-                             ]
 
+    # Get as much information as possible from the converter itself.
     converter = converters[lang]
+    unicode_font_list = []
+    try:
+        unicode_font_list = converter.unicode_fonts
+        print('FOUND %s UNICODE FONT LIST: %s' % (lang, unicode_font_list))
+    except:
+        print('DID NOT FIND %s UNICODE FONT LIST!!!' % (lang))
+
     font_substitutions = None
     try:
         font_substitutions = converter.get_substitute_fonts()
@@ -302,6 +299,8 @@ def upload_file():
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
+
+        print('who =%s' % who)
 
         unicode_font = None
         if 'ConvertToUnicode' in formData:
@@ -888,6 +887,40 @@ def save_matcher_conversion():
 
     return json.dumps(response_data)
 
+# load file with explicit language and encoding
+@app.route('/multi_uploadlang', methods = ['GET', 'POST'])
+def multi_uploadlang():
+    # For testing tasks and how to handle them.
+    # TODO: include status on each
+    lang = request.args.get('lang', 'und')
+    # Retrieve all files from the multipart request
+    uploaded_files = request.files.getlist('files')
+
+    for file in uploaded_files:
+        filename = file.filename
+        file_content = file.read()
+        print('multi_uploadlang: %s (%s)' % (filename, file_content))
+
+        # Enqueue the task, passing the payload to the worker endpoint
+        taskqueue.add(
+            url='/worker',
+            params={'filename': filename,
+                    'content': file_content,
+                    'lang': lang,
+                    },
+            queue_name='file-processing-queue'
+        )
+
+    return f"Enqueued {len(uploaded_files)} files successfully", 200
+
+@app.route('/worker')
+def worker():
+    filename = request.form['filename']
+    content = request.form['content']
+    lang_code = request.form['lang']
+    # For starters, just print info
+    print('### %s (%s) size = %s' % (filename, lang_code, len(content)))
+    return "Task completed", 200
 
 def testLangId():
     args = request.args
