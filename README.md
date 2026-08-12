@@ -67,13 +67,16 @@ The conversion is done entirely on the user's computer, using no online resource
 
 ### Install the fontconvert code
 1. Download the directory from:
-https://github.com/sven-oly/fontconvert as a .zip file
+https://github.com/sven-oly/fontconvert as a .zip file. This is done using the green "code" button at the upper right of the main screen
+<img width="469" height="390" alt="image" src="https://github.com/user-attachments/assets/6f37549a-830f-4839-ad21-40d7b97d26ad" />
 
-1. Open a terminal window to the download location
+1. Select "Download ZIP" to copy the project to your computer's download directory.
 
-1. Unzip the file
+1. Next, open a terminal window and navigate to a directory on your computer that has sufficient space.
 
-1. Enter the folder containing the fontconvert programs.
+1. Move the .zip file to this directory, then *unzip* the downloaded file in this directory.
+
+1. Enter the folder containing the fontconvert program.
 
 1. Install needed python modules with these commands
 ```
