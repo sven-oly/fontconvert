@@ -419,6 +419,8 @@ class AdlamConverter(ConverterBase):
         self.FONTS_TO_CONVERT = [x[0] for x in FONTS_TO_CONVERT]
         self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
+        self.sentence_mode = True
+
         self.paragraphs_to_update_with_keep = []
 
         self.font_to_mapping = {
@@ -446,6 +448,8 @@ class AdlamConverter(ConverterBase):
             'Times New Roman': 'latn',
             'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
         }
+
+        self.set_complex_font = False
 
 
         for item in oldFontList:

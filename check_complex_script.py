@@ -100,7 +100,7 @@ def checkComplex(lang, input_path, document=None, save_doc=False):
     for para in paragraphs:
         # print('!!! Paragraph # %s: %s' % (paragraphId, para.text))
         # Now this is specialized for phk
-        fixParagraphRuns(para, user_cs_font_name=user_cs_font_name, user_cs_font_size=user_cs_font_size)
+        fix_paragraph_runs(para, user_cs_font_name=user_cs_font_name, user_cs_font_size=user_cs_font_size)
         paragraphId += 1
 
     # Now check tables
@@ -119,7 +119,7 @@ def checkComplex(lang, input_path, document=None, save_doc=False):
         for cell in row.cells:
           paragraphs = cell.paragraphs
           for para in paragraphs:
-              fixParagraphRuns(para)
+              fix_paragraph_runs(para)
 
     if save_doc:
         new_doc_name  = input_path.replace('_Unicode', '_UnicodeFixed')

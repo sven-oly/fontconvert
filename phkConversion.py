@@ -1546,7 +1546,8 @@ class PhakeConverter(ConverterBase):
                     pass
             except ValueError as e:
                 continue
-
+            except KeyError as e:
+                continue
         if self.handle_sentences:
             self.processSentences(p)
 
