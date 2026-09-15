@@ -11,7 +11,8 @@ import sys
 from converterBase import ConverterBase
 from check_complex_script import fix_cs_formatting_run
 
-# Script index
+logger = logging.getLogger('ahoConversion')
+logger.setLevel(logging.DEBUG)
 
 thisDefaultOutputFont = 'Noto Serif Ahom'
 
@@ -393,20 +394,24 @@ class AhomConverter(ConverterBase):
 
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
+        self.debug = True
 
-        self.FONTS_TO_CONVERT = ['Ahom', 'Ahom Manuscript']
+        self.lang_code = 'aho'
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        if self.debug:
+          print('AHO %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
         self.font_substitution = self.font_substitution_options = {
             'Ahom': 'Noto Serif Ahom',
             'Ahom Manuscript': 'Noto Serif Ahom',
         }
+        super().__init__(old_font_list=self.private_use_map.keys(),
+                         default_output_font=defaultOutputFont)
 
         self.thisDefaultOutputFont = 'Noto Serif Ahom'
 
-        super().__init__(old_font_list=self.FONTS_TO_CONVERT, new_font=self.thisDefaultOutputFont,
-                         default_output_font=self.thisDefaultOutputFont)
-
-        self.OUTPUT_FONTS =  self.unicode_fonts = [self.thisDefaultOutputFont, 'Noto Sans Ahom']
+        self.unicode_fonts = [self.thisDefaultOutputFont]
+        logger.debug('%s converter. unicode_fonts = %s', self.lang_code, self.unicode_fonts)
 
         self.paragraphs_to_update_with_keep = []
 
@@ -679,9 +684,16 @@ class AhomConverter(ConverterBase):
 
     def processParagraphRuns(self, p):
         # Handle the text within each paragraph
+        if self.debug:
+            print('AHO %s processParagraphRuns calling SUPER: %s.' % (self.lang_code, p.text))
+        super().processParagraphRuns(p)
+        return
+
         if not p.text:
             # Nothing to process
             return
+        if self.debug:
+            print('AHO %s processParagraphRuns: %s.' % (self.lang_code, p.text))
 
         # Check on the language of the paragraph. Maybe  don't convert.
         if self.detectLang:
@@ -794,6 +806,7 @@ class AhomConverter(ConverterBase):
 
 def convertDocx(files):
     ahommConverter = ahomConversion.ahomConverter()
+    logger.debug('SPECIAL %s convertDocx: %s', 'aho', files)
 
     try:
         ahomConverter.setScriptIndex(scriptIndex)
