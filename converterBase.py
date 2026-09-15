@@ -28,7 +28,8 @@ class ConverterBase:
         self.defaultOutputFont = default_output_font
         # Remember what's being converted
         self.lang_converter_filename = None
-
+        self.lang_code = 'unk'
+        self.old_font_name = None
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
         self.encodingScripts = []  # If given, tells the Script of incoming characters
@@ -94,7 +95,7 @@ class ConverterBase:
         self.lowerOffset = ord(self.first_lower) - ord(self.first_upper)
 
         self.encoding = None
-        self.debug = False  # False
+        self.debug = True  # False
         self.lower_mode = True
         self.sentence_mode = True
 
@@ -258,6 +259,8 @@ class ConverterBase:
     def processParagraphRuns(self, p):
         # Handle the text within each paragraph
         logger.debug('processing paragraph runs text "%s"', p.text)
+        if self.debug:
+            print('converterBase processParagraphRuns (%s) text: "%s"', (self.lang_code, p.text))
         if not p.text:
             # Nothing to process
             return
@@ -271,7 +274,6 @@ class ConverterBase:
                 logger.debug('ignoring lang %s in  %s', detected[0], self.ignoreLangs)
 
                 return
-        logger.debug('processing paragraph runs text "%s"', p.text)
         for run in p.runs:
             try:
                 text_to_convert = run.text
@@ -286,11 +288,16 @@ class ConverterBase:
                         # Unknown fonts should not be examined
                         continue
                 new_text = text_to_convert
-                logger.debug('calling convertText. scriptIndex=%s, inputFont=%s', )
+                logger.debug('calling convertText. scriptIndex=%s, inputFont=%s', scriptIndex, font_name)
+                if self.debug:
+                    print('converterBase in runs (%s %d) text: "%s"', (font_name,scriptIndex, run.text))
+
                 try:
                     new_text = self.convertText(text_to_convert, None, scriptIndex, inputFont=font_name)
                 except BaseException as error:
                     logging.error('p.text failure in convertText: %s for text %s' % (error, p.text))
+                if self.debug:
+                    print('converterBase in runs (%s) result: "%s"', (new_text))
 
                 # Replace font in empty regions, too!
                 if run.text == '' or new_text != run.text:
@@ -304,6 +311,8 @@ class ConverterBase:
                         run.font.complex_script = True
 
                     run.text = new_text
+                    logger.debug('processing paragraph runs: NEW TEXT: "%s"', p.text)
+
                     run.font.name = self.unicodeFont
                     try:
                         new_font_size = int(run.font.size * self.font_resize_factor)

@@ -472,9 +472,11 @@ class lepchaConverter(ConverterBase):
         }
 
         self.thisDefaultOutputFont = 'Noto Serif Lepcha'
+        self.lang_code = 'lep'
         self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
         self.unicode_fonts = [self.thisDefaultOutputFont]
+        logger.debug('%s converter. unicode_fonts = %s', self.lang_code, self.unicode_fonts)
         self.newFont = newFont
         self.defaultOutputFont = defaultOutputFont
 

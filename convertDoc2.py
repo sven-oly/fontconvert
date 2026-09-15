@@ -19,9 +19,9 @@ from docx.shared import Pt
 import docx
 
 logger = logging.getLogger('convertDoc2')
-
 logger.setLevel(logging.DEBUG)
 
+print('IN convertDoc2 logger: %s (%s)' % (logger, logger.level))
 # The version using docx
 # TIMESTAMP for version information.
 TIMESTAMP = "Version 2018-06-28"
@@ -188,7 +188,7 @@ class ConvertDocx():
     # Set the default font
     style = self.document.styles['Normal']
     font = style.font
-    # font.name =  self.converter.thisDefaultOutputFont
+    font.name =  self.converter.thisDefaultOutputFont
 
     # Script index could select Adlam arab or latn.
     if self.debug:
@@ -200,6 +200,8 @@ class ConvertDocx():
 
     paragraphCount = len(paragraphs)
     logger.debug('Paragraph count = %d' % paragraphCount)
+    if self.debug:
+      print('Convert2 processDocx %d paragraphs found.' % (paragraphCount))
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
@@ -213,7 +215,11 @@ class ConvertDocx():
       try:
         logger.debug('calling processParagraphRuns = %s' % para.text)
 
+        if self.debug:
+          print('Convert2 converter %s processParagraphRuns: text: %s.' % (self.converter, para.text))
         self.converter.processParagraphRuns(para)
+        if self.debug:
+          print('Convert2 after conversion text: %s.' % (para.text))
         logger.debug('   after conversion = %s' % para.text)
       except BaseException as e:
         continue
