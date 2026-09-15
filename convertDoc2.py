@@ -18,8 +18,11 @@ from docx.shared import Pt
 
 import docx
 
-# The version using docx
+logger = logging.getLogger('convertDoc2')
 
+logger.setLevel(logging.DEBUG)
+
+# The version using docx
 # TIMESTAMP for version information.
 TIMESTAMP = "Version 2018-06-28"
 
@@ -72,7 +75,7 @@ class ConvertDocx():
     self.old_fonts = converter.oldFonts  # List of font names
     
     self.unicode_font = converter.unicodeFont
-    self.debug = debug
+    self.debug = True
 
     self.progressObj = reportProgressObj
 
@@ -136,6 +139,7 @@ class ConvertDocx():
     if not documentIn:
         # Save the unchanged copy
         # Only save a copy if it's a newly created document.
+        logger.debug('Saving doc to %s', self.outpath)
         self.document.save(self.outpath)
         if self.output_dir:
             # String the directory tree to the file, substituting the output
@@ -195,7 +199,7 @@ class ConvertDocx():
     paragraphId = 0
 
     paragraphCount = len(paragraphs)
-
+    logger.debug('Paragraph count = %d' % paragraphCount)
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
@@ -207,7 +211,10 @@ class ConvertDocx():
         if paragraphId % 10 == 0:
           self.progressObj.send(msg)
       try:
+        logger.debug('calling processParagraphRuns = %s' % para.text)
+
         self.converter.processParagraphRuns(para)
+        logger.debug('   after conversion = %s' % para.text)
       except BaseException as e:
         continue
 
@@ -264,15 +271,14 @@ class ConvertDocx():
         for cell in row.cells:
           paragraphs = cell.paragraphs
           for para in paragraphs:
-            # print('processDocx (2) PARAGRAPH input:  %s', para.text)
-            #logging.info('PARAGRAPH input:  %s', para.text)
+            logger.debug('PARAGRAPH input:  %s', para.text)
             self.converter.processParagraphRuns(para)
-            #print('processDocx (2) PARAGRAPH output: %s', para.text)
-            #logging.info('PARAGRAPH output: %s', para.text)
+            logger.debug('PARAGRAPH output: %s', para.text)
 
     if self.progressObj:
       self.progressObj.send('Saving document')
     if self.outpath:
+      print('Saving document: %s' % self.outpath)
       self.document.save(self.outpath)
 
     if self.progressObj:

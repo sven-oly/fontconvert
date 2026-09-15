@@ -3,8 +3,12 @@
 
 from converterBase import ConverterBase
 
+import logging
 import re
 import sys
+
+logger = logging.getLogger('lepchaConversion')
+logger.setLevel(logging.DEBUG)
 
 thisDefaultOutputFont = 'Noto Sans Lepcha'
 
@@ -17,8 +21,7 @@ def sub312(m):
 def sub1(m):
     return m.group(1)
 
-class lepchaConverter(ConverterBase):
-    private_use_map = {
+private_use_map = {
         'Munsalong': {
             '\u0021': '!',
             '\u0022': '\"',
@@ -450,28 +453,33 @@ class lepchaConverter(ConverterBase):
         }
     }
 
+class lepchaConverter(ConverterBase):
+
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
-        super().__init__(old_font_list=self.private_use_map.keys())
+        self.private_use_map = private_use_map
+
+        super().__init__(old_font_list=self.private_use_map.keys(),
+                         default_output_font=defaultOutputFont)
 
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.encodingScripts = list(self.private_use_map.keys())
 
         self.font_substitution = self.font_substitution_options = {
-            'Shipmoo Lepcha': 'Mingzat',
-            'Munsalong': 'Mingzat',
-            'JG Lepcha': 'Mingzat',
+            'Shipmoo Lepcha': ['Mingzat', 'Noto Sans Lepcha', 'Dawa Lepcha', 'MainWaringRong'],
+            'Munsalong': ['Mingzat'],
+            'JG Lepcha': ['Noto Sans Lepcha', 'Mingzat'],
         }
 
-        self.thisDefaultOutputFont = 'Noto Serif Ahom'
+        self.thisDefaultOutputFont = 'Noto Serif Lepcha'
         self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
         self.unicode_fonts = [self.thisDefaultOutputFont]
         self.newFont = newFont
         self.defaultOutputFont = defaultOutputFont
 
-        self.set_script_range(0x11700, 0x1173f)
-        self.set_upper_case_range(0x11700, 0x1174f)
-        self.description = 'Converts Ahom font encoding to Unicode'
+        self.set_script_range(0x1C00, 0x1C4F)
+        self.description = 'Converts Lepcha font encoding to Unicode'
 
         # Reordering operations
         self.pattern_replace_list = [
@@ -510,6 +518,23 @@ class lepchaConverter(ConverterBase):
         self.bad_diacritic_order = [
         ]
 
+    def convertText(self, text_in, fontTextInfo=None,
+                    font_index=0, inputFont=None):
+        # For passing these values along as needed
+        self.encoding = self.encodingScripts[font_index]
+        self.font_index = self.FONTS_TO_CONVERT.index(inputFont)
+        encoding_map = None
+        if inputFont and inputFont in self.encodingScripts:
+            encoding_map = self.private_use_map[inputFont]
+        else:
+            # No conversion
+            return text_in
+
+        result = self.convertString(text_in,None, encoding_map)
+
+        # Any other post-processing??
+
+        return result
 
 def test_strings(converter):
     # List of font, encoded string, expected Unicode

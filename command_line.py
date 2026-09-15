@@ -14,6 +14,7 @@ from io import StringIO
 
 import adlamConversion
 import ahomConversion
+from lepchaConversion import lepchaConverter
 from mendeConverter import MendeConverter
 import phkConversion
 
@@ -27,6 +28,7 @@ converters = {}
 converters['ff'] = adlamConversion.AdlamConverter()
 converters['aho'] = ahomConversion.AhomConverter()
 converters['phk'] = phkConversion.PhakeConverter()
+converters['lep'] = lepchaConverter()
 converters['men'] = MendeConverter()
 
 # get uploaded file into document form
@@ -56,7 +58,12 @@ def convertThisDoc(lang, input_file_name):
     lang_converter = None
 
     check_complex_script = False
-    lang_converter = converters[lang]
+    try:
+        lang_converter = converters[lang]
+    except:
+        logging.error('Unknown language code: %s', lang)
+        return None
+
     sentence_mode = False
 
     # Special settings
