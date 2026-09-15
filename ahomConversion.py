@@ -394,10 +394,7 @@ class AhomConverter(ConverterBase):
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
 
-        # self.FONTS_TO_CONVERT = [
-        #     'Ahom', 'Ahom Manuscript'
-        # ]
-        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.FONTS_TO_CONVERT = ['Ahom', 'Ahom Manuscript']
 
         self.font_substitution = self.font_substitution_options = {
             'Ahom': 'Noto Serif Ahom',
@@ -405,12 +402,16 @@ class AhomConverter(ConverterBase):
         }
 
         self.thisDefaultOutputFont = 'Noto Serif Ahom'
-        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
-        self.unicode_fonts = [self.thisDefaultOutputFont]
+        super().__init__(old_font_list=self.FONTS_TO_CONVERT, new_font=self.thisDefaultOutputFont,
+                         default_output_font=self.thisDefaultOutputFont)
+
+        self.OUTPUT_FONTS =  self.unicode_fonts = [self.thisDefaultOutputFont, 'Noto Sans Ahom']
 
         self.paragraphs_to_update_with_keep = []
-        
+
+        self.set_complex_font = False
+
         self.handle_sentences = False
         self.encoding = 0  # Default
         if old_font_list:
@@ -682,7 +683,7 @@ class AhomConverter(ConverterBase):
             # Nothing to process
             return
 
-        # Check on the language of the paragraph. May don't convert.
+        # Check on the language of the paragraph. Maybe  don't convert.
         if self.detectLang:
             detected = self.detectLang.classify(p.text.strip())
             # print('%s in %s' % (detected, p.text))

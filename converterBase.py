@@ -55,6 +55,8 @@ class ConverterBase:
 
         self.current_table = None
 
+        self.set_complex_font = False
+
         # The fonts detected for conversion
         for item in old_font_list:
             if isinstance(item, list):
@@ -90,7 +92,7 @@ class ConverterBase:
         self.encoding = None
         self.debug = False  # False
         self.lower_mode = True
-        self.sentence_mode = True
+        self.sentence_mode = False
 
         # Recording information on the document details
         # Word frequency of the converted words

@@ -52,16 +52,12 @@ def createDocFromFile(file_path):
 
 def convertThisDoc(lang, input_file_name):
     # First, check if a converter exists
-    sentence_mode = False
     lang_converter = None
 
-    check_complex_script = False
     lang_converter = converters[lang]
     sentence_mode = False
 
-    # Special settings
-    if lang == 'ff':
-        sentence_mode = True
+    check_complex_script = lang_converter.set_complex_font
 
     if not lang_converter:
         logging.error('Unknown language code: %s', lang)
@@ -70,7 +66,7 @@ def convertThisDoc(lang, input_file_name):
     # Now get the .docx file
     base_name = os.path.splitext(input_file_name)[0]
     if base_name.find('Unicode') > 0:
-        return None
+        return None  # Don't convert this file.
 
     out_file_name = base_name + '_Unicode.docx'
 
@@ -89,7 +85,7 @@ def convertThisDoc(lang, input_file_name):
 
     lang_converter.setScriptIndex(0)
     lang_converter.setLowerMode(True)
-    lang_converter.setSentenceMode(sentence_mode)
+    lang_converter.setSentenceMode(lang_converter.sentence_mode)
     lang_converter.lang_converter_filename = input_file_name
 
     new_progress_obj = None
