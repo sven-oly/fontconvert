@@ -18,8 +18,11 @@ from docx.shared import Pt
 
 import docx
 
-# The version using docx
+logger = logging.getLogger('convertDoc2')
+logger.setLevel(logging.DEBUG)
 
+print('IN convertDoc2 logger: %s (%s)' % (logger, logger.level))
+# The version using docx
 # TIMESTAMP for version information.
 TIMESTAMP = "Version 2018-06-28"
 
@@ -72,7 +75,7 @@ class ConvertDocx():
     self.old_fonts = converter.oldFonts  # List of font names
     
     self.unicode_font = converter.unicodeFont
-    self.debug = debug
+    self.debug = True
 
     self.progressObj = reportProgressObj
 
@@ -136,6 +139,7 @@ class ConvertDocx():
     if not documentIn:
         # Save the unchanged copy
         # Only save a copy if it's a newly created document.
+        logger.debug('Saving doc to %s', self.outpath)
         self.document.save(self.outpath)
         if self.output_dir:
             # String the directory tree to the file, substituting the output
@@ -149,12 +153,42 @@ class ConvertDocx():
     # TRY THIS
     self.install_new_style(self.unicode_font)
 
-  
+  def create_keep_with_next_paragraph_style(self):
+      # Add custom style that uses "keep_with_next", derived from Normal style
+      # 1. Get the base 'Normal' style
+      default_style = self.document.styles['Normal']
+
+      # 2. Extract its properties
+      font_name = default_style.font.name
+      font_size = default_style.font.size
+      font_color = default_style.font.color.rgb
+      line_spacing = default_style.paragraph_format.line_spacing
+      space_after = default_style.paragraph_format.space_after
+
+      # 3. Create a new custom style cloned from the defaults
+      custom_style = self.document.styles.add_style(
+          'Normal_KeepWithNextParagraphStyle',
+          WD_STYLE_TYPE.PARAGRAPH)
+      # And make it available through the converter
+      self.converter.custom_paragraph_style = custom_style
+
+      # 4. Apply the cloned properties to the new style
+      custom_style.font.name = font_name
+      custom_style.font.size = font_size
+      custom_style.font.color.rgb = font_color
+      custom_style.paragraph_format.line_spacing = line_spacing
+      custom_style.paragraph_format.space_after = space_after
+      # This is the new setting.
+      custom_style.paragraph_format.keep_with_next = True
+
+      # Optional: Set the new style to 'Normal' for the next paragraph
+      custom_style.next_paragraph_style = self.document.styles['Normal']
+
   def processDocx(self):
     # Set the default font
     style = self.document.styles['Normal']
     font = style.font
-    # font.name =  self.converter.thisDefaultOutputFont
+    font.name =  self.converter.thisDefaultOutputFont
 
     # Script index could select Adlam arab or latn.
     if self.debug:
@@ -165,7 +199,9 @@ class ConvertDocx():
     paragraphId = 0
 
     paragraphCount = len(paragraphs)
-
+    logger.debug('Paragraph count = %d' % paragraphCount)
+    if self.debug:
+      print('Convert2 processDocx %d paragraphs found.' % (paragraphCount))
     if self.progressObj:
       self.progressObj.send('Paragraph documents: %d' % (paragraphCount))
 
@@ -177,9 +213,21 @@ class ConvertDocx():
         if paragraphId % 10 == 0:
           self.progressObj.send(msg)
       try:
+        logger.debug('calling processParagraphRuns = %s' % para.text)
+
+        if self.debug:
+          print('Convert2 converter %s processParagraphRuns: text: %s.' % (self.converter, para.text))
         self.converter.processParagraphRuns(para)
+        if self.debug:
+          print('Convert2 after conversion text: %s.' % (para.text))
+        logger.debug('   after conversion = %s' % para.text)
       except BaseException as e:
         continue
+
+    # Set keep_with_text for each paragraph flagged for that.
+    # Setting this is specific to the.
+    for p in self.converter.paragraphs_to_update_with_keep:
+        p.paragraph_format.keep_with_next = True
 
     try:
         # More computing
@@ -229,15 +277,14 @@ class ConvertDocx():
         for cell in row.cells:
           paragraphs = cell.paragraphs
           for para in paragraphs:
-            # print('processDocx (2) PARAGRAPH input:  %s', para.text)
-            #logging.info('PARAGRAPH input:  %s', para.text)
+            logger.debug('PARAGRAPH input:  %s', para.text)
             self.converter.processParagraphRuns(para)
-            #print('processDocx (2) PARAGRAPH output: %s', para.text)
-            #logging.info('PARAGRAPH output: %s', para.text)
+            logger.debug('PARAGRAPH output: %s', para.text)
 
     if self.progressObj:
       self.progressObj.send('Saving document')
     if self.outpath:
+      print('Saving document: %s' % self.outpath)
       self.document.save(self.outpath)
 
     if self.progressObj:
@@ -565,6 +612,7 @@ class ConvertDocx():
   def processRtF(self, rchild, paragraph_info, rprFormatData):
     # Deal with the font and text data for the paragraph.
     # Keep track of all the data for each chunk and
+    # TODO: complete this
     self.inEncodedFont = False
     if re.search('}rPr', rchild.tag):
       fontFound = False

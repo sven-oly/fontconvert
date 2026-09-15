@@ -14,6 +14,7 @@ from io import StringIO
 
 import adlamConversion
 import ahomConversion
+from lepchaConversion import lepchaConverter
 from mendeConverter import MendeConverter
 import phkConversion
 
@@ -27,6 +28,7 @@ converters = {}
 converters['ff'] = adlamConversion.AdlamConverter()
 converters['aho'] = ahomConversion.AhomConverter()
 converters['phk'] = phkConversion.PhakeConverter()
+converters['lep'] = lepchaConverter()
 converters['men'] = MendeConverter()
 
 # get uploaded file into document form
@@ -52,16 +54,18 @@ def createDocFromFile(file_path):
 
 def convertThisDoc(lang, input_file_name):
     # First, check if a converter exists
-    sentence_mode = False
     lang_converter = None
 
     check_complex_script = False
-    lang_converter = converters[lang]
+    try:
+        lang_converter = converters[lang]
+    except:
+        logging.error('Unknown language code: %s', lang)
+        return None
+
     sentence_mode = False
 
-    # Special settings
-    if lang == 'ff':
-        sentence_mode = True
+    check_complex_script = lang_converter.set_complex_font
 
     if not lang_converter:
         logging.error('Unknown language code: %s', lang)
@@ -70,7 +74,7 @@ def convertThisDoc(lang, input_file_name):
     # Now get the .docx file
     base_name = os.path.splitext(input_file_name)[0]
     if base_name.find('Unicode') > 0:
-        return None
+        return None  # Don't convert this file.
 
     out_file_name = base_name + '_Unicode.docx'
 
@@ -89,7 +93,7 @@ def convertThisDoc(lang, input_file_name):
 
     lang_converter.setScriptIndex(0)
     lang_converter.setLowerMode(True)
-    lang_converter.setSentenceMode(sentence_mode)
+    lang_converter.setSentenceMode(lang_converter.sentence_mode)
     lang_converter.lang_converter_filename = input_file_name
 
     new_progress_obj = None
@@ -134,7 +138,6 @@ def convertThisDoc(lang, input_file_name):
 
     for item in missing_english:
         logging.debug('  %s' % item)
-    print('-----------------')
 
     word_frequencies = None
     try:
@@ -195,11 +198,14 @@ def main(argv):
             files.append(doc_path)
 
     all_errors = []
+    skipped_files = []
     for file_path in files:
         # Skip anything already converted to Unicode
         unicode_in_name = file_path.find('_Unicode.')
         if unicode_in_name >= 0:
             # Only look at Unicode converted files
+            print('Skipping unicode file %s' % file_path)
+            skipped_files.append(file_path)
             continue
         print('Converting %s in document %s' % (lang, file_path))
         try:
@@ -212,6 +218,8 @@ def main(argv):
         logging.error('Total of %s errors. %s', len(all_errors), all_errors)
     else:
         logging.info('No top level errors found')
+    if len(skipped_files) > 0:
+        logging.info('Skipped %d files: %s', len(skipped_files), skipped_files)
 
 if __name__ == '__main__':
     main(sys.argv)

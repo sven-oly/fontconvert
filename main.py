@@ -6,6 +6,8 @@ from flask import Flask, render_template, stream_with_context, request, Response
 
 # https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
 
+# from google.appengine.api import taskqueue
+
 import datetime
 
 from io import BytesIO
@@ -40,13 +42,14 @@ import adlamConversion
 import ahomConversion
 import phkConversion
 import mendeConverter
+import lepchaConversion
 
 from convertDoc2 import ConvertDocx
 
 import convertXls
 
 # Global logger
-logger = logging.getLogger('uploader')
+logger = logging.getLogger('main')
 logger.setLevel(logging.DEBUG)
 
 
@@ -56,10 +59,12 @@ converters['ff'] = adlamConversion.AdlamConverter()
 converters['aho'] = ahomConversion.AhomConverter()
 converters['phk'] = phkConversion.PhakeConverter()
 converters['men'] = mendeConverter.MendeConverter()
+converters['lep'] = lepchaConversion.lepchaConverter()
 
 lang_names_from_codes = {
     'ff': 'Poular',
     'aho': 'Tai Ahom',
+    'lep': 'Lepcha',
     'phk': 'Tai Phake',
     'men': 'Mende Kikakui',
     'shn': 'Shan',
@@ -127,7 +132,7 @@ def upload_xslx():
    )
 
 # load file with explicit language and encoding
-@app.route('/uploadlang')
+@app.route('/uploadlang/',  methods = ['GET', 'POST'])
 def uploadLang():
     who = request.host_url
     lang = request.args.get('lang', 'und')
@@ -137,21 +142,16 @@ def uploadLang():
         lang_name = lang_names_from_codes[lang]
     except:
         lang_name = '??'
-        
-    unicode_font_list = ['Noto Sans', 'Noto Serif']
-    if lang == 'aho':
-        unicode_font_list = ['Noto Serif Ahom',
-                             'Ahom Manuscript Unicode']
-    elif lang == 'phk':
-        unicode_font_list = ['Phake Ramayana Unicode',
-                             'Myanmar Text',
-                             'Noto Sans Myanmar Regular',
-                             'Noto Serif Myanmar Regular',
-                             'Noto Serif Bengali Regular',
-                             'Noto Serif Ahom',
-                             ]
 
+    # Get as much information as possible from the converter itself.
     converter = converters[lang]
+    unicode_font_list = []
+    try:
+        unicode_font_list = converter.unicode_fonts
+        print('FOUND %s UNICODE FONT LIST: %s' % (lang, unicode_font_list))
+    except:
+        print('DID NOT FIND %s UNICODE FONT LIST!!!' % (lang))
+
     font_substitutions = None
     try:
         font_substitutions = converter.get_substitute_fonts()
@@ -290,7 +290,7 @@ def getFontsInParagraphs(paragraphs, fonts):
 #https://tedboy.github.io/flask/generated/flask.stream_with_context.html@
 @app.route('/uploader/', methods = ['GET', 'POST'])
 def upload_file():
-
+    logger.debug('DEBUG: upload_file called!!!')
     # True if conversion is requested, otherwise just doc info
     convertDoc = False
     get_doc_info = True
@@ -298,17 +298,17 @@ def upload_file():
     lang = request.args.get('lang', 'und')
     file_path = request.args.get('path', None)
 
+    logger.debug('DEBUG: upload_file (%s) for file %s', lang, file_path)
     who = '/uploader/%s' % lang
     
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
-
         unicode_font = None
         if 'ConvertToUnicode' in formData:
             logger.debug('ConvertToUnicode')
             convertDoc = True
             get_doc_info = False
-        logger.debug('ADLAM DEBUG: unicode_font= %s', unicode_font)
+        logger.debug('DEBUG: unicode_font= %s', unicode_font)
         try:
             taskId = int(formData['taskId'])
         except:
@@ -417,7 +417,7 @@ def upload_file():
             try:
                 langConverter = converters[lang_code]
                 font_substitutions = langConverter.get_substitute_fonts()
-                logger.debug('ADLAM FONT SUBSTITUTIONS: %s', font_substitutions)
+                logger.debug('FONT SUBSTITUTIONS: %s', font_substitutions)
             except KeyError:
                 langConverter = None
                 return render_template('unsupported_lang_code.html',
@@ -429,7 +429,7 @@ def upload_file():
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
             for key in font_substitutions:
-                logger.debug('ADLAM Set substitute font %s --> %s', key, unicode_font)
+                logger.debug('Set substitute font %s --> %s', key, unicode_font)
                 langConverter.set_substitute_font(key, unicode_font)
 
             # Other settings
@@ -458,7 +458,7 @@ def upload_file():
                 return render_template('error.html',
                                        who=who,
                                        file=inputFileName,
-                                       error='Bad langConverter: %s' % err)
+                                       error='Bad langConverter (%s): %s' % (lang_code, err))
 
             # special case for Phake, etc.
             logger.debug('lang_code: %s, selected_unicode_font: %s' % (lang_code, selected_unicode_font))
@@ -476,13 +476,14 @@ def upload_file():
                                        file=inputFileName,
                                        )
 
+            logger.debug("PROCESSING DOC %s for lang %s" % (inputFileName, lang))
             result = docConverter.processDocx()
 
             # This is the output .docx file
             # TODO: Show "saving"
             target_stream = BytesIO()
             result = doc.save(target_stream)
-
+            logger.debug('** Main result = %s' % result)
             # Download resulting converted document
             # Reset the pointer to the beginning.
             target_stream.seek(0)
@@ -757,8 +758,8 @@ class ExportingThread(threading.Thread):
         while True:  # Wait for something in the queue.
             message = queue.get(block=True)
             self.progress += 10
-            logger.debug('THREAD QUEUE MESSAGE = %s' % message)
-            logger.debug('THREAD STATUS: %s' % (self.status))
+            #logger.debug('THREAD QUEUE MESSAGE = %s' % message)
+            #logger.debug('THREAD STATUS: %s' % (self.status))
 
     def setStatus(self, newMessage):
         self.status = newMessage
@@ -889,7 +890,7 @@ def save_matcher_conversion():
     return json.dumps(response_data)
 
 # load file with explicit language and encoding
-@app.route('/multi_uploadlang')
+@app.route('/multi_uploadlang', methods = ['GET', 'POST'])
 def multi_uploadlang():
     # For testing tasks and how to handle them.
     # TODO: include status on each
@@ -900,6 +901,7 @@ def multi_uploadlang():
     for file in uploaded_files:
         filename = file.filename
         file_content = file.read()
+        print('multi_uploadlang: %s (%s)' % (filename, file_content))
 
         # Enqueue the task, passing the payload to the worker endpoint
         taskqueue.add(
