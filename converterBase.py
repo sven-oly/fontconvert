@@ -6,12 +6,13 @@ from __future__ import absolute_import, division, print_function
 
 from collections import defaultdict
 
+import langid  # For identifying language of text
 import logging
 import os
 import re
 
 logger = logging.getLogger('converterBase')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 thisDefaultOutputFont = 'NotoSansRegular'
 
@@ -41,7 +42,8 @@ class ConverterBase:
         self.font_index = -1
         self.scriptIndex = 0. # Default
 
-        self.detectLang = False
+        self.detectLang = False  # Generally not used
+        self.lang_detector = None
 
         self.unicode_fonts = []  # These must be set by the converter
 
@@ -97,7 +99,7 @@ class ConverterBase:
         self.lowerOffset = ord(self.first_lower) - ord(self.first_upper)
 
         self.encoding = None
-        self.debug = True  # False
+        self.debug = False  # False
         self.lower_mode = True
         self.sentence_mode = False
 
@@ -262,20 +264,24 @@ class ConverterBase:
         # Handle the text within each paragraph
         logger.debug('processing paragraph runs text "%s"', p.text)
         if self.debug:
-            print('converterBase processParagraphRuns (%s) text: "%s"', (self.lang_code, p.text))
+            print('converterBase processParagraphRuns (%s) text: "%s"' % (self.lang_code, p.text))
         if not p.text:
             # Nothing to process
+            logger.debug('converterBase processParagraphRuns - NO TEXT')
             return
 
         # Check on the language of the paragraph. May not convert.
+        # Disabled
         if self.detectLang:
-            detected = self.detectLang.classify(p.text.strip())
+            detected = self.lang_detector.classify(p.text.strip())
             logger.debug('processing paragraph detected lang: "%s"', detected)
-            # print('%s in %s' % (detected, p.text))
+            if self.debug:
+                print('self.detectLang: %s. Found %s in %s' % (self.detectLang,detected, p.text))
             if detected[0] in self.ignoreLangs:
                 logger.debug('ignoring lang %s in  %s', detected[0], self.ignoreLangs)
-
+                print('IGNORING detected lang %s in %s' % (detected, p.text))
                 return
+
         for run in p.runs:
             try:
                 text_to_convert = run.text
@@ -291,8 +297,7 @@ class ConverterBase:
                         continue
                 new_text = text_to_convert
                 logger.debug('calling convertText. scriptIndex=%s, inputFont=%s', scriptIndex, font_name)
-                if self.debug:
-                    print('converterBase in runs (%s %d) text: "%s"', (font_name,scriptIndex, run.text))
+                logger.debug('converterBase in runs (%s %d) text: "%s"', font_name,scriptIndex, run.text)
 
                 try:
                     new_text = self.convertText(text_to_convert, None, scriptIndex, inputFont=font_name)
@@ -413,6 +418,8 @@ class ConverterBase:
 
     def get_substitute_fonts(self):
         # Returns dictionary of fonts that are available for conversion / substitution
+        if self.debug:
+            print('FONT_SUBSTITUTION_OPTIONS (%s): %s' % (self.lang_code, self.font_substitution_options))
         return self.font_substitution_options
 
     def get_substitute_font_for(self, old_font):

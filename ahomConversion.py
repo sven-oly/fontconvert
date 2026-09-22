@@ -394,21 +394,27 @@ class AhomConverter(ConverterBase):
 
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
-        self.debug = True
+        self.debug = False
 
         self.lang_code = 'aho'
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
         if self.debug:
           print('AHO %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
-        self.font_substitution = self.font_substitution_options = {
-            'Ahom': 'Noto Serif Ahom',
-            'Ahom Manuscript': 'Noto Serif Ahom',
-        }
         super().__init__(old_font_list=self.private_use_map.keys(),
                          default_output_font=defaultOutputFont)
 
-        self.thisDefaultOutputFont = 'Noto Serif Ahom'
+        self.font_substitution_options = {
+            'Ahom': ['Noto Serif Ahom'],
+            'Ahom Manuscript': ['Noto Serif Ahom'],
+        }
+        self.font_substitution = {
+            'Ahom': 'Noto Serif Ahom',
+            'Ahom Manuscript': 'Noto Serif Ahom',
+        }
+
+        self.thisDefaultOutputFont = defaultOutputFont
+        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
         self.unicode_fonts = [self.thisDefaultOutputFont]
         logger.debug('%s converter. unicode_fonts = %s', self.lang_code, self.unicode_fonts)
@@ -451,7 +457,6 @@ class AhomConverter(ConverterBase):
             r'([\U00011700-\U0001173f])')
 
         self.encoding = None
-        self.debug = False
 
         self.setLowerMode(True)
         self.setSentenceMode(True)
@@ -506,6 +511,7 @@ class AhomConverter(ConverterBase):
         # Information on language detection
         self.detectLang = False
         self.ignoreLangs = []  # Language codes for not conversion
+
 
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
@@ -687,20 +693,12 @@ class AhomConverter(ConverterBase):
         if self.debug:
             print('AHO %s processParagraphRuns calling SUPER: %s.' % (self.lang_code, p.text))
         super().processParagraphRuns(p)
-        return
 
         if not p.text:
             # Nothing to process
             return
         if self.debug:
             print('AHO %s processParagraphRuns: %s.' % (self.lang_code, p.text))
-
-        # Check on the language of the paragraph. Maybe  don't convert.
-        if self.detectLang:
-            detected = self.detectLang.classify(p.text.strip())
-            # print('%s in %s' % (detected, p.text))
-            if detected[0] in self.ignoreLangs:
-                return
 
         for run in p.runs:
             if run.font.name in self.FONTS_TO_CONVERT:

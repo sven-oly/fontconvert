@@ -6,19 +6,23 @@
     <p>This site offers conversions to Unicode text for some languages and encoding fonts.
     <p>Note that converting a file does not store the contents online.
     <h2>Available conversions</h2>
+
+<h3>Convert .docx files to Unicode</h3>
     <ul>
-      <li><a href='/uploadlang?lang=ff'>.DOCX Adlam</a>: Aissata, Fuuta, Pulaar in Word Doc to Unicode</li>
+        {% for item in conversions_to_show %}
+    <li><a href="/uploadlang?lang={{item.lang_code}}">{{item.lang}}: </a>{{item.text}}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Adlam conversions</h3>
+    <ul>
+      <li><a href='/uploadlang?lang=ff'>.DOCX Adlam:</a> Aissata, Fuuta, Pulaar in Word Doc to Unicode</li>
       <li><a href='/upload/adlam?scriptIndex=3'>.DOCX Latin Fulfulde</a>: Latin text in Word Doc to Adlam Unicode</li>
       <li><a href='/upload_xlsx/adlam?scriptIndex=3'>.XLSX Latin Fulfulde</a>: Latin text in spreadsheet to Adlam Unicode</li>
 
     </ul>
-    <ul>
-      <li><a href='/uploadlang?lang=aho'>Ahom</a>: AHOMFONT & Ahom Manuscript to Unicode</li>
-    </ul>
 
-    <ul>
-      <li><a href='uploadlang?lang=phk'>.DOCX Tai Phake:</a> ASCII encoding in Word Doc to Unicode</li>
-    </ul>
-    <p>Note: Each paragraph is analyzed. If a paragraph's content is detected to be either English or French, that pararagraph is not converted.
+    <p>Note: Each paragraph is analyzed. If a paragraph's content is detected to be either English or French,
+        that paragraph will not be converted.
   </body>
   </html>

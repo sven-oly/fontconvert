@@ -21,7 +21,10 @@ def sub312(m):
 def sub1(m):
     return m.group(1)
 
-private_use_map = {
+
+class lepchaConverter(ConverterBase):
+
+    private_use_map = {
         'Munsalong': {
             '\u0021': '!',
             '\u0022': '\"',
@@ -453,23 +456,36 @@ private_use_map = {
         }
     }
 
-class lepchaConverter(ConverterBase):
-
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
-        self.private_use_map = private_use_map
+        self.debug = False
+
+        self.lang_code = 'lep'
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        if self.debug:
+          print('LEP %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
         super().__init__(old_font_list=self.private_use_map.keys(),
                          default_output_font=defaultOutputFont)
+        self.lang_code = 'lep'
+        self.detectLang = False
 
-        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
-        self.encodingScripts = list(self.private_use_map.keys())
+        if self.debug:
+          print('LEP2 %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
-        self.font_substitution = self.font_substitution_options = {
+        self.encodingScripts = self.FONTS_TO_CONVERT
+
+        self.font_substitution_options = {
             'Shipmoo Lepcha': ['Mingzat', 'Noto Sans Lepcha', 'Dawa Lepcha', 'MainWaringRong'],
             'Munsalong': ['Mingzat'],
             'JG Lepcha': ['Noto Sans Lepcha', 'Mingzat'],
         }
+        self.font_substitution = {}
+        for key in self.font_substitution_options:
+            self.font_substitution[key] = self.font_substitution_options[key][0]
+        if self.debug:
+            print('!! %s: font_substitution_options: %s' % (self.lang_code, self.font_substitution_options))
+            print('!! %s: font_substitution: %s' % (self.lang_code, self.font_substitution))
 
         self.thisDefaultOutputFont = 'Noto Serif Lepcha'
         self.lang_code = 'lep'

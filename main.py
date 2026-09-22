@@ -50,7 +50,7 @@ import convertXls
 
 # Global logger
 logger = logging.getLogger('main')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 # Dictionary of the converters by language code
@@ -93,13 +93,20 @@ queue = queue.Queue(maxsize=100)
 
 app.debug = True
 
+conversions_to_show = [
+    {'lang': 'Tai Phake', 'lang_code': 'phk', 'text': 'Multiple languages and fonts to Unicode'},
+    {'lang': 'Ahom', 'lang_code': 'aho', 'text': 'Ahom and Ahom Manuscript fonts to Unicode'},
+    {'lang': 'Lepcha', 'lang_code': 'lep', 'text': 'Lepcha encoded fonts to Unicode'},
+]
 
 @app.route('/')
 def hello():
     """Top of the conversion application."""
     who = request.url
     version_info = '3-Mar-2026'
-    return render_template('main.html', base=who, version_info=version_info)
+    return render_template('main.html', base=who,
+                           conversions_to_show=conversions_to_show,
+                           version_info=version_info)
 
 
 # https://pythonbasics.org/flask-upload-files
@@ -145,18 +152,20 @@ def uploadLang():
 
     # Get as much information as possible from the converter itself.
     converter = converters[lang]
+    logger.debug('CONVERTER: %s' % converter)
     unicode_font_list = []
     try:
         unicode_font_list = converter.unicode_fonts
-        print('FOUND %s UNICODE FONT LIST: %s' % (lang, unicode_font_list))
+        logger.debug('FOUND UNICODE FONT LIST (%s): %s',lang, unicode_font_list)
     except:
-        print('DID NOT FIND %s UNICODE FONT LIST!!!' % (lang))
+        logger.debug(('DID NOT FIND %s UNICODE FONT LIST!!!', lang))
 
     font_substitutions = None
     try:
         font_substitutions = converter.get_substitute_fonts()
-    except:
+    except BaseException as err:
         # The converter does not yet support this.
+        print('ERROR: %s NOPE (%s): CONVERTER font_substitutions: %s' % (err, lang, font_substitutions))
         pass
 
     return render_template('upload_lang.html',
@@ -425,7 +434,7 @@ def upload_file():
                                        supported_lang_codes= converts.keys()
                                        )
 
-            langConverter.detectLang = langid.langid
+            # langConverter.lang_detector = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
             for key in font_substitutions:
@@ -814,8 +823,6 @@ def matcher():
     conversion_base = 'conversion_files/%s' % lang_code
 
     unicode_font_list = os.listdir('%s/unicode' % font_base)
-    print('UNICODE FONTS AVAILABLE: %s' % unicode_font_list)
-
     logger.debug('UNICODE FONT LIST: %s' % unicode_font_list)
 
     best_match_file_path = '%s/best_matches.json' % font_base
@@ -885,7 +892,7 @@ def save_matcher_conversion():
         with open(output_file_path, 'w') as output_file:
            json.dump(data, output_file)
     except BaseException as err:
-        print('ERROR %s with path %s' % (err, output_file_path))
+        logger.error('ERROR %s with path %s', err, output_file_path)
 
     return json.dumps(response_data)
 

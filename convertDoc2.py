@@ -19,7 +19,7 @@ from docx.shared import Pt
 import docx
 
 logger = logging.getLogger('convertDoc2')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 print('IN convertDoc2 logger: %s (%s)' % (logger, logger.level))
 # The version using docx
@@ -30,7 +30,7 @@ TIMESTAMP = "Version 2018-06-28"
 # https://docs.python.org/2/library/xml.etree.elementtree.html
 # https://docs.python.org/2/library/zipfile.html
 
-debug_output = True
+debug_output = False
 
 # Flag controls if the conversion removes
 # structure from replaced text when drawings are found
@@ -75,7 +75,7 @@ class ConvertDocx():
     self.old_fonts = converter.oldFonts  # List of font names
     
     self.unicode_font = converter.unicodeFont
-    self.debug = True
+    self.debug = False
 
     self.progressObj = reportProgressObj
 
@@ -237,7 +237,8 @@ class ConvertDocx():
         pass  # Not a problem
 
     sections = self.document.sections
-    # print("Document has %s sections" % len(sections))
+    if self.debug:
+        print("Document has %s sections" % len(sections))
     if self.progressObj:
       msg = 'Document has %d sections' % len(sections)
       self.progressObj.send(msg)
@@ -284,8 +285,9 @@ class ConvertDocx():
     if self.progressObj:
       self.progressObj.send('Saving document')
     if self.outpath:
-      print('Saving document: %s' % self.outpath)
-      self.document.save(self.outpath)
+        if self.debug:
+            print('Saving document: %s' % self.outpath)
+        self.document.save(self.outpath)
 
     if self.progressObj:
       self.progressObj.send('## Conversion complete ##')
@@ -378,7 +380,6 @@ class ConvertDocx():
 
       convertCount += newConvertedCount
       allEmptiedTextElements.append(emptiedElements)
-      # print('@P@P@P Paragraph %d text = %s' % (paragraphCount, paragraph_text))
       paragraphCount += 1
 
     return allEmptiedTextElements, convertCount
@@ -387,7 +388,6 @@ class ConvertDocx():
   def handleXmlParagraph(self, para):
     allEmptiedTextElements = []
     if para in self.paragraphs_converted:
-      # print('Paragraph already done: %s' % para)
       return 0, allEmptiedTextElements, ''
     paragraphText = ''
     paragraphTextStarts = []
