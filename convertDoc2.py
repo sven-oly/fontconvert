@@ -77,7 +77,8 @@ class ConvertDocx():
     self.unicode_font = converter.unicodeFont
     self.debug = False
 
-    self.progressObj = reportProgressObj
+    # Turn off progress for now 3-Oct
+    self.progressObj = None  # reportProgressObj
 
     # True if paragraph text should be converted as a unit
     self.accumulate_text = False
@@ -113,6 +114,7 @@ class ConvertDocx():
         # Add a new style for the font(s)
         styles = self.document.styles
         self.fonts = {}
+        new_style = None
         for font in converter.OUTPUT_FONTS:
             new_style = styles.add_style(font, WD_STYLE_TYPE.CHARACTER)
             new_style.font.name = converter.defaultOutputFont
@@ -218,8 +220,6 @@ class ConvertDocx():
         if self.debug:
           print('Convert2 converter %s processParagraphRuns: text: %s.' % (self.converter, para.text))
         self.converter.processParagraphRuns(para)
-        if self.debug:
-          print('Convert2 after conversion text: %s.' % (para.text))
         logger.debug('   after conversion = %s' % para.text)
       except BaseException as e:
         continue
@@ -287,7 +287,10 @@ class ConvertDocx():
     if self.outpath:
         if self.debug:
             print('Saving document: %s' % self.outpath)
-        self.document.save(self.outpath)
+        try:
+            self.document.save(self.outpath)
+        except BaseException as e:
+            return e
 
     if self.progressObj:
       self.progressObj.send('## Conversion complete ##')

@@ -91,6 +91,18 @@ def convertThisDoc(lang, input_file_name):
     else:
         logging.info('Doc created from %s', input_file_name)
 
+    # Find all text box content elements in the body
+    txbx_contents = doc.element.body.xpath(".//w:txbxContent")
+
+    for txbx in txbx_contents:
+        # Each txbxContent can contain standard paragraph elements (<w:p>)
+        try:
+            for p in txbx.xpath(".//w:r"):
+                # Extract text from runs or print the paragraph XML text
+                print("Text box paragraph:", "".join(node.text for node in p.xpath(".//w:t")))
+        except BaseException as err:
+            pass
+
     lang_converter.setScriptIndex(0)
     lang_converter.setLowerMode(True)
     lang_converter.setSentenceMode(lang_converter.sentence_mode)

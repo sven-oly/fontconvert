@@ -13,16 +13,15 @@ import datetime
 from io import BytesIO
 from io import StringIO
 
-import html
 import json
 import logging
-import time
 
 # https://github.com/saffsd/langid.py
 import langid  # For identifying language of text
 
-import random
 from zipfile import ZipFile
+
+from flask import Flask
 
 import queue
 import random
@@ -50,7 +49,7 @@ import convertXls
 
 # Global logger
 logger = logging.getLogger('main')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 # Dictionary of the converters by language code
@@ -143,6 +142,7 @@ def upload_xslx():
 def uploadLang():
     who = request.host_url
     lang = request.args.get('lang', 'und')
+
     script_index = request.args.get('script_index', 0)
     taskId = random.randint(0, 7777)
     try:
@@ -165,7 +165,7 @@ def uploadLang():
         font_substitutions = converter.get_substitute_fonts()
     except BaseException as err:
         # The converter does not yet support this.
-        print('ERROR: %s NOPE (%s): CONVERTER font_substitutions: %s' % (err, lang, font_substitutions))
+        logger.warning('ERROR: %s NOPE (%s): CONVERTER font_substitutions: %s', err, lang, font_substitutions)
         pass
 
     return render_template('upload_lang.html',
@@ -324,9 +324,11 @@ def upload_file():
             taskId = 117
         font_sub_data = {}
         for key, value in formData.items():
+            logger.debug('KEY: %s, VALUE: %s', key, value)
             if key.startswith('font_selected_'):
+                logger.debug('!! font_selected_" KEY: %s, VALUE: %s', key, value)
                 font_sub_data[key.replace('font_selected_', '')] = value
-        logger.debug('FONT SUB DATA: %s' % font_sub_data)
+        logger.debug('FONT SUB DATA (%s): %s', lang, font_sub_data)
 
         # Other options for conversion:
         remove_returns_in_block = False
@@ -438,7 +440,6 @@ def upload_file():
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
 
             for key in font_substitutions:
-                logger.debug('Set substitute font %s --> %s', key, unicode_font)
                 langConverter.set_substitute_font(key, unicode_font)
 
             # Other settings
@@ -528,7 +529,11 @@ def upload_file():
                 info_stream.write(' %d sections\n' % len(doc.sections))
                 info_stream.write(' %d tables\n' % len(doc.tables))
                 info_stream.write(' fonts found = %s\n' % fontsFound)
-                info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
+                try:
+                    info_stream.write(' unicodeFont = %s\n' % formData['UnicodeFont'])
+                except KeyError as err:
+                    logging.warning('No UnicodeFont found: %s', err)
+
                 info_stream.seek(0)
 
                 # The zipfile contents

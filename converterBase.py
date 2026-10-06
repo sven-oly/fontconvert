@@ -6,50 +6,66 @@ from __future__ import absolute_import, division, print_function
 
 from collections import defaultdict
 
-import langid  # For identifying language of text
 import logging
 import os
 import re
 
 logger = logging.getLogger('converterBase')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 thisDefaultOutputFont = 'NotoSansRegular'
 
-
-# Swap order of two items
-def sub21(m):
-    return m.group(2) + m.group(1)
-
-
 class ConverterBase:
-    def __init__(self, old_font_list=None, new_font=None,
+    def __init__(self, lang_code='unk',
+                 old_font_list=None, new_font=None,
+                 font_substitution_options=None,
                  default_output_font=thisDefaultOutputFont):
 
         self.defaultOutputFont = default_output_font
+        self.thisDefaultOutputFont = default_output_font
+
+        self.font_substitution_options = font_substitution_options
+        self.font_replacements = {}
+        self.font_substitution = {}
+        all_output_fonts = []
+        for key in self.font_substitution_options.keys():
+            self.font_replacements[key] = self.font_substitution_options[key][0]
+            self.font_substitution[key] = self.font_substitution_options[key][0]
+            all_output_fonts.extend(self.font_substitution_options[key])
+        self.OUTPUT_FONTS = set(all_output_fonts)
+
+        self.lang_code = lang_code
         # Remember what's being converted
         self.lang_converter_filename = None
-        self.lang_code = 'unk'
-        self.old_font_name = None
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
         self.encodingScripts = []  # If given, tells the Script of incoming characters
+        self.encodingScript = []
+        self.encodingScript = []
+        if old_font_list:
+            self.encodingScripts = old_font_list
+        else:
+            self.encodingScripts = self.FONTS_TO_CONVERT
+
+        self.isRtl = False
+
         self.oldFonts = []
         self.font_resize_factor = 1.0
         self.not_converted = {}
 
-        self.old_font_name = None
         self.font_index = -1
-        self.scriptIndex = 0. # Default
+        self.scriptIndex = 0  # Default
 
+        # Information on language detection
         self.detectLang = False  # Generally not used
+        self.ignoreLangs = []  # Language codes for not conversion
         self.lang_detector = None
-
-        self.unicode_fonts = []  # These must be set by the converter
 
         # This may be used for special formatting, e.g., keep a paragraph with next
         self.custom_paragraph_style = None
-        #
+
+        self.handle_sentences = False
+
         self.add_variant_selectors = False
         # This may be set up by the individual converter
         self.split_by_script = {}
@@ -74,13 +90,6 @@ class ConverterBase:
             else:
                 self.oldFonts.append(item)
 
-        # A list of the fonts that can be substituted for the keys in this item
-        self.font_substitution_options = {
-        }
-        # The chosen substitutions for font to be converted
-        self.font_substitution = {
-        }
-        
         # If set, sets output font to be a complex script
         # This is needed for a number of Unicode scripts
         self.set_complex_font = False
@@ -159,17 +168,17 @@ class ConverterBase:
         # Gives the string version of a Unicode code point
         return "U+" + hex(ord(char))[2:].upper().zfill(4)
 
-    def convertText(self, in_text, font_text_info=None, font_index=0, inputFont=None):
+    def convertText(self, text_in, font_text_info=None, font_index=0, input_font=None):
         # Basic converter that takes an encoding map and applies that to the input text.
         # Take the data from the fontTextInfo field.
         convert_list = []
-        encoding_map = self.encodingScripts.index([inputFont])
+        if input_font not in self.private_use_map:
+            return text_in
+        encoding_map = self.private_use_map[input_font]
         tags = []
-        for item in font_text_info:
-            convert_list.append(
-                self.convertString(item[0], tags, encoding_map))
+        result = self.convertString(text_in,None, encoding_map)
 
-        return ''.join(convert_list)
+        return result
 
     def toLower(self, in_text):
         # Does this work for all scripts?
@@ -262,15 +271,11 @@ class ConverterBase:
     # Implemented by specific class for language and script.
     def processParagraphRuns(self, p):
         # Handle the text within each paragraph
-        logger.debug('processing paragraph runs text "%s"', p.text)
-        if self.debug:
-            print('converterBase processParagraphRuns (%s) text: "%s"' % (self.lang_code, p.text))
         if not p.text:
             # Nothing to process
-            logger.debug('converterBase processParagraphRuns - NO TEXT')
             return
 
-        # Check on the language of the paragraph. May not convert.
+        # Check the language of the paragraph. May not convert.
         # Disabled
         if self.detectLang:
             detected = self.lang_detector.classify(p.text.strip())
@@ -282,61 +287,71 @@ class ConverterBase:
                 print('IGNORING detected lang %s in %s' % (detected, p.text))
                 return
 
+        paragraph_was_converted = False
         for run in p.runs:
             try:
                 text_to_convert = run.text
                 scriptIndex = 0
-                font_name = run.font.name
-                # TODO: Check if unknown font regions should be converted.
+                old_font_name = run.font.name
                 try:
-                    scriptIndex = self.FONTS_TO_CONVERT.index(font_name)
+                    scriptIndex = self.FONTS_TO_CONVERT.index(old_font_name)
                 except BaseException as error:
-                    logger.warning('Unknown font error %s: "%s" for text %s' % (error, font_name, text_to_convert))
+                    logger.warning('Unknown font %s: "%s" for text %s' % (error, old_font_name, text_to_convert))
                     if not self.check_all_fonts:
                         # Unknown fonts should not be examined
                         continue
                 new_text = text_to_convert
-                logger.debug('calling convertText. scriptIndex=%s, inputFont=%s', scriptIndex, font_name)
-                logger.debug('converterBase in runs (%s %d) text: "%s"', font_name,scriptIndex, run.text)
 
                 try:
-                    new_text = self.convertText(text_to_convert, None, scriptIndex, inputFont=font_name)
+                    new_text = self.convertText(text_to_convert, None, scriptIndex, input_font=old_font_name)
                 except BaseException as error:
                     logging.error('p.text failure in convertText: %s for text %s' % (error, p.text))
-                if self.debug:
-                    print('converterBase in runs (%s) result: "%s"', (new_text))
 
                 # Replace font in empty regions, too!
                 if run.text == '' or new_text != run.text:
+                    paragraph_was_converted = True
                     try:
                         # Special processing for some types of runs
                         new_text = self.special_run_handling(new_text)
-                        print('TRY SPECIAL %s' % new_text)
                     except:
+                        logging.warning('TRY SPECIAL FAILS %s' % new_text)
                         pass
                     if self.set_complex_font:
                         run.font.complex_script = True
-
+                    # And reset the text to the converted value and
+                    # the font to the selected replacement
                     run.text = new_text
-                    logger.debug('processing paragraph runs: NEW TEXT: "%s"', p.text)
+                    new_font_name = self.unicodeFont
+                    try:
+                        new_font_name = self.get_substitute_font_for(old_font_name)
+                    except BaseException as error:
+                        # The default
+                        pass
+                    run.font.name = new_font_name
 
-                    run.font.name = self.unicodeFont
                     try:
                         new_font_size = int(run.font.size * self.font_resize_factor)
                         run.font.size = new_font_size
-                    except TypeError:
+                    except TypeError as t_error:
                         # There may be no associated font
                         pass
             except ValueError as error:
-                print('ValueError %s with p.text: %s' % (error, p.text))
+                logging.error('ValueError %s with p.text: %s', error, p.text)
                 continue
 
         # Check on the font for the full paragraph
-        try:
-            self.FONTS_TO_CONVERT.index(p.style.font.name)
-            p.style.font.name = self.unicodeFont
-        except ValueError:
-            pass
+        if not paragraph_was_converted:
+            return
+
+        # try:
+        #     old_font_name = p.style.font.name
+        #     try:
+        #         p.style.font.name = self.get_substitute_font_for(old_font_name)
+        #     except:
+        #         p.style.font.name = self.unicodeFont
+        # except ValueError as error:
+        #     logger.warning('STYLE OLD FONT fails!')
+        #     pass
 
         if self.handle_sentences:
             self.processSentences(p)
@@ -347,6 +362,10 @@ class ConverterBase:
         except BaseException:
             pass  # Not a fatal error
 
+        return
+
+    def processSentences(selfp):
+        # This is converter-specific
         return
 
     # Methods for word frequency information
@@ -416,17 +435,30 @@ class ConverterBase:
         end_indices.append(len(p.runs))
         return end_indices
 
+    def special_run_handling(self, text):
+        # No special handling!
+        return text
+
     def get_substitute_fonts(self):
         # Returns dictionary of fonts that are available for conversion / substitution
-        if self.debug:
-            print('FONT_SUBSTITUTION_OPTIONS (%s): %s' % (self.lang_code, self.font_substitution_options))
         return self.font_substitution_options
 
     def get_substitute_font_for(self, old_font):
-        if old_font in self.font_substitution:
-            return self.font_substitution[old_font]
+        if old_font in self.font_replacements:
+            return self.font_replacements[old_font]
         else:
-            return None
+            logger.warning('!!!!! Cannot get substitute font for: %s', old_font)
+            new_font_name = None
+            return new_font_name
 
     def set_substitute_font(self, old_font, new_font):
-            self.font_substitution[old_font] = new_font
+        self.font_replacements[old_font] = new_font
+        logger.warning('SET SUB FONT (%s): %s -> %s', self.lang_code, old_font, new_font)
+        logger.warning('  +++ replacements is %s', self.font_replacements)
+
+    # Regex-based conversions for reordering, etc.
+    # Swap order of two items
+    def sub21(self, m):
+        return m.group(2) + m.group(1)
+
+

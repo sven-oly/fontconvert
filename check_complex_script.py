@@ -7,15 +7,10 @@ import glob
 from io import BytesIO
 import os
 import sys
+from os import WCONTINUED
 
-import docx
 from docx import Document
 from docx.oxml.shared import OxmlElement, qn
-
-from convertDoc2 import ConvertDocx
-
-# CONSTANT
-default_langCode = 'phk'
 
 # get uploaded file into document form
 def createDocFromFile(file_path):
@@ -64,10 +59,13 @@ def fix_cs_formatting_run(run_to_fix, user_cs_font_size, user_cs_font_name,
     lang.set(qn("w:val"), langCode)
     lang.set(qn('w:bidi'), langCode)  # This depends on the language code
 
-    rFonts.set(qn('w:cs'), user_cs_font_name)
-    rFonts.set(qn('w:ascii'), user_cs_font_name)
-    rFonts.set(qn('w:hAnsi'), user_cs_font_name)
-    rFonts.set(qn('w:eastAsia'), user_cs_font_name)
+    try:
+        rFonts.set(qn('w:cs'), user_cs_font_name)
+        rFonts.set(qn('w:ascii'), user_cs_font_name)
+        rFonts.set(qn('w:hAnsi'), user_cs_font_name)
+        rFonts.set(qn('w:eastAsia'), user_cs_font_name)
+    except Exception as err:
+        pass
 
     # Set script as complex
     run_to_fix.font.complex_script = True
@@ -78,7 +76,7 @@ def fix_paragraph_runs(para, user_cs_font_name=None, user_cs_font_size=12):
 
     for run in runs:
         font_name = run.font.name
-        if font_name == user_cs_font_name:
+        if font_name and font_name == user_cs_font_name:
             fix_cs_formatting_run(run, user_cs_font_size, user_cs_font_name,
                                    user_is_bold)  # cs: complex script, ex, arabic
 

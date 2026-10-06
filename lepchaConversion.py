@@ -24,6 +24,19 @@ def sub1(m):
 
 class lepchaConverter(ConverterBase):
 
+    order_rules = """
+    The Lepcha script (Róng) is allocated in the Basic Multilingual Plane (BMP) across the U+1C00–U+1C4F block. It behaves as an abugida where characters inside a written syllable slot follow a precise, fixed logical storage sequence.
+    Similar to other Brahmic-derived scripts, typing or organizing Lepcha string sequences in software requires a strict canonical combining and storage order:
+    Slot Number	Element / Component Type	Component Range & Unicode Codes
+    1	Base Consonant	Consonant letters Ka, Kha, etc. (U+1C00–U+1C23, U+1C4D–U+1C4F)
+    2	Nukta	Sign Nukta (U+1C37) — used for foreign or retroflex sounds
+    3	Subjoined Medials	Medial Ya (U+1C24) or Medial Ra (U+1C25)
+    4	Dependent Vowels	Vowel signs A through E (U+1C26–U+1C33)
+    5	Consonant Signs (Overlapping)	Sign Kang (U+1C35) or Sign Nyin-Do (U+1C34)
+    6	Final Consonants	Explicit final consonant markers (U+1C2D–U+1C33)
+    7	Ran Sign	Sign Ran (U+1C36) — lengthens or alters vowels
+    """
+
     private_use_map = {
         'Munsalong': {
             '\u0021': '!',
@@ -458,41 +471,27 @@ class lepchaConverter(ConverterBase):
 
     def __init__(self, old_font_list=None, newFont=None,
                  defaultOutputFont=thisDefaultOutputFont):
-        self.debug = False
-
-        self.lang_code = 'lep'
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
-        if self.debug:
-          print('LEP %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
-        super().__init__(old_font_list=self.private_use_map.keys(),
-                         default_output_font=defaultOutputFont)
-        self.lang_code = 'lep'
+        self.font_substitution_options = {
+            'Shipmoo Lepcha': ['Dawa Lepcha', 'Mingzat', 'Noto Sans Lepcha', 'MainWaringRong'],
+            'Munsalong': ['Mingzat'],
+            'JG Lepcha': ['MainWaringRong', 'Noto Sans Lepcha', 'Mingzat'],
+        }
+
+        super().__init__(new_font=defaultOutputFont,
+                         lang_code='lep',
+                         old_font_list=self.private_use_map.keys(),
+                         default_output_font=defaultOutputFont,
+                         font_substitution_options=self.font_substitution_options,)
         self.detectLang = False
-
-        if self.debug:
-          print('LEP2 %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
 
         self.encodingScripts = self.FONTS_TO_CONVERT
 
-        self.font_substitution_options = {
-            'Shipmoo Lepcha': ['Mingzat', 'Noto Sans Lepcha', 'Dawa Lepcha', 'MainWaringRong'],
-            'Munsalong': ['Mingzat'],
-            'JG Lepcha': ['Noto Sans Lepcha', 'Mingzat'],
-        }
         self.font_substitution = {}
-        for key in self.font_substitution_options:
-            self.font_substitution[key] = self.font_substitution_options[key][0]
-        if self.debug:
-            print('!! %s: font_substitution_options: %s' % (self.lang_code, self.font_substitution_options))
-            print('!! %s: font_substitution: %s' % (self.lang_code, self.font_substitution))
 
-        self.thisDefaultOutputFont = 'Noto Serif Lepcha'
         self.lang_code = 'lep'
-        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
 
-        self.unicode_fonts = [self.thisDefaultOutputFont]
-        logger.debug('%s converter. unicode_fonts = %s', self.lang_code, self.unicode_fonts)
         self.newFont = newFont
         self.defaultOutputFont = defaultOutputFont
 
@@ -530,29 +529,7 @@ class lepchaConverter(ConverterBase):
             [re.compile(r'(\u1c31)+'), sub1],  # Duplicate
             [re.compile(r'(\u1c36)+'), sub1],  # Duplicate
             [re.compile(r'(\u1c2c\u1c33)+'), sub1],  # Duplicate
-
         ]
-
-        self.bad_diacritic_order = [
-        ]
-
-    def convertText(self, text_in, fontTextInfo=None,
-                    font_index=0, inputFont=None):
-        # For passing these values along as needed
-        self.encoding = self.encodingScripts[font_index]
-        self.font_index = self.FONTS_TO_CONVERT.index(inputFont)
-        encoding_map = None
-        if inputFont and inputFont in self.encodingScripts:
-            encoding_map = self.private_use_map[inputFont]
-        else:
-            # No conversion
-            return text_in
-
-        result = self.convertString(text_in,None, encoding_map)
-
-        # Any other post-processing??
-
-        return result
 
 def test_strings(converter):
     # List of font, encoded string, expected Unicode
@@ -560,6 +537,7 @@ def test_strings(converter):
         ['Shipmoo Lepcha', 'dH>QdH>', 'ᰉᰧᰰᰕᰉᰧᰰ'],
         ['Munsalong', 'dH>QdH>', 'ᰉᰧᰰᰕᰉᰧᰰ'],
         ['JG Lepcha', 'dHQdH', 'ᰌᰞᰘᰌᰞ'],
+        ['JG Lepcha', 'duf posen mirtxc', 'ᰌᰪᰑ ᰎᰠᰩᰬᰍ ᰕᰛᰧᰊᰄᰆ'],
         ['Shipmoo Lepcha', 'fC& A_b WbcY', 'ᰃᰤᰩ ᰀᰦᰳ ᰜᰦᰟᰨ'],
         ['Munsalong', 'fC& A_b WbcY', 'ᰃᰤᰩ ᰀᰦᰳ ᰜᰦᰟᰨ'],
         ['Shipmoo Lepcha',

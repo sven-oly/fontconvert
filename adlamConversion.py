@@ -412,7 +412,17 @@ class AdlamConverter(ConverterBase):
 
     def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None, defaultOutputFont=thisDefaultOutputFont):
 
-        super().__init__(old_font_list=oldFontList)
+        adlam_unicode_fonts = ['Noto Sans Adlam', 'Kigelia', 'Ebrima',]
+
+        font_substitution_options = {
+            'Fulfulde - Aissata': adlam_unicode_fonts,
+            'Fulfulde - Fuuta': adlam_unicode_fonts,
+            'Fulfulde - Pulaar': adlam_unicode_fonts,
+            'Times New Roman': ['Times New Roman'],
+            'Adlam2Latn': ['adlam2latn'],  # Special for Adlam to Latin transliteration
+        }
+
+        super().__init__(old_font_list=oldFontList, font_substitution_options=font_substitution_options)
         self.encodingScripts = []  # If given, tells the Script of incoming characters
         self.oldFonts = []
         self.thisDefaultOutputFont = thisDefaultOutputFont
@@ -430,7 +440,6 @@ class AdlamConverter(ConverterBase):
             'Times New Roman': 'latn',
             'Adlam2Latn': 'adlam2latn',  # Special for Adlam to Latin transliteration
         }
-        adlam_unicode_fonts = ['Noto Sans Adlam', 'Kigelia', 'Ebrima',]
 
         self.unicode_fonts = adlam_unicode_fonts
 
@@ -531,6 +540,8 @@ class AdlamConverter(ConverterBase):
 
 
     def check_font_match(self, run):
+        if not run:
+            return False, None
         if run.font.name in self.font_to_mapping:
             # the simple case
             return run.font.name, run.font.size
@@ -791,8 +802,9 @@ def testConvert():
       input = test[0]
       expected = test[1]
 
-      result = adlamConverter.convertText(input,
-                                          fontIndex=fontIndex)
+      encoding_map = adlamConverter.private_use_map[script]
+      result = adlamConverter.convertString(input,
+                                            encoding_map)
       if result != expected:
         print ('** Unexpected results: \n  expected(%d) = %s\n  Result(%d)   = %s' % (
           len(expected), expected, len(result), result))

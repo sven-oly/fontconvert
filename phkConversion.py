@@ -951,12 +951,44 @@ class PhakeConverter(ConverterBase):
     # For splitting by ASCII characters
     # re.ASCII
 
+   # substitutions for reordering
+    # Swap order of two items
+    def sub21(self, m):
+        return m.group(2) + m.group(1)
+
     def __init__(self, old_font_list=None, new_font=None,
         default_output_font='Phake Ramayana Unicode'):
         self.font_index = None
-        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        self.lang_code = 'phk'
 
-        super().__init__(self.FONTS_TO_CONVERT, new_font, default_output_font)  # Call the parent class's __init__
+        self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
+        myanmar_fonts = ['Phake Ramayana Unicode',
+                                 'Myanmar Text',
+                                 'Noto Sans Myanmar Regular',
+                                 'Noto Serif Myanmar Regular',
+                                 'Noto Serif Bengali Regular',
+                                 'Noto Serif Ahom',
+                                 ]
+        self.font_substitution_options = {
+            'Phake Script': myanmar_fonts,
+            'Phake Ramayana': myanmar_fonts,
+            'Aiton Script': myanmar_fonts,
+            'Assam New': ['Noto Serif Bengali', "Noto Serif Bengali"],
+            'Ahom': ['Noto Serif Ahom'],
+            'Ahom Manuscript': ['Noto Serif Ahom'],
+            'Banchob': ['Times New Roman'],
+            'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'ST_Metta': ['Myanmar Text', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
+            'IndicNewDiacritics': ['Times New Roman'],
+        }
+
+        super().__init__(new_font=default_output_font,
+                         lang_code=self.lang_code,
+                         font_substitution_options=self.font_substitution_options,
+                         old_font_list=self.FONTS_TO_CONVERT,
+                         default_output_font=default_output_font,
+                         )  # Call the parent class's __init__
+
         self.thisDefaultOutputFont = default_output_font
         self.defaultOutputFont = default_output_font
         self.defaultFontSize = Pt(12)
@@ -976,8 +1008,6 @@ class PhakeConverter(ConverterBase):
         for font in self.FONTS_TO_CONVERT:
             font_keys = sorted(
                 self.private_use_map[font].keys(), key=len, reverse=True)
-
-        self.thisDefaultOutputFont = default_output_font
 
         # These characters take variation sequence modifiers
         self.variation_sequence_code_points = re.compile(
@@ -1011,42 +1041,7 @@ class PhakeConverter(ConverterBase):
         self.scriptToConvert = 'Phake Script'
         self.scriptIndex = 0
 
-        myanmar_fonts = ['Phake Ramayana Unicode',
-                                 'Myanmar Text',
-                                 'Noto Sans Myanmar Regular',
-                                 'Noto Serif Myanmar Regular',
-                                 'Noto Serif Bengali Regular',
-                                 'Noto Serif Ahom',
-                                 ]
         self.unicode_fonts = myanmar_fonts
-
-        # Note that the first one in each list is the default replacement
-        self.font_substitution_options = {
-            'Phake Script': myanmar_fonts,
-            'Phake Ramayana': myanmar_fonts,
-            'Aiton Script': myanmar_fonts,
-            'Assam New': ['Noto Serif Bengali', "Noto Serif Bengali"],
-            'Ahom': ['Noto Serif Ahom'],
-            'Ahom Manuscript': ['Noto Serif Ahom'],
-            'Banchob': ['Times New Roman'],
-            'Shan': ['Myanmar Text', 'Phake Ramayana Unicode', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
-            'ST_Metta': ['Myanmar Text', 'Noto Serif Myanmar', 'Noto Sans Myanmar'],
-            'IndicNewDiacritics': ['Times New Roman'],
-        }
-        self.font_substitution = {
-            'Phake Script': 'Phake Ramayana Unicode',
-            'Phake Ramayana': 'Phake Ramayana Unicode',
-            'Aiton Script': 'Phake Ramayana Unicode',
-            'Assam New': 'Noto Serif Bengali',
-            'Ahom': 'Noto Serif Ahom',
-            'Banchob': 'Times New Roman',
-            'Ahom Manuscript': 'Noto Serif Ahom',
-            'Shan': 'Noto Sans Myanmar',
-            'ST_Metta': 'Noto Sans Myanmar',
-            'IndicNewDiacritics': 'Times New Roman',
-        }
-        self.OUTPUT_FONTS = ['Phake Ramayana Unicode', 'Noto Serif Bengali', 'Noto Serif Ahom', 'Noto Sans Myanmar',
-                             'Times New Roman']
 
         if new_font:
             self.unicodeFont = new_font
@@ -1112,7 +1107,7 @@ class PhakeConverter(ConverterBase):
              fix_e_consonant],
             # Ahom vowel reordering
             [r'(\U00011728)([\U00011727\U00011729-\U0001172B]+)',
-             sub21],
+             self.sub21],
             [r'(\U00011724)([\U00011727\U00011729-\U0001172A]+)',
              sub21],
 
@@ -1523,7 +1518,7 @@ class PhakeConverter(ConverterBase):
                         t = r.xpath('./w:t')[0]
                         t.set(qn('xml:space'), 'preserve')
                     except BaseException as e:
-                        continue
+                        pass
                 
                 # TODO: Fix this
                 if new_font_name:  # == 'Phake Ramayana Unicode':
@@ -1677,7 +1672,7 @@ def test_phake_strings(converter):
 
 def main(argv):
     converter = PhakeConverter()
-    testPhakeStrings(converter)
+    test_phake_strings(converter)
 
 
 if __name__ == '__main__':

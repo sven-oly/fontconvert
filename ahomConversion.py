@@ -9,14 +9,13 @@ import re
 import sys
 
 from converterBase import ConverterBase
-from check_complex_script import fix_cs_formatting_run
 
 logger = logging.getLogger('ahoConversion')
 logger.setLevel(logging.DEBUG)
 
 thisDefaultOutputFont = 'Noto Serif Ahom'
 
-
+# Routines for reordering diacritics
 def sub321(m):
     return m.group(3) + m.group(2) + m.group(1)
 
@@ -36,7 +35,6 @@ def sub21_test(m):
 def sub3dfor2c2c(m):
     return '\U0001173d'
 
-# Character constants for conversion
 
 class AhomConverter(ConverterBase):
 
@@ -400,65 +398,37 @@ class AhomConverter(ConverterBase):
         self.FONTS_TO_CONVERT = list(self.private_use_map.keys())
         if self.debug:
           print('AHO %s __init__: fonts to convert: %s.' % (self.lang_code, self.FONTS_TO_CONVERT))
-
-        super().__init__(old_font_list=self.private_use_map.keys(),
-                         default_output_font=defaultOutputFont)
-
         self.font_substitution_options = {
-            'Ahom': ['Noto Serif Ahom'],
-            'Ahom Manuscript': ['Noto Serif Ahom'],
+            'Ahom': ['Noto Serif Ahom', 'AhomUnicode'],
+            'Ahom Manuscript': ['Noto Serif Ahom', 'AhomUnicode'],
         }
-        self.font_substitution = {
-            'Ahom': 'Noto Serif Ahom',
-            'Ahom Manuscript': 'Noto Serif Ahom',
-        }
+        super().__init__(new_font=defaultOutputFont,
+                         lang_code=self.lang_code,
+                         font_substitution_options=self.font_substitution_options,
+                         old_font_list=self.FONTS_TO_CONVERT,
+                         default_output_font=defaultOutputFont,
+                         )
 
-        self.thisDefaultOutputFont = defaultOutputFont
-        self.OUTPUT_FONTS = [self.thisDefaultOutputFont]
-
-        self.unicode_fonts = [self.thisDefaultOutputFont]
-        logger.debug('%s converter. unicode_fonts = %s', self.lang_code, self.unicode_fonts)
-
-        self.paragraphs_to_update_with_keep = []
-
-        self.set_complex_font = False
-
-        self.handle_sentences = False
         self.encoding = 0  # Default
-        if old_font_list:
-            self.encodingScripts = old_font_list
-        else:
-            self.encodingScripts = self.FONTS_TO_CONVERT
-
-        self.oldFonts = self.encodingScripts
 
         self.font_resize_factors = [1.0, 1.3]
 
-        # Default script = 'arab'
+        # Default script
         self.scriptToConvert = 'Ahom'
-        self.scriptIndex = 0
-
+        self.set_complex_font = True
+        self.unicodeFont = defaultOutputFont
         if newFont:
             self.unicodeFont = newFont
-        else:
-            self.unicodeFont = defaultOutputFont
+
         self.set_script_range(0x11700, 0x1173f)
         self.set_upper_case_range(0x11700, 0x1174f)
         self.description = 'Converts Ahom font encoding to Unicode'
 
-        self.defaultOutputFont = defaultOutputFont
-
-        self.forceFont = True  # May be used to set all font fields to the Unicode font
-
-        self.isRtl = False
 
         self.description = 'Converts Ahom font encoding to Unicode'
         self.ignore_start_of_sentence = re.compile(
             r'([\U00011700-\U0001173f])')
 
-        self.encoding = None
-
-        self.setLowerMode(True)
         self.setSentenceMode(True)
 
         self.end_of_sentence_pattern = re.compile(r'([\.\?\!\⸮\؟$])')
@@ -472,8 +442,6 @@ class AhomConverter(ConverterBase):
 
         self.collectConvertedWordFrequency = True
         self.convertedWordFrequency = {}
-
-        self.not_converted = []
 
         self.pattern_replace_list = [
 
@@ -508,11 +476,6 @@ class AhomConverter(ConverterBase):
         self.match_last_a = re.compile(r' a$')
         self.fix_assamese = re.compile(r'\u0020([\u09bf\u09c7\u09c8])([\u0980-\u09fe])')
 
-        # Information on language detection
-        self.detectLang = False
-        self.ignoreLangs = []  # Language codes for not conversion
-
-
     # TODO: check input and conversion tables for Unicode NFC normalization.
 
     def preprocess(self, textIn, current_tag=None):
@@ -524,18 +487,6 @@ class AhomConverter(ConverterBase):
             # Text for Ahom - special case
             textIn = self.match_last_a.sub('\u0020\U0001173c', textIn)
         return textIn
-
-    def reorderText(self, in_text):
-        # Next, move some code points in context to get proper Unicode ordering.
-        new_text = in_text
-        for pair in self.pattern_replace_list:
-            new_text = re.sub(pair[0], pair[1], new_text)
-        return new_text
-
-    def setScriptIndex(self, newIndex=0):
-        # 0 = '', 1 = 'latn'
-        self.scriptIndex = newIndex
-        self.scriptToConvert = self.encodingScripts[self.scriptIndex]
 
     # Split input into tokens for script conversion
     def tokenizeText(self, textIn):
@@ -550,12 +501,12 @@ class AhomConverter(ConverterBase):
     # Consider the font information if relevant, e.g., underlining.
     # fontTextInfo: a list of font data for this code, including
     # formatting for each piece.
-    def convertText(self, textIn, fontTextInfo=None, fontIndex=-1, inputFont=None, line_count=-1):
+    def convertText(self, textIn, fontTextInfo=None, fontIndex=-1, input_font=None, line_count=-1):
         self.encoding = self.encodingScripts[fontIndex]
         # print('fontIndex %s, encoding = %s' % (fontIndex, self.encoding))
-        if inputFont and fontIndex == -1:
+        if input_font and fontIndex == -1:
             try:
-                encoding_index = self.FONTS_TO_CONVERT.index(inputFont)
+                encoding_index = self.FONTS_TO_CONVERT.index(input_font)
                 fontIndex = encoding_index
             except ValueError:
                 # We don't handle that font
@@ -608,21 +559,21 @@ class AhomConverter(ConverterBase):
         return self.reorderText(''.join(convertList))
 
     # Handles details of converting the text, including case conversion.
-    def convertString(self, textIn, fontInfo,
+    def convertString(self, text_in, font_info,
                       conversion_map):
         # type: (object, object, object) -> object
         convertedList = []
         convertResult = ''
 
-        tokens = self.tokenizeText(textIn)
-        if not tokens and textIn:
-            print('????? WHY NO TOKENS in %s' % textIn)
+        tokens = self.tokenizeText(text_in)
+        if not tokens and text_in:
+            print('????? WHY NO TOKENS in %s' % text_in)
 
         if self.debug:
             print('------- Tokens %s' % tokens)
 
         if self.debug:
-            print('$$$$$ text = %s, fontInfo = %s' % (textIn, fontInfo))  #fontInfo))
+            print('$$$$$ text = %s, font_info = %s' % (text_in, font_info))
         for c in tokens:
           # Special handling if needed
           out = c
@@ -694,31 +645,31 @@ class AhomConverter(ConverterBase):
             print('AHO %s processParagraphRuns calling SUPER: %s.' % (self.lang_code, p.text))
         super().processParagraphRuns(p)
 
-        if not p.text:
-            # Nothing to process
-            return
-        if self.debug:
-            print('AHO %s processParagraphRuns: %s.' % (self.lang_code, p.text))
-
-        for run in p.runs:
-            if run.font.name in self.FONTS_TO_CONVERT:
-                font_index = self.FONTS_TO_CONVERT.index(run.font.name)
-                try:
-                    run.text = self.convertText(run.text, None, font_index)
-
-                    run.font.name = self.unicodeFont
-                    new_font_size = int(run.font.size * self.font_resize_factors[font_index])
-                    run.font.size = new_font_size
-
-                    fix_cs_formatting_run(run, new_font_size, self.unicodeFont)
-
-                except ValueError as error:
-                    pass
-        if self.handle_sentences:
-            self.processSentences(p)
-
-        if self.collectConvertedWordFrequency:
-            self.updateWordsFrequencies(p)
+        # if not p.text:
+        #     # Nothing to process
+        #     return
+        # if self.debug:
+        #     print('AHO %s processParagraphRuns: %s.' % (self.lang_code, p.text))
+        #
+        # for run in p.runs:
+        #     if run.font.name in self.FONTS_TO_CONVERT:
+        #         font_index = self.FONTS_TO_CONVERT.index(run.font.name)
+        #         try:
+        #             run.text = self.convertText(run.text, None, font_index)
+        #
+        #             run.font.name = self.unicodeFont
+        #             new_font_size = int(run.font.size * self.font_resize_factors[font_index])
+        #             run.font.size = new_font_size
+        #
+        #             fix_cs_formatting_run(run, new_font_size, self.unicodeFont)
+        #
+        #         except ValueError as error:
+        #             pass
+        # if self.handle_sentences:
+        #     self.processSentences(p)
+        #
+        # if self.collectConvertedWordFrequency:
+        #     self.updateWordsFrequencies(p)
         return
 
     def processSentences(self, p):
@@ -803,7 +754,7 @@ class AhomConverter(ConverterBase):
 
 
 def convertDocx(files):
-    ahommConverter = ahomConversion.ahomConverter()
+    ahomConverter = ahomConversion.ahomConverter()
     logger.debug('SPECIAL %s convertDocx: %s', 'aho', files)
 
     try:
@@ -817,9 +768,6 @@ def convertDocx(files):
 
     except BaseException as err:
         return 'Bad Ahom converter. Err = %s' % err
-
-    if app.debug:
-        print('Created converter')
 
     try:
         docConverter = ConvertDocx(ahomConverter, documentIn=doc,
@@ -862,7 +810,7 @@ def simpleTests(converter):
 
 def main(argv):
     converter = AhomConverter()
-    testAhomStrings(converter)
+    # testAhomStrings(converter)
 
     simpleTests(converter)
 
