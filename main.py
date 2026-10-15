@@ -11,18 +11,19 @@ import datetime
 from io import BytesIO
 from io import StringIO
 
-import html
 import json
 import logging
-import time
+import queue
 
 # https://github.com/saffsd/langid.py
 import langid  # For identifying language of text
 
-import random
+# For getting details about hacked and Unicode fonts
+from fontTools.ttLib import TTFont
+
 from zipfile import ZipFile
 
-import queue
+from pathlib import Path
 import random
 import threading
 import time
@@ -34,7 +35,6 @@ from google.cloud import tasks
 import os
 
 from docx import Document
-from docx.enum.style import WD_STYLE_TYPE
 
 import adlamConversion
 import ahomConversion
@@ -49,13 +49,13 @@ import convertXls
 logger = logging.getLogger('uploader')
 logger.setLevel(logging.DEBUG)
 
-
 # Dictionary of the converters by language code
-converters = {}
-converters['ff'] = adlamConversion.AdlamConverter()
-converters['aho'] = ahomConversion.AhomConverter()
-converters['phk'] = phkConversion.PhakeConverter()
-converters['men'] = mendeConverter.MendeConverter()
+converters = {
+    'ff': adlamConversion.AdlamConverter(),
+    'aho': ahomConversion.AhomConverter(),
+    'phk': phkConversion.PhakeConverter(),
+    'men': mendeConverter.MendeConverter(),
+}
 
 lang_names_from_codes = {
     'ff': 'Poular',
@@ -88,7 +88,47 @@ queue = queue.Queue(maxsize=100)
 
 app.debug = True
 
+# Functions that should be put into a different module
+def getFontData(abs_font_path):
 
+    relative_path = os.path.relpath(abs_font_path, app.static_folder)
+    logger.debug('getFontData relative path: %s' % relative_path)
+    font_data = {
+        'path': '/static/' + relative_path,
+        'full_name': '',
+        'family_name': '',
+        'characters': [],
+        'encoding': 'unicode',
+    }
+
+    # Load your font file (supports .ttf, .otf, .woff, .woff2)
+    try:
+        font = TTFont(abs_font_path)
+
+        # Access the 'name' table
+        name_table = font["name"]
+
+        # Get standard name IDs:
+        # nameID 1 = Font Family Name
+        # nameID 4 = Full Font Name
+        font_data['path'] = '/static/' + relative_path
+        font_data['family_name'] = name_table.getDebugName(1)
+        font_data['full_name']  = name_table.getDebugName(4)
+
+        characters = set()
+        # Cycle through all tables inside the 'cmap' table
+        for table in font['cmap'].tables:
+            # Check if the subtable contains character data
+            for codepoint in table.cmap.keys():
+                # Filter out basic non-printing and control characters
+                if codepoint <= 0x1F or (0x7F <= codepoint <= 0x9F):
+                    continue
+                characters.add(codepoint)
+        font_data['characters'] = sorted(list(characters))
+    except BaseException as error:
+        logger.warning('Fail to get font info on %s' % abs_font_path)
+
+    return font_data
 @app.route('/')
 def hello():
     """Top of the conversion application."""
@@ -135,7 +175,7 @@ def uploadLang():
     taskId = random.randint(0, 7777)
     try:
         lang_name = lang_names_from_codes[lang]
-    except:
+    except BaseException:
         lang_name = '??'
         
     unicode_font_list = ['Noto Sans', 'Noto Serif']
@@ -155,7 +195,7 @@ def uploadLang():
     font_substitutions = None
     try:
         font_substitutions = converter.get_substitute_fonts()
-    except:
+    except BaseException as err:
         # The converter does not yet support this.
         pass
 
@@ -188,7 +228,7 @@ def read_file_chunks(fd):
 
 # A way to create progress functions with other information neede
 # for communication
-class ProgressClass():
+class ProgressClass:
     def __init__(self, converter, thread=None):
         self.converter = converter
         self.thread = thread  # May be available
@@ -294,12 +334,13 @@ def upload_file():
     # True if conversion is requested, otherwise just doc info
     convertDoc = False
     get_doc_info = True
+    newProgressObj = None
 
     lang = request.args.get('lang', 'und')
     file_path = request.args.get('path', None)
 
     who = '/uploader/%s' % lang
-    
+
     if request.method: # anything should work!  == 'POST':
         formData = request.form.to_dict()
 
@@ -343,6 +384,7 @@ def upload_file():
             lang ='ff'
         lang_code = lang
 
+        file = ''
         if 'file_path' in formData:
             inputFileName = formData['file_path']
         else:
@@ -422,8 +464,9 @@ def upload_file():
                 langConverter = None
                 return render_template('unsupported_lang_code.html',
                                        lang_code=lang_code,
-                                       supported_lang_codes= converts.keys()
+                                       supported_lang_codes= converters.keys()
                                        )
+            newProgressObj = ProgressClass(langConverter, this_thread)
 
             langConverter.detectLang = langid.langid
             langConverter.ignoreLangs = ['en', 'fr']  # Not converted
@@ -438,8 +481,6 @@ def upload_file():
             langConverter.add_variant_selectors = use_vs
 
             langConverter.taskId = taskId
-
-            newProgressObj = ProgressClass(langConverter, this_thread)
 
             try:
                 try:
@@ -545,7 +586,8 @@ def upload_file():
             return None
 
         # Done processing.
-        newProgressObj.stop_updates('HALTING')
+        if newProgressObj:
+            newProgressObj.stop_updates('HALTING')
 
 
 def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
@@ -557,7 +599,7 @@ def createZipArchive(target_stream, headerFileName, baseName, wordFrequencies):
     except BaseException as err:
         logger.error('*** Cannot put doc into zip file %s' % (err))
         return False
-
+    addLine = ''
     text_stream = StringIO()
     for item in wordFrequencies:
         addLine = '%s\t%s\n' % (item[0], item[1])
@@ -603,14 +645,6 @@ def testZip():
     return send_file(zipStream, as_attachment=True,
                      download_name='testdoc.zip')
 
-        # return Response(
-        #     zipStream,
-        #     # stream_with_context(read_file_chunks(zf)),
-        #     mimetype="application/zip",
-        #     headers=zipHeaders
-        # )
-    return 
-
 def fixNonAsciiFilename(filename):
     charList = []
     for i in [ord(x) for x in filename]:
@@ -648,10 +682,11 @@ def message_from_error(err):
 def convertAdlam():
     if request.method == 'POST':
         formData = request.form.to_dict()
-        loggerdebug('ADLAM FORM DATA = %s', formData)
+        logger.debug('ADLAM FORM DATA = %s', formData)
         file = request.files['file']  # FileStorage object
         fileName = file.filename
         outFileName = os.path.splitext(fileName)[0] + '_Unicode.docx'
+        who = None
 
         try:
             doc, count = createDocFromFile(file)
@@ -680,7 +715,7 @@ def convertAdlam():
         
         try:
             docConverter = ConvertDocx(langConverter, documentIn=doc,
-                                       reportProgressObj=newProgressObj)
+                                       reportProgressObj=None)
 
             if docConverter:
                 result = docConverter.processDocx()
@@ -689,12 +724,12 @@ def convertAdlam():
                 result = doc.save(target_stream)          
 
                 try:
-                    wordFrequencies = converter.getSortedWordList()
+                    wordFrequencies = langConverter.getSortedWordList()
                     if wordFrequencies:
                         # Do something with this information
-                        words = convertwordFrequencies.keys()
+                        words = wordFrequencies.keys()
                         for item in words:
-                            print(word)
+                            print(item)
                 except:
                     logger.warning('FAILED TO GET WORD LIST')
                     words = None
@@ -723,7 +758,7 @@ def convertAdlam():
                 except BaseException as err:
                     logger.error('**** Response download failure. Err = %s' % err)
                 
-        except BaseeException as err:
+        except BaseException as err:
             return 'Conversion failed. with err %s' % err
         
 #    return '%s file uploaded successfully with %d paragraphs' % (file.filename, count)
@@ -734,7 +769,7 @@ def event_stream():
     global countSent
     if countSent < 1:
         logger.info('STREAM msg:%s' % msgToSend)
-        yield "data: {}\n\n".format(msgToSend);
+        yield "data: {}\n\n".format(msgToSend)
         msgToSend = msgToSend + '.'
         countSent += 1
         
@@ -803,43 +838,74 @@ def example_task_handler():
     return 'Printed task payload: {}'.format(payload)
 # [END cloud_tasks_appengine_quickstart]
 
+lang_codes_to_name = {
+    'shn': 'Shan',
+    'lep': 'Lepcha',
+    'chr': 'Cherokee',
+    'nv': 'Navajo',
+    'mni': 'Meitei Mayak',
+    # ETC
+
+}
 @app.route('/matcher')
 def matcher():
     # Interactive conversion creator from hacked font to Unicode.
-    # IN PROCESS:
-    lang_code = 'shn'
-    lang_name = 'Shan'
-    font_base = 'static/fonts/%s' % lang_name
-    conversion_base = 'conversion_files/%s' % lang_code
+    # IN PROGRESS:
+    lang_code = request.args.get('lang_code', 'shn')
+
+    # lang_code = 'shn'
+    lang_name = lang_codes_to_name[lang_code]
+
+    logger.debug('app.static_folder: %s', app.static_folder)
+
+    font_base = os.path.join(app.static_folder, 'fonts', lang_code)
+    conversion_base = './conversion_files/%s' % lang_code
 
     unicode_font_list = os.listdir('%s/unicode' % font_base)
-    print('UNICODE FONTS AVAILABLE: %s' % unicode_font_list)
-
     logger.debug('UNICODE FONT LIST: %s' % unicode_font_list)
 
-    best_match_file_path = '%s/best_matches.json' % font_base
+    best_match_file_path = '%s/best_matches.json' % conversion_base
     logger.info('BEST MATCH FILE: %s' % best_match_file_path)
 
     best_matches_json = None
     try:
         with open(best_match_file_path) as best_matches_file:
             best_matches_json = json.load(best_matches_file)
-            logger.debug(best_matches_json['best_matches'])
+        logger.warning('best_matches_json', best_matches_json)
     except FileNotFoundError:
         best_matches_json = None
+        logger.warning('best_matches_json not found')
 
     # TODO: Get existing matcher conversion file if present
     conversion_data = None
-    conversion_file_path = '%s/conversion_data.json' % conversion_base
+    conversion_data_path = '%s/conversion_data.json' % conversion_base
     try:
-        with open(conversion_file_path) as conversion_file:
+        with open(conversion_data_path) as conversion_file:
             conversion_data = json.load(conversion_file)
             logger.info('CONVERSION DATA: %s' % conversion_data)
+            timestamp = conversion_data['timestamp']
+            logger.warning('CONVERSION DATA WAS FOUND at: %s' % conversion_data_path)
     except FileNotFoundError:
-        logger.error('CONVERSION DATA not found at: %s' % conversion_data)
+        logger.error('CONVERSION DATA not found at: %s' % conversion_data_path)
         conversion_data = None
+        timestamp = None
 
-    timestamp = conversion_data['timestamp']
+    hacked_path = '%s/hacked/' % font_base
+    hacked_fonts = os.listdir(hacked_path)
+    logger.debug('HACKED FONTS in %s: %s', font_base, hacked_fonts)
+
+    hacked_font_data = []
+    for font in hacked_fonts:
+        if font[0] != '.':
+            hacked_font_data.append(getFontData(os.path.join(hacked_path, font)))
+    logger.debug('HACKED FONT DATA in %s: %s', font_base, hacked_font_data)
+
+    unicode_path = '%s/unicode/' % font_base
+
+    unicode_font_data = []
+    for font in unicode_font_list:
+        if font[0] != '.':
+            unicode_font_data.append(getFontData(os.path.join(unicode_path, font)))
 
     return render_template(
         'matcher.html',
@@ -847,13 +913,15 @@ def matcher():
         lang_name=lang_name,
         saved_timestamp=timestamp,
         conversion_data=conversion_data,
-        hacked_font = '%s/%s' % (font_base, 'hacked/SHAN.TTF'),
-        hacked_font_name = 'SHAN',
-        hacked_ranges = list(best_matches_json['best_matches'].keys()),
+        hacked_font = hacked_fonts[0],
+        hacked_font_list = hacked_fonts,
+        hacked_font_data = hacked_font_data,
+        hacked_font_name = hacked_fonts[0],
         font_base=font_base,
-        unicode_font= '%s/%s' % (font_base, 'unicode/NotoSansMyanmar-Light.ttf'),
-        unicode_font_name='NotoSansMyanmar-Light',
+        unicode_font= '%s/%s/%s' % (font_base, 'unicode', unicode_font_list[0]),
+        unicode_font_name=unicode_font_list[0],
         unicode_font_list=unicode_font_list,
+        unicode_font_data=unicode_font_data,
         best_matches_json=best_matches_json,
         conversion_base=conversion_base
         )
@@ -861,31 +929,36 @@ def matcher():
 
 @app.route('/save_matcher_conversion', methods = ['GET', 'POST'])
 def save_matcher_conversion():
-    # Save the conversion data in a file under static/font/<langcode>/conversions
+    # Save the conversion data in a file under <langcode>/conversions
     # get the language code and name
     # get the JSON
     data = request.get_json()
     lang_code = data['lang_code']
-    # font_base = '/static/fonts/%s' % lang_code
-    font_base = 'conversion_files/shn/'
+    font_base = 'conversion_files/%s' % lang_code
 
     data['timestamp'] = time.time()
 
-    # Send a JSON response back to the frontend
+    # TODO Save data to the file
+    output_file_path = '%s/conversion_data.json' % font_base
     response_data = {
         "status": "success",
-        "message": f"Data received for matcher"
+        'lang_code': lang_code,
+        "message": f"Data received for matcher",
+        "output_file": output_file_path,
+        'timestamp': time.time(),
     }
+    logger.warning("CONVERSION FILE PATH: %s" % output_file_path)
 
-    # TODO Save data to the file
-    output_file_path = '%sconversion_data.json' % font_base
-    logger.debug("CONVERSION FILE PATH: %s" % output_file_path)
     try:
         with open(output_file_path, 'w') as output_file:
-           json.dump(data, output_file)
+           json.dump(data, output_file, indent=2)
+           logger.warning("CONVERSION FILE written: %s" % output_file_path)
     except BaseException as err:
-        print('ERROR %s with path %s' % (err, output_file_path))
+        logger.error('ERROR %s with path %s', err, output_file_path)
+        response_data['status'] = 'failed'
+        response_data['error'] = str(err)
 
+    # Send a JSON response back to the frontend
     return json.dumps(response_data)
 
 # load file with explicit language and encoding
@@ -902,7 +975,7 @@ def multi_uploadlang():
         file_content = file.read()
 
         # Enqueue the task, passing the payload to the worker endpoint
-        taskqueue.add(
+        queue.add(
             url='/worker',
             params={'filename': filename,
                     'content': file_content,
@@ -922,14 +995,20 @@ def worker():
     print('### %s (%s) size = %s' % (filename, lang_code, len(content)))
     return "Task completed", 200
 
-def testLangId():
-    args = request.args
-    text = args['text']
-    if text:
-        result = langid.classify(text)
-        return str(result)
-    else:
-        return str("No text")
+
+@app.route('/pick_matcher_lang')
+def pick_matcher_lang():
+    # Get the directories with hacked fonts
+    # get the names of the languages
+    # Show the UI for picking
+    files = Path('./conversion_files').iterdir()
+    lang_codes = []
+    for file in files:
+        lang_codes.append(file.stem)
+    return render_template('pick_matcher_lang.html',
+                           lang_codes=lang_codes,
+                           )
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

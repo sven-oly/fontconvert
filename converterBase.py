@@ -6,6 +6,8 @@ from __future__ import absolute_import, division, print_function
 
 from collections import defaultdict
 
+import check_complex_script
+
 import logging
 import os
 import re
@@ -244,12 +246,17 @@ class ConverterBase:
             if detected[0] in self.ignoreLangs:
                 return
 
+        paragraph_was_converted = False
+        all_converted = True
         for run in p.runs:
             try:
                 text_to_convert = run.text
                 scriptIndex = 0
-                font_name = run.font.name
-                # TODO: Check if unknown font regions should be converted.
+
+                old_font_name = run.font.name
+                if old_font_name not in self.FONTS_TO_CONVERT:
+                    all_converted = False
+                    continue
                 try:
                     scriptIndex = self.FONTS_TO_CONVERT.index(font_name)
                 except BaseException as error:
@@ -274,8 +281,20 @@ class ConverterBase:
                     if self.set_complex_font:
                         run.font.complex_script = True
 
+                    # the font to the selected replacement
                     run.text = new_text
-                    run.font.name = self.unicodeFont
+                    new_font_name = self.unicodeFont
+                    try:
+                        new_font_name = self.get_substitute_font_for(old_font_name)
+                    except BaseException as error:
+                        # The default
+                        pass
+                    run.font.name = new_font_name
+
+                    if self.set_complex_font:  # == 'Phake Ramayana Unicode':
+                        user_cs_font_size = 12
+                        check_complex_script.fix_cs_formatting_run(run, user_cs_font_size, new_font_name)
+
                     try:
                         new_font_size = int(run.font.size * self.font_resize_factor)
                         run.font.size = new_font_size
@@ -287,10 +306,15 @@ class ConverterBase:
                 continue
 
         # Check on the font for the full paragraph
-        try:
-            self.FONTS_TO_CONVERT.index(p.style.font.name)
-            p.style.font.name = self.unicodeFont
-        except ValueError:
+        if all_converted:
+            try:
+                old_font_name = p.style.font.name
+                try:
+                    p.style.font.name = self.get_substitute_font_for(old_font_name)
+                except:
+                    p.style.font.name = self.unicodeFont
+            except ValueError as error:
+                logger.warning('STYLE OLD FONT fails!')
             pass
 
         if self.handle_sentences:
