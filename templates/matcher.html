@@ -580,8 +580,19 @@
     function flip_rule_diacritics(rule_table, cell_to_flip) {
       // Get the characters and flip the order in the Unicode part
       let text_to_change = cell_to_flip.textContent;
-      let new_text = text_to_change[1] + text_to_change[0];
-      cell_to_flip.textContent = new_text;
+      if (text_to_change.length < 2) return text_to_change;
+
+      // Extract everything except the last 2 characters
+      const mainPart = text_to_change.slice(0, -2);
+
+      // Extract the last 2 characters
+      const lastTwo = text_to_change.slice(-2);
+
+      // Reverse the last two characters
+      const reversedLastTwo = lastTwo.split('').reverse().join('');
+
+      // Combine them back together
+      cell_to_flip.textContent = mainPart + reversedLastTwo;
     }
 
     function current_rules_to_dictionary() {
