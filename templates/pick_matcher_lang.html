@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head title="Pick language for matching hacked fonts">
+</head>
+
+<body>
+<h2>Pick a language code for visual matching</h2>
+<ul>
+{% for code in lang_codes %}
+<li><a href='/matcher?lang_code={{code}}'>{{code}}</li>
+</select>
+{% endfor %}
+</ul>
+
+</body>
+</html>

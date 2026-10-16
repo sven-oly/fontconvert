@@ -1,0 +1,21 @@
+{
+  "lang_code": "nv",
+  "lang_name": "Navajo",
+  "unicode_ranges_hex": "0020-007f, c0-f7, 140-14f, 310-329",
+  "data_type": "conversion_rules",
+  "font_conversions": {
+    "Verdana Navajo": {
+      "encoding_ranges_hex": "0020-007f",
+      "conversion_rules": {
+        "8": "i\u0328",
+        "!": "\u00c1",
+        "$": "\u00c9",
+        "&": "\u00cd",
+        ")": "\u00d3",
+        "*": "I\u0328",
+        "M": "M"
+      }
+    }
+  },
+  "timestamp": 1792110405.230196
+}

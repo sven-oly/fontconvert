@@ -1,0 +1,27 @@
+{
+  "lang_code": "lep",
+  "lang_name": "Lepcha",
+  "unicode_ranges_hex": "1c00-1c4f",
+  "data_type": "conversion_rules",
+  "font_conversions": {
+    "Munsalong": {
+      "encoding_ranges_hex": "0020-007b",
+      "conversion_rules": {
+        "#": "$",
+        "&": "\u1c24",
+        "*": "\u1c24",
+        "+": "\u1c36",
+        ":": "\u1c2e",
+        ";": "\u1c2f",
+        "<": "\u1c31",
+        ">": "\u1c30",
+        "?": "\u1c32",
+        "b": "\u1c28\u200c",
+        "d": "\u1c27\u200c",
+        "f": "\u1c29\u200c",
+        "j": "\u1c34\u200c"
+      }
+    }
+  },
+  "timestamp": 1792108698.3231192
+}

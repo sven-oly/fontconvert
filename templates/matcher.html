@@ -149,7 +149,9 @@
       'unicode_font_table': {}
     };
 
-    let add_button = null;  // initialized on page load
+    let save_rules_button;  // initialized on page load
+    let add_button;  // initialized on page load
+
     let rule_count = 0;
     // Append when a value needs to be reordered on conversion, e.g., U+1031
     const reorder_code = '\u200c';
@@ -168,6 +170,7 @@
       current_hacked_font = '{{hacked_font_data[0].family_name}}';
       current_unicode_font = '{{unicode_font_data[0].family_name}}';
       add_button = document.getElementById('add_rule_button');
+      save_rules_button = document.getElementById('rule_to_text_button');
 
       if (conversion_data['unicode_ranges_hex']) {
         let range_id = document.getElementById('unicode_ranges');
@@ -343,7 +346,7 @@
       }
 
       // Clear all those with 'lavender' background
-      clear_possible_colors()
+      clear_possible_colors();
     }
 
     function load_table_with_font_from_list(table_id, codepoint_list) {
@@ -409,6 +412,8 @@
             text_to_cell_map[itemText] = td;
       });
 
+      save_rules_button.disabled = true;
+
       // Set text to be the character with the code, and
       // and add the code point in hex too.
     }
@@ -433,7 +438,7 @@
       // Put each rule into the table
       for (const [key, value] of Object.entries(mapping))  {
         add_conversion_rule_to_table(key, value);
-        }
+      }
 
       // TODO: Highlight the data in the hacked font table for those that
       // are already defined.
@@ -466,6 +471,7 @@
 
       // Remember that there's something new.
       conversion_rules_updated = true;
+      save_rules_button.disabled = false;
     }
 
     function add_conversion_rule_to_table(key, values, reorder_flag) {
@@ -480,7 +486,7 @@
       }
 
       // Add a row to the table
-      rule_count += 1;
+      rule_count = rule_count + 1;
       const newRow = rule_table.insertRow(-1);
       const cell1 = newRow.insertCell(0);
       cell1.textContent = rule_count;
@@ -557,7 +563,7 @@
         let row_number = parseInt(row_object.cells[0].textContent);
         rule_table.deleteRow(index_to_remove);
         delete conversions_by_hack_code[hacked_code];
-        // rule_count -= 1;
+          rule_count -= 1;
       } else {
         // alert("No change made");
       }
@@ -619,7 +625,8 @@
                   'conversion_rules': rules_dictionary,
               };
       const number_of_rules = Object.keys(rules_dictionary).length;
-      alert('DATA_TO_SERVER: %s' % str(data_to_server))
+      copyToClipboardFallback('DATA_TO_SERVER: \n ' +
+          JSON.stringify(data_to_server));
 
       // Send the POST request to the Flask server
       const json_to_send = JSON.stringify(data_to_server);
@@ -632,12 +639,14 @@
         })
         .then(response => response.json()) // Parses the JSON response from Flask
         .then(data => {
-            alert('Success storing ' + number_of_rules + ' conversion rules' + '\n' + response);
+            alert('Success storing ' + number_of_rules + ' conversion rules'
+                );
         })
         .catch(error => {
             alert('Error storing conversions:', error);
         });
       conversion_rules_updated = false;
+      save_rules_button.disabled = true;
     }
 
   function setFontFamilyHacked(newFontFamily, table_id) {
@@ -685,6 +694,23 @@
         row.cells[rule_table_column].style.fontFamily = newFontFamily;
     }
   }
+</script>
+<script>
+    function copyToClipboardFallback(text) {
+  // Create a temporary input element
+  const tempInput = document.createElement("input");
+  tempInput.value = text;
+  document.body.appendChild(tempInput);
+
+  // Select the text and trigger the native copy command
+  tempInput.select();
+  document.execCommand("copy"); //
+
+  // Remove the temporary input from the DOM
+  document.body.removeChild(tempInput);
+
+  alert("Rules copied to clipboard!");
+}
 
 </script>
 
@@ -726,7 +752,7 @@
 </div>
 <br />
 <input type="button" id="rule_to_text_button" onclick="save_rules_to_server();"
-        value="Save rules to file">
+        disabled="true" value="Save rules to file">
 
 <div class="table-container">
 <div id="hacked_table">
@@ -761,5 +787,6 @@
 </table>
 </div>
 <br />
+
 </body>
 </html>
